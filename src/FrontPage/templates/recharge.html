@@ -1,0 +1,270 @@
+<!doctype html>
+{% load i18n %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
+    <link rel="shortcut icon" href="/static/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+
+    <link rel="stylesheet" type="text/css" href="/static/css/usercenter.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/recharge.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/dialog.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/layer/theme/default/layer.css">
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/jquery.scrollTo.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap/layer/layer.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/common.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/static/js/swiper/css/swiper.min.css">
+    <script src="/static/js/swiper/js/swiper.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/validator/css/bootstrapValidator.min.css">
+    <script src="/static/bootstrap/validator/js/bootstrapValidator.js"></script>
+    <script src="/static/js/accessLimit.js"></script>
+    <script src="/static/js/qrcode.js"></script>
+    <script src="/static/js/recharge.js"></script>
+
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div id="App"></div>
+
+<script type="text/babel" src="/static/jsx/approot.jsx"></script>
+<script type="text/babel" src="/static/jsx/header.jsx"></script>
+<script type="text/babel" src="/static/jsx/footer.jsx"></script>
+<script type="text/babel" src="/static/jsx/fmnavbar.jsx"></script>
+<script type="text/babel">
+
+    function LinkCoinIn(props) {
+        function clickHandler(e) {
+            e.preventDefault();
+            CoinIn(props.id);
+        }
+
+        return <a href="#" onClick={clickHandler}>{% trans '充币' %}</a>;
+    }
+
+    function LinkCoinWKC(props) {
+        return <a href={props.url}>{% trans '充币' %}</a>;
+    }
+
+    function LinkCoinBTC(props) {
+        function clickHandler(e) {
+            e.preventDefault();
+            CoinToBTC(props.id, props.refreshHandler);
+        }
+
+        return <a href="#" onClick={clickHandler}>{% trans '提币' %}</a>;
+    }
+
+    function LinkCoinOut(props) {
+        function clickHandler(e) {
+            e.preventDefault();
+            CoinOut(props.id, props.refreshHandler);
+        }
+
+        return <a href="#" onClick={clickHandler}>{% trans '转账' %}</a>;
+    }
+
+    var FinanceList = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0,
+                items: [],
+                is_zero: 1,
+                pageIndex: 1,
+                pageCount: 1
+            };
+        },
+        componentDidMount: function () {
+            var type = this.state.is_zero;
+            this.Refresh(type);
+        },
+        Refresh: function (is_zero) {
+            //console.log(is_zero);
+            //ShowLoading("正在加载...");
+            $.getJSON(this.props.source, {
+                is_zero: is_zero
+            }, function (res) {
+
+                //console.log(res);
+
+                //CloseLoading(500);
+
+                if (res.result) {
+                    this.setState({
+                        items: res.data,
+                        status: 1,
+                        is_zero: is_zero
+                    });
+
+                    CountTotalAmount(res.data);
+                }
+                else {
+                    this.setState({
+                        status: 2,
+                        is_zero: is_zero
+                    });
+                }
+            }.bind(this));
+        },
+        clickToggle: function (e) {
+            var ths = $(e.target);
+            e.preventDefault();
+            var is_zero;
+
+            if (ths.is("i")) {
+                ths = ths.parent();
+            }
+
+            if (!ths.hasClass("checked")) {
+                ths.addClass("checked");
+                is_zero = 0;
+            }
+            else {
+                ths.removeClass("checked");
+                is_zero = 1;
+            }
+            //console.log(this.state.is_zero);
+            this.setState({
+                is_zero: is_zero
+            });
+
+            this.Refresh(is_zero);
+        },
+        refreshHandler: function () {
+            console.log("刷新");
+            this.Refresh(this.state.is_zero);
+        },
+        render: function () {
+            var rows = [];
+            if (this.state.status == 0) {
+                rows.push(<tr key='0'>
+                    <td colSpan="7"><CLoading text="{% trans '正在加载...' %}"/></td>
+                </tr>);
+            }
+            else {
+                if (!this.state.items || this.state.items.length == 0) {
+                    rows.push(<tr key='0'>
+                        <td colSpan="7" className="txt-no-records"> {% trans '没有找到匹配的记录' %}</td>
+                    </tr>);
+                }
+                else {
+
+                    this.state.items.forEach(function (item) {
+
+                        var available = FormatNumX(item.available);
+                        var frozen = FormatNumX(item.frozen);
+                        var unconfirm = FormatNumX(item.unconfirm);
+                        var total = FormatNumX(parseFloat(available) + parseFloat(frozen) + parseFloat(unconfirm));
+
+                        var id = item.coin_type;
+                        var code = GetCoinType(id, "code");
+                        var sid = "sitem" + id;
+                        var tid = "titem" + id;
+
+                        var lnkIn = item.is_allow_charge ? <LinkCoinIn id={id}/> : "";
+                        var lnkOut = item.is_allow_transfer ?
+                            <LinkCoinOut id={id} refreshHandler={this.refreshHandler}/> : "";
+                        var lnkBTC = item.is_allow_withdrow ?
+                            <LinkCoinBTC id={id} refreshHandler={this.refreshHandler}/> : "";
+
+                        if (id == "6") {
+                            lnkIn = item.is_allow_charge ? <LinkCoinWKC url="recharge-wkc.html"/> : "";
+                        }
+
+
+                        rows.push(<tr className="titem" key={id} id={tid}>
+                            <td className="sname">{code}</td>
+                            <td className="name hidden-xs">{gettext(item.coin_name)}</td>
+                            <td className="amount-liv">{available}</td>
+                            <td className="amount-smt">{frozen}</td>
+                            <td className="amount-cfm">{unconfirm}</td>
+                            <td className="amount-ttl hidden-xs">{total}</td>
+                            <td className="btns">
+                                {lnkIn}
+                                {lnkOut}
+                                {lnkBTC}
+                            </td>
+                        </tr>);
+                        rows.push(<tr className="titem titem-qr" id={sid} key={sid}>
+                            <td colSpan="7">{% trans '请将币转入到这个地址' %} <span
+                                className="txt-red">1Go5J1fwrLimm8Fer7yhTtFV5NPz5RasRi</span> <img
+                                src="/static/images/bill_qr.png"/></td>
+                        </tr>);
+                    }.bind(this));
+                }
+            }
+
+            return (<div className="item-box">
+                <h4 className="tb-title clearfix"><span className="tl pull-left">{% trans '我的资金一览表' %}</span> <span
+                    className="cbox pull-right txt-md"><a href="#" onClick={this.clickToggle}><i
+                    className="icon-toggle-on icon-large"></i> {% trans '隐藏0余额币种' %}</a></span><span
+                    className="amount pull-right txt-md">{% trans '资产估算' %}：<span
+                    id="fnAmountBTC">--</span> BTC({% trans '约人民币' %}：<span
+                    id="fnAmountCNY">--</span>)</span></h4>
+                <table className="tb-list tb-solid">
+                    <thead>
+                    <tr className="thead thead-blue thead-condensed">
+                        <th className="sname">{% trans '资金名称' %}</th>
+                        <th className="name hidden-xs">{% trans '资金全称' %}</th>
+                        <th className="amount-liv">{% trans '可用资金' %}</th>
+                        <th className="amount-smt">{% trans '挂单资金' %}</th>
+                        <th className="amount-cfm">{% trans '确认中资金' %}</th>
+                        <th className="amount-ttl hidden-xs">{% trans '总计' %}</th>
+                        <th className="btns">{% trans '操作' %}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {rows}
+                    </tbody>
+                </table>
+            </div>);
+        }
+    });
+
+    function PageView(props) {
+        return (<section className="main-list recharge-list">
+            <div className="container">
+                <CFMCateBar activeItem="fm-recharge"/>
+                <div className="clearfix">
+                    <div className="menu-box menu-user hidden-xs">
+                        <CFMNavBar activeItem="fm-recharge"/>
+                    </div>
+                    <div className="list-box">
+                        <FinanceList source={props.source}/>
+                    </div>
+                </div>
+            </div>
+        </section>);
+    }
+
+    var isLogin = IsLogin();
+
+    ReactDOM.render(
+        <App isLogin={isLogin} ContentBox={
+            <PageView source="/api/finance/get_funds"/>
+        }/>
+        , document.getElementById("App")
+    );
+</script>
+</body>
+</html>

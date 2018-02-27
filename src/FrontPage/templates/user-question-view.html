@@ -1,0 +1,188 @@
+<!doctype html>
+{% load i18n %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
+    <link rel="shortcut icon" href="/static/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/usercenter.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/user-question-view.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/layer/theme/default/layer.css">
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/jquery.scrollTo.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap/layer/layer.js"></script>
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/common.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/static/js/swiper/css/swiper.min.css">
+    <script src="/static/js/swiper/js/swiper.min.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script src="/static/js/accessLimit.js"></script>
+    <script src="/static/js/user-question-view.js"></script>
+
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div id="App"></div>
+
+<script type="text/babel" src="/static/jsx/approot.jsx"></script>
+<script type="text/babel" src="/static/jsx/header.jsx"></script>
+<script type="text/babel" src="/static/jsx/footer.jsx"></script>
+<script type="text/babel" src="/static/jsx/usernavbar.jsx"></script>
+<script type="text/babel" src="/static/jsx/elements.jsx"></script>
+<script type="text/babel">
+    var id = GetQueryString("id");
+
+    function PageView(props) {
+        return (<section className="main-list">
+            <div className="container">
+                <div className="clearfix">
+                    <div className="menu-box menu-user hidden-xs">
+                        <CUserNavBar activeItem="sm-question-list"/>
+                    </div>
+                    <div className="list-box">
+                        <CQuestionView id={id} source="/api/question/question_info"/>
+                    </div>
+                </div>
+            </div>
+        </section>);
+    }
+
+    function CReplyItem(props) {
+        var cont = props.content || props.children;
+        var dtime = FormatDate(props.time, "yyyy-MM-dd hh:mm");
+        return (<div className="item clearfix">
+            <div className="cont txt-sm">
+                <div>{cont}</div>
+                <div className="time">{dtime}</div>
+            </div>
+            <div className="name txt-primary">
+                <div className="box">{props.name}</div>
+            </div>
+        </div>);
+    }
+
+    var CQuestionView = React.createClass({
+        displayName: "CQuestionView",
+
+        getInitialState: function getInitialState() {
+            return {
+                status: 0,
+                items: []
+            };
+        },
+        componentDidMount: function componentDidMount() {
+            $.getJSON(this.props.source, {
+                question_id: this.props.id
+            }, function (res) {
+                if (res.result) {
+                    this.setState({
+                        items: res.data,
+                        status: 1
+                    });
+                }
+                else {
+                    this.setState({
+                        status: 2
+                    });
+                }
+            }.bind(this));
+        },
+        render: function render() {
+            var rows = [];
+            var replys = [];
+            if (this.state.status == 0) {
+                rows.push(<tr key="0">
+                    <td colSpan="5"><CLoading text="{% trans '正在加载...' %}"/></td>
+                </tr>);
+            }
+            else {
+                if (this.state.items && this.state.items.question) {
+                    var item = this.state.items.question;
+                    if (item) {
+                        var dtime = FormatDate(item.create_time, "yyyy-MM-dd hh:mm");
+                        rows.push(<tr className="titem" key="1">
+                            <td className="cid">{item.question_id}</td>
+                            <td className="type hidden-xs">{item.question_type}</td>
+                            <td className="info">{item.content}</td>
+                            <td className="dtime hidden-xs">{dtime}</td>
+                            <td className="status txt-status1">{item.status}</td>
+                        </tr>);
+                    }
+                    var itemReplys = this.state.items.replies;
+                    if (itemReplys) {
+                        var num = 0;
+                        itemReplys.forEach(function (itemReply) {
+                            num = num + 1;
+                            replys.push(<CReplyItem key={num} name={itemReply.admin_code} time={itemReply.reply_time}>
+                                {itemReply.reply_content}
+                            </CReplyItem>);
+                        });
+                    }
+                }
+                else {
+                    rows.push(<tr className="titem" key="0">
+                        <td colSpan="5" className="txt-no-records">{% trans '没有找到相关信息' %}</td>
+                    </tr>);
+                }
+            }
+
+            return (<div className="item-box">
+                <h4 className="tb-title tb-title-border clearfix">
+                    <span className="tl pull-left">{% trans '工单详情' %}</span>
+                    <a href="user-question-list.html" className="pull-right txt-sm">{% trans '返回列表' %}</a>
+                </h4>
+                <div className="user-form">
+                    <div className="question-view">
+                        <table width="100%" className="tb-list tb-solid tb-bordered-full txt-sm">
+                            <thead>
+                            <tr className="thead thead-condensed thead-blue">
+                                <td className="cid">{% trans '问题编号' %}</td>
+                                <td className="type hidden-xs">{% trans '问题类型' %}</td>
+                                <td className="info">{% trans '没有找到相关信息' %}问题概要</td>
+                                <td className="dtime hidden-xs">{% trans '提交时间' %}</td>
+                                <td className="status">{% trans '问题状态' %}</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {rows}
+                            </tbody>
+                        </table>
+                        <div className="reply">
+                            {replys}
+                        </div>
+                    </div>
+                </div>
+            </div>);
+        }
+    });
+
+    var isLogin = IsLogin();
+
+    ReactDOM.render(
+        <App isLogin={isLogin} ContentBox={
+            <PageView/>
+        }/>
+        , document.getElementById("App")
+    );
+</script>
+</body>
+</html>

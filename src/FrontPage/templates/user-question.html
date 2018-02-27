@@ -1,0 +1,122 @@
+<!doctype html>
+{% load i18n %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
+    <link rel="shortcut icon" href="/static/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/usercenter.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/user-question.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/layer/theme/default/layer.css">
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/jquery.scrollTo.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap/layer/layer.js"></script>
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/common.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/static/js/swiper/css/swiper.min.css">
+    <script src="/static/js/swiper/js/swiper.min.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script src="/static/js/accessLimit.js"></script>
+
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/validator/css/bootstrapValidator.min.css">
+    <script src="/static/bootstrap/validator/js/bootstrapValidator.js"></script>
+    <script src="/static/js/user-question.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div id="App">
+    <div class="loading"><i class="icon-spinner icon-spin"></i> {% trans '正在加载...' %}</div>
+</div>
+
+<script type="text/babel" src="/static/jsx/approot.jsx"></script>
+<script type="text/babel" src="/static/jsx/header.jsx"></script>
+<script type="text/babel" src="/static/jsx/footer.jsx"></script>
+<script type="text/babel" src="/static/jsx/usernavbar.jsx"></script>
+<script type="text/babel" src="/static/jsx/elements.jsx"></script>
+<script type="text/babel">
+
+    function PageView(props) {
+        return (<section className="main-list">
+            <div className="container">
+                <div className="clearfix">
+                    <div className="menu-box menu-user hidden-xs">
+                        <CUserNavBar activeItem="sm-question"/>
+                    </div>
+                    <div className="list-box">
+                        <FormBox/>
+                    </div>
+                </div>
+            </div>
+        </section>);
+    }
+
+    var FormBox = React.createClass({
+        displayName: "FormBox",
+
+        componentDidMount: function componentDidMount() {
+        },
+        submitHandler: function submitHandler(e) {
+            e.preventDefault();
+        },
+        sendMsgHandler: function sendMsgHandler(e) {
+            e.preventDefault();
+            SendEmailMsgX(e.target, '#email');
+        },
+        render: function render() {
+            var email = GetFormatItem("email");
+            return (<CFormBox title="{% trans '请选择工单分类' %}" subTitle="{% trans '（正确选择分类，有助于快速解决您的问题）' %}"
+                              submitHandler={this.submitHandler}>
+                <CFormGroup className="rbox lg blue form-group">
+                    <CCol className="col-sm-12">
+                        <a href="#" data-name="question_type" data-id="0">{% trans '充值' %}</a>
+                        <a href="#" data-name="question_type" data-id="1">{% trans '提现' %}</a>
+                        <a href="#" data-name="question_type" data-id="2">{% trans '转账' %}</a>
+                        <a href="#" data-name="question_type" data-id="3">{% trans '账户' %}</a>
+                        <a href="#" data-name="question_type" data-id="4" className="checked">{% trans '其他' %}</a>
+                        <CHidden name="question_type" value="4"/>
+                    </CCol>
+                </CFormGroup>
+                <CFormGroup className="form-group cont">
+                    <CCol className="col-sm-12">
+                        <textarea className="form-control" name="content" rows="8"
+                                  placeholder="{% trans '说说您遇到的问题，我们会尽快为您解决（工作时间9-22点30分）' %}"></textarea>
+                    </CCol>
+                </CFormGroup>
+                <CFormGroup className="form-group btns">
+                    <CButton colIn="col-sm-12 clearfix"
+                             className="btn btn-primary btn-lg fld-xs-block pull-right">{% trans '提交问题' %}</CButton>
+                </CFormGroup>
+            </CFormBox>);
+        }
+    });
+
+    var isLogin = IsLogin();
+
+    ReactDOM.render(
+        <App isLogin={isLogin} ContentBox={
+            <PageView/>
+        }/>
+        , document.getElementById("App")
+    );
+</script>
+</body>
+</html>

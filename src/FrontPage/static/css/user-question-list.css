@@ -1,0 +1,37 @@
+.question-list {
+    padding: 20px 35px;
+}
+
+.question-list .btns a {
+    margin: 5px;
+}
+
+.question-list .thead .cid {
+    width: 10%;
+}
+
+.question-list .thead .type {
+    width: 10%;
+}
+
+.question-list .thead .info {
+
+}
+
+.question-list .thead .dtime {
+    width: 15%;
+}
+
+.question-list .thead .status {
+    width: 10%;
+}
+
+.question-list .thead .btns {
+    width: 12%;
+}
+
+@media (max-width: 767px) {
+    .question-list {
+        padding: 10px 5px;
+    }
+}

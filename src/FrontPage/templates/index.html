@@ -1,0 +1,570 @@
+<!doctype html>
+{% load i18n %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
+    <link rel="shortcut icon" href="/static/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+
+    <link rel="stylesheet" type="text/css" href="/static/css/index.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/layer/theme/default/layer.css">
+    <link rel="stylesheet" type="text/css" href="/static/js/bxslider/jquery.bxslider.css">
+    <link rel="stylesheet" type="text/css" href="/static/js/swiper/css/swiper.min.css">
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/jquery.scrollTo.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap/layer/layer.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    <script src="/static/js/bxslider/jquery.bxslider.min.js"></script>
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/common.js"></script>
+    <script src="/static/js/index.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/static/js/swiper/css/swiper.min.css">
+    <script src="/static/js/swiper/js/swiper.min.js"></script>
+    <script src="/static/js/index.js"></script>
+    <script src="/static/js/bxslider/jquery.bxslider.min.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+
+
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div id="App"></div>
+
+<script type="text/babel" src="/static/jsx/approot.jsx"></script>
+<script type="text/babel" src="/static/jsx/header.jsx"></script>
+<script type="text/babel" src="/static/jsx/footer.jsx"></script>
+<script type="text/babel">
+
+    function CBanner(props) {
+        var loginBox = <CLoginBox/>
+        var isLogin = IsLogin();
+        if (isLogin) {
+            loginBox = <CLoginInfoBox/>
+        }
+
+        return (<section className="home-banner">
+            <div className="banner">
+                <CSliderBanner/>
+                {loginBox}
+            </div>
+            <CNoticeTop source={props.noticeSource}/>
+        </section>);
+    }
+
+    function CLoginBox(props) {
+        function submitHandler(e) {
+            e.preventDefault();
+            AjaxLogin('#frmLogin');
+        }
+
+        function refreshHandler(e) {
+            e.preventDefault();
+            RefreshCode('#rndCode');
+        }
+
+        return (<div className="login-form">
+            <form method="post" name="frmLogin" id="frmLogin" onSubmit={submitHandler}>
+                <h3 className="tl clearfix">
+                    <span className="pull-left">{% trans '随求登录' %}</span>
+                    <a href="/api/social/login/qq/" className="qq"><i className="icon-qq"></i> {% trans 'QQ快捷登录' %}</a>
+                </h3>
+                <div className="fld">
+                    <input name="username" type="text" className="lg" placeholder="{% trans '输入手机号/邮箱' %}"/>
+                </div>
+                <div className="fld">
+                    <input name="password" type="password" className="lg" placeholder="{% trans '输入密码' %}"/>
+                </div>
+                <div className="fld fld-code">
+                    <input name="captcha_value" type="text" className="lg" placeholder="{% trans '输入验证码' %}"/>
+                    <a href="#" onClick={refreshHandler}><img src="" id="rndCode"/></a>
+                </div>
+                <div className="fgt">
+                    <div className="clearfix item-box">
+                        <label>
+                            <input type="checkbox" name="remember" value="1"/>
+                            {% trans '记住我' %} </label>
+                        <a href="forgot.html">{% trans '忘记密码?' %}</a></div>
+                </div>
+                <div className="btns">
+                    <button type="submit" className="btn-login txt-md">{% trans '登录' %}</button>
+                    <a href="register.html" className="btn-reg txt-md">{% trans '注册' %}</a></div>
+                <input name="captcha_key" id="captcha_key" type="hidden" value=""/>
+            </form>
+        </div>);
+    }
+
+    var CLoginInfoBox = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0
+            };
+        },
+        componentDidMount: function () {
+            InitTotalAmount();
+        },
+        logoutHandler: function (e) {
+            e.preventDefault();
+            Logout();
+        },
+        render: function () {
+
+
+            var img = GetItem("avatar_url") || "/static/images/avatar.jpg";
+            var nicname = GetItem("nicname");
+            var uid = GetItem("uid");
+            var mobi = "未绑定";
+            if (GetItem("phone_number")) {
+                mobi = FormatMask(GetItem("phone_number"), 6, 4);
+            }
+
+            var email = "未绑定";
+            if (GetItem("email")) {
+                email = FormatMaskEmail(GetItem("email"));
+            }
+
+            var amount = "0.00";
+
+            return (<div className="login-info">
+                <div className="box">
+                    <div className="thu"><img src={img}/></div>
+                    <div className="uid">{nicname}({uid})</div>
+                    <div className="fld">{% trans '手机号码' %}：<span>{mobi}</span></div>
+                    <div className="fld">{% trans '邮箱地址' %}：<span>{email}</span></div>
+                    <div className="fld">{% trans '总&nbsp;资&nbsp;产' %}：<i className="icon-btc"></i> <span
+                        data-toggle="tooltip" data-placement="right" title="&yen;" id="fnAmountBTC">--</span></div>
+                    <div className="btns"><a href="#" onClick={this.logoutHandler}>{% trans '退出登录' %}</a></div>
+                </div>
+            </div>);
+        }
+    });
+
+    function CSliderItem(props) {
+        var bg = "url(" + props.img + ")";
+
+        return (<li className="item" style={% verbatim %}{{"backgroundImage": bg}}{% endverbatim %}>
+            <div className="caption"><h1>{props.title}</h1><a href={props.url}
+                                                              className="btn btn-primary">{% trans '查看详情' %}</a>
+            </div>
+        </li>);
+    }
+
+    var CSliderBanner = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0,
+                items: []
+            };
+        },
+        componentDidMount: function () {
+            $.getJSON("/api/notice/get_notice_list", {
+                size: 3,
+                important: 1
+            }, function (res) {
+                //console.log("banner@@@@");
+                //console.log(res);
+                if (res.result) {
+                    this.setState({
+                        status: 1,
+                        items: res.data
+                    });
+
+                    InitSlider();
+                }
+                else {
+                    this.setState({
+                        status: 2
+                    });
+                }
+            }.bind(this));
+        },
+        render: function () {
+            var rows = [];
+            if (this.state.items) {
+                var num = 0;
+                this.state.items.forEach(function (item) {
+                    num++;
+                    var url = "notice-view.html?id=" + item.notice_id;
+                    rows.push(<CSliderItem key={num} title={item.title} url={url} img={item.banner}/>);
+                });
+            }
+            return (<div className="banner-box">
+                <ul className="bxSlider">
+                    {rows}
+                </ul>
+            </div>);
+        }
+    });
+
+    var CNoticeTop = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0,
+                id: 0,
+                type: 0,
+                title: ""
+            };
+        },
+        componentDidMount: function () {
+            $.getJSON(this.props.source, {
+                size: 1
+            }, function (res) {
+                //console.log(res);
+                if (res.result && res.data && res.data.length > 0) {
+                    var item = res.data[0];
+                    this.setState({
+                        id: item.notice_id,
+                        title: item.title,
+                        status: 1
+                    });
+                }
+                else {
+                    this.setState({
+                        status: 2
+                    });
+                }
+            }.bind(this));
+        },
+        render: function () {
+            var url1 = "notice-view.html?id=" + this.state.id;
+            var url2 = "notices.html?id=" + this.state.type;
+            var title = this.state.title || "";
+            return (<div className="home-notice-top txt-lg">
+                <span className="col tp"><i className="icon-volume-up txt-orange"></i> {% trans '公告：' %}</span>
+                <span className="col tl"><a href={url1}>{title}</a></span>
+                <span className="col more"><a href={url2}>{% trans '更多' %}<i
+                    className="txt-sm icon-angle-double-right"></i></a></span>
+            </div>);
+        }
+    });
+
+    /******news-list******/
+    function CNewsItem(props) {
+        function loadHandler(e) {
+            var img = $(e.target);
+            var wd = $(img).width();
+            var ht = parseInt(wd / 2);
+
+            $(img).css("height", ht + "px");
+        }
+
+        var url = "notice-view.html?id=" + props.id;
+        var dt = FormatDate(props.createTime, "yyyy-MM-dd");
+
+        return (<div className="col-lg-3 col-md-3 col-sm-6 col-sm-6 col-xs-12">
+            <div className="item-box hvr-wobble-vertical">
+                <div className="img"><a href={url}><img src={props.img} onLoad={loadHandler}/></a></div>
+                <div className="title"><a href={url}>{props.title}</a></div>
+                <div className="date clearfix"><span className="pull-left"><i className="icon-clock-o"></i> {dt}</span>
+                    <span className="pull-right txt-xs"><i className="icon-eye"></i>{props.viewCount}</span></div>
+            </div>
+        </div>);
+    }
+
+    var CNewsList = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0,
+                items: []
+            };
+        },
+        componentDidMount: function () {
+            $.getJSON(this.props.source, {
+                size: 4,
+                important: 1
+            }, function (res) {
+                //console.log(res);
+                if (res.result) {
+                    this.setState({
+                        items: res.data,
+                        status: 1
+                    });
+                }
+                else {
+                    this.setState({
+                        status: 2
+                    });
+                }
+            }.bind(this));
+        },
+        clickHandler: function (e) {
+            e.preventDefault();
+        },
+        render: function () {
+            var rows = [];
+
+            if (this.state.items && this.state.items.length > 0) {
+                this.state.items.forEach(function (item) {
+                    rows.push(<CNewsItem key={item.notice_id} id={item.notice_id} title={item.title}
+                                         createTime={item.create_time} viewCount={item.view_count} img={item.img}/>);
+                });
+            }
+            else {
+                rows.push(<div className="col-sm-12" key="0">
+                    <div className="txt-no-records">{% trans '没有相关的信息！' %}</div>
+                </div>);
+            }
+
+            return (<section className="home-news">
+                <div className="container">
+                    <h4 className="clearfix title"><span className="tl"><i
+                        className="icon-chevron-circle-right txt-primary"></i> {% trans '重要公告' %}</span> <a
+                        href="notices.html?important=1" className="more">{% trans '更多' %}</a></h4>
+                    <div className="row">
+                        {rows}
+                    </div>
+                </div>
+            </section>);
+        }
+    });
+
+    /******notice-list******/
+    function CNoticeList(props) {
+        return (<section className="home-notice">
+            <div className="container">
+                <div className="row line-bg">
+                    <CNoticeItems source={props.source} id="0" title="{% trans '公司公告' %}"/>
+                    <CNoticeItems source={props.source} id="1" title="{% trans '币种论证报告' %}"/>
+                </div>
+            </div>
+        </section>);
+    }
+
+    function CNoticeItem(props) {
+        var dt = FormatDate(props.createTime, "yyyy-MM-dd");
+        var url = "notice-view.html?id=" + props.noticeID
+        return (<li className="clearfix"><a href={url}><i className="icon-angle-double-right"></i> {props.noticeTitle}
+        </a> <span className="dt">{dt}</span></li>);
+    }
+
+    var CNoticeItems = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0,
+                items: []
+            };
+        },
+        componentDidMount: function () {
+            $.getJSON(this.props.source, {
+                notice_type: this.props.id,
+                size: 10
+            }, function (res) {
+                //console.log(res);
+                if (res.result) {
+                    this.setState({
+                        items: res.data,
+                        status: 1
+                    });
+                }
+                else {
+                    this.setState({
+                        status: 2
+                    });
+                }
+            }.bind(this));
+        },
+        render: function () {
+            var rows = [];
+
+            if (this.state.items && this.state.items.length > 0) {
+                this.state.items.forEach(function (item) {
+                    rows.push(<CNoticeItem key={item.notice_id} noticeID={item.notice_id} noticeTitle={item.title}
+                                           createTime={item.create_time}/>);
+                });
+            }
+            else {
+                rows.push(<li key="0">
+                    <div className="txt-no-records">{% trans '没有相关的信息！' %}</div>
+                </li>);
+            }
+            var url = "notices.html?id=" + this.props.id;
+            return (<div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div className="item-box">
+                    <h4 className="title clearfix"><span className="tl"><i
+                        className="icon-chevron-circle-right txt-primary"></i> {this.props.title}</span> <a
+                        className="more" href={url}>{% trans '更多' %}</a></h4>
+                    <ul className="list">
+                        {rows}
+                    </ul>
+                </div>
+            </div>);
+        }
+    });
+
+    /****trade-list***/
+    var CTradeList = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0,
+                items: []
+            };
+        },
+        componentDidMount: function () {
+            $.getJSON(this.props.source, {}, function (res) {
+                //console.log(res);
+                if (res.result) {
+                    this.setState({
+                        items: res.data,
+                        status: 1
+                    });
+                }
+                else {
+                    this.setState({
+                        status: 2
+                    });
+                }
+            }.bind(this));
+        },
+        clickHandler: function (e) {
+            e.preventDefault();
+        },
+        render: function () {
+            var rows = [];
+
+            if (this.state.items && this.state.items.length > 0) {
+                var num = 0;
+                this.state.items.forEach(function (item) {
+                    var url = "transaction.html?id=" + item.pair_code;
+                    var code = item.pair_code;
+                    var logo = GetCoinType(GetPairCode(code, "coin_type_b"), "src");
+                    var name = GetPairCode(code, "name");
+                    var price = item.price ? FormatNumX(item.price, 8) : "--";
+                    var b24h = item.vol ? FormatNumX(item.vol, 8) : "--";
+                    var p7day = item.change_7d ? (parseFloat(item.change_7d) * 100).toFixed(2) + "%" : "--";
+                    var p24h = item.change_24h ? (parseFloat(item.change_24h) * 100).toFixed(2) + "%" : "--";
+                    var css = item.change_24h < 0 ? "item txt-drop" : "item txt-up";
+                    num++;
+                    /*
+                    change_24h,cny_rate,pair_code,price,updatetime
+                    */
+                    var coin_logo_style = {
+                        backgroundImage: 'url(' + logo + ')',
+                    };
+                    rows.push(<tr className={css} key={num}>
+                        <td className="iconx">
+                            <i className="icon_coin" style={coin_logo_style}></i>
+                        </td>
+                        <td className="cname">{name}</td>
+                        <td className="lprice">{price}</td>
+                        <td className="b24h">{b24h}</td>
+                        <td className="p7day hidden-xs">{p7day}</td>
+                        <td className="p24h">{p24h}</td>
+                        <td className="bbtn">
+                            <a href={url} className="hvr-sweep-to-right">
+                                <i className="icon-exchange"></i>
+                                <span className="hidden-xs">{% trans '立即交易' %}</span>
+                            </a>
+                        </td>
+                    </tr>);
+                });
+            }
+            else {
+                rows.push(<tr className="item txt-up" key="0">
+                    <td colSpan="7" className="txt-no-records">{% trans '没有相关的信息！' %}</td>
+                </tr>);
+            }
+
+            return (<section className="home-trade">
+                <div className="container">
+                    <table width="100%" className="tb-trade-list">
+                        <thead>
+                        <tr className="txt-md">
+                            <td className="iconx">&nbsp;</td>
+                            <td className="cname">{% trans '币种名称' %}</td>
+                            <td className="lprice">{% trans '最新成交价' %}</td>
+                            <td className="b24h">{% trans '24H成交量' %}</td>
+                            <td className="p7day hidden-xs">{% trans '7日涨跌幅' %}</td>
+                            <td className="p24h">{% trans '24H涨跌幅' %}</td>
+                            <td className="bbtn">&nbsp;</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {rows}
+                        </tbody>
+                    </table>
+                </div>
+            </section>);
+        }
+    });
+
+    /****service-list****/
+    function CServiceItem(props) {
+        return (<div className="col-lg-3 col-md-3 col-sm-6 col-xs-6">
+            <div className="item-box">
+                <div className="hvr-wobble-to-top-right">
+                    <div className="thu"><img src={props.img}/></div>
+                    <span className="tl">{props.title}</span></div>
+            </div>
+        </div>);
+    }
+
+    function CServiceList(props) {
+        return (<section className="home-service">
+            <div className="container">
+                <h3 className="title">{% trans '交易服务平台' %}</h3>
+                <h5 className="title-sm">{% trans '我们致力于为广大数字货币、区块链支持者提供一个透明、安全、公平、可信的交易服务平台。' %}</h5>
+                <div className="row hidden-xs">
+                    <CServiceItem title="{% trans '透明' %}" img="/static/images/icon_s01.png"/>
+                    <CServiceItem title="{% trans '安全' %}" img="/static/images/icon_s02.png"/>
+                    <CServiceItem title="{% trans '公平' %}" img="/static/images/icon_s03.png"/>
+                    <CServiceItem title="{% trans '可信' %}" img="/static/images/icon_s04.png"/>
+                </div>
+            </div>
+        </section>);
+    }
+
+    function PageView(props) {
+        return (<div>
+            <CBanner noticeSource="/api/notice/get_notice_list"/>
+            <CTradeList source="/api/market/market_info" size="10"/>
+            <CNewsList source="/api/notice/get_notice_list" size="4"/>
+            <CNoticeList source="/api/notice/get_notice_list" size="5"/>
+            <CServiceList/>
+        </div>);
+    }
+
+    var isLogin = IsLogin();
+
+    function CreatePage() {
+
+        var isLogin = IsLogin();
+
+        ReactDOM.render(React.createElement(App, {
+            isLogin: isLogin,
+            ContentBox: React.createElement(PageView, null)
+        }), document.getElementById("App"));
+    }
+
+    $(function () {
+        $.getJSON("/api/market/get_cny_rate", {}, function (res) {
+            console.log(res);
+            if (res.result && res.data && res.data.cny_rate) {
+                SetItem("cny_rate", res.data.cny_rate);
+            }
+
+            CreatePage();
+        });
+
+
+    });
+</script>
+</body>
+</html>

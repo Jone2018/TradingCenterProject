@@ -1,0 +1,201 @@
+<!doctype html>
+{% load i18n %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
+    <link rel="shortcut icon" href="/static/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/usercenter.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/user-api.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/dialog.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/layer/theme/default/layer.css">
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/jquery.scrollTo.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap/layer/layer.js"></script>
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/common.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/static/js/swiper/css/swiper.min.css">
+    <script src="/static/js/swiper/js/swiper.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/validator/css/bootstrapValidator.min.css">
+    <script src="/static/bootstrap/validator/js/bootstrapValidator.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script src="/static/js/accessLimit.js"></script>
+    <script src="/static/js/user-api.js"></script>
+
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div id="App"></div>
+
+<script type="text/babel" src="/static/jsx/approot.jsx"></script>
+<script type="text/babel" src="/static/jsx/header.jsx"></script>
+<script type="text/babel" src="/static/jsx/footer.jsx"></script>
+<script type="text/babel" src="/static/jsx/usernavbar.jsx"></script>
+<script type="text/babel" src="/static/jsx/elements.jsx"></script>
+<script type="text/babel">
+
+
+    var ApiList = React.createClass({
+        displayName: "ApiList",
+
+        getInitialState: function getInitialState() {
+            return {
+                status: 0,
+                items: []
+            };
+        },
+        componentDidMount: function componentDidMount() {
+            $.getJSON(this.props.source, {}, function (res) {
+                if (res.result) {
+                    this.setState({
+                        items: res.data,
+                        status: 1,
+                        pageCount: res.num_pages
+                    });
+                }
+                else {
+                    this.setState({
+                        status: 2
+                    });
+                }
+            }.bind(this));
+        },
+        removeHandler: function removeHandler(e) {
+            e.preventDefault();
+            var ths = $(e.target);
+            var id = ths.parent().data("id");
+            ShowDel(id);
+        },
+        addHandler: function addHandler(e) {
+            e.preventDefault();
+
+            ShowAdd();
+
+        },
+        viewHandler: function viewHandler(e) {
+            e.preventDefault();
+            var ths = $(e.target);
+            var id = ths.parent().data("id");
+            ShowView(id);
+
+        },
+        updateHandler: function updateHandler(e) {
+            e.preventDefault();
+            var ths = $(e.target);
+            var id = ths.parent().data("id");
+            ShowUpdate(id);
+        },
+        render: function render() {
+            var rows = [];
+            if (this.state.status == 0) {
+                rows.push(<tr key="0">
+                    <td colSpan="5"><CLoading text="{% trans '正在加载...' %}"/></td>
+                </tr>);
+            }
+            else {
+                if (!this.state.items || this.state.items.length == 0) {
+                    rows.push(<tr key='0'>
+                        <td colSpan="5" className="txt-no-records"> {% trans '查询结果为空' %}</td>
+                    </tr>);
+                }
+                else {
+                    this.state.items.forEach(function (item) {
+                        var id = "api" + item.id;
+
+                        rows.push(<tr className="titem" key={item.id} id={id}>
+                            <td className="lbl">{item.comment}</td>
+                            <td className="key">{item.key}</td>
+                            <td className="lmt">{gettext(item.permission)}</td>
+                            <td className="dt">{item.create_at}</td>
+                            <td className="bn" data-id={item.id}>
+                                <a href="#" onClick={this.viewHandler}>{% trans '查看' %}</a>
+                                <a href="#" onClick={this.updateHandler}>{% trans '修改' %}</a>
+                                <a href="#" onClick={this.removeHandler}>{% trans '删除' %}</a>
+                            </td>
+                        </tr>);
+
+                    }.bind(this));
+                }
+            }
+
+            return (<div className="item-box">
+                <h4 className="tb-title tb-title-border clearfix"><span className="tl txt-primary pull-left">Chaobi.la's API</span>
+                </h4>
+                <div className="api-list">
+                    <div className="box">
+                        <div className="cont">{% blocktrans %}Chaobi.la为您提供了强大的API，您可以根据自身需求建立不同权限的API，并利用API进行自动交易或者提现。
+                            API的交易权限让您可以快速的获取当前市场最新行情及时的下单交易、查询自己可用和冻结金额、查询自己当前尚未成交的挂单、买进或卖出、撤单；提现权限可以让您快速提现到您的认证地址。
+                            （注：API变更一分钟后生效）
+                            注：您可以在通知中心开启重要公告邮件提示！{% endblocktrans %}
+                        </div>
+                        <div className="btns">
+                            <button type="button" className="btn btn-primary" onClick={this.addHandler}><i
+                                className="icon-plus"></i> {% trans '新建API' %}
+                            </button>
+                        </div>
+                        <div className="list list-bordered">
+                            <table className="tb-list tb-solid">
+                                <thead>
+                                <tr className="thead thead-blue thead-condensed">
+                                    <td className="lbl">{% trans '备注名' %}</td>
+                                    <td className="key">apiKey</td>
+                                    <td className="lmt">{% trans '权限' %}</td>
+                                    <td className="dt">{% trans '创建时间' %}</td>
+                                    <td className="bn">{% trans '操作' %}</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {rows}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>);
+        }
+    });
+
+    function PageView(props) {
+        return (<section className="main-list">
+            <div className="container">
+                <div className="clearfix">
+                    <div className="menu-box menu-user hidden-xs">
+                        <CUserNavBar activeItem="sm-api"/>
+                    </div>
+                    <div className="list-box">
+                        <ApiList source={props.source}/>
+                    </div>
+                </div>
+            </div>
+        </section>);
+    }
+
+    var isLogin = IsLogin();
+
+    ReactDOM.render(
+        <App isLogin={isLogin} ContentBox={
+            <PageView source="/api/account/get_api_list"/>
+        }/>
+        , document.getElementById("App")
+    );
+</script>
+</body>
+</html>

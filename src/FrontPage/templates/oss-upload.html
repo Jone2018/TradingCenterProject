@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+{% load i18n %}
+<html>
+<meta http-equiv=content-type content="text/html; charset=UTF-8">
+<head>
+    <title></title>
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+</head>
+<body>
+<form action="https://suiqiu-reainame.oss-cn-shanghai.aliyuncs.com" id="frm" method="post"
+      enctype="multipart/form-data">
+    <input type="hidden" name="OSSAccessKeyId" value="">
+    <input type="hidden" name="policy" value="">
+    <input type="hidden" name="signature" value="">
+    <input type="hidden" name="key" value="">
+    <input type="hidden" name="success_action_redirect" value="">
+    <input type="hidden" name="success_action_status" value="201">
+    <input name="file" type="file" id="file"/>
+</form>
+<input type="hidden" id="id"/>
+<input type="hidden" id="errMsg" value="0"/>
+<script type="text/javascript">
+    var token = {};
+    $.ajax({
+        type: "get",
+        url: "/api/account/get_token",
+        data: {},
+        dataType: "json",
+        success: function (data) {
+            token = data;
+
+            $("#frm input[name='signature']").val(data["signature"]);
+            $("#frm input[name='OSSAccessKeyId']").val(data["accessid"]);
+            $("#frm input[name='policy']").val(data["policy"]);
+        }
+    });
+
+    $("#file").click(function () {
+        $("#errMsg").val(1);
+    });
+
+    $("#file").change(function () {
+        changeFile();
+    });
+
+    function changeFile(el) {
+        var nm = $("#file").val();
+        var ext = GetExt(nm);
+        if (IsImage(ext)) {
+            var id = $("#id").val();
+            var key = token.dir + id + ext;
+            $("#frm input[name='key']").val(key);
+            $("#errMsg").val("2");
+            $("#frm input[name='success_action_redirect']").val("https://www.chaobi.la/oss-success.html?id=" + id + "&s=" + key);
+            $("#frm").submit();
+        }
+        else {
+            $("#errMsg").val("3");
+        }
+    }
+
+    function GetExt(str) {
+        var arr = str.split(".");
+        if (arr.length > 1) {
+            return "." + arr[arr.length - 1].toLowerCase();
+        }
+        return "";
+    }
+
+    function IsImage(ext) {
+        return (ext == ".jpg" || ext == ".png" || ext == ".gif" || ext == ".jpeg" || ext == ".bmp");
+    }
+</script>
+</body>
+</html>
+

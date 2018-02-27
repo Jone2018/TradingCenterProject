@@ -1,0 +1,209 @@
+<!doctype html>
+{% load i18n %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
+    <link rel="shortcut icon" href="/static/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/usercenter.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/user-id-list.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/layer/theme/default/layer.css">
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/jquery.scrollTo.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap/layer/layer.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/common.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/static/js/swiper/css/swiper.min.css">
+    <script src="/static/js/swiper/js/swiper.min.js"></script>
+    <script src="/static/js/accessLimit.js"></script>
+    <script src="/static/js/user-idcard-list.js"></script>
+
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div id="App"></div>
+
+<script type="text/babel" src="/static/jsx/approot.jsx"></script>
+<script type="text/babel" src="/static/jsx/header.jsx"></script>
+<script type="text/babel" src="/static/jsx/footer.jsx"></script>
+<script type="text/babel" src="/static/jsx/usernavbar.jsx"></script>
+<script type="text/babel">
+
+    function GetStatus(st) {
+        if (st == 1) {
+            return "{% trans '审核通过' %}";
+        }
+        else if (st == 2) {
+            return "{% trans '审核未通过' %}";
+        }
+
+        return "{% trans '审核中' %}";
+    }
+
+    function PageView(props) {
+        return (<section className="main-list">
+            <div className="container">
+                <div className="clearfix">
+                    <div className="menu-box menu-user hidden-xs">
+                        <CUserNavBar activeItem="sm-idcard"/>
+                    </div>
+                    <div className="list-box">
+                        <CIDInfo source="/api/account/authinfo"/>
+                    </div>
+                </div>
+            </div>
+        </section>);
+    }
+
+    function CIDItem(props) {
+        return (<div className="item">
+            <h4 className="title clearfix"><span className="pull-left">{props.title}</span> <span
+                className="pull-right txt-primary">{props.status}</span></h4>
+            <div className="box">
+                <div className="row">
+                    {props.children}
+                </div>
+            </div>
+        </div>);
+    }
+
+    var CIDInfo = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0,
+                isSubmit: false,
+                item: []
+            };
+        },
+        componentDidMount: function () {
+            $.getJSON(this.props.source, {}, function (res) {
+                //console.log(res);
+
+                if (res.result) {
+                    this.setState({
+                        status: 1,
+                        isSubmit: true,
+                        item: res.data
+                    });
+                }
+                else {
+                    this.setState({
+                        status: 2,
+                        isSubmit: false,
+                        item: []
+                    });
+                }
+                var code = res.code;
+                if (code == "10111") {
+                    ShowConfirm();
+                }
+
+            }.bind(this));
+
+        },
+        render: function () {
+            /*
+            "info_status": 0,
+            "create_time": "2017-10-24T03:28:53.389Z",
+            "realname": "测试姓名",
+            "id_card_no": "121121211212121211",
+            "has_pic_back": true,
+            "pic_status": 0,
+            "has_pic_front": true,
+            "has_pic_handon": true,
+            "id_type": 0
+            */
+            var item = this.state.item;
+            var title = "{% trans '身份认证审核中，请耐心等待' %}";
+
+            var idStatus = "";
+            var idName = "";
+            var idType = "";
+            var idCardNo = "";
+            var idTime = "";
+
+            var phStatus = "";
+            var phIDCard = "";
+            var phIDBack = "";
+            var phIDPer = "";
+            var lnk = "";
+            if (this.state.isSubmit) {
+                if (item.info_status == "1" && item.pic_status == "1") {
+                    title = "{% trans '身份认证已通过审核' %}";
+                }
+                else if (item.info_status == "2" && item.pic_status == "2") {
+                    title = "{% trans '审核未通过' %}";
+                    lnk = <a href="user-idcard.html" className="pull-right">{% trans '重新认证' %}</a>;
+                }
+
+
+                idStatus = GetStatus(item.info_status);
+                idName = FormatMask(item.realname, 1, 0);
+                idType = item.id_type == "1" ? "{% trans '护照' %}" : "{% trans '身份证' %}";
+                idCardNo = FormatMask(item.id_card_no, 3, 3);
+                idTime = FormatDate(item.create_time, "yyyy-MM-dd hh:mm");
+
+                phStatus = GetStatus(item.pic_status);
+                phIDCard = item.has_pic_front ? "{% trans '提交成功' %}" : "{% trans '未提交' %}";
+                phIDBack = item.has_pic_back ? "{% trans '提交成功' %}" : "{% trans '未提交' %}";
+                phIDPer = item.has_pic_handon ? "{% trans '提交成功' %}" : "{% trans '未提交' %}";
+
+            }
+
+            return (<div className="item-box">
+                <h4 className="tb-title clearfix"><span className="tl txt-primary pull-left"><i
+                    className="icon-check-circle icon-large"></i> {title}</span>{lnk}</h4>
+                <div className="idcard-list">
+                    <CIDItem title="{% trans '证件信息' %}" status={idStatus}>
+                        <div className="col-sm-offset-2 col-sm-10">
+                            <div className="cont"> {% trans '真实姓名：' %}{idName}<br/>
+                                    {% trans '证件类型：' %}{idType}<br/>
+                                    {% trans '证件号码：' %}{idCardNo}<br/>
+                                    {% trans '认证时间：' %}{idTime} </div>
+                        </div>
+                    </CIDItem>
+
+                    <CIDItem title="{% trans '照片认证' %}" status={phStatus}>
+                        <div className="col-sm-offset-2 col-sm-10">
+                            <div className="cont"> {% trans '证件正面照片：' %}{phIDCard}<br/>
+                                    {% trans '证件反面照片：' %}{phIDBack}<br/>
+                                    {% trans '本人手持证件照片：' %}{phIDPer}</div>
+                        </div>
+                    </CIDItem>
+
+
+                </div>
+            </div>);
+        }
+    });
+
+    var isLogin = IsLogin();
+
+    ReactDOM.render(
+        <App isLogin={isLogin} ContentBox={
+            <PageView/>
+        }/>
+        , document.getElementById("App")
+    );
+</script>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!doctype html>
+{% load i18n %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
+    <link rel="shortcut icon" href="/static/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/usercenter.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/bill.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/layer/theme/default/layer.css">
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script src="/static/js/jquery.scrollTo.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap/layer/layer.js"></script>
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/common.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/js/swiper/css/swiper.min.css">
+    <script src="/static/js/swiper/js/swiper.min.js"></script>
+    <script src="/static/js/accessLimit.js"></script>
+    <script src="/static/js/bill.js"></script>
+
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div id="App"></div>
+
+<script type="text/babel" src="/static/jsx/approot.jsx"></script>
+<script type="text/babel" src="/static/jsx/header.jsx"></script>
+<script type="text/babel" src="/static/jsx/footer.jsx"></script>
+<script type="text/babel" src="/static/jsx/fmnavbar.jsx"></script>
+<script type="text/babel">
+    function COrderStatus(props) {
+        var txt = "{% trans '未成交' %}";
+        var css = "txt-status" + props.status;
+        var st = props.status;
+        if (st == 1) {
+            txt = "{% trans '部分成交' %}";
+        }
+        else if (st == 2) {
+            txt = "{% trans '完全成交' %}";
+        }
+        else if (st == 3) {
+            txt = "{% trans '撤单中' %}";
+        }
+        else if (st == 4) {
+            txt = "{% trans '已撤单' %}";
+        }
+
+        return (<span className={css}>{txt}</span>);
+    }
+
+
+    var BillOrderList = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0,
+                items: [],
+                pairCodes: this.props.pairCodes,
+                pageIndex: 1,
+                hasMore: true
+            };
+        },
+        componentDidMount: function () {
+            this.Refresh(1);
+        },
+        Refresh: function (index) {
+
+            ShowLoading("{% trans '加载中...' %}");
+
+            var pair_code = $("#pair_code").val();
+            var pageIndex = parseInt(index);
+            if (pageIndex <= 0) {
+                pageIndex = 1;
+            }
+
+            if (IsEmpty(pair_code)) {
+                pair_code = 10002;
+            }
+
+            $.getJSON(this.props.source, {
+                pair_code: pair_code,
+                status: [1, 2, 4].join(','),
+                limit: 10 * pageIndex,
+                page: 1
+            }, function (res) {
+                CloseLoading(1000);
+                //console.log(res);
+                if (res.result) {
+                    var iMore = (res.data.length == 10 * pageIndex);
+
+                    this.setState({
+                        items: res.data,
+                        status: 1,
+                        pageIndex: pageIndex,
+                        hasMore: iMore
+                    });
+
+                    this.changeCNYHandler();
+
+                    if (!iMore) {
+                        $("#pgOrderList a").html("<div class='txt-center'>{% trans '没有更多了' %}</div>");
+                    }
+                }
+                else {
+                    this.setState({
+                        status: 2
+                    });
+                }
+            }.bind(this));
+        },
+        changePTypeHandler: function (e) {
+            e.preventDefault();
+            this.Refresh(1);
+        },
+        changeCNYHandler: function (e) {
+            var type = $("#coin_price").val();
+            if (type == "cny") {
+                $(".cny").show();
+            }
+            else {
+                $(".cny").hide();
+            }
+        },
+        refreshHandler: function (e) {
+            e.preventDefault();
+            var index = this.state.pageIndex;
+            this.Refresh(index);
+        },
+        loadHandler: function (e) {
+            e.preventDefault();
+            if (!this.state.hasMore)
+                return;
+            var index = this.state.pageIndex + 1;
+            this.Refresh(index);
+        },
+        render: function () {
+            var rows = [];
+            if (this.state.status == 0) {
+                rows.push(<tr key='0'>
+                    <td colSpan="10"><CLoading text="{% trans '正在加载...' %}"/></td>
+                </tr>);
+            }
+            else {
+                if (!this.state.items || this.state.items.length == 0) {
+                    rows.push(<tr key="0">
+                        <td colSpan="10" className="txt-no-records"> {% trans '没有找到匹配的记录' %}</td>
+                    </tr>);
+                }
+                else {
+                    var num = 0;
+                    this.state.items.forEach(function (item) {
+                        var type = item.direction;// == 1 ? "卖单" : "买单";
+                        var oTime = FormatDate(item.create_time, "yyyy-MM-dd hh:mm:ss");
+                        var sTime = FormatDate(item.sell_time, "yyyy-MM-dd hh:mm:ss");
+                        var oPrice = FormatNumX(item.price, 8);
+                        var sPrice = FormatNumX(item.sell_price, 8);
+                        var iQty = FormatNumX(item.quantity, 8);
+                        var sQty = FormatNumX(item.sell_quantity, 8);
+                        var amount = "";
+                        var cnyAmount = "";
+                        if (item.sell_price && item.sell_quantity) {
+                            amount = FormatNumX(parseFloat(item.sell_price) * parseFloat(item.sell_quantity), 8);
+                            cnyAmount = FormatCNY(amount);
+                        }
+
+                        var cnyOPrice = FormatCNY(oPrice);
+                        var cnySPrice = FormatCNY(sPrice);
+
+
+                        num++;
+                        rows.push(<tr className="titem" key={num}>
+                            <td className="no">{item.order_id}</td>
+                            <td className="type">{type}</td>
+                            <td className="odr-time hidden-xs">{oTime}</td>
+                            <td className="odr-price">{oPrice}<span className="cny">(&yen;{cnyOPrice})</span></td>
+                            <td className="odr-qty">{iQty}</td>
+                            <td className="trans-time hidden-xs">{sTime}</td>
+                            <td className="trans-price hidden-xs">{sPrice}<span
+                                className="cny">(&yen;{cnySPrice})</span></td>
+                            <td className="trans-qty hidden-xs">{sQty}</td>
+                            <td className="trans-amount hidden-xs">{amount}<span
+                                className="cny">(&yen;{cnyAmount})</span></td>
+                            <td className="trans-status">{gettext(item.status)}</td>
+                        </tr>);
+                    });
+                }
+            }
+
+            var opts = [];
+            //opts.push(<option value="-1" key="0">全部币种</option>);
+            if (this.state.pairCodes && this.state.pairCodes.length > 0) {
+                var m = 0;
+                this.state.pairCodes.forEach(function (item) {
+                    m++;
+                    opts.push(<option value={item.id} key={m}>{item.name}</option>);
+                });
+            }
+
+            var pager = (<div className="btns-load" id="pgOrderList">
+                <a href="#" onClick={this.loadHandler}>{% trans '没有更多了' %}</a>
+            </div>);
+            if (this.state.hasMore) {
+                pager = (<div className="pager btns-load" id="pgOrderList">
+                    <a href="#" onClick={this.loadHandler}><i className="icon-angle-double-down"></i> {% trans '加载更多' %}
+                    </a>
+                </div>)
+            }
+            else {
+                pager = <div>&nbsp;</div>;
+            }
+
+            return (<div className="bill-order-list">
+                    <h4 className="tb-title clearfix">
+                        <span className="tl pull-left">{% trans '成交记录' %}</span>
+                        <a href="#" onClick={this.refreshHandler} className="pull-right"><i
+                            className="icon-refresh"></i> {% trans '刷新' %}</a>
+                    </h4>
+                    <div className="search">
+                        <div className="form-inline">
+                            <select name="coin_price" id="coin_price" className="form-control"
+                                    onChange={this.changeCNYHandler}>
+                                <option value="btc">{% trans 'BTC定价' %}</option>
+                                <option value="cny">{% trans 'CNY定价' %}</option>
+                            </select>
+                            <select name="pair_code" id="pair_code" className="form-control"
+                                    onChange={this.changePTypeHandler}>
+                                {opts}
+                            </select>
+                        </div>
+                    </div>
+                    <div className="bill-table">
+                        <table className="tb-list tb-solid" id="tb2">
+                            <thead>
+                            <tr className="thead thead-blue thead-condensed">
+                                <td className="no">{% trans '订单号' %}</td>
+                                <td className="type"><span className="hidden-xs">{% trans '订单' %}</span>{% trans '类型' %}
+                                </td>
+                                <td className="odr-time hidden-xs"><span>{% trans '挂单' %}</span>{% trans '时间' %}</td>
+                                <td className="odr-price"><span>{% trans '挂单' %}</span>{% trans '价格' %}</td>
+                                <td className="odr-qty"><span>{% trans '挂单' %}</span>{% trans '数量' %}</td>
+                                <td className="trans-time hidden-xs">{% trans '成交时间' %}</td>
+                                <td className="trans-price hidden-xs">{% trans '成交价' %}</td>
+                                <td className="trans-qty hidden-xs">{% trans '成交数量' %}</td>
+                                <td className="trans-amount hidden-xs">{% trans '成交金额' %}</td>
+                                <td className="trans-status">{% trans '成交状态' %}</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {rows}
+                            </tbody>
+                        </table>
+                    </div>
+                    {pager}
+                </div>
+            );
+        }
+    });
+
+    var pairCodes = CreateDSPairCodes();
+
+    function PageView(props) {
+        return (<section className="main-list bill-list">
+            <div className="container">
+                <CFMCateBar activeItem="fm-bill-orders"/>
+                <div className="clearfix">
+                    <div className="menu-box menu-user hidden-xs">
+                        <CFMNavBar activeItem="fm-bill-orders"/>
+                    </div>
+                    <div className="list-box">
+                        <div className="item-box">
+                            <BillOrderList source={props.source} pairCodes={pairCodes}/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>);
+    }
+
+    var isLogin = IsLogin();
+
+    ReactDOM.render(
+        <App isLogin={isLogin} ContentBox={
+            <PageView source="/api/trade/get_order_list"/>
+        }/>
+        , document.getElementById("App")
+    );
+</script>
+
+</body>
+</html>

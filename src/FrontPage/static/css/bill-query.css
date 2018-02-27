@@ -1,0 +1,113 @@
+.bill-list {
+    padding: 0 10px;
+}
+
+.bill-list table {
+    border-left: 1px solid #cfcfcf;
+    border-right: 1px solid #cfcfcf;
+}
+
+.search {
+    padding: 20px 30px;
+}
+
+.search .search-item {
+    padding: 8px 0;
+}
+
+.search .lbl {
+    line-height: 40px;
+    text-align: right;
+}
+
+.search .fld {
+    text-align: left;
+}
+
+.search .lbl,
+.search .fld {
+    float: left;
+}
+
+.search .ctype,
+.search .cdate,
+.search .cbtn {
+    margin: 5px 0;
+}
+
+.search .ctype {
+    float: left;
+    margin-right: 20px;
+    width: auto;
+}
+
+.search .cdate {
+    float: left;
+    margin-right: 10px;
+}
+
+.search .cbtn {
+    float: left;
+}
+
+.search .cdate span,
+.search .cdate {
+    line-height: 36px;
+}
+
+.search .cdate span {
+    text-align: center;
+    width: 45px;
+}
+
+.search .cdate span,
+.search .cdate .form-control {
+    display: inline-block;
+}
+
+.search .cdate input {
+    width: 150px;
+    font-size: 12px;
+}
+
+@media (max-width: 767px) {
+    .search {
+        padding: 10px 10px;
+    }
+
+    .search .ctype,
+    .search .cdate,
+    .search .cbtn {
+        width: 100%;
+        float: none;
+        display: block;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .search .cdate span {
+        display: none;
+    }
+
+    .search .cdate input,
+    .search .cbtn button {
+        width: 100%;
+    }
+
+    .bill-list {
+        padding: 0;
+    }
+
+    .search .lbl,
+    .search .fld {
+        float: none;
+        display: block;
+        text-align: left;
+
+    }
+
+    .search .lbl {
+        font-weight: bold;
+    }
+
+}

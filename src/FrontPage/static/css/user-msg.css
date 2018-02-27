@@ -1,0 +1,46 @@
+.tb-title .chkbox {
+    margin-right: 10px;
+}
+
+.tb-title .chkbox a {
+    font-weight: normal;
+    margin: 0 3px;
+    font-size: 14px;
+}
+
+.tb-title .btns a {
+    margin-right: 5px;
+}
+
+.msg-list .thead .cid {
+    width: 20px !important;
+}
+
+.msg-list .thead .title {
+
+}
+
+.msg-list .thead .dtime {
+    width: 20% !important;
+}
+
+.msg-list .thead .type {
+    width: 20% !important;
+}
+
+.msg-list .txt-left {
+    text-align: left !important;
+}
+
+@media (max-width: 991px) {
+    .tb-title .chkbox {
+        float: right;
+        clear: right;
+        text-align: right;
+    }
+
+    .tb-title .chkbox a {
+        display: inline-block;
+        word-break: keep-all;
+    }
+}

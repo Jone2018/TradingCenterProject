@@ -1,0 +1,65 @@
+{% load i18n %}
+<div class="dialog-form">
+    <table class="tb-list tb-solid">
+        <thead>
+        <tr class="thead thead-blue thead-condensed">
+            <td class="sname">{% trans '资金名称' %}</td>
+            <td class="name hidden-xs">{% trans '资金全称' %}</td>
+            <td class="amount-liv">{% trans '可用资金' %}</td>
+            <td class="amount-smt">{% trans '挂单资金' %}</td>
+            <td class="amount-cfm">{% trans '确认中资金' %}</td>
+            <td class="amount-ttl hidden-xs">{% trans '总计' %}</td>
+        </tr>
+        </thead>
+        <tbody id="tb-funds">
+        <tr class="titem">
+            <td colspan="6">
+                <div class="page-loading"><i class="icon-spin icon-spinner"></i> {% trans '正在加载...' %}</div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="box">
+        <form class="form-horizontal" name="frmDialogOut" id="frmDialogOut" method="post" onSubmit="return false">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">{% trans '对方UID：' %}</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control fld-xs-block" name="uid"
+                           placeholder="{% trans '请输入对方UID' %}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">{% trans '交易密码：' %}</label>
+                <div class="col-sm-8">
+                    <input type="password" class="form-control fld-xs-block" name="trade_password"
+                           placeholder="{% trans '请输入6位数交易密码' %}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">{% trans '对方邮箱/手机号：' %}</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control fld-xs-block" name="email_or_phone"
+                           placeholder="{% trans '请输入对方邮箱/手机号码' %}">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">{% trans '转账数量：' %}</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control fld-xs-block" name="quantity"
+                           placeholder="{% trans '请输入转账数量' %}">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-8">
+                    <button type="button" class="btn btn-info"
+                            onClick="CloseDialogX('winCoinOut')">{% trans '取消' %}</button>
+                    <button type="submit" class="btn btn-primary">{% trans '汇出' %}</button>
+                </div>
+            </div>
+            <input name="coin_type" type="hidden" value=""/>
+            <input type="hidden" name="email"/>
+            <input type="hidden" name="phone_num"/>
+        </form>
+    </div>
+</div>
+

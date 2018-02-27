@@ -1,0 +1,1842 @@
+<!doctype html>
+{% load i18n %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
+    <link rel="shortcut icon" href="/static/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+
+    <link rel="stylesheet" type="text/css" href="/static/css/transaction.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/layer/theme/default/layer.css">
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/jquery.scrollTo.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap/layer/layer.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/common.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/static/js/swiper/css/swiper.min.css">
+    <script src="/static/js/swiper/js/swiper.min.js"></script>
+    <script src="/static/js/transaction.js"></script>
+
+    <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    <script src="/static/js/taHighStock.js"></script>
+
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div id="App"></div>
+
+<script type="text/babel" src="/static/jsx/approot.jsx"></script>
+<script type="text/babel" src="/static/jsx/header.jsx"></script>
+<script type="text/babel" src="/static/jsx/footer.jsx"></script>
+<script type="text/babel">
+    function CMobiTabs(props) {
+        return (<div className="tabs visible-xs visible-sm">
+            <ul className="clearfix">
+                <li className="active"><a href="#" data-rel="buy" id="tabBuy">{% trans '买入' %}</a></li>
+                <li><a href="#" data-rel="sell">{% trans '卖出' %}</a></li>
+                <li><a href="#" data-rel="kline">{% trans 'K线' %}</a></li>
+                <li className="lg"><a href="#" data-rel="orders">{% trans '我的委单' %}</a></li>
+            </ul>
+        </div>);
+    }
+
+    var CMobiBTCAmount = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0,
+                items: []
+            };
+        },
+        componentDidMount: function () {
+
+        },
+        render: function () {
+            return (<div className="btc-amount hidden" id="btc-amount">
+                <div className="clearfix">
+                    <span className="tl">{% trans '可用资产' %}：<span><i className="icon-btc"></i> <span
+                        id="btc_available2"></span></span></span>
+                    <a href="recharge.html" className="txt-red">{% trans '充值' %}</a>
+                </div>
+            </div>);
+        }
+    });
+
+    var CMobiCoinAmount = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0,
+                items: []
+            };
+        },
+        componentDidMount: function () {
+
+        },
+        render: function () {
+            return (<div className="btc-amount hidden" id="coin-amount">
+                <div className="clearfix">
+                    <span className="tl">{% trans '可用资产' %}：<span><span id="coin_available2"></span></span></span>
+                    <a href="recharge.html" className="txt-red">{% trans '充值' %}</a>
+                </div>
+            </div>);
+        }
+    });
+
+    var CKLine = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0,
+                items: []
+            };
+        },
+        componentDidMount: function () {
+
+        },
+        render: function () {
+            return (<div className="item-box tab-item __visible-lg __visible-md" id="kline">
+                <div className="hidden-xs hidden-sm">
+                    <div className="title-bar"><a className="tl">{% trans '交易市场' %}</a></div>
+                    <div className="last-price">
+                        <table width="100%" cellSpacing="0" cellPadding="0">
+                            <tbody>
+                            <tr className="txt-lg">
+                                <td className="price"><span id="mkBuyPrice">--</span><span
+                                    className="lbl">{% trans '买一价' %}</span></td>
+                                <td className="price"><span id="mkSellPrice">--</span><span
+                                    className="lbl">{% trans '卖一价' %}</span></td>
+                                <td><span id="mkVol">--</span><span className="lbl">{% trans '24H成交量' %}</span></td>
+                                <td className="price"><span id="mkPercent">--</span><span
+                                    className="lbl">{% trans '今日涨跌幅' %}</span></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div className="kline">
+                    <div className="box">
+                        <div className="kline-box">
+                            <div className="k-line-select">
+                                <div className="hs-box">
+                                    <div className="hs-title visible-xs" id="hsTitle"></div>
+                                    <div className="fr hs-dropmenu">
+                                        <div id="chart_time" className="fl">
+                                            <a className="item" id="chart_w" data-time="10080">{% trans '周线' %}</a>
+                                            <a className="item" id="chart_d" data-time="1440">{% trans '日线' %}</a>
+                                            <a className="item" id="chart_12h" data-time="720">12{% trans '小时线' %}</a>
+                                            <a className="item" id="chart_4h" data-time="240">4{% trans '小时线' %}</a>
+                                            <a className="item" id="chart_1h" data-time="60">1{% trans '小时线' %}</a>
+                                            <a className="item" id="chart_30m" data-time="30">30{% trans '分钟线' %}</a>
+                                            <a className="item cur" id="chart_5m" data-time="5">5{% trans '分钟线' %}</a>
+                                        </div>
+                                        <div id="chart_theme" className="fl">
+                                            <a className="item" id="chart_black">{% trans '黑色' %}</a>
+                                            <a className="item cur" id="chart_white">{% trans '白色' %}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="paint_chart"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>);
+        }
+    });
+
+    var CTradeForm = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0,
+                items: []
+            };
+        },
+        componentDidMount: function () {
+
+        },
+        Refresh: function (data) {
+            this.refs.refTradeFormMarket.Refresh(data);
+        },
+        changeHandler: function () {
+            if (this.props.cbChange) {
+                this.props.cbChange();
+            }
+        },
+        render: function () {
+            return (<div className="tab-item trade-box">
+                <div className="clearfix">
+                    <CTradeFormBuy cbChange={this.changeHandler}/>
+                    <CTradeFormSell cbChange={this.changeHandler}/>
+                    <CTradeFormMarket ref="refTradeFormMarket"/>
+                </div>
+            </div>);
+        }
+    });
+
+    var CTradeFormBuy = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0,
+                pair_code: this.props.code,
+                items: [],
+                price: '',
+                qty: '',
+                amount: ''
+            };
+        },
+        componentDidMount: function () {
+            if (!this.state.pair_code) {
+                var code = GetItem("pair_code");
+                if (code) {
+                    this.setState({
+                        pair_code: code
+                    });
+                }
+            }
+        },
+        submitHandler: function (e) {
+            e.preventDefault();
+            AjaxBuy(this.onBuySuccess);
+        },
+        onBuySuccess: function (res) {
+            if (this.props.cbChange) {
+                this.props.cbChange();
+            }
+        },
+        updateBuyHandler: function (e) {
+            e.preventDefault();
+
+        },
+        sumHandler: function (e) {
+            var ths = $(e.target);
+            var val = ths.val();
+            if (val.length > 0 && /[^\d.]+/.test(val)) {
+                val = val.replace(/[^\d.]+/, "");
+                ths.val(val);
+            }
+
+            if (!IsNumber($("#buyPrice").val())) {
+                $("#buyPrice").addClass("fld-error")
+            }
+            else {
+                $("#buyPrice").removeClass("fld-error");
+            }
+
+            if (!IsNumber($("#buyQty").val())) {
+                $("#buyQty").addClass("fld-error")
+            }
+            else {
+                $("#buyQty").removeClass("fld-error");
+            }
+
+            var price = $("#buyPrice").val();
+            var qty = $("#buyQty").val();
+            var sum = "";
+
+            if (price && qty && !isNaN(price) && !isNaN(qty)) {
+                price = parseFloat(price);
+                qty = parseFloat(qty);
+                sum = FormatNumX(price * qty, 8);
+
+                var btc = $("#btc_available").data("val");
+                if (IsNumber(btc)) {
+                    btc = parseFloat(btc);
+                    if (parseFloat(sum) > (btc / 1.002) && price > 0) {
+                        sum = FormatNumX(btc / 1.002);
+                        qty = FormatNumX(btc / price / 1.002);
+
+                        $("#buyQty").val(qty);
+                    }
+                }
+
+                if (!IsNumber(sum) || sum <= 0) {
+                    sum = "";
+                }
+
+                //$("#buyPrice").val(price);
+                $("#buyAmount").val(sum);
+            }
+            else {
+                $("#buyAmount").val("");
+            }
+
+            ChangeCNYBuy();
+        },
+        chageCode: function (e) {
+            this.setState({
+                pair_code: $(e.target).val()
+            });
+        },
+        render: function () {
+            var rate = "";
+            if (IsNumber(GetItem("cny_rate"))) {
+                rate = "¥" + GetItem("cny_rate")
+            }
+
+            return (<div className="form-buy" id="FormBuy">
+                <div className="line">
+                    <form id="form_buy" className="form-horizontal" method="post" onSubmit={this.submitHandler}>
+                        <input type="hidden" name="pair_code" value={this.props.code} onChange={this.chageCode}/>
+                        <input type="hidden" name="direction" value="0"/>
+                        <input type="hidden" name="action" value="0"/>
+                        <input type="hidden" name="auto_cancel" value="false"/>
+                        <input type="hidden" name="has_valid_time" value="false"/>
+                        <div className="head txt-sm">
+                            <table width="100%" cellSpacing="0" cellPadding="0">
+                                <tbody>
+                                <tr>
+                                    <td className="lbl lg">{% trans '买入' %}</td>
+                                    <td className="fld"><span className="coin_typename"></span></td>
+                                    <td className="lbl">{% trans '委托类型:' %}</td>
+                                    <td className="fld"><span>{% trans '限价' %}</span></td>
+                                </tr>
+                                <tr>
+                                    <td className="lbl"><span>{% trans '可用BTC:' %}</span></td>
+                                    <td className="fld" colSpan="3">
+                                        <span>
+                                            <i className="icon-btc"></i>
+                                            <span id="btc_available" onClick={this.updateBuyHandler}
+                                                  className="price">10000.00</span>
+                                        </span>
+                                        <span className="cny">(<span>¥ </span><span id='btc_cny_buy'></span>)</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="lbl"><span>{% trans '可买:' %}</span></td>
+                                    <td className="fld" colSpan="3"><span className="price" id="btc_qty_buy"></span>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="control">
+                            <div className="form-group fg-item fg-item-pr">
+                                <div className="lbl-xs">{% trans '买入价格:' %}</div>
+                                <div className="input-group"><span
+                                    className="input-group-addon lbl">{% trans '价格' %}</span>
+                                    <input id="buyPrice" type="text" defaultValue={this.state.price} name="price"
+                                           placeholder="฿" className="form-control" onBlur={this.sumHandler}
+                                           onKeyUp={this.sumHandler} onChange={this.sumHandler}/>
+                                    <span className="input-group-addon" id='btc2'> BTC</span></div>
+                                <div className="cny_price" id="cnyBuyPrice"></div>
+                            </div>
+                            <div className="form-group fg-item fg-item-qty">
+                                <div className="lbl-xs">{% trans '买入数量:' %}</div>
+                                <div className="input-group"><span
+                                    className="input-group-addon lbl">{% trans '数量' %}</span>
+                                    <input type="text" className="form-control" name="quantity"
+                                           defaultValue={this.state.qty} placeholder="" id="buyQty"
+                                           onBlur={this.sumHandler} onKeyUp={this.sumHandler}
+                                           onChange={this.sumHandler}/>
+                                </div>
+                            </div>
+                            <div className="form-group fg-item fg-item-pr">
+                                <div className="lbl-xs">{% trans '金额:' %}</div>
+                                <div className="input-group"><span
+                                    className="input-group-addon lbl">{% trans '金额' %}</span>
+                                    <input readOnly type="text" defaultValue={this.state.amount} placeholder="฿"
+                                           id="buyAmount" className="form-control"/>
+                                    <span className="input-group-addon" id="btc1"> BTC</span></div>
+                                <div className="cny_price" id="cnyBuyAmount"></div>
+                            </div>
+                            <div className="form-group fg-item">
+                                <div className="lbl-xs txt-grey">{% trans '委托类型：限价' %}</div>
+                            </div>
+                            <div className="form-group fg-item">
+                                <label
+                                    className="pull-left txt-grey tip">{% trans '手续费' %}0.2%<br/>{% trans '比特币指数' %}:{rate}
+                                </label>
+                                <button type="submit" className="btn btn-success pull-right"
+                                        id="btnBuy">{% trans '买入' %}</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>);
+        }
+    });
+
+    var CTradeFormSell = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0,
+                pair_code: this.props.code,
+                items: [],
+                price: '',
+                qty: '',
+                amount: ''
+            };
+        },
+        componentDidMount: function () {
+
+        },
+        submitHandler: function (e) {
+            e.preventDefault();
+            AjaxSell(this.onSellSuccess);
+        },
+        onSellSuccess: function (res) {
+            if (this.props.cbChange) {
+                this.props.cbChange();
+            }
+        },
+        changePairCode: function (e) {
+            this.setState({
+                pair_code: $(e.target).val()
+            });
+        },
+        sumHandler: function (e) {
+            var ths = $(e.target);
+            var val = ths.val();
+            if (val.length > 0 && /[^\d.]+/.test(val)) {
+                val = val.replace(/[^\d.]+/, "");
+                ths.val(val);
+            }
+
+            if (!IsNumber($("#sellPrice").val())) {
+                $("#sellPrice").addClass("fld-error")
+            }
+            else {
+                $("#sellPrice").removeClass("fld-error");
+            }
+
+            if (!IsNumber($("#sellQty").val())) {
+                $("#sellQty").addClass("fld-error")
+            }
+            else {
+                $("#sellQty").removeClass("fld-error");
+            }
+
+            var price = $("#sellPrice").val();
+            var qty = $("#sellQty").val();
+            var sum = "";
+
+            if (price && qty && !isNaN(price) && !isNaN(qty)) {
+                price = parseFloat(price);
+                qty = parseFloat(qty);
+                sum = FormatNumX(price * qty * 0.998, 8);
+
+                var coin = $("#coin_available").data("val");
+                if (IsNumber(coin)) {
+                    coin = parseFloat(coin);
+                    if (qty >= coin) {
+                        qty = FormatNumX(coin);
+                        sum = FormatNumX(price * qty * 0.998);
+
+
+                        $("#sellQty").val(qty);
+                    }
+                }
+
+                if (!IsNumber(sum) || sum <= 0) {
+                    sum = "";
+                }
+
+                //console.log("------------");
+                //console.log(price, qty, sum);
+                //console.log("------------");
+
+                //$("#sellPrice").val(price);
+                $("#sellAmount").val(sum);
+            }
+            else {
+                $("#sellAmount").val("");
+            }
+
+            ChangeCNYSell();
+        },
+        render: function () {
+            var rate = "";
+            if (IsNumber(GetItem("cny_rate"))) {
+                rate = "¥" + GetItem("cny_rate")
+            }
+            return (<div className="form-sell" id="FormSell">
+                <div className="line">
+                    <form id="form_sell" className="form-horizontal" method="post" onSubmit={this.submitHandler}>
+                        <input type="hidden" name="pair_code" value={this.props.code} onChange={this.chageCode}/>
+                        <input type="hidden" name="direction" value="1"/>
+                        <input type="hidden" name="action" value="0"/>
+                        <input type="hidden" name="auto_cancel" value="false"/>
+                        <input type="hidden" name="has_valid_time" value="false"/>
+                        <div className="head txt-sm">
+                            <table width="100%" cellSpacing="0" cellPadding="0">
+                                <tbody>
+                                <tr>
+                                    <td className="lbl lg">{% trans '卖出' %}</td>
+                                    <td className="fld"><span className="coin_typename"></span></td>
+                                    <td className="lbl">{% trans '委托类型:' %}</td>
+                                    <td className="fld"><span>{% trans '限价' %}</span></td>
+                                </tr>
+                                <tr>
+                                    <td className="lbl">{% trans '可用:' %}</td>
+                                    <td className="fld" colSpan="3"><span className="price" id="coin_available"
+                                                                          onClick={this.clickHandler}>10000.00</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="lbl">{% trans '可卖BTC:' %}</td>
+                                    <td className="fld" colSpan="3"><span><i className="icon-btc"></i></span><span
+                                        className="price" id="coin_qty_sell">10000.00</span><span
+                                        className="cny">(&yen;<span id='coin_cny_sell'>42739.00</span>)</span></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div className="control">
+                            <div className="form-group fg-item fg-item-pr">
+                                <div className="lbl-xs">{% trans '卖出价格:' %}</div>
+                                <div className="input-group"><span
+                                    className="input-group-addon lbl">{% trans '价格' %}</span>
+                                    <input id="sellPrice" type="text" name="price" defaultValue={this.state.price}
+                                           placeholder="฿" className="form-control" onBlur={this.sumHandler}
+                                           onKeyUp={this.sumHandler} onChange={this.sumHandler}/>
+                                    <span className="input-group-addon" id="btc_1">BTC </span></div>
+                                <div className="cny_price" id="cnySellPrice"></div>
+                            </div>
+                            <div className="form-group fg-item fg-item-qty">
+                                <div className="lbl-xs">{% trans '卖出数量:' %}</div>
+                                <div className="input-group"><span
+                                    className="input-group-addon lbl">{% trans '数量' %}</span>
+                                    <input id="sellQty" className="form-control" defaultValue={this.state.qty}
+                                           type="text" name="quantity" placeholder="" onBlur={this.sumHandler}
+                                           onKeyUp={this.sumHandler} onChange={this.sumHandler}/>
+                                </div>
+                            </div>
+                            <div className="form-group fg-item fg-item-pr">
+                                <div className="lbl-xs">{% trans '金额:' %}</div>
+                                <div className="input-group"><span
+                                    className="input-group-addon lbl">{% trans '金额' %}</span>
+                                    <input readOnly="readonly" type="text" defaultValue={this.state.amount}
+                                           placeholder="฿" className="form-control" id="sellAmount"/>
+                                    <span className="input-group-addon" id='btc_3'>BTC</span></div>
+                                <div className="cny_price" id="cnySellAmount"></div>
+                            </div>
+                            <div className="form-group fg-item">
+                                <div className="lbl-xs txt-grey">{% trans '委托类型：限价' %}</div>
+                            </div>
+                            <div className="form-group fg-item">
+                                <label
+                                    className="pull-left txt-grey tip">{% trans '手续费' %}0.2% <br/> {% trans '比特币指数' %}:{rate}
+                                </label>
+                                <button type="submit" className="btn btn-danger pull-right">{% trans '卖出' %}</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>);
+        }
+    });
+
+    function CTradeFormMarketItem(props) {
+        var css = props.type == "{% trans '买' %}" ? "tbitem" : "tsitem";
+        var price = FormatNumX(props.price);
+        var qty = FormatNumX(props.qty)
+        var cny = FormatCNY(props.price);
+
+        return (<tr className={css} onClick={props.clickHandler} data-price={props.price} data-qty={props.qty}>
+            <td className="tp">{props.type}({props.index})</td>
+            <td className="pr">{price}
+                <div className="cny">(¥{cny})</div>
+            </td>
+            <td className="qty">{qty}</td>
+        </tr>);
+    }
+
+    function CTradeFormMarketItemLine(props) {
+        return (<tr>
+            <td colSpan="3" className="line-bg">&nbsp;</td>
+        </tr>);
+    }
+
+    var CTradeFormMarket = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0,
+                items: []
+            };
+        },
+        componentDidMount: function () {
+
+        },
+        Reset: function () {
+            this.setState({
+                status: 0,
+                items: []
+            });
+        },
+        UpdateDepth: function (res) {
+            if (res.data) {
+                var type = res.data[2];
+                var asks = this.state.items.asks;
+                var bids = this.state.items.bids;
+                var items = {};
+
+                if (type == "buy") {
+                    items["bids"] = update_depth(bids, res.data, false);
+                    items["asks"] = asks;
+                }
+                else if (type == "sell") {
+                    items["asks"] = update_depth(asks, res.data, true);
+                    items["bids"] = bids;
+                }
+                else {
+                    items["asks"] = asks;
+                    items["bids"] = bids;
+                }
+
+                this.setState({
+                    items: items
+                });
+            }
+        },
+        Refresh: function (data) {
+            this.setState({
+                status: 1,
+                items: data
+            });
+        },
+        hasItems: function () {
+            return this.state.items && ((this.state.items.asks && this.state.items.asks.length > 0) || (this.state.items.bids && this.state.items.bids.length > 0));
+        },
+        buyClickHandler: function (e) {
+            var tr = $(e.target);
+            if (tr.is("td")) {
+                tr = tr.parent();
+            }
+
+
+            var pr = tr.data("price");
+            var qty = tr.data("qty");
+
+            this.fillFormBuy(pr, qty);
+            this.fillFormSell(pr, qty);
+            ChangeCNYBuy();
+            ChangeCNYSell();
+        },
+        sellClickHandler: function (e) {
+            var tr = $(e.target);
+            if (tr.is("td")) {
+                tr = tr.parent();
+            }
+
+            var pr = tr.data("price");
+            var qty = tr.data("qty");
+
+            this.fillFormBuy(pr, qty);
+            this.fillFormSell(pr, qty);
+
+            ChangeCNYBuy();
+            ChangeCNYSell();
+        },
+        fillFormBuy: function (pr, qty) {
+            if (IsNumber(pr) && IsNumber(qty)) {
+                pr = FormatNumX(pr);
+                qty = FormatNumX(qty);
+
+                var amount = FormatNumX(parseFloat(pr) * parseFloat(qty));
+                var coin = $("#btc_available").data("val");
+                if (IsNumber(coin) && parseFloat(amount) > (parseFloat(coin) / 1.002)) {
+                    if (pr > 0) {
+                        qty = FormatNumX(parseFloat(coin) / pr / 1.002);
+                        amount = FormatNumX(pr * qty);
+                    }
+                }
+
+                //console.log(pr, qty, amount);
+
+                $("#buyPrice").val(pr);
+                $("#buyQty").val(qty);
+                $("#buyAmount").val(amount);
+            }
+        },
+        fillFormSell: function (pr, qty) {
+            if (IsNumber(pr) && IsNumber(qty)) {
+                pr = FormatNumX(pr);
+                qty = FormatNumX(qty);
+
+                var amount = FormatNumX(parseFloat(pr) * parseFloat(qty) * 0.998);
+
+                var coin = $("#coin_available").data("val");
+                if (IsNumber(coin) && parseFloat(qty) >= parseFloat(coin)) {
+                    qty = FormatNumX(coin);
+                    amount = FormatNumX(pr * qty * 0.998);
+                }
+
+                //console.log(pr, qty, amount);
+
+                $("#sellPrice").val(pr);
+                $("#sellQty").val(qty);
+                $("#sellAmount").val(amount);
+            }
+        },
+        render: function () {
+            var rows = [];
+
+            if (this.state.status == 0) {
+                rows.push(<tr key="0">
+                    <td colSpan="3"><CLoading text="{% trans '正在加载...' %}"/></td>
+                </tr>);
+            }
+            else if (this.hasItems()) {
+                var num = 0;
+                var bids = this.state.items.bids;
+                var asks = this.state.items.asks;
+                var buyPrice = 0.0;
+                var sellPrice = 0.0;
+                if (bids) {
+                    for (var i = 0; i < bids.length && i < 5; i++) {
+                        var item = bids[i];
+                        if (i == 0) {
+                            buyPrice = item[0];
+                        }
+                        num++;
+                        var txt = "{% trans '买' %}";
+                        rows.push(<CTradeFormMarketItem key={num} type="{% trans '买' %}" index={num} price={item[0]}
+                                                        qty={item[1]}
+                                                        clickHandler={this.buyClickHandler}/>);
+
+                    }
+                    rows.push(<CTradeFormMarketItemLine key="0"/>);
+                }
+
+                if (asks) {
+                    num = 0;
+                    for (var i = 0; i < asks.length && i < 5; i++) {
+
+                        num++;
+                        var item = asks[i];
+                        var num2 = num + 100;
+
+                        if (i == 0) {
+                            sellPrice = item[0];
+                        }
+
+                        rows.push(<CTradeFormMarketItem key={num2} type="{% trans '卖' %}" index={num} price={item[0]}
+                                                        qty={item[1]}
+                                                        clickHandler={this.sellClickHandler}/>);
+
+                    }
+                }
+            }
+            else {
+                rows.push(<tr key="0">
+                    <td colSpan="3" className="txt-no-records"> {% trans '没有找到匹配的记录' %}</td>
+                </tr>);
+            }
+            return (<div className="visible-sm-block visible-xs-block market-top-xs">
+                <table width="100%" cellSpacing="0" cellPadding="0" className="tb-market-top">
+                    <thead>
+                    <tr className="thead">
+                        <td className="tp">{% trans '买入' %}</td>
+                        <td className="pr">{% trans '价格' %}(<i className="icon-btc"></i>)</td>
+                        <td className="qty">{% trans '委托单' %}</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {rows}
+                    </tbody>
+                </table>
+            </div>);
+        }
+    });
+
+    function CMarketTopItem(props) {
+        var price = FormatNumX(props.price);
+        var cny = FormatCNY(price);
+        var qty = FormatNumX(props.qty);
+
+        return (<tr className="titem" onClick={props.clickHandler} data-price={props.price} data-qty={props.qty}>
+            <td className="tp">{props.type}({props.index})</td>
+            <td className="pr">{price}<span className="cny">(&yen;{cny})</span></td>
+            <td className="qty">{qty}</td>
+        </tr>);
+    }
+
+    var CMarketTop = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0,
+                size: 10,
+                items: []
+            };
+        },
+        componentDidMount: function () {
+
+        },
+        Reset: function () {
+            this.setState({
+                status: 0,
+                items: []
+            });
+        },
+        Refresh: function (data) {
+            this.setState({
+                status: 1,
+                items: data
+            });
+        },
+        UpdateDepth: function (res) {
+            if (res.data) {
+                var type = res.data[2];
+                var asks = this.state.items.asks;
+                var bids = this.state.items.bids;
+                var items = {};
+
+                if (type == "buy") {
+                    items["bids"] = update_depth(bids, res.data, false);
+                    items["asks"] = asks;
+                }
+                else if (type == "sell") {
+                    items["asks"] = update_depth(asks, res.data, true);
+                    items["bids"] = bids;
+                }
+                else {
+                    items["asks"] = asks;
+                    items["bids"] = bids;
+                }
+                //console.log("update_depth");
+                //console.log(items);
+                this.setState({
+                    items: items
+                });
+            }
+        },
+        toggleHandler: function (e) {
+            e.preventDefault();
+            var ths = $(e.target)
+            if (ths.is("a")) {
+                if (ths.hasClass("checked")) {
+                    $(".cny").hide();
+                    ths.removeClass("checked");
+                }
+                else {
+                    $(".cny").show();
+                    ths.addClass("checked");
+                }
+            }
+        },
+        buyClickHandler: function (e) {
+            var tr = $(e.target);
+            if (tr.is("td")) {
+                tr = tr.parent();
+            }
+
+            var pr = tr.data("price");
+            var qty = tr.data("qty");
+
+            this.fillFormBuy(pr, qty);
+            this.fillFormSell(pr, qty);
+
+            ChangeCNYBuy();
+            ChangeCNYSell();
+        },
+        sellClickHandler: function (e) {
+            var tr = $(e.target);
+            if (tr.is("td")) {
+                tr = tr.parent();
+            }
+
+            var pr = tr.data("price");
+            var qty = tr.data("qty");
+
+            this.fillFormBuy(pr, qty);
+            this.fillFormSell(pr, qty);
+
+            ChangeCNYBuy();
+            ChangeCNYSell();
+        },
+        fillFormBuy: function (pr, qty) {
+            if (IsNumber(pr) && IsNumber(qty)) {
+                pr = FormatNumX(pr);
+                qty = FormatNumX(qty);
+
+                var amount = FormatNumX(parseFloat(pr) * parseFloat(qty));
+                var coin = $("#btc_available").data("val");
+                if (IsNumber(coin) && parseFloat(amount) > (parseFloat(coin) / 1.02)) {
+                    if (pr > 0) {
+                        qty = FormatNumX(parseFloat(coin) / pr / 1.02);
+                        amount = FormatNumX(pr * qty);
+                    }
+                }
+
+
+                $("#buyPrice").val(pr);
+                $("#buyQty").val(qty);
+                $("#buyAmount").val(amount);
+            }
+        },
+        fillFormSell: function (pr, qty) {
+            if (IsNumber(pr) && IsNumber(qty)) {
+                pr = FormatNumX(pr);
+                qty = FormatNumX(qty);
+
+                var amount = FormatNumX(parseFloat(pr) * parseFloat(qty));
+
+                var coin = $("#coin_available").data("val");
+                if (IsNumber(coin) && parseFloat(qty) > parseFloat(coin)) {
+                    qty = FormatNumX(coin);
+                    amount = FormatNumX(pr * qty * 0.998);
+                }
+
+                $("#sellPrice").val(pr);
+                $("#sellQty").val(qty);
+                $("#sellAmount").val(amount);
+            }
+        },
+        sizeHandler: function (size, e) {
+            e.preventDefault();
+
+            var items = this.state.items;
+            var sz = (size == 5 || size == 30 ? size : 10);
+            $("#mkTopSize").html(sz + "条");
+            this.setState({
+                size: sz,
+                items: items
+            });
+        },
+        hasItems: function () {
+            return this.state.items && ((this.state.items.asks && this.state.items.asks.length > 0) || (this.state.items.bids && this.state.items.bids.length > 0));
+        },
+        render: function () {
+            var rowsBuy = [];
+            var rowsSell = [];
+
+            if (this.state.status == 0) {
+                rowsBuy.push(<tr key="0">
+                    <td colSpan="3"><CLoading text="{% trans '正在加载...' %}"/></td>
+                </tr>);
+
+                rowsSell.push(<tr key="0">
+                    <td colSpan="3"><CLoading text="{% trans '正在加载...' %}"/></td>
+                </tr>);
+            }
+            else if (this.hasItems()) {
+                var bids = this.state.items.bids;
+                var asks = this.state.items.asks;
+                var buyPrice = 0.0;
+                var sellPrice = 0.0;
+                var num1 = 0;
+                var num2 = 0;
+                var size = this.state.size;
+                if (bids) {
+                    for (var i = 0; i < bids.length && i < size; i++) {
+                        num1++;
+                        var type = "{% trans '买' %}";
+                        var price = bids[i][0];
+                        var qty = bids[i][1];
+                        if (num1 == 1) {
+                            UpdateLastTradePrice("buy", price);
+                        }
+                        rowsBuy.push(<CMarketTopItem key={num1} index={num1} type={type} price={price} qty={qty}
+                                                     clickHandler={this.buyClickHandler}/>);
+                    }
+                }
+
+                if (asks) {
+                    num1 = 0;
+                    for (var i = 0; i < asks.length && i < size; i++) {
+                        num1++;
+                        num2 = num1 + 100;
+                        var type = "{% trans '卖' %}";
+                        var price = asks[i][0];
+                        var qty = asks[i][1];
+                        if (num1 == 1) {
+                            UpdateLastTradePrice("sell", price);
+                        }
+
+                        rowsSell.push(<CMarketTopItem key={num2} index={num1} type={type} price={price} qty={qty}
+                                                      clickHandler={this.sellClickHandler}/>);
+                    }
+                }
+
+            }
+            else {
+                rowsBuy.push(<tr key="0">
+                    <td colSpan="3">{% trans '暂无相关信息' %}</td>
+                </tr>);
+
+                rowsSell.push(<tr key="0">
+                    <td colSpan="3">{% trans '暂无相关信息' %}</td>
+                </tr>);
+            }
+
+            return (<div className="tab-item market-top visible-lg-block visible-md-block">
+                <div className="title clearfix"><span className="tl">{% trans '最新交易价:' %}<span
+                    id="last-trade-price"></span></span>
+                    <span className="dd hidden">
+            <div className="dropdown"> {% trans '合并深度：' %}<a href="#" className="ditem" data-toggle="dropdown"
+                                                             data-placement="right"
+                                                             aria-haspopup="true" aria-expanded="false">0.01 <i
+                className="icon-caret-down txt-orange"></i></a>
+              <ul className="dropdown-menu" aria-labelledby="dLabel">
+                <li><a href="#">0.01</a></li>
+                <li><a href="#">0.02</a></li>
+              </ul>
+            </div>
+            </span>
+                    <span className="dd">
+            <div className="dropdown"> {% trans '显示' %}：<a href="#" className="ditem" data-toggle="dropdown"
+                                                           data-placement="right"
+                                                           aria-haspopup="true" aria-expanded="false"><span
+                id="mkTopSize">10{% trans '条' %}</span> <i
+                className="icon-caret-down txt-orange"></i></a>
+              <ul className="dropdown-menu" aria-labelledby="dLabel">
+			  	  <li><a href="#" onClick={this.sizeHandler.bind(this, 5)}>5{% trans '条' %}</a></li>
+                <li><a href="#" onClick={this.sizeHandler.bind(this, 10)}>10{% trans '条' %}</a></li>
+                <li><a href="#" onClick={this.sizeHandler.bind(this, 30)}>30{% trans '条' %}</a></li>
+              </ul>
+            </div>
+            </span>
+                    <span className="dd">
+            <div className="cbox">{% trans '参考价格：' %}<a href="#" id="toggleCNY" className="checked"
+                                                        onClick={this.toggleHandler}><i
+                className="icon-toggle-on icon-large"></i> {% trans '人民币' %}</a></div>
+            </span></div>
+                <div className="clearfix">
+                    <div className="list-buy" id="ListBuy">
+                        <div className="line">
+                            <table width="100%" cellSpacing="0" cellPadding="0">
+                                <thead>
+                                <tr className="thead">
+                                    <td className="tp">{% trans '买入' %}</td>
+                                    <td className="pr">{% trans '价格' %}(<i className="icon-btc"></i>)</td>
+                                    <td className="qty">{% trans '委托单' %}</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {rowsBuy}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div className="list-sell" id="ListSell">
+                        <table width="100%" cellSpacing="0" cellPadding="0">
+                            <thead>
+                            <tr className="thead">
+                                <td className="tp">{% trans '卖出' %}</td>
+                                <td className="pr">{% trans '价格' %}(<i className="icon-btc"></i>)</td>
+                                <td className="qty">{% trans '委托单' %}</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {rowsSell}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>);
+        }
+    });
+
+    function COrderListItem(props) {
+        /*
+        {
+        "order_code": "20170805121432687295",
+        "quantity": "0.0200",
+        "dealed": "2.324",
+        "amount": "2.324",
+        "pair_name": "BTC-ULOGOS",
+        "fee": "0.001860",
+        "create_time": "2017-06-19 12:00:00",
+        "price": "2323.21",
+        "direction": "买单",
+        "valid_time": "9999-12-01T00:00:00Z"
+      }
+        */
+        var item = props.data;
+        var time = FormatDate(item.create_time, "yyyy-MM-dd hh:mm");
+        var qty = TrimZero(item.quantity);
+        var price = FormatNumX(item.price, 8);
+        return (<tr className="titem">
+            <td className="odr">{item.order_id}</td>
+            <td className="dtime">{time}</td>
+            <td className="type">{gettext(item.direction)}</td>
+            <td className="price">{price}</td>
+            <td className="qty">{qty}</td>
+            <td className="status">{gettext(item.status)}</td>
+            <td className="btns"><a href="#" className="blue" onClick={props.cancelHandler}
+                                    data-id={item.order_id}>{% trans '撤消' %}</a></td>
+        </tr>);
+    }
+
+    var olTimeID;
+    var olSeconds = 0;
+    var COrderList = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0,
+                pair_code: this.props.code,
+                pageIndex: 1,
+                hasMore: true,
+                items: []
+            };
+        },
+        componentDidMount: function () {
+            this.Refresh(this.props.code, 1);
+            olTimeID = setInterval(function () {
+                this.autoRefresh();
+            }.bind(this), 1000);
+        },
+        autoRefresh: function () {
+            if (++olSeconds >= 10) {
+                var code = this.state.pair_code;
+                var index = this.state.pageIndex;
+
+                this.Refresh(code, index);
+
+                olSeconds = 0;
+            }
+        },
+        Refresh: function (code, pageIndex) {
+            //console.log(code);
+            var index = pageIndex || this.state.pageIndex;
+            if (index <= 0) index = 1;
+
+            $.getJSON(this.props.source, {
+                pair_code: code,
+                limit: 10 * index,
+                page: 1
+            }, function (res) {
+                //console.log(res);
+
+                if (res.result) {
+                    var hasMore = (res.data && res.data.length == (index * 10));
+                    this.setState({
+                        items: res.data,
+                        pair_code: code,
+                        hasMore: hasMore,
+                        pageIndex: index,
+                        status: 1
+                    });
+                }
+                else {
+                    this.setState({
+                        status: 2,
+                        items: [],
+                        pageIndex: index,
+                        pair_code: code
+                    });
+                }
+            }.bind(this));
+        },
+        cancelHandler: function (id, e) {
+            e.preventDefault();
+
+            CancelOrder(id, this.state.pair_code, function (res) {
+                cbCancelSuccess(res);
+                this.Refresh(this.state.pair_code, this.state.pageIndex);
+            }.bind(this));
+        },
+        loadMoreHandler: function (e) {
+            e.preventDefault();
+            if (!this.state.hasMore)
+                return;
+            var index = this.state.pageIndex + 1;
+            this.Refresh(this.state.pair_code, index);
+        },
+        loadHandler: function (e) {
+            e.preventDefault();
+            this.setState({
+                status: 0
+            });
+            setTimeout(function () {
+                this.Refresh(this.state.pair_code, this.state.pageIndex);
+            }.bind(this), 1000);
+        },
+        render: function () {
+            var rows = [];
+            var isLogin = IsLogin();
+            var loadMore = "";
+            if (this.state.status == 0) {
+                rows.push(<tr key="0">
+                    <td colSpan="7" className="txt-no-records"><CLoading text="{% trans '正在加载...' %}"/></td>
+                </tr>);
+            }
+            else if (this.state.items && this.state.items.length > 0) {
+                var num = 0;
+                this.state.items.forEach(function (item) {
+                    num++;
+                    rows.push(<COrderListItem key={num} data={item}
+                                              cancelHandler={this.cancelHandler.bind(this, item.order_id)}/>);
+                }.bind(this));
+
+                if (this.state.hasMore) {
+                    loadMore = <CLoadMore clickHandler={this.loadMoreHandler}/>
+                }
+            }
+            else {
+                var isLogin = IsLogin();
+                if (isLogin) {
+                    rows.push(<tr key="0">
+                        <td colSpan="7" className="txt-no-records"><a href="#"
+                                                                      onClick={this.loadHandler}>{% trans '已经加载全部订单记录' %}</a>
+                        </td>
+                    </tr>);
+                }
+                else {
+                    rows.push(<tr key="0">
+                        <td colSpan="7" className="txt-no-records"><a href="#"
+                                                                      onClick={this.loadHandler}>{% trans '登录后可查看订单记录' %}</a>
+                        </td>
+                    </tr>);
+                }
+            }
+            return (<div className="tab-item orders-list" id="OrdersList">
+                <div className="title clearfix"><span className="tl">{% trans '我的委单' %}</span></div>
+                <table width="100%" cellSpacing="0" cellPadding="0" className="tb-trade">
+                    <thead>
+                    <tr className="thead">
+                        <th className="odr">{% trans '订单号' %}</th>
+                        <th className="dtime"><span className="hidden-xs">{% trans '挂单' %}</span>{% trans '时间' %}</th>
+                        <th className="type"><span className="hidden-xs">{% trans '挂单' %}</span>{% trans '类型' %}</th>
+                        <th className="price"><span className="hidden-xs">{% trans '挂单' %}</span>{% trans '价格' %}</th>
+                        <th className="qty"><span className="hidden-xs">{% trans '挂单' %}</span>{% trans '数量' %}</th>
+                        <th className="status">{% trans '状态' %}</th>
+                        <th className="btns">{% trans '操作' %}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {rows}
+                    </tbody>
+                </table>
+                {loadMore}
+            </div>);
+        }
+    });
+
+    function CMarketLastItem(props) {
+        var item = props.data;
+        var dtime = FormatDate(item[0], "yyyy-MM-dd hh:mm");
+        var price = FormatNumX(item[2], 8);
+        var cny = FormatCNY(price);
+        var qty = FormatNumX(item[1], 8);
+        var amount = FormatNumX(parseFloat(price) * parseFloat(qty), 8);
+        var type = item[3] == "0" ? "{% trans '买入' %}" : "{% trans '卖出' %}";
+        var css = item[3] == "0" ? "titem bitem" : "titem sitem";
+        return (<tr className={css}>
+            <td className="time">{dtime}</td>
+            <td className="type">{type}</td>
+            <td className="price">{price}<span className="cny">(&yen;{cny})</span></td>
+            <td className="qty">{qty}</td>
+            <td className="amount">{amount}</td>
+        </tr>);
+    }
+
+    var CMarketLast = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0,
+                items: this.props.data,
+                seconds: 10
+            };
+        },
+        componentDidMount: function () {
+
+        },
+        UpdateData: function (res) {
+            /*
+            {
+                "pair_code": 10001,
+                "direction": 0,
+                "type": "order_dealed",
+                "price": 0.7890750750885442,
+                "quantity": 763,
+                "time":''
+              }
+            */
+            if (res) {
+                var itm = [];
+                itm[0] = res.create_time;//time
+                itm[1] = res.quantity;//price
+                itm[2] = res.price;//qty
+                itm[3] = res.direction;
+                var type = (res.direction == "0" ? "buy" : "sell");//type
+
+                UpdateLastTradePrice(type, itm[2]);
+
+                var items = this.state.items || [];
+
+                items.unshift(itm);
+
+                this.setState({
+                    status: 1,
+                    items: items
+                });
+            }
+        },
+        Reset: function () {
+            this.setState({
+                status: 0,
+                items: []
+            });
+        },
+        Refresh: function (data) {
+            this.setState({
+                status: 1,
+                items: data
+            });
+        },
+        render: function () {
+            var rows = [];
+            if (this.state.status == 0) {
+                rows.push(<tr key="0">
+                    <td colSpan="5" className="txt-no-records"><CLoading text="{% trans '正在加载...' %}"/></td>
+                </tr>);
+            }
+            else if (this.state.items && this.state.items.length > 0) {
+                var num = 0;
+                this.state.items.forEach(function (item) {
+                    num++;
+                    rows.push(<CMarketLastItem key={num} data={item}/>);
+                });
+            }
+            else {
+                rows.push(<tr key="0">
+                    <td colSpan="5" className="txt-no-records">{% trans '暂无成交记录' %}</td>
+                </tr>);
+            }
+
+            return (<div className="tab-item market-last" id="MarketLast">
+                <div className="title clearfix"><span className="tl">{% trans '最新成交记录' %}</span> <span
+                    className="rt hidden"><span
+                    id="timer-mkt">10</span> {% trans '秒后自动刷新' %}</span></div>
+                <table width="100%" cellSpacing="0" cellPadding="0" className="tb-trade">
+                    <thead>
+                    <tr className="thead">
+                        <th className="time">{% trans '成交时间' %}</th>
+                        <th className="type">{% trans '类型' %}</th>
+                        <th className="price">{% trans '成交价(BTC)' %}</th>
+                        <th className="qty">{% trans '成交量' %}</th>
+                        <th className="amount">{% trans '成交额' %}</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {rows}
+                    </tbody>
+                </table>
+            </div>);
+        }
+    });
+
+    function CTradeCateItem(props) {
+        /*
+          "pair_code":10000,
+          "price":0.223,
+          "cny_rate": 27000,
+          "change_24h": 0.07,
+          "updatetime": 1497843243
+        */
+        var item = props.data;
+        var type = item.pair_code;
+        var logo = GetCoinType(GetPairCode(type, "coin_type_b"), "src");
+        var name = GetPairCode(type, "name");
+        var css = item.change_24h < 0 ? "titem txt-drop" : "titem txt-up";
+        if (props.active) css += " active"
+
+        var price = FormatNumX(item.price, 8);
+        var pct = FormatNumX(parseFloat(item.change_24h) * 100, 2);
+        var id = "cate" + type;
+        var coin_logo_style = {
+            backgroundImage: 'url(' + logo + ')',
+        };
+
+        return (<tr className={css} onClick={props.clickHandler} data-id={type} id={id}>
+            <td className="star icon_xs"><i className="icon_coin" style={coin_logo_style}></i></td>
+            <td className="nm">{name}</td>
+            <td className="price">{price}</td>
+            <td className="pct">{pct}%</td>
+        </tr>);
+    }
+
+    var CTradeCate = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0,
+                pair_code: this.props.code,
+                items: []
+            };
+        },
+        UpdateData: function (res) {
+            var items = this.state.items;
+            var code = res.pair_code;
+            if (res.page_data) {
+                for (var i = 0; i < items.length; i++) {
+                    if (items[i].pair_code == code) {
+                        items[i].price = res.page_data.newest_price;
+                        items[i].change_24h = res.page_data.chg;
+                    }
+                }
+
+                this.setState({
+                    status: 1,
+                    items: items
+                });
+            }
+        },
+        componentDidMount: function () {
+            this.Refresh();
+        },
+        Refresh: function () {
+            $.getJSON(this.props.source, {}, function (res) {
+                //console.log(res);
+
+                if (res.result) {
+                    this.setState({
+                        status: 1,
+                        items: res.data
+                    });
+                }
+                else {
+                    this.setState({
+                        status: 2,
+                        items: []
+                    });
+                }
+            }.bind(this));
+        },
+        clickHandler: function (code, e) {
+            e.preventDefault();
+            var ths = $(e.target);
+            var tr = ths;
+
+            if (ths.is("td")) {
+                tr = ths.parent();
+            }
+            if (code) {
+                ChangeCate(tr);
+                if (code != this.state.pair_code) {
+                    this.state.pair_code = code;
+                    this.props.cbChange(code);
+                }
+            }
+        },
+        render: function () {
+            var rows = [];
+            if (this.state.status == 0) {
+                rows.push(<tr key="0">
+                    <td colSpan="4" className="txt-no-records"><CLoading text="{% trans '正在加载...' %}"/></td>
+                </tr>);
+            }
+            else if (this.state.items && this.state.items.length > 0) {
+                var num = 0;
+                this.state.items.forEach(function (item) {
+                    num++;
+                    var active = (this.state.pair_code == item.pair_code)
+                    if (active) {
+                        UpdateLastTradeVol(item.price, item.vol, item.change_24h);
+                        ChangeCateCode(item.pair_code);
+                    }
+                    rows.push(<CTradeCateItem key={num} data={item} active={active}
+                                              clickHandler={this.clickHandler.bind(this, item.pair_code)}/>);
+                }.bind(this));
+            }
+            else {
+                rows.push(<tr key="0">
+                    <td colSpan="4" className="txt-no-records">{% trans '暂无' %}</td>
+                </tr>);
+            }
+
+            return (<div className="cate hidden-xs hidden-sm">
+                <div className="item-box">
+                    <table width="100%" cellSpacing="0" cellPadding="0" className="txt-md tb-cate" id="tradeCate">
+                        <thead>
+                        <tr>
+                            <th className="star"></th>
+                            <th className="nm">{% trans '名称' %}</th>
+                            <th className="price">{% trans '最新成交价' %}</th>
+                            <th className="pct">{% trans '涨幅' %}</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbTradeCate">
+                        {rows}
+                        </tbody>
+                    </table>
+                </div>
+            </div>);
+        }
+    });
+
+    var pvTimerID = 0;
+    var pvSeconds = 0;
+    var wsTransaction;
+    var wsAutoConn = true;
+    var iCount = 0;
+
+    var PageView = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0,
+                pair_code: this.props.code,
+                host: this.props.host,
+                items: []
+            };
+        },
+        componentDidMount: function () {
+            var code = this.props.code;
+            //console.log("componentDidMount");
+            this.WSConnection(code);
+            this.UpdateAmount(code);
+
+            pvTimerID = setInterval(function () {
+                this.wsHeart();
+            }.bind(this), 1000);
+        },
+        wsHeart: function () {
+            pvSeconds++;
+            if (pvSeconds >= 30) {
+                //console.log("heart");
+                if (wsTransaction && wsTransaction.readyState == 1) {
+                    wsTransaction.send("ping");
+                }
+                pvSeconds = 0;
+            }
+        },
+        WSConnection: function (code) {
+            if (wsTransaction && wsTransaction.readyState == 1) {
+                wsTransaction.close();
+                return;
+            }
+            var pair_code = code || this.state.pair_code;
+
+            var size = GetItem("chart_time") || 60;
+            var host = this.state.host + "?pair_code=" + pair_code + "&size=" + size;
+
+            this.ResetAll();
+
+
+            //console.log("WS连接");
+
+            wsTransaction = new WebSocket(host);
+            wsTransaction.onopen = this.onOpen;
+            wsTransaction.onmessage = this.onMessage;
+            wsTransaction.onclose = this.onClose;
+
+            wsAutoConn = true;
+        },
+        wsSendMsg: function (code, mins) {
+            if (wsTransaction && wsTransaction.readyState == 1) {
+                var msg = {
+                    type: "subscribe",
+                    message: "k_line",
+                    params: {
+                        size: parseInt(mins),
+                        pair_code: code
+                    }
+                };
+
+                wsTransaction.send(JSON.stringify(msg));
+            }
+            else {
+                this.WSConnection(code);
+            }
+        },
+        RefreshWS: function (code) {
+            this.setState({
+                pair_code: code,
+                status: 0,
+                items: []
+            });
+
+            //wsAutoConn = false;
+            this.WSConnection(code);
+
+        },
+        onOpen: function (evt) {
+            //Web Socket 已连接上，使用 send() 方法发送数据
+            //ws.send("发送数据");
+            //alert("数据发送中...");
+        },
+        onMessage: function (evt) {
+            var msg = evt.data;
+            var res = $.parseJSON(msg);
+            if (res) {
+                this.setState({
+                    status: 1,
+                    items: res
+                });
+
+                var type = res.type;
+                if (type) {
+                    switch (type) {
+                        case "init_data":
+                            this.OnMsgInit(res);
+                            this.onMsgKlineInit(res.k_line);
+                            break;
+                        case "k_line":
+                            this.onMsgKline(res);
+                            break;
+                        case "k_line_init":
+                            this.onMsgKlineInit(res.data);
+                            break;
+                        case "page_data":
+                            this.onMsgPageData(res);
+                            break;
+                        case "depth":
+                            this.onMsgDepth(res);
+                            break;
+                        case "order_dealed":
+                            this.onMsgOrderDealed(res);
+                            break;
+                        case "notice":
+                            this.onMsgNotice(res);
+                            break;
+                    }
+                }
+
+            }
+            //console.log("数据已接收...");
+            //console.log(res);
+        },
+        onClose: function (evt) {
+            //console.log("连接已关闭...");
+            this.WSConnection(this.state.pair_code);
+        },
+        closeWS: function () {
+            if (wsTransaction && wsTransaction.readyState == 1) {
+                wsTransaction.close();
+            }
+            this.setState({
+                status: 0,
+                items: []
+            });
+            //console.log("closeWS");
+        },
+        OnMsgInit: function (res) {
+            if (res && res.depth) {
+                this.refs.refTradeFormMarket.Refresh(res.depth);
+                this.refs.refMarketTop.Refresh(res.depth);
+            }
+
+            if (res && res.page_info) {
+                //UpdateLastTradeVol(res.page_info.newest_price,res.page_info.vol,res.page_info.chg);
+            }
+
+            if (res && res.trade_history) {
+                this.refs.refMarketLast.Refresh(res.trade_history);
+            }
+
+        },
+        onMsgKlineInit: function (data) {
+
+            HighStockInit();
+            HChartReset(data);
+        },
+        onMsgKline: function (data) {
+            HChartAdd(data);
+        },
+        onMsgPageData: function (res) {
+            /*
+            "pair_code": 10001,
+            "type": "page_data",
+            "page_data": {
+                "newest_price": 0.8570823617023372,
+                "vol": 3627734,
+                "chg": -0.9930318507178671
+            }
+            */
+            var nCode = res.pair_code;
+            var cCode = this.state.pair_code;
+
+            if (nCode == cCode) {
+                UpdateNewPrice(res);
+            }
+
+            this.refs.refTradeCate.UpdateData(res);
+        },
+        onMsgDepth: function (res) {
+            this.refs.refTradeFormMarket.UpdateDepth(res);
+            this.refs.refMarketTop.UpdateDepth(res);
+        },
+        onMsgNotice: function (res) {
+            this.orderChangeHandler(res);
+        },
+        onMsgOrderDealed: function (res) {
+            this.refs.refMarketLast.UpdateData(res);
+        },
+        componentWillUnmount: function () {
+
+        },
+        cateChangeHandler: function (code) {
+            if (!code || isNaN(code)) {
+                return;
+            }
+
+            SetItem("pair_code", code);
+            ShowLoading("{% trans '正在加载...' %}");
+
+            this.RefreshWS(code);
+            this.RefreshOrder(code);
+            this.UpdateAmount(code);
+
+        },
+        orderChangeHandler: function (e) {
+            this.refs.refOrderList.Refresh(this.state.pair_code, 1);
+            this.UpdateAmount(this.state.pair_code);
+        },
+        UpdateAmount: function (code) {
+            AjaxUpdateAvailable(code);
+        },
+        RefreshOrder: function (code) {
+            this.refs.refOrderList.Refresh(code, 1);
+        },
+        ResetAll: function () {
+            this.refs.refTradeFormMarket.Reset();
+            this.refs.refMarketTop.Reset();
+            this.refs.refMarketLast.Reset();
+        },
+        cbRowChange: function (e) {
+
+        },
+        testHandler: function (e) {
+            e.preventDefault();
+            iCount++;
+
+            if (pageHSData.values && pageHSData.values.length > 0) {
+                var tick = pageHSData.values[pageHSData.values.length - 1][0] / 1000;
+
+                this.onMsgKline({
+                    "high": Math.random() * 1,
+                    "pair_code": 10002,
+                    "low": Math.random() * 1,
+                    "type": "k_line",
+                    "close": Math.random() * 1,
+                    "vol": 0 + iCount * 50,
+                    "time": tick,
+                    "open": Math.random() * 1
+                });
+            }
+        },
+        testAddHandler: function (e) {
+            e.preventDefault();
+            iCount++;
+
+            if (pageHSData.values && pageHSData.values.length > 0) {
+                var tick = pageHSData.values[pageHSData.values.length - 1][0] / 1000;
+
+                this.onMsgKline({
+                    "high": Math.random() * 1,
+                    "pair_code": 10002,
+                    "low": Math.random() * 1,
+                    "type": "k_line",
+                    "close": Math.random() * 1,
+                    "vol": 0 + Math.random() * 100,
+                    "time": tick + 300,
+                    "open": Math.random() * 1
+                });
+            }
+        },
+        render: function () {
+            var items = this.state.items;
+            var test = "";
+            if (GetQueryString("test") == "1") {
+                test = <div>
+                    <div className="txt-right"><a href="#" onClick={this.testAddHandler}>{% trans '新增时间线测试' %}</a></div>
+                    <div className="txt-right"><a href="#" onClick={this.testHandler}>{% trans '修改时间线测试' %}</a></div>
+                </div>;
+            }
+            var mask = "";
+            if (!IsLogin()) {
+                mask =
+                    <div className="tbMask"><a href="login.html" className="btn btn-primary">{% trans '登录后才能交易' %}</a>
+                    </div>;
+            }
+            return (<section className="main-list transaction">
+                <div className="container">
+                    <div className="clearfix">
+                        <div className="list">
+                            <CMobiTabs/>
+                            <CMobiCoinAmount/>
+                            <CMobiBTCAmount/>
+                            <CKLine/>
+                            {test}
+                            <div className="tab-item trade-box">
+                                {mask}
+                                <div className="clearfix">
+                                    <CTradeFormBuy code={this.state.pair_code} cbChange={this.orderChangeHandler}/>
+                                    <CTradeFormSell code={this.state.pair_code} cbChange={this.orderChangeHandler}/>
+                                    <CTradeFormMarket ref="refTradeFormMarket" code={this.state.pair_code} items={items}
+                                                      cbRowChange={this.cbRowChange}/>
+                                </div>
+                            </div>
+
+                            <CMarketTop ref="refMarketTop" items={items} code={this.state.pair_code}
+                                        cbRowChange={this.cbRowChange}/>
+                            <COrderList ref="refOrderList" code={this.state.pair_code}
+                                        source="/api/trade/get_order_list"/>
+                            <CMarketLast ref="refMarketLast" items={items}/>
+                        </div>
+                        <CTradeCate cbChange={this.cateChangeHandler} ref="refTradeCate" code={this.state.pair_code}
+                                    source="/api/market/market_info"/>
+                    </div>
+                </div>
+            </section>);
+        }
+    });
+
+    var isLogin = IsLogin();
+    var code = GetQueryString("id");
+    if (!isNaN(code) && parseInt(code) >= 10000) {
+        code = parseInt(code);
+        SetItem("pair_code", code);
+    }
+    var pairCode = GetItem("pair_code") || 10002;
+
+    var AppRoot = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0,
+                cateItems: []
+            };
+        },
+        componentWillMount: function () {
+            //console.log('Component WILL MOUNT!');
+
+        },
+        componentDidMount: function () {
+            //console.log('Component DID MOUNT!');
+            PageInit();
+        },
+        render: function () {
+            const host = window.location.protocol === "https:" ? "wss://" + window.location.host + "/ws" : "ws://" + window.location.host + "/ws";
+            return (<section>
+                <HeaderBar isLogin={isLogin} ddType="1"/>
+                <PageView code={pairCode} host={host}/>
+                <FooterBar/>
+                <ScrollBar/>
+            </section>);
+        }
+    });
+
+
+    var CreatePage = function () {
+        ReactDOM.render(React.createElement(AppRoot, null), document.getElementById("App"));
+    }
+    $(function () {
+        $.getJSON("/api/market/get_cny_rate", {}, function (res) {
+            console.log(res);
+            if (res.result && res.data && res.data.cny_rate) {
+                SetItem("cny_rate", res.data.cny_rate);
+            }
+            CreatePage();
+        });
+    });
+</script>
+</body>
+</html>

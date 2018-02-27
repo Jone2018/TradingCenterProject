@@ -1,0 +1,53 @@
+.message-view {
+    padding-bottom: 100px;
+}
+
+.message-view .title {
+    margin: 0;
+    padding: 0 20px;
+    line-height: 36px;
+    border-bottom: 1px solid #dedede;
+}
+
+.message-view .title .tl {
+    float: left;
+    font-weight: bold;
+    max-width: 70%;
+}
+
+.message-view .title .dtime {
+    float: right;
+    color: #AAA;
+}
+
+.message-view .box {
+    padding: 20px;
+    line-height: 150%;
+}
+
+@media (max-width: 767px) {
+    .message-view {
+        padding-bottom: 30px;
+    }
+
+    .message-view .title .tl {
+        float: none;
+        text-align: center;
+        padding: 10px;
+        line-height: 150%;
+        max-width: none;
+        display: block;
+    }
+
+    .message-view .title .dtime {
+        display: block;
+        float: none;
+        text-align: center;
+        margin: 5px;
+        line-height: 150%;
+    }
+
+    .message-view .box {
+        padding: 10px;
+    }
+}

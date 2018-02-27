@@ -1,0 +1,640 @@
+/****************************/
+.banner {
+    position: relative;
+    height: 450px;
+}
+
+.banner .banner-box {
+    height: 450px;
+    z-index: 999;
+}
+
+.bxSlider .item {
+    display: block;
+    width: 100%;
+    height: 450px;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.bxSlider .item .caption {
+    position: absolute;
+    top: 25%;
+    width: 460px;
+    left: 50%;
+    margin-left: -420px;
+    color: #FFF;
+}
+
+.bxSlider .item .caption h1 {
+    padding: 20px 0;
+    line-height: 150%;
+}
+
+.bxSlider .item .caption .btn {
+    font-size: 16px;
+    min-width: 120px;
+}
+
+.login-form,
+.login-info {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-top: 60px;
+    margin-left: 260px;
+    width: 320px;
+    height: 336px;
+    color: #FFF;
+    background: url(../images/login-form-bg.png) left top repeat;
+    padding-bottom: 30px;
+}
+
+.login-form .tl {
+    line-height: 30px;
+    font-weight: 500;
+    padding: 5px 0 5px 20px;
+}
+
+.login-form .tl .qq {
+    float: right;
+    color: #FFF;
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.login-form .tl .qq:hover {
+    color: #eee;
+}
+
+.login-form .fld,
+.login-form .btns {
+    width: 100%;
+}
+
+.login-form .fld .lg {
+    border: 1px solid #e4e4ec;
+    background-color: #e4e4ec;
+    margin-bottom: 1px;
+    outline: none;
+    display: block;
+    width: 100%;
+    padding-left: 36px;
+    height: 36px;
+    line-height: 36px;
+    color: #7e7e80;
+}
+
+.login-form .fld-code {
+    position: relative;
+}
+
+.login-form .fld-code a {
+    position: absolute;
+    right: 5px;
+    top: 3px;
+}
+
+.login-form .fld-code img {
+    height: 30px;
+    width: auto;
+    border: 0;
+}
+
+.login-form .btn-login,
+.login-form .btn-reg {
+    width: 80%;
+    margin: 5px auto;
+    display: block;
+    text-align: center;
+    color: #FFF;
+    height: 36px;
+    line-height: 36px;
+}
+
+.login-form .btn-login {
+    background-color: #1d82fe;
+    border: 1px solid #1d82fe;
+    color: #FFF;
+}
+
+.login-form .btn-reg:focus,
+.login-form .btn-reg:hover,
+.login-form .btn-login:focus,
+.login-form .btn-login:hover {
+    background-color: #1870db;
+    border: 1px solid #1870db;
+
+}
+
+.login-form .btn-reg {
+    border: 1px solid #b3b6d9;
+    color: #FFF;
+}
+
+.login-form .fgt {
+    padding: 5px;
+}
+
+.login-form .fgt .item-box {
+    width: 80%;
+    margin: 0 auto;
+    line-height: 30px;
+}
+
+.login-form .fgt label {
+    float: left;
+}
+
+.login-form .fgt a {
+    float: right;
+    color: #FFF;
+}
+
+/**************/
+.login-info {
+
+}
+
+.login-info .box {
+    padding: 20px 30px;
+}
+
+.login-info .thu {
+    text-align: center;
+}
+
+.login-info .thu img {
+    width: 120px;
+    height: 120px;
+    border: 0;
+    border-radius: 50%;
+}
+
+.login-info .uid {
+    text-align: center;
+}
+
+.login-info .uid,
+.login-info .fld {
+    padding: 5px 0;
+    line-height: 20px;
+}
+
+.login-info .fld span {
+
+}
+
+.login-info .btns {
+    padding: 5px 0;
+}
+
+.login-info .btns a {
+    width: 100%;
+    margin: 5px auto;
+    display: block;
+    text-align: center;
+    color: #FFF;
+    height: 36px;
+    line-height: 36px;
+    background-color: #1d82fe;
+    border: 1px solid #1d82fe;
+    color: #FFF;
+}
+
+.login-info .btns a:hover,
+.login-info .btns a:focus {
+    background-color: #1870db;
+    border: 1px solid #1870db;
+}
+
+/*************/
+.home-trade,
+.home-news,
+.home-notice {
+    padding: 20px 0;
+}
+
+.home-service {
+    padding: 30px 0;
+}
+
+/*******首页公告*******/
+.home-notice-top {
+    padding: 15px 0;
+    text-align: center;
+    line-height: 30px;
+    border-bottom: 1px solid #eaeaea;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.home-notice-top a {
+
+}
+
+.home-notice-top .tp i {
+    font-size: 24px;
+}
+
+.home-notice-top a,
+.home-notice-top i {
+    margin: 0 5px;
+}
+
+/*********最新交易**********/
+.tb-trade-list {
+
+}
+
+.tb-trade-list td {
+    padding: 10px;
+}
+
+.tb-trade-list td {
+    border-bottom: 1px dashed #bacde4;
+}
+
+.tb-trade-list .iconx,
+.tb-trade-list .cname,
+.tb-trade-list .lprice,
+.tb-trade-list .b24h,
+.tb-trade-list .p7day,
+.tb-trade-list .p24h,
+.tb-trade-list .bbtn {
+    text-align: center;
+}
+
+.txt-up .lprice,
+.txt-up .p7day,
+.txt-up .p24h {
+    color: #0b7200;
+}
+
+.txt-drop .lprice,
+.txt-drop .p7day,
+.txt-drop .p24h {
+    color: #ff0101;
+}
+
+.tb-trade-list .bbtn a {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid #aaa;
+    color: #F00;
+    border-radius: 4px;
+}
+
+.tb-trade-list .bbtn a:hover {
+    /*background-color:#F00;*/
+    border: 1px solid #F00;
+    color: #FFF;
+}
+
+/******新闻******/
+.home-news {
+    background: #eff5ff url(../images/home-news-bg.jpg) top center no-repeat;
+}
+
+.home-news .title {
+    padding: 10px 0 20px 0;
+    line-height: 30px;
+    min-height: 60px;
+    margin: 0;
+}
+
+.home-news .title .tl {
+    font-weight: 400;
+    float: left;
+}
+
+.home-news .title a.more {
+    float: right;
+    font-weight: 400;
+    color: #0079be;
+}
+
+.home-news .item-box {
+    background-color: #FFF;
+    min-height: 205px;
+    margin-bottom: 10px;
+
+}
+
+.home-news .item-box:hover {
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+}
+
+.home-news .item-box .img {
+    text-align: center;
+}
+
+.home-news .item-box .img img {
+    width: 100%;
+    height: auto;
+}
+
+.home-news .item-box .title {
+    padding: 8px;
+}
+
+.home-news .item-box .date {
+    padding: 10px 8px;
+    color: #999;
+    font-size: 14px;
+}
+
+/********公告列表********/
+.home-notice .item-box {
+    padding: 0 20px;
+}
+
+.home-notice .line-bg {
+    background: url(../images/line-bg.png) center top repeat-y;
+}
+
+.home-notice .title {
+    padding: 10px 0 10px 0;
+    line-height: 30px;
+    margin: 0;
+    border-bottom: 1px dashed #bebebe;
+}
+
+.home-notice .title .tl {
+    font-weight: 400;
+    float: left;
+}
+
+.home-notice .title a.more {
+    float: right;
+    font-weight: 400;
+    color: #0079be;
+}
+
+.home-notice .list {
+    padding: 10px 0;
+}
+
+.home-notice .list li {
+    padding: 8px 0;
+    line-height: 30px;
+}
+
+.home-notice .list li a {
+    float: left;
+}
+
+.home-notice .list li .dt {
+    color: #aaa;
+    float: right;
+}
+
+/******************/
+.home-service {
+    background: #6273a3 url(../images/home-service-bg.jpg) center bottom no-repeat;
+}
+
+.home-service .title {
+    color: #FFF;
+    text-align: center;
+}
+
+.home-service .title-sm {
+    color: #FFF;
+    font-weight: 400;
+    text-align: center;
+    line-height: 150%;
+    padding: 15px 0;
+
+    margin-bottom: 20px;
+}
+
+.home-service .item-box {
+    text-align: center;
+    background-position: center top;
+    background-repeat: no-repeat;
+}
+
+.home-service .item-box .thu {
+    text-align: center;
+}
+
+.home-service .item-box img {
+    max-width: 100%;
+    height: auto;
+}
+
+.home-service .item-box .tl {
+    display: block;
+    text-align: center;
+    color: #FFF;
+    padding: 20px 0;
+    line-height: 35px;
+}
+
+a.header-login,
+.market-top {
+    display: none;
+}
+
+@media (min-width: 992px) and (max-width: 1200px) {
+
+    .login-form,
+    .login-info {
+        margin-left: 150px;
+    }
+}
+
+@media (max-width: 992px) {
+
+    .login-form,
+    .login-info {
+        display: none;
+    }
+
+    .banner {
+        height: 240px;
+    }
+
+    .banner .banner-box {
+        height: 240px;
+    }
+
+    .bxSlider .item {
+        height: 240px;
+        background-size: 100% 100%;
+    }
+
+    .bxSlider .item .caption {
+        position: static;
+        padding-top: 25px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+        color: #FFF;
+        text-align: center;
+    }
+
+    .bxSlider .item .caption h1 {
+        padding: 20px 0;
+        line-height: 150%;
+        text-align: center;
+    }
+
+    .home-notice .line-bg {
+        background-image: none;
+    }
+
+    .home-notice .item-box {
+        padding: 0;
+    }
+
+    .home-service .item-box img {
+        max-width: 90%;
+    }
+
+    .tb-trade-list td {
+        padding: 5px;
+    }
+}
+
+@media (max-width: 767px) {
+    .tb-trade-list td {
+        padding: 5px 3px;
+        word-break: break-all;
+        word-wrap: break-word;
+    }
+
+    .tb-trade-list .txt-md th,
+    .tb-trade-list .txt-md td {
+        font-size: 12px !important;
+    }
+
+    .home-notice .list {
+        padding: 10px 0;
+    }
+
+    .home-notice .list li {
+        padding: 5px 0;
+        line-height: 20px;
+    }
+
+    .home-notice-top {
+        padding: 8px 0;
+        text-align: left;
+        line-height: 20px;
+        display: table;
+        width: 100%;
+    }
+
+    .home-notice-top .col {
+        display: table-cell;
+        line-height: 20px;
+    }
+
+    .home-notice-top .tp {
+        width: 70px;
+        text-align: right;
+    }
+
+    .home-notice-top .tl {
+        min-width: 60%;
+        text-align: left;
+    }
+
+    .home-notice-top .more {
+        width: 60px;
+        text-align: center;
+    }
+
+    .home-notice-top .more a {
+        color: #0364d0;
+    }
+
+    .home-notice-top .tp i {
+        font-size: 18px;
+    }
+
+    .home-notice-top a,
+    .home-notice-top i {
+        margin: 0;
+    }
+
+    a.header-login {
+        display: block;
+        color: #23a4ef;
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: none;
+        float: right;
+        margin-top: 16px;
+        line-height: 54px;
+        margin-right: 10px;
+    }
+
+    a.header-login:hover {
+        color: #168ed3;
+    }
+
+    .home-news .title {
+        min-height: 30px;
+    }
+
+    .market-top {
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 50%;
+        width: 174px;
+        margin-left: -60px;
+        height: 84px;
+        z-index: 999;
+        background: url(../images/top-bg2.png) center center no-repeat;
+        background-size: 100% 100%;
+    }
+
+    .market-top .tb-row {
+        width: 100%;
+        display: table;
+        height: 100%;
+    }
+
+    .market-top .tp,
+    .market-top .cy {
+        padding: 5px;
+        height: 100%;
+        line-height: 20px;
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+        font-weight: bold;
+    }
+
+    .market-top .tp {
+        width: 40%;
+    }
+
+    .market-top .cy {
+        width: 60%;
+        text-align: left;
+        color: #ff0101;
+    }
+}
+
+@media (max-width: 414px) {
+    .bx-controls-direction {
+        display: none !important;
+    }
+
+    .market-top {
+        width: 50%;
+        max-width: 140px;
+        margin-left: -50px;
+    }
+}
+
+@media (max-width: 350px) {
+    .market-top {
+        display: none;
+    }
+}

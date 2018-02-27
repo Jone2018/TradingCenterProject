@@ -1,0 +1,259 @@
+<!doctype html>
+{% load i18n %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
+    <link rel="shortcut icon" href="/static/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+
+    <link rel="stylesheet" type="text/css" href="/static/css/usercenter.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/bill.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/layer/theme/default/layer.css">
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script src="/static/js/jquery.scrollTo.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap/layer/layer.js"></script>
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/common.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/static/js/swiper/css/swiper.min.css">
+    <script src="/static/js/swiper/js/swiper.min.js"></script>
+    <script src="/static/js/accessLimit.js"></script>
+    <script src="/static/js/bill.js"></script>
+
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div id="App"></div>
+<script type="text/babel" src="/static/jsx/approot.jsx"></script>
+<script type="text/babel" src="/static/jsx/header.jsx"></script>
+<script type="text/babel" src="/static/jsx/footer.jsx"></script>
+<script type="text/babel" src="/static/jsx/fmnavbar.jsx"></script>
+<script type="text/babel">
+    function COrderStatus(props) {
+        var txt = "{%  trans '未成交' %}";
+        var css = "txt-status" + props.status;
+        var st = props.status;
+        if (st == 1) {
+            txt = "{%  trans '部分成交' %}";
+        }
+        else if (st == 2) {
+            txt = "{%  trans '完全成交' %}";
+        }
+        else if (st == 3) {
+            txt = "{%  trans '撤单中' %}";
+        }
+        else if (st == 4) {
+            txt = "{%  trans '已撤单' %}";
+        }
+
+        return (<span className={css}>{txt}</span>);
+    }
+
+    var BillList = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0,
+                items: [],
+                pageIndex: 1,
+                pageCount: 1
+            };
+        },
+        componentDidMount: function () {
+            this.Refresh(0, 1);
+        },
+        Refresh: function (tp, index) {
+            ShowLoading("{% trans '加载中...' %}");
+
+            $.getJSON(this.props.source, {
+                charge_pro: tp,
+                num_per_page: 10,
+                page: index
+            }, function (res) {
+                CloseLoading(1000);
+                //console.log(res);
+                if (res.result) {
+                    this.setState({
+                        items: res.data,
+                        status: 1,
+                        pageIndex: index,
+                        pageCount: res.num_pages
+                    });
+                }
+                else {
+                    this.setState({
+                        status: 2
+                    });
+                }
+            }.bind(this));
+        },
+        toggleHandler: function (e) {
+            e.preventDefault();
+            var ths = $(e.target);
+            var tp;
+            if (ths.is("i")) ths = ths.parent();
+
+            if (ths.hasClass("checked")) {
+                ths.removeClass("checked");
+                tp = 0
+            }
+            else {
+                ths.addClass("checked");
+                tp = 1;
+            }
+            this.Refresh(tp, 1);
+        },
+        getTp: function () {
+            var isChk = $(".bill-list .cbox .checked").length > 0;
+            return isChk ? 1 : 0;
+        },
+        clickHandler: function (e) {
+            e.preventDefault();
+            var ths = $(e.target);
+            var flag = ths.data("flag");
+            var index = this.state.pageIndex;
+            if (flag == "next") {
+                index++;
+            }
+            else if (flag == "prev") {
+                index--;
+            }
+            else {
+                return;
+            }
+
+            if (index <= 0) index = 1;
+            if (index >= this.state.pageCount) index = this.state.pageCount;
+
+            var tp = this.getTp();
+            this.Refresh(tp, index);
+        },
+        cancelHandler: function (id, e) {
+            e.preventDefault();
+            var tp = this.getTp();
+            var index = this.state.pageIndex;
+
+            CancelOrder(id, function (res) {
+                cbCancelSuccess(res);
+                this.Refresh(tp, index);
+            }.bind(this));
+        },
+        render: function () {
+            var rows = [];
+            if (this.state.status == 0) {
+                rows.push(<tr key='0'>
+                    <td colSpan="8"><CLoading text="{% trans '正在加载...' %}"/></td>
+                </tr>);
+            }
+            else {
+                if (!this.state.items || this.state.items.length == 0) {
+                    rows.push(<tr key="0">
+                        <td colSpan="8" className="txt-no-records">{% trans '没有找到匹配的记录' %}</td>
+                    </tr>);
+                }
+                else {
+                    this.state.items.forEach(function (item) {
+                        var dt = FormatDate(item.timestamp, "yyyy-MM-dd hh:mm");
+                        var amount = FormatNumX(item.amount, 8);
+                        var actual_amount = FormatNumX(item.actual_amount, 8);
+                        var lnk = "-";
+                        var recharge_coin = [];
+                        var explorer = GetExplorer(item.coin_type, item.txid);
+                        if (item.finance_type == 0 && typeof(explorer) == "string") {
+                            lnk = <a href={explorer} target="_blank" className="blue">{% trans '详情' %}</a>
+                        }
+                        if (item.finance_type == 1 && item.status == 10) {
+                            lnk = <a href="#" className="blue" onClick={this.cancelHandler.bind(this, item.id)}>
+                                {% trans '撤消' %}</a>
+                        }
+
+                        rows.push(<tr className="titem" key={item.id}>
+                            <td className="no">{item.id}</td>
+                            <td className="type">{gettext(item.name)}</td>
+                            <td className="amount-odr">{amount}</td>
+                            <td className="time">{dt}</td>
+                            <td className="status">{gettext(GetStatusName(item.finance_type, item.status))}</td>
+                            <td className="amount-ttl hidden-xs">{actual_amount}</td>
+                            <td className="btns">
+                                {lnk}
+                            </td>
+                        </tr>);
+                    }.bind(this));
+                }
+            }
+            return (<div className="bill-list">
+                    <h4 className="tb-title clearfix"><span className="tl pull-left">{% trans '财务记录' %}</span>
+                        <span className="cbox pull-right"><a href="#" onClick={this.toggleHandler}>
+                            <i className="icon-toggle-off icon-large"></i>{% trans '仅显示充值记录' %}</a></span></h4>
+                    <table className="tb-list tb-solid" id="tb1">
+                        <thead>
+                        <tr className="thead thead-blue thead-condensed">
+                            <td className="no">{% trans '订单号' %}</td>
+                            <td className="type">{% trans '类型' %}</td>
+                            <td className="amount-odr">{% trans '订单金额' %}</td>
+                            <td className="time">{% trans '时间' %}</td>
+                            <td className="status">{% trans '状态' %}</td>
+                            <td className="amount-ttl hidden-xs">{% trans '实际到账金额' %}</td>
+                            <td className="btns">{% trans '操作' %}</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {rows}
+                        </tbody>
+                    </table>
+                    <CPager pageIndex={this.state.pageIndex} pageCount={this.state.pageCount}
+                            clickHandler={this.clickHandler}/>
+                </div>
+            );
+        }
+    });
+
+    var pairCodes = CreateDSPairCodes();
+
+    function PageView(props) {
+        return (<section className="main-list bill-list">
+            <div className="container">
+                <CFMCateBar activeItem="fm-bill"/>
+                <div className="clearfix">
+                    <div className="menu-box menu-user hidden-xs">
+                        <CFMNavBar activeItem="fm-bill"/>
+                    </div>
+                    <div className="list-box">
+                        <div className="item-box">
+                            <BillList source={props.source}/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>);
+    }
+
+    var isLogin = IsLogin();
+
+    ReactDOM.render(
+        <App isLogin={isLogin} ContentBox={
+            <PageView source="/api/finance/user_balance_log"/>
+        }/>
+        , document.getElementById("App")
+    );
+</script>
+
+</body>
+</html>

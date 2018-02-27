@@ -1,0 +1,363 @@
+<!doctype html>
+{% load i18n %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
+    <link rel="shortcut icon" href="/static/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+
+    <link rel="stylesheet" type="text/css" href="/static/css/usercenter.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/bill-query.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/layer/theme/default/layer.css">
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script src="/static/js/jquery.scrollTo.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap/layer/layer.js"></script>
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/common.js"></script>
+    <script src="/static/js/accessLimit.js"></script>
+    <script src="/static/js/bill-query.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/js/swiper/css/swiper.min.css">
+    <script src="/static/js/swiper/js/swiper.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/datepicker/css/bootstrap-datetimepicker.min.css">
+    <script src="/static/bootstrap/datepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="/static/bootstrap/datepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div id="App"></div>
+<script type="text/babel" src="/static/jsx/approot.jsx"></script>
+<script type="text/babel" src="/static/jsx/header.jsx"></script>
+<script type="text/babel" src="/static/jsx/footer.jsx"></script>
+<script type="text/babel" src="/static/jsx/fmnavbar.jsx"></script>
+<script type="text/babel">
+    var BillQueryList = React.createClass({
+
+
+        getInitialState: function () {
+            var dt2 = new Date();
+            var dt1 = new Date(dt2.getFullYear() - 1, dt2.getMonth, dt2.getDate());
+            return {
+                status: 0,
+                items: [],
+                pageIndex: 1,
+                pageSize: 20,
+                pageCount: 1,
+                fType: -1,
+                cType: -1,
+                sTime: dt1.Format("yyyy-MM-dd hh:mm"),
+                eTime: dt2.Format("yyyy-MM-dd hh:mm")
+            };
+        },
+        componentDidMount: function () {
+            this.Refresh(1);
+        },
+        Refresh: function (index) {
+            var ftype = $("input[name='finance_type']").val();
+            var ctype = $("select[name='coin_type']").val();
+
+            var sTime = $("input[name='date_start']").val();
+            var eTime = $("input[name='date_end']").val();
+            if (!IsDate(sTime)) {
+                var dt = new Date();
+                sTime = new Date(dt.getFullYear() - 1, dt.getMonth(), dt.getDate()).Format("yyyy-MM-dd hh:mm");
+            }
+
+            if (!IsDate(eTime)) {
+                eTime = new Date().Format("yyyy-MM-dd hh:mm");
+            }
+            /*
+                finance_type	是	int	订单类型，具体查看字典，-1：全部
+                coin_type	是	int	币种,具体查看字典，-1：全部
+                page	否	int	目前显示第几页 缺省为1
+                size	否	int	每页显示条数 缺省为10
+                begin_time	是	datetime	起始日期
+                end_time	是	datetime	结束日期
+            */
+            //console.log(ftype + "/" + ctype + "/" + index);
+            ShowLoading("{% trans '正在加载' %}");
+            $.getJSON(this.props.source, {
+                finance_type: ftype,
+                coin_type: ctype,
+                page: index,
+                size: this.state.pageSize,
+                begin_time: sTime,
+                end_time: eTime
+            }, function (res) {
+                CloseLoading(1000);
+                //console.log(res);
+                if (res.result) {
+                    var count = res.num_pages && !isNaN(res.num_pages) ? parseInt(Math.floor(res.num_pages)) : 0;
+                    this.setState({
+                        status: 1,
+                        items: res.data,
+                        pageIndex: index,
+                        pageCount: count,
+                        fType: ftype,
+                        cType: ctype,
+                        sTime: sTime,
+                        eTime: eTime
+                    });
+                }
+                else {
+                    this.setState({
+                        status: 2,
+                        items: [],
+                        pageIndex: index,
+                        pageCount: 0,
+                        fType: ftype,
+                        cType: ctype,
+                        sTime: sTime,
+                        eTime: eTime
+                    });
+                }
+            }.bind(this));
+        },
+        searchHandler: function (e) {
+            e.preventDefault();
+            this.Refresh(1);
+        },
+        clickHandler: function (e) {
+            e.preventDefault();
+            var ths = $(e.target);
+            var flag = ths.data("flag");
+            var index = this.state.pageIndex;
+            if (flag == "next") {
+                index++;
+            }
+            else if (flag == "prev") {
+                index--;
+            }
+            else {
+                return;
+            }
+
+            if (index <= 0) index = 1;
+            if (index >= this.state.pageCount) index = this.state.pageCount;
+
+            this.Refresh(index);
+        },
+        render: function () {
+            var rows = [];
+
+            if (this.state.status == 0) {
+                rows.push(<tr key='0'>
+                    <td colSpan="8"><CLoading text="{% trans '正在加载...' %}"/></td>
+                </tr>);
+            }
+            else {
+                if (!this.state.items || this.state.items.length == 0) {
+                    rows.push(<tr key='0'>
+                        <td colSpan="8" className="txt-no-records">{% trans '没有找到匹配的记录' %}</td>
+                    </tr>);
+                }
+                else {
+                    /*
+                    timestamp 时间
+                    coin_type 币种
+                    amount 变动金额
+                    fee 手续费
+                    available 可用资金
+                    frozen 挂单资金
+                    unconfirmed 确认中资金
+                    reason 变动原因
+                    时间、币种、变动金额、手续费、可用资金、挂单资金、确认中资金、变动原因
+                    */
+                    var num = 0;
+                    this.state.items.forEach(function (item) {
+                        var time = FormatDate(item.timestamp, "yyyy-MM-dd hh:mm");
+                        var chg = FormatNumX(item.amount, 8);
+                        var type = GetCoinType(item.coin_type, "fname");
+                        var fee = FormatNumX(item.fee, 8);
+                        var frozen = FormatNumX(item.frozen, 8);
+                        var available = FormatNumX(item.available, 8);
+                        var unconfirmed = FormatNumX(item.unconfirmed, 8);
+                        num++;
+                        rows.push(<tr className="titem" key={num}>
+                            <td className="time">{time}</td>
+                            <td className="type hidden-xs">{type}</td>
+                            <td className="chg">{chg}</td>
+                            <td className="fee">{fee}</td>
+                            <td className="live">{available}</td>
+                            <td className="lock hidden-xs">{frozen}</td>
+                            <td className="cfm hidden-xs">{unconfirmed}</td>
+                            <td className="info">{gettext(item.reason)}</td>
+                        </tr>);
+                    });
+                }
+            }
+
+            return (<div className="item-box">
+                    <h4 className="tb-title tb-title-border"><span className="tl">{% trans '我的账单' %}</span></h4>
+                    <QuerySearch searchHandler={this.searchHandler} fType={this.state.fType}/>
+                    <div className="bill-list">
+                        <table className="tb-list tb-solid" id="tb1">
+                            <thead>
+                            <tr className="thead thead-blue thead-condensed">
+                                <td className="time">{% trans '时间' %}</td>
+                                <td className="type hidden-xs">{% trans '币种' %}</td>
+                                <td className="chg">{% trans '变动金额' %}</td>
+                                <td className="fee">{% trans '手续费' %}</td>
+                                <td className="live">{% trans '可用资金' %}</td>
+                                <td className="lock hidden-xs">{% trans '挂单资金' %}</td>
+                                <td className="cfm hidden-xs">{% trans '确认中资金' %}</td>
+                                <td className="info">{% trans '变动原因' %}</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {rows}
+                            </tbody>
+                        </table>
+                        <CPager pageIndex={this.state.pageIndex} pageCount={this.state.pageCount}
+                                clickHandler={this.clickHandler}/>
+                    </div>
+                </div>
+            );
+        }
+    });
+
+
+    function CSelect(props) {
+        var css = props.className || "form-control fld-xs-block";
+        var opts = [];
+        var num = 0;
+
+        props.items.forEach(function (item) {
+            num++;
+            opts.push(<option value={item.id} key={num}>{item.name}</option>);
+        });
+
+        return (<select className={css} id={props.id} name={props.name} onChange={props.changeHandler}>
+            {opts}
+        </select>);
+    }
+
+    var QuerySearch = React.createClass({
+        getInitialState: function () {
+            return {
+                finance_type: this.props.fType
+            };
+        },
+        componentDidMount: function () {
+            //console.log("QuerySearch");
+        },
+        changeFType: function (e) {
+            e.preventDefault();
+
+            var ths = $(e.target);
+            var id = ths.data("id");
+            var nm = ths.data("name");
+            //console.log(nm);
+            this.setState({
+                finance_type: id
+            });
+            //$("input[name='" + nm + "']").val(id);
+            $("#rbox1 .checked").removeClass("checked");
+            ths.addClass("checked");
+        },
+        changeFT: function (e) {
+            var ft = $(e.target).val();
+            this.setState({
+                finance_type: ft
+            });
+        },
+        render: function () {
+            var coinTypes = CreateDSCoinTypes(true)
+
+            return (<div className="search">
+                <div className="search-item clearfix">
+                    <div className="lbl">{% trans '类别：' %}</div>
+                    <div className="fld">
+                        <div className="rbox" id="rbox1">
+                            <a href="#" data-id="-1" data-name="finance_type" className="checked"
+                               onClick={this.changeFType}>{% trans '全部' %}</a>
+                            <a href="#" data-id="0" data-name="finance_type"
+                               onClick={this.changeFType}>{% trans '充值' %}</a>
+                            <a href="#" data-id="1" data-name="finance_type"
+                               onClick={this.changeFType}>{% trans '提现' %}</a>
+                            <a href="#" data-id="3" data-name="finance_type"
+                               onClick={this.changeFType}>{% trans '发放' %}</a>
+                            <a href="#" data-id="4" data-name="finance_type"
+                               onClick={this.changeFType}>{% trans '交易' %}</a>
+                            <a href="#" data-id="7" data-name="finance_type"
+                               onClick={this.changeFType}>{% trans '转账' %}</a>
+                            <input name="finance_type" type="hidden" value={this.state.finance_type}
+                                   onChange={this.changeFT}/>
+                        </div>
+                    </div>
+                </div>
+                <div className="search-item clearfix">
+                    <div className="lbl"> {% trans '过滤：' %}</div>
+                    <div className="fld">
+                        <CSelect className="form-control ctype" name="coin_type" items={coinTypes} value=""/>
+
+                        <div className="cdate form-group">
+
+                            <span>{% trans '时间：' %}</span>
+                            <input type="text" name="date_start" id="date_start" className="form-control date"
+                                   placeholder="{% trans '开始时间' %}"/>
+                        </div>
+
+                        <div className="cdate form-group">
+                            <span>{% trans '到' %}</span>
+                            <input type="text" name="date_end" id="date_end" className="form-control date"
+                                   placeholder="{% trans '结束时间' %}"/>
+                        </div>
+
+                        <div className="cbtn">
+                            <button type="button" className="btn-submit"
+                                    onClick={this.props.searchHandler}>{% trans '搜索' %}</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>);
+        }
+    });
+
+
+    function PageView(props) {
+        return (<section className="main-list bill-query-list">
+            <div className="container">
+                <CFMCateBar activeItem="fm-bill-query"/>
+                <div className="clearfix">
+                    <div className="menu-box menu-user hidden-xs">
+                        <CFMNavBar activeItem="fm-bill-query"/>
+                    </div>
+                    <div className="list-box">
+                        <BillQueryList source={props.source}/>
+                    </div>
+                </div>
+            </div>
+        </section>);
+    }
+
+    var isLogin = IsLogin();
+
+    ReactDOM.render(
+        <App isLogin={isLogin} ContentBox={
+            <PageView source="/api/finance/user_balance_history"/>
+        }/>
+        , document.getElementById("App")
+    );
+</script>
+</body>
+</html>

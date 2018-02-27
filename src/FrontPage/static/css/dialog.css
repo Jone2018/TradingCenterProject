@@ -1,0 +1,108 @@
+.dialog-form {
+
+}
+
+.dialog-form .title {
+    color: #FFF;
+    background-color: #00a0e9;
+    margin: 0;
+    padding: 0 0 0 20px;
+    line-height: 32px;
+}
+
+.dialog-form .box {
+    padding: 30px;
+}
+
+.dialog-form .fld-xs-block {
+    max-width: none;
+}
+
+.dialog-form .btn {
+    margin: 5px 10px 5px 0;
+    min-width: 120px;
+}
+
+.dialog-form .btn-link {
+    line-height: 36px;
+}
+
+.btc-list {
+
+}
+
+.btc-list .info {
+    padding: 20px 30px;
+    border-bottom: 1px solid #c4c4c4;
+}
+
+.btc-list .list {
+    padding: 10px 30px;
+}
+
+.btc-list .list .item {
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.btc-list .list .item-box {
+    border: 1px solid #4a7093;
+}
+
+.btc-list .list .item-box.active {
+    border: 1px solid #00a0e9;
+    background: url(../images/icon_active.png) right bottom no-repeat;
+}
+
+.btc-list .list .item .tl {
+    padding: 5px 10px;
+    line-height: 32px;
+    border-bottom: 1px dashed #4a7093;
+}
+
+.btc-list .list .item .addr {
+    padding: 5px 15px;
+    line-height: 150%;
+    color: #666666;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+.btc-list .list .item .lbl {
+    padding: 5px 15px;
+    line-height: 20px;
+    color: #999;
+}
+
+.btc-list .btns {
+    padding: 20px 0;
+    text-align: center
+}
+
+.coinbtc .info {
+    padding: 6px;
+    line-height: 150%;
+    border: 1px solid #dedede;
+}
+
+@media (max-width: 767px) {
+    .dialog-form .btn {
+        display: block;
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+    }
+
+    .dialog-form .box {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .btc-list .info {
+        padding: 10px;
+    }
+
+    .btc-list .list {
+        padding: 10px;
+    }
+}

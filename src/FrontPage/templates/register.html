@@ -1,0 +1,144 @@
+<!doctype html>
+{% load i18n %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
+    <link rel="shortcut icon" href="/static/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/register.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/layer/theme/default/layer.css">
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/jquery.scrollTo.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap/layer/layer.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/common.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/static/js/swiper/css/swiper.min.css">
+    <script src="/static/js/swiper/js/swiper.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/validator/css/bootstrapValidator.min.css">
+    <script src="/static/bootstrap/validator/js/bootstrapValidator.js"></script>
+    <script src="/static/js/register.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div id="App"></div>
+
+<script type="text/babel" src="/static/jsx/approot.jsx"></script>
+<script type="text/babel" src="/static/jsx/header.jsx"></script>
+<script type="text/babel" src="/static/jsx/footer.jsx"></script>
+<script type="text/babel" src="/static/jsx/elements.jsx"></script>
+<script type="text/babel">
+
+    function StepBox(props) {
+        return (<div className="step-box">
+            <table className="txt-lg">
+                <tbody>
+                <tr>
+                    <td className="bg-lt active"><strong>1</strong></td>
+                    <td className="bg-md"></td>
+                    <td className="bg-md"></td>
+                    <td className="bg-rt"><strong><i className="icon-check"></i></strong></td>
+                </tr>
+                <tr>
+                    <td className="active">{% trans '邮箱注册' %}</td>
+                    <td></td>
+                    <td></td>
+                    <td>{% trans '成功' %}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>);
+    }
+
+    var RegFormBox = React.createClass({
+        componentDidMount: function () {
+
+        },
+        submitHandler: function (e) {
+            e.preventDefault();
+        },
+        render: function () {
+
+            return (<div className="box">
+                <h3 className="title clearfix"><span className="tl pull-left">{% trans '邮箱注册' %}</span><a
+                    href="login.html"
+                    className="pull-right txt-primary txt-md">{% trans '返回登录' %}</a>
+                </h3>
+                <div className="form-box">
+                    <form className="form-horizontal" name="frmAction" id="frmAction" method="post"
+                          onSubmit={this.submitHandler}>
+                        <CFormGroup>
+                            <CLabel>{% trans '电子邮箱：' %}</CLabel>
+                            <CTextInput name="email" colIn="1" title="{% trans '请输入电子邮箱' %}"/>
+                        </CFormGroup>
+                        <CFormGroup>
+                            <CLabel>{% trans '登录密码：' %}</CLabel>
+                            <CTextInput type="password" name="password" id="password" colIn="1"
+                                        title="{% trans '请输入8-32位字符' %}"/>
+                        </CFormGroup>
+                        <CFormGroup>
+                            <CLabel>{% trans '确认密码：' %}</CLabel>
+                            <CTextInput type="password" name="password2" colIn="1" title="{% trans '请再输入一次密码' %}"/>
+                        </CFormGroup>
+                        <CFormGroup>
+                            <CCol className="col-sm-9 col-sm-offset-3 checkbox">
+                                <label>
+                                    <input type="checkbox" id="agree" name="agree" value="1"/>
+                                    {% trans '已阅读并同意' %}</label>
+                                <a className="txt-primary" href="rules.html" target="_blank">{% trans '服务条款' %}</a> <a
+                                className="txt-primary" target="_blank">{% trans '免责声明' %}</a> <a
+                                className="txt-primary"
+                                href="privace.html"
+                                target="_blank">{% trans '隐私保护' %}</a>
+                            </CCol>
+                        </CFormGroup>
+                        <CFormGroup>
+                            <CButton colIn="col-sm-offset-3 col-sm-9">{% trans '下一步' %}</CButton>
+                        </CFormGroup>
+                    </form>
+                </div>
+            </div>);
+        }
+    });
+
+
+    function PageView(props) {
+        return (<section className="main-list">
+            <div className="container">
+                <div className="register">
+                    <StepBox/>
+                    <RegFormBox/>
+                </div>
+            </div>
+        </section>);
+    }
+
+    var isLogin = IsLogin();
+
+    ReactDOM.render(
+        <App isLogin={isLogin} ContentBox={
+            <PageView/>
+        }/>
+        , document.getElementById("App")
+    );
+</script>
+</body>
+</html>

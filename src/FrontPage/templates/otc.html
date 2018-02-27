@@ -1,0 +1,328 @@
+<!doctype html>
+{% load i18n %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
+    <link rel="shortcut icon" href="/static/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/otc.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/layer/theme/default/layer.css">
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/jquery.scrollTo.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap/layer/layer.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/common.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/static/js/swiper/css/swiper.min.css">
+    <script src="/static/js/swiper/js/swiper.min.js"></script>
+
+    <script src="/static/js/otc.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+
+
+    <script type="text/javascript">
+        $(function () {
+            $(".mm-otc a").addClass("active");
+        });
+    </script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div id="App"></div>
+<script type="text/babel" src="/static/jsx/approot.jsx"></script>
+<script type="text/babel" src="/static/jsx/header.jsx"></script>
+<script type="text/babel" src="/static/jsx/footer.jsx"></script>
+<script type="text/babel" src="/static/jsx/usernavbar.jsx"></script>
+<script type="text/babel" src="/static/jsx/elements.jsx"></script>
+<script type="text/babel">
+
+    function CCate(props) {
+        var items = [];
+        var num = 0;
+        props.items.forEach(function (item) {
+            num++;
+            items.push(<a href="#" key={num} onClick={props.clickHandler} data-id={item}><i
+                className="icon-check-circle"></i> {item}</a>);
+        });
+        return (<div className="nav-cate visible-xs-block">{items}</div>);
+    }
+
+    var PageView = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0,
+                address: '全部',
+                items: []
+            };
+        },
+        componentDidMount: function () {
+            this.Refresh();
+        },
+        Refresh: function () {
+            $.getJSON("/api/otc/get_otc_addrs", {}, function (res) {
+                //console.log(res);
+
+                if (res.result) {
+                    this.setState({
+                        status: 1,
+                        items: res.data
+                    });
+                    /*if(res.data && res.data.length > 0)
+                    {
+                        this.addrInit(res.data[0]);
+                    }*/
+                }
+                else {
+                    this.setState({
+                        status: 2,
+                        items: []
+                    });
+                }
+            }.bind(this));
+        },
+        clickHandler: function (e) {
+            e.preventDefault();
+            var addr = $(e.target).data("id");
+            this.addrInit(addr);
+        },
+        addrInit: function (addr) {
+            if (addr) {
+                $(".nav-cate .active").removeClass("active");
+                $(".nav-cate a[data-id='" + addr + "']").addClass("active");
+
+                $("#curr_city").html("{% trans '城市：' %}" + addr);
+                this.setState({
+                    address: addr
+                });
+
+                this.refs.myOTCList.address = addr;
+                this.refs.myOTCList.Refresh(addr);
+
+                //this.Refresh();
+            }
+        },
+        render: function () {
+
+            var rows = [];
+            var sItems = [];
+            sItems.push("全部");
+            rows.push(<li key="-1"><a href="#" data-id="全部" onClick={this.clickHandler}>全部</a></li>);
+            if (this.state.items && this.state.items.length > 0) {
+                var items = this.state.items;
+                for (var i = 0; i < items.length; i++) {
+                    var nm = items[i];
+                    sItems.push(nm);
+                    rows.push(<li key={i}><a href="#" data-id={nm} onClick={this.clickHandler}>{nm}</a></li>);
+                }
+            }
+
+            var addr = this.state.address;
+
+            return (<section className="main-list">
+                <div className="container">
+                    <CCate items={sItems} clickHandler={this.clickHandler}/>
+
+                    <div className="clearfix">
+                        <div className="coincola-box">
+                            <div>
+                                <b>{% trans '推荐使用的比特币场外交易平台' %}：
+                                    <a target="_black" href="https://www.coincola.com/zh-CN/">
+                                        <u>
+                                            www.coincola.com
+                                        </u>
+                                    </a>
+                                    &nbsp;&nbsp;,&nbsp;&nbsp;
+                                    <a target="_black" href="https://www.otcbtc.com/">
+                                        <u>
+                                            www.otcbtc.com
+                                        </u>
+                                    </a>
+                                </b>
+                            </div>
+                        </div>
+                        <div className="menu-box menu-otc hidden-xs">
+                            <div className="item-box">
+                                <h4 className="tl">{% trans 'OTC列表' %}</h4>
+                                <div className="sel">
+                                    <div className="sel-box">
+                                        <div className="dropdown">
+                                            <a id="dLabel" data-target="#" href="#" className="dd-title txt-md"
+                                               data-toggle="dropdown" role="button" aria-haspopup="true"
+                                               aria-expanded="false">
+                                                <span id="curr_city">{% trans '城市：' %}全部</span>
+                                                <span className="icon-caret-down txt-orange"></span>
+                                            </a>
+
+                                            <ul className="dropdown-menu" aria-labelledby="dLabel">
+                                                {rows}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h4 className="tl">{% trans '用户协议' %}</h4>
+                                <div className="cont">
+                                    <p>{% trans '用户必须自行准备如下设备和承担如下开支：' %}</p>
+                                    <p>{% trans '（1）上网设备，包括并不限于电脑或者其他上网终端、调制解调器及其他上网装置。' %}</p>
+                                    <p>{% trans '（2）上网开支，包括并不限于网络接入费、上网设备租用费、手机流量费等。用户在接受随求各项服务的同时，同意接受随求提供的各类信息服务。' %}</p>
+                                    <p>{% trans '（3）用户在此授权随求可以向其电子邮件、手机、通信地址等发送商业信息。用户有权选择不接受随求提供的各类信息服务，并进入随求相关页面或联系客服进行更改。 ' %}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="list-box">
+                            <OTCList source="/api/otc/otc_list" ref="myOTCList" address={addr}/>
+                        </div>
+                    </div>
+                </div>
+            </section>);
+        }
+    });
+
+    function CWXLink(props) {
+        return <div>
+            <a href="#" onClick={props.clickHandler}>
+                <i className="icon icon-qrcode icon-large"></i> {props.text}
+            </a>
+        </div>;
+    }
+
+    var OTCList = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0,
+                items: [],
+                address: this.props.address
+            };
+        },
+        componentDidMount: function () {
+            var city = this.props.address;// || "广州";
+            this.Refresh(city);
+        },
+        loadHandler: function (e) {
+            e.preventDefault();
+        },
+        Refresh: function (addr) {
+            $.getJSON(this.props.source, {
+                address: addr
+            }, function (res) {
+                //console.log(res);
+                if (res.result) {
+                    this.setState({
+                        status: 1,
+                        items: res.data
+                    });
+                }
+                else {
+                    this.setState({
+                        status: 2,
+                        items: []
+                    });
+                }
+            }.bind(this));
+        },
+        clickHandler: function (qrc, e) {
+            e.preventDefault();
+            layer.open({
+                title: "{% trans '微信二维码' %}",
+                content: "<div class='txt-center'><img src='" + qrc + "' width='200' height='255' /></div>",
+                btn: []
+            });
+        },
+        render: function () {
+            var rows = [];
+
+
+            if (this.state.status == 0) {
+                rows.push(<tr key='0'>
+                    <td colSpan="6"><CLoading text="{% trans '正在加载...' %}"/></td>
+                </tr>);
+            }
+            else {
+                if (!this.state.items || this.state.items.length == 0) {
+                    rows.push(<tr key='0'>
+                        <td colSpan="6" className="txt-no-records"> {% trans '没有找到匹配的记录' %}</td>
+                    </tr>);
+                }
+                else {
+                    /*
+                    nickname	String	昵称
+                    avatar	url	头像图片url
+                    address	 String	所在地
+                    has_alipay	boolean	是否支持支付宝支付
+                    has_wechatpay	boolean	是否支持微信支付
+                    has_cardpay	boolean	是否支持网银支付
+                    wechat_qrc	url	微信二维码图片url
+                    valididentity	String	身份认证
+                    */
+                    var num = 0;
+                    this.state.items.forEach(function (item) {
+                        num++;
+                        var aPay = item.has_alipay ? <i className="icon_alipay"></i> : "";
+                        var wPay = item.has_wechatpay ? <i className="icon-wechat wx"></i> : "";
+                        var cPay = item.has_cardpay ? <i className="icon-credit-card card"></i> : "";
+
+                        rows.push(<tr className="item" key={num}>
+                            <td className="thu"><img src={item.avatar}/></td>
+                            <td className="name">{item.nickname}</td>
+                            <td className="type">{aPay} {wPay} {cPay}</td>
+                            <td className="addr"><i className="icon-map-marker"></i>{item.address}</td>
+                            <td className="qr">
+                                <CWXLink qr={item.wechat_qrc}
+                                         clickHandler={this.clickHandler.bind(this, item.wechat_qrc)}
+                                         text="{% trans '微信二维码' %}"/>
+                            </td>
+                        </tr>);
+                    }.bind(this));
+                }
+            }
+
+            var btn_more = (<div className="item-more">
+                <a href="#" onClick={this.loadHandler} className="hidden"><i className="icon-angle-double-down"></i></a>
+            </div>);
+
+            return (<div className="item-box">
+                <table className="tb-otc tb-solid tb-list">
+                    <thead>
+                    <tr className="thead">
+                        <td className="thu"></td>
+                        <td className="name">{% trans 'OTC提供商' %}</td>
+                        <td className="type">{% trans '接受支付类型' %}</td>
+                        <td className="addr">{% trans '所在地' %}</td>
+                        <td className="qr">{% trans '联系方式' %}</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {rows}
+                    </tbody>
+                </table>
+                {btn_more}
+            </div>);
+        }
+    });
+
+    var isLogin = IsLogin();
+
+    ReactDOM.render(
+        <App isLogin={isLogin} ContentBox={
+            <PageView/>
+        }/>
+        , document.getElementById("App")
+    );
+</script>
+</body>
+</html>

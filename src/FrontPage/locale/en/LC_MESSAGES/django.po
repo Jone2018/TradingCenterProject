@@ -1,0 +1,1960 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-07 11:58+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: FrontPage/templates/bill-orders.html:8 FrontPage/templates/bill-query.html:8
+#: FrontPage/templates/bill.html:8 FrontPage/templates/confirm_email.html:8
+#: FrontPage/templates/forgot.html:8 FrontPage/templates/help.html:8
+#: FrontPage/templates/index.html:8 FrontPage/templates/login.html:8
+#: FrontPage/templates/notice-view.html:8 FrontPage/templates/notices.html:8
+#: FrontPage/templates/otc.html:8 FrontPage/templates/privace.html:8
+#: FrontPage/templates/recharge-wkc.html:8 FrontPage/templates/recharge.html:8
+#: FrontPage/templates/register-success.html:8
+#: FrontPage/templates/register.html:8 FrontPage/templates/rules.html:8
+#: FrontPage/templates/transaction.html:8 FrontPage/templates/user-api.html:8
+#: FrontPage/templates/user-email.html:8
+#: FrontPage/templates/user-idcard-list.html:8
+#: FrontPage/templates/user-idcard-upload.html:8
+#: FrontPage/templates/user-idcard.html:8
+#: FrontPage/templates/user-message-view.html:8
+#: FrontPage/templates/user-message.html:8
+#: FrontPage/templates/user-mobile.html:8
+#: FrontPage/templates/user-passwd.html:8
+#: FrontPage/templates/user-question-list.html:8
+#: FrontPage/templates/user-question-view.html:8
+#: FrontPage/templates/user-question.html:8
+#: FrontPage/templates/user-tradepwd.html:8
+#: FrontPage/templates/usercenter.html:8
+msgid "随求—专业的区块链资产交易平台，为您的财务增值保驾护航"
+msgstr ""
+"Suiqiu-Professional blockchain asset trading platform, for your financial "
+"value-added escort"
+
+#: FrontPage/templates/bill-orders.html:50 FrontPage/templates/bill.html:51
+msgid "未成交"
+msgstr "Not deal"
+
+#: FrontPage/templates/bill-orders.html:54 FrontPage/templates/bill.html:55
+msgid "部分成交"
+msgstr "Deal partly"
+
+#: FrontPage/templates/bill-orders.html:57 FrontPage/templates/bill.html:58
+msgid "完全成交"
+msgstr "Deal done"
+
+#: FrontPage/templates/bill-orders.html:60 FrontPage/templates/bill.html:61
+msgid "撤单中"
+msgstr "Order cancelling"
+
+#: FrontPage/templates/bill-orders.html:63 FrontPage/templates/bill.html:64
+msgid "已撤单"
+msgstr "oder Cancelled"
+
+#: FrontPage/templates/bill-orders.html:85 FrontPage/templates/bill.html:83
+msgid "加载中..."
+msgstr "Loading"
+
+#: FrontPage/templates/bill-orders.html:118
+#: FrontPage/templates/bill-orders.html:217
+msgid "没有更多了"
+msgstr "No more"
+
+#: FrontPage/templates/bill-orders.html:157
+#: FrontPage/templates/bill-query.html:163 FrontPage/templates/bill.html:162
+#: FrontPage/templates/dialog/coinbtc-list.html:17
+#: FrontPage/templates/dialog/coinbtc.html:17
+#: FrontPage/templates/dialog/coinout.html:17
+#: FrontPage/templates/notice-view.html:110
+#: FrontPage/templates/notices.html:130 FrontPage/templates/otc.html:254
+#: FrontPage/templates/recharge-wkc.html:213
+#: FrontPage/templates/recharge.html:161
+#: FrontPage/templates/transaction.html:692
+#: FrontPage/templates/transaction.html:922
+#: FrontPage/templates/transaction.html:926
+#: FrontPage/templates/transaction.html:1164
+#: FrontPage/templates/transaction.html:1293
+#: FrontPage/templates/transaction.html:1424
+#: FrontPage/templates/transaction.html:1677
+#: FrontPage/templates/user-api.html:110
+#: FrontPage/templates/user-question-list.html:145
+#: FrontPage/templates/user-question-view.html:114
+#: FrontPage/templates/user-question.html:47
+msgid "正在加载..."
+msgstr "Loading..."
+
+#: FrontPage/templates/bill-orders.html:163
+#: FrontPage/templates/bill-query.html:169 FrontPage/templates/bill.html:168
+#: FrontPage/templates/otc.html:260 FrontPage/templates/recharge-wkc.html:219
+#: FrontPage/templates/recharge.html:167
+#: FrontPage/templates/transaction.html:736
+#: FrontPage/templates/user-question-list.html:151
+msgid "没有找到匹配的记录"
+msgstr "No matching records found"
+
+#: FrontPage/templates/bill-orders.html:221
+msgid "加载更多"
+msgstr "Load more"
+
+#: FrontPage/templates/bill-orders.html:230
+msgid "成交记录"
+msgstr "Transaction record"
+
+#: FrontPage/templates/bill-orders.html:232
+msgid "刷新"
+msgstr "Refresh"
+
+#: FrontPage/templates/bill-orders.html:238
+msgid "BTC定价"
+msgstr "BTC price"
+
+#: FrontPage/templates/bill-orders.html:239
+msgid "CNY定价"
+msgstr "CNY price"
+
+#: FrontPage/templates/bill-orders.html:251 FrontPage/templates/bill.html:203
+#: FrontPage/templates/transaction.html:1199
+msgid "订单号"
+msgstr "Order number"
+
+#: FrontPage/templates/bill-orders.html:252
+msgid "订单"
+msgstr "Order"
+
+#: FrontPage/templates/bill-orders.html:252 FrontPage/templates/bill.html:204
+#: FrontPage/templates/transaction.html:1201
+#: FrontPage/templates/transaction.html:1316
+msgid "类型"
+msgstr "Type"
+
+#: FrontPage/templates/bill-orders.html:253
+#: FrontPage/templates/bill-orders.html:254
+#: FrontPage/templates/bill-orders.html:255
+#: FrontPage/templates/transaction.html:1200
+#: FrontPage/templates/transaction.html:1201
+#: FrontPage/templates/transaction.html:1202
+#: FrontPage/templates/transaction.html:1203
+msgid "挂单"
+msgstr "Post order"
+
+#: FrontPage/templates/bill-orders.html:253
+#: FrontPage/templates/bill-query.html:215 FrontPage/templates/bill.html:206
+#: FrontPage/templates/transaction.html:1200
+msgid "时间"
+msgstr "Time"
+
+#: FrontPage/templates/bill-orders.html:254
+#: FrontPage/templates/highstock.html:286
+#: FrontPage/templates/highstock.html:314
+#: FrontPage/templates/highstock.html:345
+#: FrontPage/templates/transaction.html:334
+#: FrontPage/templates/transaction.html:507
+#: FrontPage/templates/transaction.html:744
+#: FrontPage/templates/transaction.html:1013
+#: FrontPage/templates/transaction.html:1028
+#: FrontPage/templates/transaction.html:1202
+msgid "价格"
+msgstr "Price"
+
+#: FrontPage/templates/bill-orders.html:255
+#: FrontPage/templates/transaction.html:343
+#: FrontPage/templates/transaction.html:516
+#: FrontPage/templates/transaction.html:1203
+msgid "数量"
+msgstr "Amount"
+
+#: FrontPage/templates/bill-orders.html:256
+#: FrontPage/templates/transaction.html:1315
+msgid "成交时间"
+msgstr "Transaction completion time"
+
+#: FrontPage/templates/bill-orders.html:257
+msgid "成交价"
+msgstr "Final price"
+
+#: FrontPage/templates/bill-orders.html:258
+msgid "成交数量"
+msgstr "Volume"
+
+#: FrontPage/templates/bill-orders.html:259
+msgid "成交金额"
+msgstr "Turnover"
+
+#: FrontPage/templates/bill-orders.html:260
+msgid "成交状态"
+msgstr "Transaction status"
+
+#: FrontPage/templates/bill-query.html:96
+#: FrontPage/templates/user-message.html:85
+msgid "正在加载"
+msgstr "Loading"
+
+#: FrontPage/templates/bill-query.html:209
+msgid "我的账单"
+msgstr "My bill"
+
+#: FrontPage/templates/bill-query.html:216
+msgid "币种"
+msgstr "Currency"
+
+#: FrontPage/templates/bill-query.html:217
+msgid "变动金额"
+msgstr "Change amount"
+
+#: FrontPage/templates/bill-query.html:218
+#: FrontPage/templates/dialog/coinbtc.html:53
+#: FrontPage/templates/transaction.html:362
+#: FrontPage/templates/transaction.html:534
+msgid "手续费"
+msgstr "Transaction fee"
+
+#: FrontPage/templates/bill-query.html:219
+#: FrontPage/templates/dialog/coinbtc.html:8
+#: FrontPage/templates/dialog/coinout.html:8
+#: FrontPage/templates/recharge.html:222
+msgid "可用资金"
+msgstr "Available funds"
+
+#: FrontPage/templates/bill-query.html:220
+#: FrontPage/templates/dialog/coinbtc.html:9
+#: FrontPage/templates/dialog/coinout.html:9
+#: FrontPage/templates/recharge.html:223
+msgid "挂单资金"
+msgstr "Post funds"
+
+#: FrontPage/templates/bill-query.html:221
+#: FrontPage/templates/dialog/coinbtc.html:10
+#: FrontPage/templates/dialog/coinout.html:10
+#: FrontPage/templates/recharge.html:224
+msgid "确认中资金"
+msgstr "Pending funds"
+
+#: FrontPage/templates/bill-query.html:222
+msgid "变动原因"
+msgstr "Reason for change"
+
+#: FrontPage/templates/bill-query.html:287
+msgid "类别："
+msgstr "Type："
+
+#: FrontPage/templates/bill-query.html:291
+#: FrontPage/templates/highstock.html:273
+msgid "全部"
+msgstr "All"
+
+#: FrontPage/templates/bill-query.html:292
+#: FrontPage/templates/transaction.html:77
+#: FrontPage/templates/transaction.html:97
+#: FrontPage/templates/user-question.html:89
+msgid "充值"
+msgstr "Charge"
+
+#: FrontPage/templates/bill-query.html:293
+#: FrontPage/templates/user-question.html:90
+msgid "提现"
+msgstr "Withdraw"
+
+#: FrontPage/templates/bill-query.html:294
+msgid "发放"
+msgstr "Return"
+
+#: FrontPage/templates/bill-query.html:295
+msgid "交易"
+msgstr "Trade"
+
+#: FrontPage/templates/bill-query.html:296 FrontPage/templates/recharge.html:84
+#: FrontPage/templates/user-question.html:91
+msgid "转账"
+msgstr "Transfer"
+
+#: FrontPage/templates/bill-query.html:303
+msgid "过滤："
+msgstr "Filter:"
+
+#: FrontPage/templates/bill-query.html:309
+msgid "时间："
+msgstr "Time:"
+
+#: FrontPage/templates/bill-query.html:311
+msgid "开始时间"
+msgstr "Start time:"
+
+#: FrontPage/templates/bill-query.html:315
+msgid "到"
+msgstr "to"
+
+#: FrontPage/templates/bill-query.html:317
+msgid "结束时间"
+msgstr "End time"
+
+#: FrontPage/templates/bill-query.html:321
+msgid "搜索"
+msgstr "Search"
+
+#: FrontPage/templates/bill.html:179 FrontPage/templates/recharge-wkc.html:233
+#: FrontPage/templates/transaction.html:1068
+msgid "撤消"
+msgstr "Cancel"
+
+#: FrontPage/templates/bill.html:197
+msgid "财务记录"
+msgstr "Financial records"
+
+#: FrontPage/templates/bill.html:199
+msgid "仅显示充值记录"
+msgstr "Display only recharge records"
+
+#: FrontPage/templates/bill.html:205
+msgid "订单金额"
+msgstr "Order amount"
+
+#: FrontPage/templates/bill.html:207 FrontPage/templates/transaction.html:1204
+msgid "状态"
+msgstr "Status"
+
+#: FrontPage/templates/bill.html:208
+msgid "实际到账金额"
+msgstr "Actual account amount"
+
+#: FrontPage/templates/bill.html:209 FrontPage/templates/recharge-wkc.html:261
+#: FrontPage/templates/recharge.html:226
+#: FrontPage/templates/transaction.html:1205
+#: FrontPage/templates/user-api.html:162
+#: FrontPage/templates/user-question-list.html:198
+msgid "操作"
+msgstr "Operate"
+
+#: FrontPage/templates/confirm_email.html:57
+#: FrontPage/templates/register-success.html:62
+#: FrontPage/templates/register.html:61 FrontPage/templates/register.html:81
+msgid "邮箱注册"
+msgstr "Email Registration"
+
+#: FrontPage/templates/confirm_email.html:60
+msgid "邮箱激活"
+msgstr "Email Activate"
+
+#: FrontPage/templates/confirm_email.html:70
+msgid "您的邮箱已激活成功！"
+msgstr "Your email has been activated successfully"
+
+#: FrontPage/templates/confirm_email.html:71
+#: FrontPage/templates/register-success.html:92
+msgid "立即登录"
+msgstr "Login immediately"
+
+#: FrontPage/templates/confirm_email.html:78
+msgid "激活失败！"
+msgstr "Activation failure！"
+
+#: FrontPage/templates/confirm_email.html:79
+msgid ""
+"激活失败，您可以重新申请发送邮箱验证，并检查您的验证邮箱并确认service@chaobi."
+"la已在您的白名单中。"
+msgstr ""
+"Activation failed. You may reapply for sending mailbox authentication. "
+"Please check your verification mailbox and verify that service@chaobi.la is "
+"already on your white list."
+
+#: FrontPage/templates/confirm_email.html:80
+#: FrontPage/templates/register-success.html:88
+msgid "如仍未收到，请检查下您的垃圾邮箱。"
+msgstr "If you haven't received it yet, please check your spam mailbox."
+
+#: FrontPage/templates/confirm_email.html:81
+#: FrontPage/templates/register-success.html:89
+msgid "点此重新发送"
+msgstr "Send this again"
+
+#: FrontPage/templates/confirm_email.html:116
+msgid "正在激活中，请稍后..."
+msgstr "Activating, please wait a moment..."
+
+#: FrontPage/templates/dialog/api-add.html:3
+#: FrontPage/templates/user-api.html:151
+msgid "新建API"
+msgstr "Create API"
+
+#: FrontPage/templates/dialog/api-add.html:9
+#: FrontPage/templates/dialog/api-delete.html:10
+#: FrontPage/templates/dialog/api-update.html:9
+#: FrontPage/templates/dialog/api-view.html:25
+msgid "备注名："
+msgstr "Label:"
+
+#: FrontPage/templates/dialog/api-add.html:12
+msgid "请输入备注名"
+msgstr "Please enter a label"
+
+#: FrontPage/templates/dialog/api-add.html:16
+#: FrontPage/templates/dialog/api-update.html:15
+#: FrontPage/templates/dialog/api-view.html:45
+msgid "权&nbsp;&nbsp;限："
+msgstr "Authority"
+
+#: FrontPage/templates/dialog/api-add.html:24
+#: FrontPage/templates/dialog/api-update.html:23
+msgid "允许的IP："
+msgstr "Allowed IP："
+
+#: FrontPage/templates/dialog/api-add.html:27
+#: FrontPage/templates/dialog/api-update.html:26
+msgid "允许访问API的IP"
+msgstr "IP that allows access to API"
+
+#: FrontPage/templates/dialog/api-add.html:31
+#: FrontPage/templates/dialog/api-delete.html:16
+#: FrontPage/templates/dialog/api-update.html:30
+#: FrontPage/templates/dialog/api-view.html:10
+msgid "短信验证码："
+msgstr "SMS authentication code："
+
+#: FrontPage/templates/dialog/api-add.html:34
+#: FrontPage/templates/dialog/api-delete.html:19
+#: FrontPage/templates/dialog/api-update.html:33
+#: FrontPage/templates/dialog/api-view.html:13
+#: FrontPage/templates/user-mobile.html:94
+msgid "验证码"
+msgstr "Captcha"
+
+#: FrontPage/templates/dialog/api-add.html:38
+#: FrontPage/templates/dialog/api-delete.html:22
+#: FrontPage/templates/dialog/api-update.html:36
+#: FrontPage/templates/dialog/api-view.html:16
+#: FrontPage/templates/dialog/coinbtc-add.html:33
+#: FrontPage/templates/dialog/coinbtc.html:68
+#: FrontPage/templates/forgot.html:94 FrontPage/templates/user-email.html:100
+#: FrontPage/templates/user-mobile.html:96
+#: FrontPage/templates/user-tradepwd.html:186
+msgid "发送验证码"
+msgstr "Send Captcha"
+
+#: FrontPage/templates/dialog/api-add.html:43
+#: FrontPage/templates/dialog/api-update.html:41
+#: FrontPage/templates/dialog/coinbtc-add.html:45
+#: FrontPage/templates/dialog/coinbtc-list.html:48
+#: FrontPage/templates/recharge-wkc.html:110
+#: FrontPage/templates/user-email.html:103
+#: FrontPage/templates/user-idcard.html:98
+#: FrontPage/templates/user-mobile.html:99
+#: FrontPage/templates/user-passwd.html:97
+#: FrontPage/templates/user-tradepwd.html:189
+msgid "确定"
+msgstr "Confirm"
+
+#: FrontPage/templates/dialog/api-delete.html:4
+msgid "删除API"
+msgstr "Delete API"
+
+#: FrontPage/templates/dialog/api-delete.html:27
+msgid "确定删除"
+msgstr "Confirm delete"
+
+#: FrontPage/templates/dialog/api-update.html:3
+msgid "更新API"
+msgstr "Update API"
+
+#: FrontPage/templates/dialog/api-view.html:3
+msgid "查看API"
+msgstr "View API"
+
+#: FrontPage/templates/dialog/api-view.html:21
+msgid "立即查看"
+msgstr "View immediately"
+
+#: FrontPage/templates/dialog/api-view.html:52
+msgid "创建时间："
+msgstr "Create time:"
+
+#: FrontPage/templates/dialog/api-view.html:61
+msgid "关闭"
+msgstr "Close"
+
+#: FrontPage/templates/dialog/coinbtc-add.html:3
+#: FrontPage/templates/dialog/coinbtc-list.html:3
+msgid "提币地址/账户管理"
+msgstr "Withdraw address/Account management"
+
+#: FrontPage/templates/dialog/coinbtc-add.html:7
+msgid "提币地址"
+msgstr "Withdraw address"
+
+#: FrontPage/templates/dialog/coinbtc-add.html:13
+msgid "标签："
+msgstr "Label:"
+
+#: FrontPage/templates/dialog/coinbtc-add.html:16
+msgid "例如：随求"
+msgstr "For example： SuiQiu"
+
+#: FrontPage/templates/dialog/coinbtc-add.html:20
+#: FrontPage/templates/dialog/coinbtc.html:56
+#: FrontPage/templates/user-email.html:97
+#: FrontPage/templates/user-tradepwd.html:177
+msgid "验证码："
+msgstr "Captcha："
+
+#: FrontPage/templates/dialog/coinbtc-add.html:22
+#: FrontPage/templates/dialog/coinbtc.html:58
+#: FrontPage/templates/user-tradepwd.html:179
+msgid "手机"
+msgstr "Phone"
+
+#: FrontPage/templates/dialog/coinbtc-add.html:23
+#: FrontPage/templates/dialog/coinbtc.html:59
+#: FrontPage/templates/user-tradepwd.html:180
+msgid "邮箱"
+msgstr "Email"
+
+#: FrontPage/templates/dialog/coinbtc-add.html:29
+#: FrontPage/templates/dialog/coinbtc.html:65 FrontPage/templates/login.html:89
+#: FrontPage/templates/recharge-wkc.html:104
+#: FrontPage/templates/user-email.html:98
+#: FrontPage/templates/user-mobile.html:95
+#: FrontPage/templates/user-tradepwd.html:184
+msgid "请输入验证码"
+msgstr "Please enter captcha"
+
+#: FrontPage/templates/dialog/coinbtc-add.html:38
+msgid "认证地址"
+msgstr "Authentication address"
+
+#: FrontPage/templates/dialog/coinbtc-add.html:44
+#: FrontPage/templates/dialog/coinbtc-list.html:47
+#: FrontPage/templates/dialog/coinbtc.html:74
+#: FrontPage/templates/dialog/coinout.html:55
+msgid "取消"
+msgstr "Cancel"
+
+#: FrontPage/templates/dialog/coinbtc-list.html:7
+msgid ""
+"可以使用本站转账功能，通过网站账号（UID/邮箱/手机号）在本站用户之间转账无需确"
+"认直接到账。"
+msgstr ""
+"You can use the transfer function of the site, through the website account "
+"(UID/ mailbox / cell phone number) transfer between users in the station, "
+"without confirmation directly to the account."
+
+#: FrontPage/templates/dialog/coinbtc-list.html:8
+msgid "增加新地址/账户"
+msgstr "Add new address/Account"
+
+#: FrontPage/templates/dialog/coinbtc.html:6
+#: FrontPage/templates/dialog/coinout.html:6
+#: FrontPage/templates/recharge.html:220
+msgid "资金名称"
+msgstr "Currency name"
+
+#: FrontPage/templates/dialog/coinbtc.html:7
+#: FrontPage/templates/dialog/coinout.html:7
+#: FrontPage/templates/recharge.html:221
+msgid "资金全称"
+msgstr "Currency full name"
+
+#: FrontPage/templates/dialog/coinbtc.html:11
+#: FrontPage/templates/dialog/coinout.html:11
+#: FrontPage/templates/recharge.html:225
+msgid "总计"
+msgstr "Total"
+
+#: FrontPage/templates/dialog/coinbtc.html:28
+msgid "选择"
+msgstr "Choose"
+
+#: FrontPage/templates/dialog/coinbtc.html:29
+msgid "地址："
+msgstr "Address:"
+
+#: FrontPage/templates/dialog/coinbtc.html:32
+msgid "点击选择提现地址"
+msgstr "Select withdraw address"
+
+#: FrontPage/templates/dialog/coinbtc.html:36
+msgid "新增"
+msgstr "Add"
+
+#: FrontPage/templates/dialog/coinbtc.html:39
+msgid "输入提币数量："
+msgstr "Please enter withdraw amount:"
+
+#: FrontPage/templates/dialog/coinbtc.html:42
+msgid "请输入提币金额"
+msgstr "Please enter withdraw amount"
+
+#: FrontPage/templates/dialog/coinbtc.html:45
+msgid "可用："
+msgstr "Available："
+
+#: FrontPage/templates/dialog/coinbtc.html:49
+msgid "实际到账："
+msgstr "Actual amount："
+
+#: FrontPage/templates/dialog/coinbtc.html:75
+msgid "确认提币"
+msgstr "Confirm withdraw"
+
+#: FrontPage/templates/dialog/coinbtc.html:86
+msgid "提现须知"
+msgstr "Withdraw Notice"
+
+#: FrontPage/templates/dialog/coinbtc.html:87
+msgid "1.提现手续费：当前为"
+msgstr "1. withdrawals fee: the current value is"
+
+#: FrontPage/templates/dialog/coinbtc.html:87
+msgid ""
+"，最低手续费为提现币种折合1.5美元，为保障用户的提现快速到账，当前最佳手续费如"
+"果高于最低手续费将按照当前最佳手续费进行收取"
+msgstr ""
+", the minimum fee for withdraw is equivalent to $1.5. To guarantee that the "
+"withdraw will beprocessed, the current best fee will be used if it is higher "
+"than the minimum fee."
+
+#: FrontPage/templates/dialog/coinbtc.html:88
+msgid "2.最低提现金额为"
+msgstr "2. the minimum withdraw amount is "
+
+#: FrontPage/templates/dialog/coinbtc.html:89
+msgid "3.提现限额：每日最高限额："
+msgstr "3. withdraw limit: daily limit: "
+
+#: FrontPage/templates/dialog/coinbtc.html:90
+msgid " 4. 发起提币后，正常情况下24小时内到账"
+msgstr "4. withdraw will usually take 24 hours"
+
+#: FrontPage/templates/dialog/coinout.html:25
+msgid "对方UID："
+msgstr "UID："
+
+#: FrontPage/templates/dialog/coinout.html:28
+msgid "请输入对方UID"
+msgstr "Please enter the other Account UID"
+
+#: FrontPage/templates/dialog/coinout.html:32
+msgid "交易密码："
+msgstr "Trade Password"
+
+#: FrontPage/templates/dialog/coinout.html:35
+msgid "请输入6位数交易密码"
+msgstr "Please enter the 6 digit transaction password"
+
+#: FrontPage/templates/dialog/coinout.html:39
+msgid "对方邮箱/手机号："
+msgstr "Email/Phone："
+
+#: FrontPage/templates/dialog/coinout.html:42
+msgid "请输入对方邮箱/手机号码"
+msgstr "Please enter Email/Phone"
+
+#: FrontPage/templates/dialog/coinout.html:46
+msgid "转账数量："
+msgstr "Transfer amount："
+
+#: FrontPage/templates/dialog/coinout.html:49
+msgid "请输入转账数量"
+msgstr "Please enter transfer amount"
+
+#: FrontPage/templates/dialog/coinout.html:56
+msgid "汇出"
+msgstr "Remittance"
+
+#: FrontPage/templates/forgot.html:83
+msgid "找回密码"
+msgstr "Retrieve the password"
+
+#: FrontPage/templates/forgot.html:83 FrontPage/templates/register.html:83
+msgid "返回登录"
+msgstr "Back to login"
+
+#: FrontPage/templates/forgot.html:87 FrontPage/templates/login.html:78
+msgid "电子邮箱"
+msgstr "Email"
+
+#: FrontPage/templates/forgot.html:88 FrontPage/templates/login.html:79
+msgid "请输入邮箱地址"
+msgstr "Please enter email address"
+
+#: FrontPage/templates/forgot.html:92
+msgid "邮箱验证码"
+msgstr "E-mail verification code"
+
+#: FrontPage/templates/forgot.html:93
+msgid "请输入邮箱验证码"
+msgstr "Please enter email verification code"
+
+#: FrontPage/templates/forgot.html:98
+msgid "新&nbsp;&nbsp;密&nbsp;&nbsp;码"
+msgstr "new password"
+
+#: FrontPage/templates/forgot.html:99 FrontPage/templates/login.html:84
+msgid "请输入密码"
+msgstr "Please enter password"
+
+#: FrontPage/templates/forgot.html:103
+msgid "确认密码"
+msgstr "Confirmation password"
+
+#: FrontPage/templates/forgot.html:104
+msgid "请再次输入密码"
+msgstr "Please enter your password again"
+
+#: FrontPage/templates/forgot.html:108 FrontPage/templates/register.html:114
+#: FrontPage/templates/user-idcard-upload.html:273
+msgid "下一步"
+msgstr "Next"
+
+#: FrontPage/templates/highstock.html:5
+msgid "普通版K线"
+msgstr "Regular K line"
+
+#: FrontPage/templates/highstock.html:77
+#: FrontPage/templates/transaction.html:138
+msgid "周线"
+msgstr "Weekly"
+
+#: FrontPage/templates/highstock.html:78
+#: FrontPage/templates/transaction.html:139
+msgid "日线"
+msgstr "Daily"
+
+#: FrontPage/templates/highstock.html:79
+msgid "4小时线"
+msgstr "four-hour"
+
+#: FrontPage/templates/highstock.html:80
+msgid "1小时线"
+msgstr "one-hour"
+
+#: FrontPage/templates/highstock.html:81
+msgid "30分钟线"
+msgstr "30min"
+
+#: FrontPage/templates/highstock.html:82
+msgid "5分钟线"
+msgstr "5min"
+
+#: FrontPage/templates/highstock.html:85
+#: FrontPage/templates/transaction.html:147
+msgid "黑色"
+msgstr "black"
+
+#: FrontPage/templates/highstock.html:86
+#: FrontPage/templates/transaction.html:148
+msgid "白色"
+msgstr "white"
+
+#: FrontPage/templates/highstock.html:245
+#: FrontPage/templates/highstock.html:251
+msgid "一月"
+msgstr "January"
+
+#: FrontPage/templates/highstock.html:245
+#: FrontPage/templates/highstock.html:251
+msgid "二月"
+msgstr "February"
+
+#: FrontPage/templates/highstock.html:245
+#: FrontPage/templates/highstock.html:251
+msgid "三月"
+msgstr "March"
+
+#: FrontPage/templates/highstock.html:246
+#: FrontPage/templates/highstock.html:252
+msgid "四月"
+msgstr "April"
+
+#: FrontPage/templates/highstock.html:246
+#: FrontPage/templates/highstock.html:252
+msgid "五月"
+msgstr "May"
+
+#: FrontPage/templates/highstock.html:246
+#: FrontPage/templates/highstock.html:252
+msgid "六月"
+msgstr "June"
+
+#: FrontPage/templates/highstock.html:247
+#: FrontPage/templates/highstock.html:253
+msgid "七月"
+msgstr "July"
+
+#: FrontPage/templates/highstock.html:247
+#: FrontPage/templates/highstock.html:253
+msgid "八月"
+msgstr "August"
+
+#: FrontPage/templates/highstock.html:247
+#: FrontPage/templates/highstock.html:253
+msgid "九月"
+msgstr "September"
+
+#: FrontPage/templates/highstock.html:248
+#: FrontPage/templates/highstock.html:254
+msgid "十月"
+msgstr "October"
+
+#: FrontPage/templates/highstock.html:248
+#: FrontPage/templates/highstock.html:254
+msgid "十一月"
+msgstr "November"
+
+#: FrontPage/templates/highstock.html:248
+#: FrontPage/templates/highstock.html:254
+msgid "十二月"
+msgstr "December"
+
+#: FrontPage/templates/highstock.html:257
+#: FrontPage/templates/highstock.html:418
+msgid "周日"
+msgstr "Sunday"
+
+#: FrontPage/templates/highstock.html:257
+#: FrontPage/templates/highstock.html:418
+msgid "周一"
+msgstr "Monday"
+
+#: FrontPage/templates/highstock.html:257
+#: FrontPage/templates/highstock.html:418
+msgid "周二"
+msgstr "Tuesday"
+
+#: FrontPage/templates/highstock.html:258
+#: FrontPage/templates/highstock.html:419
+msgid "周三"
+msgstr "Wednesday"
+
+#: FrontPage/templates/highstock.html:258
+#: FrontPage/templates/highstock.html:419
+msgid "周四"
+msgstr "Thursday"
+
+#: FrontPage/templates/highstock.html:258
+#: FrontPage/templates/highstock.html:419
+msgid "周五"
+msgstr "Friday"
+
+#: FrontPage/templates/highstock.html:259
+#: FrontPage/templates/highstock.html:420
+msgid "周六"
+msgstr "Saturday"
+
+#: FrontPage/templates/highstock.html:262
+msgid "范围"
+msgstr "Range"
+
+#: FrontPage/templates/highstock.html:295
+#: FrontPage/templates/highstock.html:350
+#: FrontPage/templates/transaction.html:1318
+msgid "成交量"
+msgstr "Volume"
+
+#: FrontPage/templates/highstock.html:315
+msgid "开"
+msgstr "Open"
+
+#: FrontPage/templates/highstock.html:316
+msgid "高"
+msgstr "High"
+
+#: FrontPage/templates/highstock.html:317
+msgid "低"
+msgstr "Low"
+
+#: FrontPage/templates/highstock.html:318
+msgid "收"
+msgstr "Close"
+
+#: FrontPage/templates/highstock.html:358
+#: FrontPage/templates/highstock.html:367
+msgid "均线"
+msgstr "Average"
+
+#: FrontPage/templates/highstock.html:401
+#: FrontPage/templates/highstock.html:407
+#: FrontPage/templates/highstock.html:410
+msgid "年"
+msgstr "Year"
+
+#: FrontPage/templates/highstock.html:401
+#: FrontPage/templates/highstock.html:407
+msgid "月"
+msgstr "Month"
+
+#: FrontPage/templates/highstock.html:401
+#: FrontPage/templates/highstock.html:407
+#: FrontPage/templates/highstock.html:410
+msgid "日"
+msgstr "Day"
+
+#: FrontPage/templates/index.html:87
+msgid "随求登录"
+msgstr "Suiqiu Login"
+
+#: FrontPage/templates/index.html:88
+msgid "QQ快捷登录"
+msgstr "QQ Quick Login"
+
+#: FrontPage/templates/index.html:91
+msgid "输入手机号/邮箱"
+msgstr "Please enter email address"
+
+#: FrontPage/templates/index.html:94
+msgid "输入密码"
+msgstr "Please enter password"
+
+#: FrontPage/templates/index.html:97
+msgid "输入验证码"
+msgstr "Please enter captcha"
+
+#: FrontPage/templates/index.html:104
+msgid "记住我"
+msgstr "Remember Me"
+
+#: FrontPage/templates/index.html:105
+msgid "忘记密码?"
+msgstr "Forgot Password?"
+
+#: FrontPage/templates/index.html:108 FrontPage/templates/login.html:76
+#: FrontPage/templates/login.html:96
+msgid "登录"
+msgstr "Login"
+
+#: FrontPage/templates/index.html:109
+msgid "注册"
+msgstr "Sign up"
+
+#: FrontPage/templates/index.html:152
+msgid "手机号码"
+msgstr "Phone number"
+
+#: FrontPage/templates/index.html:153
+msgid "邮箱地址"
+msgstr "Email address"
+
+#: FrontPage/templates/index.html:154
+msgid "总&nbsp;资&nbsp;产"
+msgstr "Total assert"
+
+#: FrontPage/templates/index.html:155
+msgid "退出登录"
+msgstr "Logout"
+
+#: FrontPage/templates/index.html:165
+msgid "查看详情"
+msgstr "View details"
+
+#: FrontPage/templates/index.html:251
+msgid "公告："
+msgstr "Announcement"
+
+#: FrontPage/templates/index.html:253 FrontPage/templates/index.html:330
+#: FrontPage/templates/index.html:403
+msgid "更多"
+msgstr "More"
+
+#: FrontPage/templates/index.html:322 FrontPage/templates/index.html:395
+#: FrontPage/templates/index.html:472
+msgid "没有相关的信息！"
+msgstr "There is no relevant information!"
+
+#: FrontPage/templates/index.html:329
+msgid "重要公告"
+msgstr "Imporant announcement"
+
+#: FrontPage/templates/index.html:344 FrontPage/templates/notices.html:65
+#: FrontPage/templates/notices.html:75
+msgid "公司公告"
+msgstr "Company announcement"
+
+#: FrontPage/templates/index.html:345
+msgid "币种论证报告"
+msgstr "Currency Argumentation Report"
+
+#: FrontPage/templates/index.html:466
+msgid "立即交易"
+msgstr "Trade now"
+
+#: FrontPage/templates/index.html:482
+msgid "币种名称"
+msgstr "Currency name"
+
+#: FrontPage/templates/index.html:483 FrontPage/templates/transaction.html:1453
+msgid "最新成交价"
+msgstr "Latest price"
+
+#: FrontPage/templates/index.html:484 FrontPage/templates/transaction.html:123
+msgid "24H成交量"
+msgstr "24H Volume"
+
+#: FrontPage/templates/index.html:485
+msgid "7日涨跌幅"
+msgstr "7 days quote change"
+
+#: FrontPage/templates/index.html:486
+msgid "24H涨跌幅"
+msgstr "24H quote change"
+
+#: FrontPage/templates/index.html:513
+msgid "交易服务平台"
+msgstr "Trading service platform"
+
+#: FrontPage/templates/index.html:514
+msgid ""
+"我们致力于为广大数字货币、区块链支持者提供一个透明、安全、公平、可信的交易服"
+"务平台。"
+msgstr ""
+"We are committed to providing a transparent, secure, fair and reliable "
+"trading service platform for the vast number of digital currencies and block "
+"chain supporters."
+
+#: FrontPage/templates/index.html:516
+msgid "透明"
+msgstr "Transparent"
+
+#: FrontPage/templates/index.html:517
+msgid "安全"
+msgstr "Security"
+
+#: FrontPage/templates/index.html:518
+msgid "公平"
+msgstr "Fair"
+
+#: FrontPage/templates/index.html:519
+msgid "可信"
+msgstr "Reliable"
+
+#: FrontPage/templates/login.html:83
+msgid "密&nbsp;&nbsp;&nbsp;&nbsp;码"
+msgstr "Password"
+
+#: FrontPage/templates/login.html:88
+msgid "验&nbsp;证&nbsp;码"
+msgstr "Captcha"
+
+#: FrontPage/templates/login.html:102
+msgid "立即注册"
+msgstr "Immediately Sign Up"
+
+#: FrontPage/templates/login.html:103
+msgid "忘记密码？"
+msgstr "Forgot password?"
+
+#: FrontPage/templates/notice-view.html:114
+msgid "没有找到相关的记录！"
+msgstr "No relevant records were found！"
+
+#: FrontPage/templates/notices.html:67 FrontPage/templates/notices.html:77
+msgid "论证报告"
+msgstr "Argumentation Report"
+
+#: FrontPage/templates/notices.html:69 FrontPage/templates/notices.html:79
+msgid "停盘公告"
+msgstr "Notice of Trading Suspension"
+
+#: FrontPage/templates/notices.html:136
+#: FrontPage/templates/user-message.html:182
+msgid "没有找到匹配的信息"
+msgstr "No matching information was found"
+
+#: FrontPage/templates/oss-success.html:25
+msgid "上传成功"
+msgstr "Upload successfully"
+
+#: FrontPage/templates/otc.html:109 FrontPage/templates/otc.html:168
+msgid "城市："
+msgstr "city："
+
+#: FrontPage/templates/otc.html:144
+msgid "推荐使用的比特币场外交易平台"
+msgstr "Recommended Bitcoin OTC platform"
+
+#: FrontPage/templates/otc.html:161
+msgid "OTC列表"
+msgstr "OTC list"
+
+#: FrontPage/templates/otc.html:178
+msgid "用户协议"
+msgstr "User Agreement"
+
+#: FrontPage/templates/otc.html:180
+msgid "用户必须自行准备如下设备和承担如下开支："
+msgstr ""
+"The user must prepare the following equipment and bear the following "
+"expenses："
+
+#: FrontPage/templates/otc.html:181
+msgid ""
+"（1）上网设备，包括并不限于电脑或者其他上网终端、调制解调器及其他上网装置。"
+msgstr ""
+"(1) Internet access devices, including but not limited to computers or other "
+"Internetterminals, modems and other Internet access devices."
+
+#: FrontPage/templates/otc.html:182
+msgid ""
+"（2）上网开支，包括并不限于网络接入费、上网设备租用费、手机流量费等。用户在接"
+"受随求各项服务的同时，同意接受随求提供的各类信息服务。"
+msgstr ""
+"(2) Internet spending, including but not limited to network access fees,"
+"Internet equipment rental fees, mobile phone charges, etc. Users accept the "
+"various services provided at the same time, agreed to accept the various "
+"types of information services provided upon request."
+
+#: FrontPage/templates/otc.html:183
+msgid ""
+"（3）用户在此授权随求可以向其电子邮件、手机、通信地址等发送商业信息。用户有权"
+"选择不接受随求提供的各类信息服务，并进入随求相关页面或联系客服进行更改。 "
+msgstr ""
+"(3) The user hereby authorizes to send commercial information to his e-mail, "
+"cell phone, mailing address, etc. The user has the right to choose not to "
+"acceptthe various types of information services provided on request and "
+"enter into the related page or contact customer service Change. "
+
+#: FrontPage/templates/otc.html:243 FrontPage/templates/otc.html:287
+msgid "微信二维码"
+msgstr "Wechat QR code"
+
+#: FrontPage/templates/otc.html:303
+msgid "OTC提供商"
+msgstr "OTC provider"
+
+#: FrontPage/templates/otc.html:304
+msgid "接受支付类型"
+msgstr "Accepted payment type"
+
+#: FrontPage/templates/otc.html:305
+msgid "所在地"
+msgstr "location"
+
+#: FrontPage/templates/otc.html:306
+msgid "联系方式"
+msgstr "Contact information"
+
+#: FrontPage/templates/recharge-wkc.html:75
+msgid "玩客币充值"
+msgstr "WanKe Coin recharge"
+
+#: FrontPage/templates/recharge-wkc.html:79
+msgid "充值之前请仔细阅读以下提示"
+msgstr "Please read the following tips carefully before recharge"
+
+#: FrontPage/templates/recharge-wkc.html:80
+msgid ""
+"（1）玩客币(WKC)充币金额小数部分的值为自己的UID号，如10.10001，若填写不正确，"
+"不保证入账时间；"
+msgstr ""
+"(1) Please sign your UID as the decimal part of the recharge amount,for "
+"example, 10.10001, otherwise it is not guaranteed that the recharge will be "
+"processed on time;"
+
+#: FrontPage/templates/recharge-wkc.html:81
+msgid "（2）玩客币充值数量小于10币，不保证入账时间；"
+msgstr ""
+"(2) Please make sure the WanKe Coin recharge amount is greater than 10 coins "
+"otherwise it is not guaranteed that the recharge will be processed on time;"
+
+#: FrontPage/templates/recharge-wkc.html:82
+msgid "（3）在成功提交充值订单后将显示充值地址，请将玩客币转入该地址。"
+msgstr ""
+"(3) After the successful submission, a recharge address will be assigned to "
+"you, please transfer the WanKe Coin to that address."
+
+#: FrontPage/templates/recharge-wkc.html:85
+msgid "请将币转入这个地址"
+msgstr "Please transfer to this address"
+
+#: FrontPage/templates/recharge-wkc.html:94
+#: FrontPage/templates/recharge-wkc.html:257
+msgid "转出地址"
+msgstr "Transfer address"
+
+#: FrontPage/templates/recharge-wkc.html:95
+msgid "请输入转出地址"
+msgstr "Please enter transfer address"
+
+#: FrontPage/templates/recharge-wkc.html:98
+msgid "充币数量"
+msgstr "Recharge amount"
+
+#: FrontPage/templates/recharge-wkc.html:99
+msgid "请输入充币数量"
+msgstr "Please enter the recharge amount"
+
+#: FrontPage/templates/recharge-wkc.html:103
+msgid "验&nbsp;&nbsp;证&nbsp;&nbsp;码"
+msgstr "Captcha"
+
+#: FrontPage/templates/recharge-wkc.html:125
+#: FrontPage/templates/recharge-wkc.html:231
+msgid "确认中"
+msgstr "Pending"
+
+#: FrontPage/templates/recharge-wkc.html:128
+msgid "已撤销"
+msgstr "Cancelled"
+
+#: FrontPage/templates/recharge-wkc.html:131
+msgid "确认成功"
+msgstr "Confirmed"
+
+#: FrontPage/templates/recharge-wkc.html:134
+msgid "确认失败"
+msgstr "Failed"
+
+#: FrontPage/templates/recharge-wkc.html:252
+msgid "玩客币充值记录"
+msgstr "WanKe Coin recharge record"
+
+#: FrontPage/templates/recharge-wkc.html:258
+msgid "充值金额"
+msgstr "Recharge amount"
+
+#: FrontPage/templates/recharge-wkc.html:259
+msgid "申请时间"
+msgstr "Application time"
+
+#: FrontPage/templates/recharge-wkc.html:260
+msgid "充值状态"
+msgstr "State"
+
+#: FrontPage/templates/recharge.html:62 FrontPage/templates/recharge.html:66
+msgid "充币"
+msgstr "Recharge"
+
+#: FrontPage/templates/recharge.html:75
+msgid "提币"
+msgstr "Withdraw"
+
+#: FrontPage/templates/recharge.html:206
+msgid "请将币转入到这个地址"
+msgstr "Please transfer the coin to this address"
+
+#: FrontPage/templates/recharge.html:212
+msgid "我的资金一览表"
+msgstr "List of my assets"
+
+#: FrontPage/templates/recharge.html:214
+msgid "隐藏0余额币种"
+msgstr "Hide currency with 0 balance"
+
+#: FrontPage/templates/recharge.html:215
+msgid "资产估算"
+msgstr "Assets estimation"
+
+#: FrontPage/templates/recharge.html:215
+msgid "约人民币"
+msgstr "in CNY (estimation)"
+
+#: FrontPage/templates/register-success.html:65
+#: FrontPage/templates/register.html:64
+msgid "成功"
+msgstr "Success"
+
+#: FrontPage/templates/register-success.html:86
+msgid "您的账户已成功注册"
+msgstr "Your account has been successfully registered"
+
+#: FrontPage/templates/register-success.html:87
+msgid ""
+"激活邮件已发送，请检查您的验证邮箱并确认service@chaobi.la已在您的白名单中。"
+msgstr ""
+"The activation message has been sent. Please check your authentication "
+"mailbox and verify that service@chaobi.la is already on your white list."
+
+#: FrontPage/templates/register-success.html:90
+msgid "马上充值体验吧"
+msgstr "Recharge now"
+
+#: FrontPage/templates/register.html:89 FrontPage/templates/user-email.html:93
+msgid "电子邮箱："
+msgstr "Email:"
+
+#: FrontPage/templates/register.html:90 FrontPage/templates/user-email.html:94
+msgid "请输入电子邮箱"
+msgstr "Please enter Email address"
+
+#: FrontPage/templates/register.html:93
+msgid "登录密码："
+msgstr "Login password:"
+
+#: FrontPage/templates/register.html:95
+msgid "请输入8-32位字符"
+msgstr "Please enter a 8-32 bit character"
+
+#: FrontPage/templates/register.html:98
+msgid "确认密码："
+msgstr "Confirmation password:"
+
+#: FrontPage/templates/register.html:99
+msgid "请再输入一次密码"
+msgstr "Please enter a password again"
+
+#: FrontPage/templates/register.html:105
+msgid "已阅读并同意"
+msgstr "Have read and agreed"
+
+#: FrontPage/templates/register.html:106
+msgid "服务条款"
+msgstr "Terms of service"
+
+#: FrontPage/templates/register.html:107
+msgid "免责声明"
+msgstr "Disclaimer"
+
+#: FrontPage/templates/register.html:110
+msgid "隐私保护"
+msgstr "Privacy protection"
+
+#: FrontPage/templates/transaction.html:55
+#: FrontPage/templates/transaction.html:308
+#: FrontPage/templates/transaction.html:363
+#: FrontPage/templates/transaction.html:743
+#: FrontPage/templates/transaction.html:1012
+#: FrontPage/templates/transaction.html:1224
+msgid "买入"
+msgstr "Buy"
+
+#: FrontPage/templates/transaction.html:56
+#: FrontPage/templates/transaction.html:484
+#: FrontPage/templates/transaction.html:535
+#: FrontPage/templates/transaction.html:1027
+#: FrontPage/templates/transaction.html:1224
+msgid "卖出"
+msgstr "Sell"
+
+#: FrontPage/templates/transaction.html:57
+msgid "K线"
+msgstr "Kline"
+
+#: FrontPage/templates/transaction.html:58
+#: FrontPage/templates/transaction.html:1195
+msgid "我的委单"
+msgstr "My commission order"
+
+#: FrontPage/templates/transaction.html:76
+#: FrontPage/templates/transaction.html:96
+msgid "可用资产"
+msgstr "Available assets"
+
+#: FrontPage/templates/transaction.html:116
+msgid "交易市场"
+msgstr "Trading market"
+
+#: FrontPage/templates/transaction.html:121
+msgid "买一价"
+msgstr "The highest bid price"
+
+#: FrontPage/templates/transaction.html:122
+msgid "卖一价"
+msgstr "The lowest ask price"
+
+#: FrontPage/templates/transaction.html:124
+msgid "今日涨跌幅"
+msgstr "Today's quote change"
+
+#: FrontPage/templates/transaction.html:140
+#: FrontPage/templates/transaction.html:141
+#: FrontPage/templates/transaction.html:142
+msgid "小时线"
+msgstr "hour"
+
+#: FrontPage/templates/transaction.html:143
+#: FrontPage/templates/transaction.html:144
+msgid "分钟线"
+msgstr "min"
+
+#: FrontPage/templates/transaction.html:310
+#: FrontPage/templates/transaction.html:486
+msgid "委托类型:"
+msgstr "Order type:"
+
+#: FrontPage/templates/transaction.html:311
+#: FrontPage/templates/transaction.html:487
+msgid "限价"
+msgstr "Limit price"
+
+#: FrontPage/templates/transaction.html:314
+msgid "可用BTC:"
+msgstr "AVL BTC:"
+
+#: FrontPage/templates/transaction.html:324
+msgid "可买:"
+msgstr "Max buy:"
+
+#: FrontPage/templates/transaction.html:333
+msgid "买入价格:"
+msgstr "Buy price:"
+
+#: FrontPage/templates/transaction.html:342
+msgid "买入数量:"
+msgstr "Buy volume:"
+
+#: FrontPage/templates/transaction.html:351
+#: FrontPage/templates/transaction.html:523
+msgid "金额:"
+msgstr "amount:"
+
+#: FrontPage/templates/transaction.html:352
+#: FrontPage/templates/transaction.html:524
+msgid "金额"
+msgstr "amount"
+
+#: FrontPage/templates/transaction.html:359
+#: FrontPage/templates/transaction.html:531
+msgid "委托类型：限价"
+msgstr "Order type: limit"
+
+#: FrontPage/templates/transaction.html:362
+#: FrontPage/templates/transaction.html:534
+msgid "比特币指数"
+msgstr "Bitcoin index"
+
+#: FrontPage/templates/transaction.html:490
+msgid "可用:"
+msgstr "AVL:"
+
+#: FrontPage/templates/transaction.html:496
+msgid "可卖BTC:"
+msgstr "AVL BTC:"
+
+#: FrontPage/templates/transaction.html:506
+msgid "卖出价格:"
+msgstr "Sell price:"
+
+#: FrontPage/templates/transaction.html:515
+msgid "卖出数量:"
+msgstr "Sell amount:"
+
+#: FrontPage/templates/transaction.html:545
+#: FrontPage/templates/transaction.html:708
+#: FrontPage/templates/transaction.html:709
+#: FrontPage/templates/transaction.html:940
+msgid "买"
+msgstr "Buy"
+
+#: FrontPage/templates/transaction.html:728
+#: FrontPage/templates/transaction.html:956
+msgid "卖"
+msgstr "Sell"
+
+#: FrontPage/templates/transaction.html:745
+#: FrontPage/templates/transaction.html:1014
+#: FrontPage/templates/transaction.html:1029
+msgid "委托单"
+msgstr "Order"
+
+#: FrontPage/templates/transaction.html:971
+#: FrontPage/templates/transaction.html:975
+msgid "暂无相关信息"
+msgstr "No relevant information"
+
+#: FrontPage/templates/transaction.html:980
+msgid "最新交易价:"
+msgstr "Latest price:"
+
+#: FrontPage/templates/transaction.html:982
+msgid "合并深度："
+msgstr "Merge depth："
+
+#: FrontPage/templates/transaction.html:992
+msgid "显示"
+msgstr "Show"
+
+#: FrontPage/templates/transaction.html:993
+#: FrontPage/templates/transaction.html:996
+#: FrontPage/templates/transaction.html:997
+#: FrontPage/templates/transaction.html:998
+msgid "条"
+msgstr "item"
+
+#: FrontPage/templates/transaction.html:1003
+msgid "参考价格："
+msgstr "Reference Price："
+
+#: FrontPage/templates/transaction.html:1004
+msgid "人民币"
+msgstr "CNY"
+
+#: FrontPage/templates/transaction.html:1183
+msgid "已经加载全部订单记录"
+msgstr "All order records have been loaded"
+
+#: FrontPage/templates/transaction.html:1189
+msgid "登录后可查看订单记录"
+msgstr "View the order record after login"
+
+#: FrontPage/templates/transaction.html:1305
+msgid "暂无成交记录"
+msgstr "No record of transaction"
+
+#: FrontPage/templates/transaction.html:1310
+msgid "最新成交记录"
+msgstr "Latest transaction record"
+
+#: FrontPage/templates/transaction.html:1311
+msgid "秒后自动刷新"
+msgstr "seconds before auto refresh "
+
+#: FrontPage/templates/transaction.html:1317
+msgid "成交价(BTC)"
+msgstr "Price(BTC)"
+
+#: FrontPage/templates/transaction.html:1319
+msgid "成交额"
+msgstr "Turnover"
+
+#: FrontPage/templates/transaction.html:1442
+msgid "暂无"
+msgstr "None"
+
+#: FrontPage/templates/transaction.html:1452
+msgid "名称"
+msgstr "Name"
+
+#: FrontPage/templates/transaction.html:1454
+msgid "涨幅"
+msgstr "Quote change"
+
+#: FrontPage/templates/transaction.html:1747
+msgid "新增时间线测试"
+msgstr "Test new timeline"
+
+#: FrontPage/templates/transaction.html:1748
+msgid "修改时间线测试"
+msgstr "Test modify timeline"
+
+#: FrontPage/templates/transaction.html:1754
+msgid "登录后才能交易"
+msgstr "Please Login First"
+
+#: FrontPage/templates/user-api.html:116
+msgid "查询结果为空"
+msgstr "Query results are empty"
+
+#: FrontPage/templates/user-api.html:129
+#: FrontPage/templates/user-question-list.html:165
+msgid "查看"
+msgstr "View"
+
+#: FrontPage/templates/user-api.html:130
+msgid "修改"
+msgstr "Modify"
+
+#: FrontPage/templates/user-api.html:131
+#: FrontPage/templates/user-message.html:213
+#: FrontPage/templates/user-question-list.html:167
+msgid "删除"
+msgstr "Delete"
+
+#: FrontPage/templates/user-api.html:144
+msgid ""
+"Chaobi.la为您提供了强大的API，您可以根据自身需求建立不同权限的API，并利用API"
+"进行自动交易或者提现。\n"
+"                            API的交易权限让您可以快速的获取当前市场最新行情及"
+"时的下单交易、查询自己可用和冻结金额、查询自己当前尚未成交的挂单、买进或卖"
+"出、撤单；提现权限可以让您快速提现到您的认证地址。\n"
+"                            （注：API变更一分钟后生效）\n"
+"                            注：您可以在通知中心开启重要公告邮件提示！"
+msgstr ""
+"Chaobi.la provides you with powerful APIs. You can establish APIs with "
+"different permission type and use APIs for automatic transactions and "
+"withdrawals. \n"
+" APIs with trading permission help you to get the latest market information "
+"and account information as well as to trade timely;APIs with withdrawal "
+"permission help you to withdraw to your authentication address timely;  "
+"(Note: API changing takes one minute to effect) \n"
+" note: you may want to open the important announcement mail prompt in the "
+"notification center!"
+
+#: FrontPage/templates/user-api.html:158
+msgid "备注名"
+msgstr "Label"
+
+#: FrontPage/templates/user-api.html:160
+msgid "权限"
+msgstr "Permission"
+
+#: FrontPage/templates/user-api.html:161
+msgid "创建时间"
+msgstr "Created time"
+
+#: FrontPage/templates/user-email.html:83
+msgid "设置邮箱"
+msgstr "Set email address"
+
+#: FrontPage/templates/user-email.html:86
+#: FrontPage/templates/user-idcard.html:83
+msgid "为了您的资产安全，修改电子邮箱后24小时以内不允许提币"
+msgstr ""
+"For your security, after a modification of e-mail, no withdraw can be made "
+"within 24 hours."
+
+#: FrontPage/templates/user-email.html:89
+msgid "已绑邮箱："
+msgstr "Bound email："
+
+#: FrontPage/templates/user-idcard-list.html:53
+msgid "审核通过"
+msgstr "Verification passed"
+
+#: FrontPage/templates/user-idcard-list.html:56
+#: FrontPage/templates/user-idcard-list.html:154
+msgid "审核未通过"
+msgstr "Verification failed"
+
+#: FrontPage/templates/user-idcard-list.html:59
+msgid "审核中"
+msgstr "Under verification"
+
+#: FrontPage/templates/user-idcard-list.html:136
+msgid "身份认证审核中，请耐心等待"
+msgstr "Under verification. Please wait patiently."
+
+#: FrontPage/templates/user-idcard-list.html:151
+msgid "身份认证已通过审核"
+msgstr "Identity authentication verified."
+
+#: FrontPage/templates/user-idcard-list.html:155
+msgid "重新认证"
+msgstr "Re authentication"
+
+#: FrontPage/templates/user-idcard-list.html:161
+#: FrontPage/templates/user-idcard.html:78
+msgid "护照"
+msgstr "Passport"
+
+#: FrontPage/templates/user-idcard-list.html:161
+#: FrontPage/templates/user-idcard.html:77
+msgid "身份证"
+msgstr "ID card"
+
+#: FrontPage/templates/user-idcard-list.html:166
+#: FrontPage/templates/user-idcard-list.html:167
+#: FrontPage/templates/user-idcard-list.html:168
+msgid "提交成功"
+msgstr "Submitted successfully"
+
+#: FrontPage/templates/user-idcard-list.html:166
+#: FrontPage/templates/user-idcard-list.html:167
+#: FrontPage/templates/user-idcard-list.html:168
+msgid "未提交"
+msgstr "Unsubmitted"
+
+#: FrontPage/templates/user-idcard-list.html:176
+msgid "证件信息"
+msgstr "Certificate information"
+
+#: FrontPage/templates/user-idcard-list.html:178
+#: FrontPage/templates/user-idcard.html:86
+msgid "真实姓名："
+msgstr "Real name："
+
+#: FrontPage/templates/user-idcard-list.html:179
+#: FrontPage/templates/user-idcard.html:90
+msgid "证件类型："
+msgstr "Document type："
+
+#: FrontPage/templates/user-idcard-list.html:180
+#: FrontPage/templates/user-idcard.html:94
+msgid "证件号码："
+msgstr "Identification Number："
+
+#: FrontPage/templates/user-idcard-list.html:181
+msgid "认证时间："
+msgstr "Authentication time："
+
+#: FrontPage/templates/user-idcard-list.html:185
+#: FrontPage/templates/user-idcard-upload.html:232
+msgid "照片认证"
+msgstr "Photo authentication"
+
+#: FrontPage/templates/user-idcard-list.html:187
+msgid "证件正面照片："
+msgstr "Front of the certificate"
+
+#: FrontPage/templates/user-idcard-list.html:188
+msgid "证件反面照片："
+msgstr "Back of the certificate"
+
+#: FrontPage/templates/user-idcard-list.html:189
+msgid "本人手持证件照片："
+msgstr "Please upload a photo with the certificate in your hand"
+
+#: FrontPage/templates/user-idcard-upload.html:144
+msgid "提示"
+msgstr "Hint"
+
+#: FrontPage/templates/user-idcard-upload.html:144
+msgid "您确定要跳过认证吗？跳过后信息将不保存"
+msgstr ""
+"Are you sure you want to skip the authentication? The information will not "
+"be saved"
+
+#: FrontPage/templates/user-idcard-upload.html:177
+msgid "请选择有效的图片文件"
+msgstr "Please select a valid picture file"
+
+#: FrontPage/templates/user-idcard-upload.html:233
+msgid "跳过"
+msgstr "Skip"
+
+#: FrontPage/templates/user-idcard-upload.html:240
+msgid "上传正面"
+msgstr "Upload front"
+
+#: FrontPage/templates/user-idcard-upload.html:243
+msgid "上传背面"
+msgstr "Upload back"
+
+#: FrontPage/templates/user-idcard-upload.html:246
+msgid "上传手持身份证"
+msgstr "Upload a handheld ID card"
+
+#: FrontPage/templates/user-idcard-upload.html:254
+msgid "照片要求"
+msgstr "Photo requirements"
+
+#: FrontPage/templates/user-idcard-upload.html:255
+msgid "1.请上传 李楠 (证件号：3****************2)对应的证件照片"
+msgstr ""
+"1. please upload Li Nan (ID number: 3****************2) corresponding "
+"certificate photos"
+
+#: FrontPage/templates/user-idcard-upload.html:256
+msgid "示例图如下"
+msgstr "sample graph"
+
+#: FrontPage/templates/user-idcard-upload.html:257
+msgid "身份证正面照"
+msgstr "Front photo of ID card"
+
+#: FrontPage/templates/user-idcard-upload.html:259
+msgid "身份证背面照"
+msgstr "Back photo of ID card"
+
+#: FrontPage/templates/user-idcard-upload.html:261
+msgid "身份证手持照"
+msgstr "photo of Hand-held ID card"
+
+#: FrontPage/templates/user-idcard-upload.html:263
+msgid "2.文件大小不能大于6MB。文件格式必须为jpg、png或者gif。"
+msgstr ""
+"2. file size must not be greater than 6MB. The file format must be JPG, PNG, "
+"or gif."
+
+#: FrontPage/templates/user-idcard-upload.html:264
+msgid "3.手持身份证照片要求: 手持身份证照片，身份证信息清晰且无遮挡。"
+msgstr ""
+"3. handheld ID photo requirements: left hand holding ID photos, right hand "
+"with a date note"
+
+#: FrontPage/templates/user-idcard-upload.html:275
+msgid "操作指南"
+msgstr "Operation guide"
+
+#: FrontPage/templates/user-idcard.html:80
+msgid "基本信息认证"
+msgstr "Basic information authentication"
+
+#: FrontPage/templates/user-idcard.html:87
+msgid "请输入真实姓名"
+msgstr "Please enter your real name"
+
+#: FrontPage/templates/user-idcard.html:95
+msgid "请输入证件号码"
+msgstr "Please enter the document number"
+
+#: FrontPage/templates/user-message.html:177
+msgid "正在加载中"
+msgstr "Loading"
+
+#: FrontPage/templates/user-message.html:205
+msgid "消息中心"
+msgstr "Message center"
+
+#: FrontPage/templates/user-message.html:206
+msgid "(未读"
+msgstr "(unread"
+
+#: FrontPage/templates/user-message.html:206
+msgid "封，"
+msgstr "messages,"
+
+#: FrontPage/templates/user-message.html:208
+msgid "查看全部消息"
+msgstr "View all messages"
+
+#: FrontPage/templates/user-message.html:211
+msgid "标记为已读"
+msgstr "Mark as read"
+
+#: FrontPage/templates/user-message.html:217
+msgid "未读消息"
+msgstr "Unread message"
+
+#: FrontPage/templates/user-message.html:219
+msgid "已读消息"
+msgstr "Read message"
+
+#: FrontPage/templates/user-message.html:227
+msgid "消息内容"
+msgstr "Message content"
+
+#: FrontPage/templates/user-message.html:228
+msgid "发生时间"
+msgstr "Occurrence time"
+
+#: FrontPage/templates/user-message.html:229
+msgid "消息类型"
+msgstr "Message type"
+
+#: FrontPage/templates/user-mobile.html:80
+msgid "已绑手机"
+msgstr "Bound phone"
+
+#: FrontPage/templates/user-mobile.html:85
+msgid "设置手机号"
+msgstr "Set phone number"
+
+#: FrontPage/templates/user-mobile.html:87
+msgid "为了您的资产安全，修改手机号后24小时以内不允许提币"
+msgstr ""
+"For your security, after a modification of the phone number, no withdraw can "
+"be make within 24 hours"
+
+#: FrontPage/templates/user-mobile.html:90
+msgid "手机号"
+msgstr "Phone number"
+
+#: FrontPage/templates/user-mobile.html:91
+msgid "请输入手机号码"
+msgstr "Please enter the phone number"
+
+#: FrontPage/templates/user-passwd.html:85
+msgid "原密码"
+msgstr "Old password"
+
+#: FrontPage/templates/user-passwd.html:86
+msgid "请输入原密码"
+msgstr "Please input the old password"
+
+#: FrontPage/templates/user-passwd.html:89
+msgid "新密码"
+msgstr "New password"
+
+#: FrontPage/templates/user-passwd.html:90
+msgid "请输入新密码"
+msgstr "please enter a new password"
+
+#: FrontPage/templates/user-passwd.html:93
+msgid "重复密码"
+msgstr "Repeat password"
+
+#: FrontPage/templates/user-passwd.html:94
+msgid "请重新输入新密码"
+msgstr "Please re-enter the new password"
+
+#: FrontPage/templates/user-question-list.html:182
+msgid "已解决"
+msgstr "resolved"
+
+#: FrontPage/templates/user-question-list.html:184
+msgid "未解决"
+msgstr "Unsolved"
+
+#: FrontPage/templates/user-question-list.html:186
+msgid "提供7x24小时服务"
+msgstr "Provide 7x24 hour service"
+
+#: FrontPage/templates/user-question-list.html:193
+#: FrontPage/templates/user-question-view.html:158
+msgid "问题编号"
+msgstr "Issue No."
+
+#: FrontPage/templates/user-question-list.html:194
+#: FrontPage/templates/user-question-view.html:159
+msgid "问题类型"
+msgstr "Issue type"
+
+#: FrontPage/templates/user-question-list.html:195
+msgid "问题描述"
+msgstr "Issue Description"
+
+#: FrontPage/templates/user-question-list.html:196
+#: FrontPage/templates/user-question-view.html:161
+msgid "提交时间"
+msgstr "Submit time"
+
+#: FrontPage/templates/user-question-list.html:197
+#: FrontPage/templates/user-question-view.html:162
+msgid "问题状态"
+msgstr "Issue status"
+
+#: FrontPage/templates/user-question-view.html:143
+#: FrontPage/templates/user-question-view.html:160
+msgid "没有找到相关信息"
+msgstr "No relevant information was found"
+
+#: FrontPage/templates/user-question-view.html:150
+msgid "工单详情"
+msgstr "Ticket detail"
+
+#: FrontPage/templates/user-question-view.html:151
+msgid "返回列表"
+msgstr "Back to list"
+
+#: FrontPage/templates/user-question.html:85
+msgid "请选择工单分类"
+msgstr "Please choose the ticket category"
+
+#: FrontPage/templates/user-question.html:85
+msgid "（正确选择分类，有助于快速解决您的问题）"
+msgstr "(choosing the correct category helps to solve your problem quickly)"
+
+#: FrontPage/templates/user-question.html:92
+msgid "账户"
+msgstr "Account"
+
+#: FrontPage/templates/user-question.html:93
+msgid "其他"
+msgstr "Other"
+
+#: FrontPage/templates/user-question.html:100
+msgid "说说您遇到的问题，我们会尽快为您解决（工作时间9-22点30分）"
+msgstr ""
+"Tell us about the problem you meet, we will solve it for you as soon as "
+"possible(working time 9:00-22:30)"
+
+#: FrontPage/templates/user-question.html:105
+msgid "提交问题"
+msgstr "Submit"
+
+#: FrontPage/templates/user-tradepwd.html:166
+msgid "设置交易密码"
+msgstr "Set transaction password"
+
+#: FrontPage/templates/user-tradepwd.html:168
+msgid "交易密码"
+msgstr "Transaction password"
+
+#: FrontPage/templates/user-tradepwd.html:169
+#: FrontPage/templates/user-tradepwd.html:174
+msgid "请输入6位数密码"
+msgstr "Please enter a 6 digit password"
+
+#: FrontPage/templates/user-tradepwd.html:172
+msgid "重复密码："
+msgstr "Repeat password："

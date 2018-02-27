@@ -1,0 +1,153 @@
+<!doctype html>
+{% load i18n %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
+    <link rel="shortcut icon" href="/static/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/register.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/layer/theme/default/layer.css">
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/jquery.scrollTo.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script src="/static/bootstrap/layer/layer.js"></script>
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/common.js"></script>
+    <script src="/static/js/confirm_email.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/js/swiper/css/swiper.min.css">
+    <script src="/static/js/swiper/js/swiper.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div id="App"></div>
+
+<script type="text/babel" src="/static/jsx/approot.jsx"></script>
+<script type="text/babel" src="/static/jsx/header.jsx"></script>
+<script type="text/babel" src="/static/jsx/footer.jsx"></script>
+<script type="text/babel">
+
+    function StepBox(props) {
+        return (<div className="step-box">
+            <table className="txt-lg">
+                <tbody>
+                <tr>
+                    <td className="bg-lt disabled"><strong>1</strong></td>
+                    <td className="bg-md disabled"></td>
+                    <td className="bg-md disabled"></td>
+                    <td className="bg-rt active"><strong><i className="icon-check"></i></strong></td>
+                </tr>
+                <tr>
+                    <td className="disabled">{% trans '邮箱注册' %}</td>
+                    <td className="disabled"></td>
+                    <td className="disabled"></td>
+                    <td className="active">{% trans '邮箱激活' %}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>);
+    }
+
+    function CSuccessBox(props) {
+        return (<div className="success">
+            <div className="icons"><i className="icon-check-circle txt-primary"></i></div>
+            <h3 className="tl">{% trans '您的邮箱已激活成功！' %}</h3>
+            <div className="btns"><a href="login.html" className="btn btn-lg btn-primary">{% trans '立即登录' %}</a></div>
+        </div>);
+    }
+
+    function CErrorBox(props) {
+        return (<div className="success">
+            <div className="icons"><i className="icon-check-circle txt-primary"></i></div>
+            <h3 className="tl">{% trans '激活失败！' %}</h3>
+            <div className="info txt-md">{% trans '激活失败，您可以重新申请发送邮箱验证，并检查您的验证邮箱并确认service@chaobi.la已在您的白名单中。' %}<br/>
+                {% trans '如仍未收到，请检查下您的垃圾邮箱。' %}<a href="#" className="txt-primary"
+                                                  onClick={props.clickHandler}>{% trans '点此重新发送' %}</a></div>
+        </div>);
+    }
+
+    var ConfirmBox = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0,
+                key: ''
+            };
+        },
+        componentDidMount: function () {
+            var key = this.getEmailKey();
+            $.getJSON('/api/account/email_confirm/' + key, {}, function (res) {
+                if (res.result && res.data && res.data.status == "1") {
+                    this.setState({
+                        status: 1
+                    });
+                }
+                else {
+                    this.setState({
+                        status: 2
+                    });
+                }
+            }.bind(this));
+        },
+        getEmailKey: function () {
+            return GetQueryString("key");
+        },
+        sendMsgHandler: function (e) {
+            e.preventDefault();
+        },
+        render: function () {
+            var cont;
+            if (this.state.status == 0) {
+                cont = (<div className="txt-no-records txt-center"><CLoading text="{% trans '正在激活中，请稍后...' %}"/></div>);
+            }
+            else if (this.state.status == 1) {
+                cont = <CSuccessBox/>
+            }
+            else {
+                cont = <CErrorBox clickHandler={this.sendMsgHandler}/>
+            }
+
+            return (<div className="box">
+                {cont}
+            </div>);
+        }
+    });
+
+
+    function PageView(props) {
+        return (<section className="main-list">
+            <div className="container">
+                <div className="register">
+                    <StepBox/>
+                    <ConfirmBox/>
+                </div>
+            </div>
+        </section>);
+    }
+
+    var isLogin = IsLogin();
+
+    ReactDOM.render(
+        <App isLogin={isLogin} ContentBox={
+            <PageView/>
+        }/>
+        , document.getElementById("App")
+    );
+</script>
+</body>
+</html>

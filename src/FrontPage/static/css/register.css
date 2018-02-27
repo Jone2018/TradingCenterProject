@@ -1,0 +1,187 @@
+.register {
+    padding-bottom: 50px;
+}
+
+.login-box {
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.125);
+}
+
+.register .title {
+    padding: 20px 30px;
+    line-height: 30px;
+    border-bottom: 1px solid #c4c4c4;
+}
+
+.register .box {
+    background-color: #FFF;
+    padding-bottom: 30px;
+}
+
+.form-qq {
+    padding: 20px 0;
+}
+
+.success {
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.success .icons {
+    font-size: 42px;
+}
+
+.success .tl {
+
+}
+
+.success .info {
+    line-height: 175%;
+}
+
+.success .btns {
+    padding: 20px 0;
+}
+
+.form-box {
+    padding: 30px 0;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-box .form-group {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.form-box .btn-link {
+    line-height: 36px;
+    color: #35b3ec;
+}
+
+.fld-xs-block {
+    max-width: 320px;
+}
+
+.form-box .fld-info {
+    color: #35b3ec;
+}
+
+.form-box .control-label {
+    text-align: right;
+}
+
+.step-box {
+
+}
+
+.step-box table {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.step-box td {
+    text-align: center;
+    padding: 10px 0;
+    width: 25%;
+}
+
+.step-box .bg-lt {
+    background: url(../images/step_left.png) center center no-repeat;
+}
+
+.step-box .bg-md {
+    background: url(../images/step_mid.png) center center repeat-x;
+}
+
+.step-box .bg-rt {
+    background: url(../images/step_right.png) center center no-repeat;
+}
+
+.step-box strong {
+    display: block;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    margin: 0 auto;
+    background-color: #a0a0a0;
+    color: #FFF;
+    border-radius: 50%;
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+}
+
+.step-box .active {
+    color: #00a0e9;
+}
+
+.step-box .active strong {
+    background-color: #00a0e9;
+    color: #FFF;
+}
+
+.step-box .disabled {
+    color: #ccc;
+}
+
+.step-box .disabled strong {
+    background-color: #ccc;
+    color: #FFF;
+}
+
+a.btn-primary {
+    color: #FFF;
+}
+
+@media (max-width: 767px) {
+    .register .title {
+        padding: 10px;
+    }
+
+    .form-box {
+        padding: 10px 5px;
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .fld-xs-block {
+        width: 100%;
+        max-width: 100%;
+        float: none !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .form-box .control-label {
+        text-align: left;
+    }
+
+    .form-box .form-group {
+        margin-top: 0px;
+        margin-bottom: 20px;
+    }
+
+    .step-box table {
+        width: 96%;
+    }
+
+    .step-box strong {
+        height: 32px;
+        width: 32px;
+        line-height: 32px;
+        font-size: 18px;
+    }
+
+    .register {
+        padding-bottom: 20px;
+    }
+
+    .step-box td {
+        font-size: 12px;
+    }
+
+}

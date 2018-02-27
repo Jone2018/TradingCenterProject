@@ -1,0 +1,48 @@
+{% load i18n %}
+<div class="dialog-form">
+    <h4 class="title clearfix"><span class="tl">{% trans '更新API' %}</span><a href="#"
+                                                                             onClick="return CloseDialogX('winUpdate')"><i
+            class="icon-close"></i></a></h4>
+    <div class="box">
+        <form class="form-horizontal" id="frmDialogUpdate" method="post" onSubmit="return false">
+            <div class="form-group">
+                <label class="col-sm-4 control-label">{% trans '备注名：' %}</label>
+                <div class="col-sm-8">
+                    <div class="form-control-static" id="fldComment"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">{% trans '权&nbsp;&nbsp;限：' %}</label>
+                <div class="col-sm-8">
+                    <div id="permissionBox" class="radio">
+                        <i class="icon-spin icon-spinner"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">{% trans '允许的IP：' %}</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control fld-xs-block" name="ip_allowed"
+                           placeholder="{% trans '允许访问API的IP' %}"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-4 control-label">{% trans '短信验证码：' %}</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control fld-xs-block" id="captcha" name="captcha"
+                           placeholder="{% trans '验证码' %}">
+                </div>
+                <div class="col-sm-4">
+                    <a href="#" class="btn-link fld-xs-block" onclick="return SendMsgX(this)">{% trans '发送验证码' %}</a>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-8">
+                    <button type="submit" class="btn btn-primary">{% trans '确定' %}</button>
+                </div>
+            </div>
+            <input type="hidden" name="phone_number"/>
+            <input type="hidden" name="id"/>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load i18n %}
+<html>
+<meta http-equiv=content-type content="text/html; charset=UTF-8">
+<head>
+    <title></title>
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    <script type="text/javascript">
+        function GetQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) return unescape(r[2]);
+            return null;
+        }
+
+        var id = GetQueryString("id");
+        var s = GetQueryString("s");
+        $.cookie(id, s);
+    </script>
+</head>
+<body>
+<div style="text-align:center; padding:20px;">
+    {% trans '上传成功' %}
+</div>
+</body>
+</html>
+

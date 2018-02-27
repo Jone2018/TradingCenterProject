@@ -1,0 +1,257 @@
+<!doctype html>
+{% load i18n %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>隨求—專業的區塊鏈資產交易平臺，為您的財務增值保駕護航</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
+    <link rel="shortcut icon" href="/static/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/help.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/layer/theme/default/layer.css">
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/jquery.scrollTo.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap/layer/layer.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/common.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/static/js/swiper/css/swiper.min.css">
+    <script src="/static/js/swiper/js/swiper.min.js"></script>
+
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.js" type="text/javascript"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.js" type="text/javascript"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        function ToogleHelp(id) {
+            $(".menu-help .active").removeClass("active");
+            $(".nav-cate .active").removeClass("active");
+            $(".nitem" + id).addClass("active");
+            $(".citem" + id).addClass("active");
+            $(".content").hide();
+            $("#help" + id).show();
+
+        }
+
+        function PageInit() {
+
+            var id = GetQueryString("id");
+            if (id < 1 || id > 5) {
+                id = 1;
+            }
+
+            ToogleHelp(id);
+
+            $(".mm-help a").addClass("active");
+            $(".menu-help a").click(function () {
+                var id = $(this).data("id");
+                ToogleHelp(id);
+                return false;
+            });
+        }
+    </script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div id="App"></div>
+<!--
+<section class="main-list">
+  <div class="container">
+    <div class="clearfix">
+      <div class="menu-box menu-help hidden-xs">
+        <div class="item-box">
+			<h4 class="tl"><i>幫助中心</i></h4>
+          <ul>
+            <li><a href="#s1">服務簡介</a></li>
+            <li><a href="#s2">賬戶說明</a></li>
+            <li><a href="#s3">交易規則</a></li>
+            <li><a href="#s4">交易所上線品種</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="list-box help-view">
+        <div class="item-box">
+        	<h3 class="title txt-center">幫助中心</h3>
+          <div class="content txt-sm">
+            <p>以下述條款和條件是用戶與上海隨求網絡科技有限公司（以下簡稱隨求）之間訂立的合約（“協議”）。請仔細閱讀協議。確認您已理解並接受本協議，點擊“同意”。
+本協議適用於用戶使用隨求的各項服務，通過這些服務，用戶可以在隨求進行區塊鏈資產交易、ICO眾籌等各項區塊鏈專業服務。
+本協議內容包括協議正文及所有隨求已經發布的或將來可能發布的各類規則。所有規則為本協議不可分割的組成部分，與協議正文具有同等法律效力。
+用戶應當在使用隨求服務之前認真閱讀全部協議內容，對於協議中以加粗字體顯示的內容，用戶應重點閱讀。如用戶對協議有任何疑問的，應向隨求咨詢。但無論事實上是否在使用隨求服務之前認真閱讀了本協議內容，只要用戶使用隨求服務，則本協議即對用戶產生約束，屆時用戶不應以未閱讀本協議的內容或者未獲得隨求對用戶問詢的解答等理由，主張本協議無效，或要求撤銷本協議。
+我們會將修改後的條款發布到本網站，並將“最後更新”日期列在本條款頂部，或通過電子郵件發送給用戶提供的註冊郵箱，或以隨求確定的任何其他方式自行決定。任何更改會在發布網站更新後或聲明更改後立即生效。更改將持續生效。用戶擁有放棄接收有關此類更改的特定通知的權利。繼續使用本網站表示用戶接受此類更改。
+用戶承諾接受並遵守本協議的約定。如果用戶不同意本條款，請立即停止使用本網站。我們希望用戶經常回顧本條款，以確保用戶了解適用於用戶訪問和使用本服務的條款和條件。</p>
+            <p><h4 id="s1">壹、服務簡介</h4>
+              隨求交易平臺以區塊鏈資產交易為核心，同時開展ICO、區塊鏈資產托管等各項區塊鏈專業服務，助推區塊鏈技術的發展與普及。交易者必須在開始交易之前開立賬戶並預存區塊資產鏈資產。交易者可以要求提取其區塊鏈資產，但須遵守本條款的限制。<br>
+              用戶必須自行準備如下設備和承擔如下開支：（1）上網設備，包括並不限於電腦或者其他上網終端、調制解調器及其他上網裝置；（2）上網開支，包括並不限於網絡接入費、上網設備租用費、手機流量費等。<br>
+            用戶在接受隨求各項服務的同時，同意接受隨求提供的各類信息服務。用戶在此授權隨求可以向其電子郵件、手機、通信地址等發送商業信息。用戶有權選擇不接受隨求提供的各類信息服務，並進入隨求相關頁面或聯系客服進行更改。</p>
+
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+-->
+<script type="text/babel" src="/static/jsx/approot.jsx"></script>
+<script type="text/babel" src="/static/jsx/header.jsx"></script>
+<script type="text/babel" src="/static/jsx/footer.jsx"></script>
+<script type="text/babel">
+    var id = GetQueryString("id");
+
+    var helpItems = [
+        {id: 1, name: "註冊登錄"},
+        {id: 2, name: "交易指南"},
+        {id: 3, name: "費用說明"},
+        {id: 4, name: "交易規則"},
+        {id: 5, name: "交易所上線品種"}
+    ];
+
+    function CHelpCate(props) {
+        function clickHandler(id, e) {
+            e.preventDefault();
+            ToogleHelp(id);
+        }
+
+        var rows = [];
+        for (var i = 0; i < props.items.length; i++) {
+            var item = props.items[i];
+            var url = "#help" + item.id;
+            var css = "citem" + item.id;
+            var name = item.name;
+
+            rows.push(<a href={url} key={i} className={css} onClick={clickHandler.bind(this, item.id)}>{name}</a>)
+        }
+        return (<div className="nav-cate visible-xs-block">
+            {rows}
+        </div>)
+    }
+
+    function PageView(props) {
+        return (<section className="main-list">
+            <div className="container">
+                <CHelpCate items={helpItems}/>
+                <div className="clearfix">
+                    <div className="menu-box menu-help hidden-xs">
+                        <div className="item-box">
+                            <h4 className="tl"><i>幫助中心</i></h4>
+                            <CHelpNav items={helpItems}/>
+                        </div>
+                    </div>
+                    <div className="list-box help-view">
+                        <HelpContent/>
+                    </div>
+                </div>
+            </div>
+        </section>);
+    }
+
+
+    function CHelpNavItem(props) {
+        var url = "#help" + props.id;
+        var css = "nitem" + props.id;
+
+        return (<li className={css}><a href={url} data-id={props.id}>{props.name}</a></li>);
+    }
+
+    function CHelpNav(props) {
+        var rows = [];
+        props.items.forEach(function (item) {
+            rows.push(<CHelpNavItem key={item.id} id={item.id} name={item.name} activeID={props.activeID}/>)
+        });
+        return (<ul>
+            {rows}
+        </ul>);
+    }
+
+    var HelpContent = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0
+            };
+        },
+        componentDidMount: function () {
+
+        },
+        render: function () {
+            return (<div className="item-box">
+                <div className="help-content">
+                    <div id="help1" className="content">
+                        <h4>註冊登錄</h4>
+                        <p>1. 在首頁，點擊註冊即可跳轉到註冊的頁面。</p>
+                        <p className="center"><img src="/static/images/help01.jpg"/></p>
+                        <p>2. 隨求支持郵箱註冊和QQ快捷登錄，用戶可以選擇適合自己的方式進行註冊。填寫好資料即可完成註冊。</p>
+                        <p className="center"><img src="/static/images/help02.jpg"/></p>
+                    </div>
+
+                    <div id="help2" className="content">
+                        <h4>交易指南</h4>
+                        <p>1.
+                            充值（以BTC為例）：登錄後點擊“財務中心”。在您創建賬戶後，系統會自動為您分配壹個BTC的充值地址，您可以在充值BTC時向這個地址進行充值。如果您有BTC錢包的話，也可以使用二維碼掃碼充值。</p>
+                        <p className="center"><img src="/static/images/help03.jpg"/></p>
+                        <p>2. 交易界面：按照右幣種類型，選擇自己的交易類型（以WKC為例，選擇買入或賣出）。</p>
+                        <p className="center"><img src="/static/images/help04.jpg"/></p>
+                        <p>3. 提現（以BTC為例）：登錄後點擊“財務中心”。您在向別人付款或者提現到您錢包的時候可以使用此功能。</p>
+                        <p>您在添加地址並認證地址後，頁面就會如同顯示。您可以點擊添加地址，添加您要付款的地址。</p>
+                        <p><strong>地址標簽：</strong>地址標簽是便於您記憶地址是哪裏的，請您在填寫標簽的時候，壹定要填寫可以讓您快速識別地址的文字。</p>
+                        <p><strong>網絡手續費：</strong>該手續費是在您在提幣時向網絡礦工進行支付的，壹般情況下該手續費越高網絡確認速度越快，平臺在您支付（提現）BTC的時候是不收取手續費的，每筆提幣的網絡手續費為當前網絡最佳手續費。
+                        </p>
+                        <p><strong>認證地址：</strong>認證地址是為了大家可以快速提現，壹般不是您常用的地址，請勿進行認證。</p>
+                        <p className="center"><img src="/static/images/help05.jpg"/></p>
+                    </div>
+
+                    <div id="help3" className="content">
+                        <h4>費用說明</h4>
+                        <p>1. 交易手續費是用戶在隨求達成區塊鏈資產交易而向隨求支付的交易服務費用。
+                            標準網絡撮合服務，交易手續費不超過交易委托訂單金額的千分之二（即買賣雙方各千分之二），隨求保留對單個用戶下調交易手續費的權利。 提供額外服務的，單獨設置手續費率。</p>
+                        <p>2.
+                            用戶有權隨時提取在隨求賬戶中的余額，但需向隨求支付相應的提現手續費用。單個幣種的最低提現手續費為提現幣種折合1.5美元，為保障用戶的提現快速到賬，隨求有權根據當前最佳手續費（計費標準為最近壹個區塊的手續費率對應的最小交易手續費）進行收取。</p>
+                        <p>3.
+                            區塊鏈資產存在分叉、快照繼承、贈送等方式產生衍生資產的情況。用戶理解，由於領取這些衍生資產時需要動用私鑰，可能會大大提升丟幣風險，所以隨求有權不替用戶代領這些資產。隨求承諾絕不會偷領這類資產。</p>
+                    </div>
+
+                    <div id="help4" className="content">
+                        <h4>交易規則</h4>
+                        <p>用戶了解並同意：用戶承諾在其進入隨求交易，通過隨求與其他用戶進行區塊鏈資產交易的過程中良好遵守如下隨求區塊鏈資產交易規則。</p>
+                        <p>(a) 用戶在隨求瀏覽區塊鏈資產交易信息時，應當仔細閱讀交易信息中包含的全部內容，包括但不限於區塊鏈資產價格、委托量、手續費、買入或賣出方向，
+                            用戶完全接受交易信息中包含的全部內容後方可點擊按鈕進行交易。</p>
+                        <p>(b) 用戶了解並同意隨求會時時更新可使用的充值的區塊鏈資產。</p>
+                        <p>(c) 用戶了解並同意，用戶有權隨時提取在隨求賬戶中的余額，但需向隨求支付相應的提現手續費用。</p>
+                        <p>(d)
+                            用戶在瀏覽完交易信息確認無誤之後可以提交交易委托。用戶提交交易委托後，即用戶授權隨求代理用戶進行相應的交易撮合，隨求在有滿足用戶委托價格的交易時將會自動完成撮合交易而無需提前通知用戶。</p>
+                        <p>(e) 用戶可以通過管理中心的交易明細中查看相應的成交記錄，確認自己的詳情交易記錄。</p>
+                        <p>(f) 在委托未達成交易之前，用戶有權隨時撤銷或修改委托。</p>
+                    </div>
+
+                    <div id="help5" className="content">
+                        <h4>交易所上線品種</h4>
+                        <p>目前隨求交易所已上線玩客幣-比特幣(WKC-BTC)交易對，關於玩客幣的更多信息，請訪問官方網站：<a
+                            href="http://red.xunlei.com/index.php?r=site/coin"
+                            target="_blank">http://red.xunlei.com/index.php?r=site/coin</a></p>
+                    </div>
+                </div>
+            </div>);
+        }
+    });
+
+    var isLogin = IsLogin();
+
+    ReactDOM.render(
+        <App isLogin={isLogin} ContentBox={
+            <PageView/>
+        }/>
+        , document.getElementById("App")
+    );
+</script>
+</body>
+</html>

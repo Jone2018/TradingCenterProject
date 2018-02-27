@@ -1,0 +1,79 @@
+.api-list {
+
+}
+
+.api-list .box {
+    padding: 20px 35px;
+}
+
+.api-list .cont,
+.api-list .btns,
+.api-list .list {
+    padding: 10px 0;
+}
+
+.api-list .cont {
+    line-height: 150%;
+}
+
+.api-list .btns {
+
+}
+
+.api-list .list {
+
+}
+
+.form-box {
+    padding: 20px 30px;
+}
+
+.dialog-form {
+
+}
+
+.dialog-form .title {
+    margin: 0;
+    padding: 0;
+    line-height: 36px;
+    background-color: #078bc7;
+}
+
+.dialog-form .title .tl {
+    float: left;
+    margin-left: 10px;
+    color: #FFF;
+}
+
+.dialog-form .title a {
+    float: right;
+    margin-right: 10px;
+    color: #FFF;
+}
+
+.dialog-form .title a:hover {
+    color: #ccc;
+}
+
+.dialog-form .box {
+    padding: 20px 30px;
+}
+
+.dialog-form .checkbox label {
+    margin-right: 10px;
+}
+
+.api-list .bn a {
+    margin: 3px 5px;
+    display: inline-block;
+}
+
+.dialog-form .box .item-view {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    .api-list .box {
+        padding: 10px 5px;
+    }
+}

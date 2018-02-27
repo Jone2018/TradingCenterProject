@@ -1,0 +1,176 @@
+<!doctype html>
+{% load i18n %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>隨求—專業的區塊鏈資產交易平臺，為您的財務增值保駕護航</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
+    <link rel="shortcut icon" href="/static/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/help.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/layer/theme/default/layer.css">
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/jquery.scrollTo.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap/layer/layer.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/common.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/js/swiper/css/swiper.min.css">
+    <script src="/static/js/swiper/js/swiper.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+
+    <script type="text/javascript">
+        function PageInit() {
+            $(".mm-help a").addClass("active");
+
+            $(".menu-help a").click(function () {
+                var id = $(this).attr("href");
+                if (id && $(id).length) {
+                    $.scrollTo($(id).offset().top, 500);
+                }
+            });
+        }
+    </script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div id="App"></div>
+
+<script type="text/babel" src="/static/jsx/approot.jsx"></script>
+<script type="text/babel" src="/static/jsx/header.jsx"></script>
+<script type="text/babel" src="/static/jsx/footer.jsx"></script>
+<script type="text/babel">
+
+
+    var StaticContent = React.createClass({
+        componentDidMount: function () {
+
+        },
+        render: function () {
+            return (<div className="item-box">
+                <h3 className="title txt-center">《隱私條款》</h3>
+                <div className="content txt-sm">
+                    <h4 id="s1">壹、雙方</h4>
+                    <p>1.1 上海隨求網絡科技有限公司（以下稱“隨求網絡”），是壹家根據中華人民共和國法律在中國註冊成立的公司，該公司運營隨求區塊鏈資產交易平
+                        臺，本平臺是壹個專門供用戶進行比特幣交易區塊鏈資產和提供相關服務的平臺。<br/>
+                        1.2 只要登錄本平臺的自然人或其他主體均為本平臺的用戶，本協議表述之便利，以下使用“您”或其他第二人稱。<br/>
+                        1.3 為了本協議表述之便利，我們和您在本協議中合稱為“雙方”，我們或您單稱為“壹方”。</p>
+                    <h4 id="s2">二、隱私政策制定的目的</h4><p>
+                    隱私政策規定了我們只通過您登錄本平臺、在本平臺上註冊和/或使用我們提供的服務采集您信息的類型以及我們如何使用和保護這些采集到的信息。</p>
+                    <h4 id="s3">三、您的同意</h4><p>
+                    為確保您對我們在處理個人資料上有充分信心, 您切要詳細閱讀及理解隱私政策的條文。特別是您壹旦登錄本平臺不論您是否在本平臺上註冊，您均向我們表明您接受、同意、承諾和確認:<br/>
+                    用戶承諾：用戶具有完全民事權利能力和行為能力，或雖不具有完全民事權利能力和行為能力,但點擊同意註冊按鈕， 本網即視為經其法定代理人同意並由其法定代理人代理註冊及應用火幣服務。<br/>
+                    3.1 您在自願下連同所需的同意向我們披露個人資料;<br/>
+                    3.2 您會遵守本隱私政策的全部條款和限制;<br/>
+                    3.3 您同意我們通過您登錄本平臺、在本平臺上註冊和/或使用我們提供的服務收集您的信息；您同意日後我們對隱私政策的任何修改;<br/>
+                    3.4 您同意我們的分公司、附屬公司、雇員、就您可能會感興趣的產品和服務與您聯絡( 除非您已經表示不想收到該等訊息 )。</p>
+                    <h4 id="s4">四、收集的信息</h4><p>
+                    4.1 當您使用本平臺時，您同意我們開始使用cookies來追蹤您的每壹個動作，並收集和記住妳留下的所有信息，其中包括但不限於您的IP地址，地理位置及其他資料。<br/>
+                    4.2 如果您願意使用本平臺提供的服務，您需要填寫和提供以下兩種信息：<br/>
+                    4.2.1
+                    身份信息。該信息可以幫助我們驗證您是否有資格註冊為本平臺會員，包括但不限制妳的名字，妳的居住地址，郵寄地址，您所屬國家或政府發簽發的其他具有證明您身份信息的不同的證書以及涉及到的號碼及所有其他可幫助我們驗證您身份的信息（以下合稱為”身份信息”
+                    ）。<br/>
+                    4.2.2 服務信息。該信息幫助我們與您聯系並順利為您提供服務，包括但不限制您的電話號碼、傳真號碼、有效的電子郵件地址、郵寄地址以及您的借記卡信息和/或其他帳戶信息（以下合稱為“服務信息”
+                    ）。<br/>
+                    4.3
+                    在您使用本平臺或其提供的服務時，我們可能會為了改進本平臺的使用功能，提升您對使用本平臺及其提供的服務及其安全性的體驗或是根據法院或可適用法律法規或有管轄權的其他政府機構的命令，通過本平臺公示的專屬於我們的郵箱或其他我們認為合規的方式收集更多的必要的信息。<br/>
+                    4.4 如果您訪問了任何鏈接在本平臺上的其他第三方平臺或合作的第三方，您應同意並遵守該第三方網單獨和獨立的隱私政策。我們對這些平臺或合作方的內容及活動不承擔任何責任。</p><h4 id="s5">
+                    五、Cookie</h4>
+                    <p>
+                        5.1 當您到訪我們平臺時, 我們通過cookies使用Google
+                        Stats去記錄我們的業績以及核對在線廣告的效果。Cookie是發送到您的瀏覽器上並在您的電腦硬盤驅動器上存儲的小量數據。只有當您使用您的電腦進入我們平臺時,
+                        Cookie才能夠被發送到您的電腦硬盤上。<br/>
+                        5.2 Cookies常用於記錄訪問者瀏覽我們平臺上的各個項目時的習慣以及偏好。Cookies所搜集的資料是不記名的集體統計數據, 不載有個人資料。<br/>
+                        5.3
+                        Cookies不能用於取得您的硬盤上的數據、您的電郵地址、及您的私人數據其可使本平臺或服務商系統識別到您的瀏覽器並捕捉和記憶信息。大多數瀏覽器都預設為可以接受Cookies。您可以選擇將您的瀏覽器設定為不接受Cookies,
+                        或如果Cookies壹被裝上就通知您。不過, 若設定為禁止Cookies, 您或許便不能啟動或使用我們平臺的某些功能。</p>
+                    <h4 id="s6">六、信息使用用途</h4><p>
+                    6.1 我們為了以下目的或以下列方式使用我們收集到的您的信息：<br/>
+                    6.1.1 通過我們的平臺向您提供我們的各項服務；<br/>
+                    6.1.2 當您使用我們的平臺時, 能辨認及確認您的身份；<br/>
+                    6.1.3 為了改善和提高平臺和服務（根據我們收到的您的信息及反饋，幫助我們改善平臺的服務，進而我們可以更有效地對您的服務請求和支持需求做出回應）；<br/>
+                    6.1.4 統計我們平臺使用量的數據；<br/>
+                    6.1.5 個性化您的體驗（您的信息將幫助我們更好地為您的個性化需求作出回應）；<br/>
+                    6.1.6 處理交易（您的信息，無論是公共或私人的，未經您的同意不會以任何理由被出售、交換、轉移，或提供給任何其他公司，但除了為完成您所要求的交易的明確目的）；<br/>
+                    6.1.7 要定期發送電子郵件（您提供訂單處理的電子郵件地址，除了偶爾接收我們的新聞，更新，相關產品或服務的信息等，可用來向您發送信息和更新有關您的訂單）；<br/>
+                    6.1.8 滿足本平臺用戶協議規定的其他目的和為了滿足該等目的的所有合法途徑。<br/>
+                    6.2
+                    我們不會向其他方出售，交易或以其他方式轉讓信息。但不包括幫助我們經營本我們的平臺，開展業務，或者向您提供服務的受信任的第三方，只要這些當事方同意將這些信息保密。當我們相信披露信息是適當的，是遵守法律、法規、規章制度的或來自於法院或他主管當局的命令、執行我們的平臺策略，正常運行平臺所需要，或保護我們或他人的權利、財產或安全的。但是，您的信息不得提供給其他方進行營銷，廣告或其他用途。
+                </p>
+                    <h4 id="s7">七、個人資料的保護</h4><p>
+                    7.1
+                    我們實施妥善的實物、電子、管理及技術方面的措施來保護和保障您的個人資料的安全。我們盡力確保通過我們平臺所搜集的任何個人資料皆免於任何與我們無關的第三者的滋擾。我們采取的安全措施包括但不限於:<br/>
+                    7.1.1 實物措施: 存有您個人資料的記錄會被存放在有鎖的地方。<br/>
+                    7.1.2 電子措施: 存有您個人資料的電腦數據會被存放在受嚴格登入限制的電腦系統和存儲媒體上。<br/>
+                    7.1.3 管理措施: 只有經我們授權的職員才能接觸到您的個人資料, 這些職員需要遵守我們個人資料保密的內部守則。<br/>
+                    7.1.4 技術措施: 可能采用如Secure Socket Layer Encryption這種加密技術來輸送您的個人資料。<br/>
+                    7.1.5 其它措施: 我們的網絡服務器受到“防火墻”的保護。<br/>
+                    7.2 若您知悉我們的平臺上有任何安全方面的漏洞, 請不要遲疑去聯酪我們, 使我們可以盡快采取妥適的行動。<br/>
+                    7.3 盡管實施了上述技術和保安的措施, 我們不能保證資料在互聯網上的輸送絕對安全,
+                    因此我們不能絕對保證您通過我們平臺提供給我們的個人資料在壹切時候都是安全的。對任何因未經授權而接觸您個人資料所發生的事件我們壹槪不承擔責任, 於這方面產生或導致的任何損失或損害, 我們也不負責賠償。
+                </p>
+                    <h4 id="s8">八、隱私政策的修訂</h4><p>
+                    我們保留隨時修改該隱私政策的權利。我們通過更新和發布新版本的生效日期告訴您我們修訂了隱私政策，並突出修訂處，有時我們會發布通知告訴您隱私政策已修訂，但這不是我們的壹項義務。您應定期查看隱私政策並關註其修訂情況，如果您不同意修訂的內容，您應停止立即訪問本平臺。當隱私政策的更新版本發布，您持續訪問本平臺顯示和表明您同意該更新的內容，並同意遵守該更新的隱私權政策。</p>
+                    <h4 id="s9">九、與我們的溝通</h4><p>
+                    9.1
+                    如果您有任何要求和意見，您可以通過平臺公示的聯系方式（以下稱為“有效的聯系方式”），這是屬於我們與您溝通的唯壹有效和官方電子郵件或電話號碼，所以我們對您未使用有效的聯系方式，任何作為或不作為不承擔責任。<br/>
+                    9.2 我們只通過本平臺上的有效的聯系方式發布公告和信息或在本平臺張貼公告，所以我們對由於您信任了未通過以上方式獲得的信息而產生的任何損失不承擔責任。<br/>
+                    9.3 若您對我們的隱私政策有任何問題, 歡迎隨時聯系我們。</p>
+                </div>
+            </div>);
+        }
+    });
+
+
+    function PageView(props) {
+        return (<section className="main-list">
+            <div className="container">
+                <div className="clearfix">
+                    <div className="menu-box menu-help hidden-xs">
+                        <div className="item-box">
+                            <h4 className="tl"><i>隱私條款</i></h4>
+                            <ul>
+                                <li><a href="#s1">雙方</a></li>
+                                <li><a href="#s2">隱私政策制定的目的</a></li>
+                                <li><a href="#s3">您的同意</a></li>
+                                <li><a href="#s4">收集的信息</a></li>
+                                <li><a href="#s5">Cookie</a></li>
+                                <li><a href="#s6">信息使用用途</a></li>
+                                <li><a href="#s7">個人資料的保護</a></li>
+                                <li><a href="#s8">隱私政策的修訂</a></li>
+                                <li><a href="#s9">與我們的溝通</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div className="list-box help-view">
+                        <StaticContent/>
+                    </div>
+                </div>
+            </div>
+        </section>);
+    }
+
+    var isLogin = IsLogin();
+
+    ReactDOM.render(
+        <App isLogin={isLogin} ContentBox={
+            <PageView/>
+        }/>
+        , document.getElementById("App")
+    );
+</script>
+</body>
+</html>

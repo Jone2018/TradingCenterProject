@@ -1,0 +1,100 @@
+{% load i18n %}
+<div class="dialog-form">
+    <table class="tb-list tb-solid">
+        <thead>
+        <tr class="thead thead-blue thead-condensed">
+            <td class="sname">{% trans '资金名称' %}</td>
+            <td class="name hidden-xs">{% trans '资金全称' %}</td>
+            <td class="amount-liv">{% trans '可用资金' %}</td>
+            <td class="amount-smt">{% trans '挂单资金' %}</td>
+            <td class="amount-cfm">{% trans '确认中资金' %}</td>
+            <td class="amount-ttl hidden-xs">{% trans '总计' %}</td>
+        </tr>
+        </thead>
+        <tbody id="tb-funds">
+        <tr class="titem">
+            <td colspan="6">
+                <div class="page-loading"><i class="icon-spin icon-spinner"></i> {% trans '正在加载...' %}</div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="box coinbtc">
+        <div class="row">
+            <div class="col-sm-8 col-xs-12">
+                <form class="form-horizontal" name="frmDialogBTC" id="frmDialogBTC" method="post"
+                      onSubmit="return false">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">{% trans '选择' %}<span
+                                class="CoinCode">BTC</span>{% trans '地址：' %}</label>
+                        <div class="col-sm-6">
+                            <a class="form-control fld-xs-block" onclick="return CoinBTCList()" id="CoinBTCAddr"
+                               style="overflow:hidden;">{% trans '点击选择提现地址' %}</a>
+                            <input name="address" id="coinaddr" type="hidden" value=""/>
+                        </div>
+                        <div class="col-sm-3"><a href="#" class="btn-link txt-red"
+                                                 onclick="return CoinBTCAdd()">{% trans '新增' %}</a></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">{% trans '输入提币数量：' %}</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control fld-xs-block" name="amount"
+                                   placeholder="{% trans '请输入提币金额' %}" onBlur="ChangeBTC(this,'#amount_btc')"
+                                   onKeyUp="ChangeBTC(this,'#amount_btc')"/>
+                        </div>
+                        <div class="col-sm-3"><span class="form-control-static">{% trans '可用：' %}<span
+                                id="CoinAvailable">0</span> <span class="CoinCode">BTC</span></span></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">{% trans '实际到账：' %}</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control fld-xs-block" id="amount_btc" readonly/>
+                        </div>
+                        <div class="col-sm-3"><span class="form-control-static">{% trans '手续费' %}：<span
+                                class="withdraw_fee"></span><span class="CoinCode"></span></span></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">{% trans '验证码：' %}</label>
+                        <div class="col-sm-6 radio">
+                            <label><input type="radio" name="captcha_type" value="phone"
+                                          checked="checked"/>{% trans '手机' %}</label>
+                            <label><input type="radio" name="captcha_type" value="email"/>{% trans '邮箱' %}</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <input type="text" class="form-control fld-xs-block" id="captcha" name="captcha"
+                                   placeholder="{% trans '请输入验证码' %}">
+                        </div>
+                        <div class="col-sm-3"><a href="#" class="btn-link fld-xs-block"
+                                                 onclick="return SendMsgX(this,'#frmDialogBTC')">{% trans '发送验证码' %}</a>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-8">
+                            <button type="button" class="btn btn-info"
+                                    onClick="CloseDialogX('winBtc')">{% trans '取消' %}</button>
+                            <button type="submit" class="btn btn-primary">{% trans '确认提币' %}</button>
+                        </div>
+                    </div>
+                    <input type="hidden" name="fee" value="0.001"/>
+                    <input type="hidden" name="coin_type"/>
+                    <input name="email" type="hidden" value=""/>
+                    <input name="phone_number" type="hidden" value=""/>
+                </form>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+                <div class="info txt-sm">
+                    <h5>{% trans '提现须知' %}: </h5>
+                    <p>{% trans '1.提现手续费：当前为' %}<span class="withdraw_fee"></span><span
+                            class="CoinCode"></span>{% trans '，最低手续费为提现币种折合1.5美元，为保障用户的提现快速到账，当前最佳手续费如果高于最低手续费将按照当前最佳手续费进行收取' %}
+                        <br/>
+                        {% trans '2.最低提现金额为' %} <span class="low_limit"></span><span class="CoinCode"></span> <br/>
+                        <span class="txt-red">{% trans '3.提现限额：每日最高限额：' %}<span class="day_limit"></span><span
+                                class="CoinCode"></span> </span><br/>
+                        {% trans ' 4. 发起提币后，正常情况下24小时内到账' %}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

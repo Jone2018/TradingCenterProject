@@ -1,0 +1,155 @@
+<!doctype html>
+{% load i18n %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
+    <link rel="shortcut icon" href="/static/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/usercenter.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/user-msg-view.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/layer/theme/default/layer.css">
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/jquery.scrollTo.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap/layer/layer.js"></script>
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/common.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/static/js/swiper/css/swiper.min.css">
+    <script src="/static/js/swiper/js/swiper.min.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script src="/static/js/accessLimit.js"></script>
+    <script src="/static/js/user-message-view.js"></script>
+
+
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div id="App"></div>
+
+<script type="text/babel" src="/static/jsx/approot.jsx"></script>
+<script type="text/babel" src="/static/jsx/header.jsx"></script>
+<script type="text/babel" src="/static/jsx/footer.jsx"></script>
+<script type="text/babel" src="/static/jsx/usernavbar.jsx"></script>
+<script type="text/babel">
+    var id = GetQueryString("id");
+
+    var MessageContent = React.createClass({
+        displayName: 'MessageContent',
+
+        getInitialState: function getInitialState() {
+            return {
+                status: 0,
+                isFound: false,
+                message_id: 0,
+                message_title: '',
+                message_content: '',
+                message_isRead: false,
+                message_createTime: '',
+                message_type: ''
+            };
+        },
+        componentDidMount: function componentDidMount() {
+            $.getJSON(this.props.source, {
+                message_id: this.props.id
+            }, function (res) {
+                //console.log(res);
+                if (res.result) {
+                    var item = res.data;
+
+                    this.setState({
+                        isFound: true,
+                        status: 1,
+                        message_id: item.message_id,
+                        message_title: item.message_title,
+                        message_content: item.message_content,
+                        message_isRead: item.message_isRead,
+                        message_createTime: item.message_createTime,
+                        message_type: item.message_type
+                    });
+
+                    if (!item.message_isRead) {
+                        MsgIsRead(item.message_id);
+                    }
+                }
+                else {
+                    this.setState({
+                        isFound: false,
+                        status: 2
+                    });
+                }
+            }.bind(this));
+        },
+        createContentHtml: function createContentHtml() {
+            return {__html: this.state.message_content};
+        },
+        render: function render() {
+            var cont;
+            if (this.state.status == 0) {
+                cont = <div key="0"><CLoading text="正在加载..."/></div>;
+            }
+            else {
+                if (!this.state.isFound) {
+                    cont = <div className="txt-no-records txt-center">没有找到相关的记录！</div>;
+                }
+                else {
+                    cont = (<div className="message-view">
+                        <h4 className="title clearfix txt-sm"><span className="tl">{this.state.message_title}</span>
+                            <span className="dtime">{this.state.message_createtime}</span></h4>
+                        <div className="box txt-sm">
+                            <div className="cont" dangerouslySetInnerHTML={this.createContentHtml()}></div>
+                        </div>
+                    </div>);
+                }
+            }
+
+            return (
+                <div className="item-box">
+                    <h4 className="tb-title tb-title-border clearfix"><a className="tl txt-primary"
+                                                                         href="user-message.html">返回</a></h4>
+                    {cont}
+                </div>
+            );
+        }
+    });
+
+    function PageView(props) {
+        return (<section className="main-list">
+            <div className="container">
+                <div className="clearfix">
+                    <div className="menu-box menu-user hidden-xs">
+                        <CUserNavBar activeItem="sm-message"/>
+                    </div>
+                    <div className="list-box">
+                        <MessageContent id={props.id} source={props.source}/>
+                    </div>
+                </div>
+            </div>
+        </section>);
+    }
+
+    ReactDOM.render(
+        <App ContentBox={
+            <PageView source="/api/notice/message_info" id={id}/>
+        }/>
+        , document.getElementById("App")
+    );
+</script>
+</body>
+</html>

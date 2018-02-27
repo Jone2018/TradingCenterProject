@@ -1,0 +1,238 @@
+<!doctype html>
+{% load i18n %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
+    <link rel="shortcut icon" href="/static/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/usercenter.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/user-question-list.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/layer/theme/default/layer.css">
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/jquery.scrollTo.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap/layer/layer.js"></script>
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/common.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/static/js/swiper/css/swiper.min.css">
+    <script src="/static/js/swiper/js/swiper.min.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script src="/static/js/accessLimit.js"></script>
+    <script src="/static/js/user-question-list.js"></script>
+
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div id="App"></div>
+
+<script type="text/babel" src="/static/jsx/approot.jsx"></script>
+<script type="text/babel" src="/static/jsx/header.jsx"></script>
+<script type="text/babel" src="/static/jsx/footer.jsx"></script>
+<script type="text/babel" src="/static/jsx/usernavbar.jsx"></script>
+<script type="text/babel">
+    function CQuestionItem(props) {
+        return (<div/>);
+    }
+
+
+    var CQuestionList = React.createClass({
+        displayName: "CQuestionList",
+
+        getInitialState: function getInitialState() {
+            return {
+                status: 0,
+                hasMore: true,
+                items: [],
+                qStatus: -1,
+                pageIndex: 1
+            };
+        },
+        componentDidMount: function componentDidMount() {
+            this.Refresh(this.state.qStatus, 1);
+        },
+        Refresh: function Refresh(status, pageIndex) {
+            $.getJSON(this.props.source, {
+                status: status,
+                limit: 10 * pageIndex,
+                page: 1
+            }, function (res) {
+                //console.log(res);
+                if (res.result) {
+                    var iMore = res.data && res.data.length == pageIndex * 10;
+                    this.setState({
+                        items: res.data,
+                        status: 1,
+                        qStatus: status,
+                        hasMore: iMore,
+                        pageIndex: pageIndex
+                    });
+                }
+                else {
+                    this.setState({
+                        status: 2,
+                        qStatus: status,
+                        hasMore: false
+                    });
+                }
+            }.bind(this));
+        },
+        loadHandler: function loadHandler(e) {
+            e.preventDefault();
+            var a = $(e.target);
+            if (a.is("i")) {
+                a = a.parent();
+            }
+
+            if (a.hasClass("checked")) {
+                a.removeClass("checked");
+            }
+            else {
+                a.addClass("checked");
+            }
+
+            var s1 = $("#status1").hasClass("checked");
+            var s0 = $("#status0").hasClass("checked");
+
+            var status = -1;
+            if (s1 && s0 || !s1 && !s0) {
+                status = -1;
+            }
+            else if (s1) {
+                status = 1;
+            }
+            else if (s0) {
+                status = 0;
+            }
+
+            this.Refresh(status, 1);
+        },
+        loadMoreHandler: function loadMoreHandler(e) {
+            e.preventDefault();
+            var index = this.state.pageIndex + 1;
+            var status = this.state.qStatus;
+
+            this.Refresh(status, index);
+        },
+        removeItem: function removeItem(e) {
+            e.preventDefault();
+            var question_id = $(e.target).data("id");
+
+            QuestionDelete(question_id);
+
+        },
+        render: function render() {
+            var rows = [];
+            var more = "";
+            if (this.state.status == 0) {
+                rows.push(<tr key="0">
+                    <td colSpan="6"><CLoading text="{% trans '正在加载...' %}"/></td>
+                </tr>);
+            }
+            else {
+                if (!this.state.items || this.state.items.length == 0) {
+                    rows.push(<tr key='0'>
+                        <td colSpan="6" className="txt-no-records"> {% trans '没有找到匹配的记录' %}</td>
+                    </tr>);
+                }
+                else {
+                    this.state.items.forEach(function (item) {
+                        var url = "user-question-view.html?id=" + item.question_id;
+                        var dt = FormatDate(item.create_time, "yyyy-MM-dd hh:mm");
+                        rows.push(<tr className="titem" key={item.question_id}>
+                            <td className="cid">{item.question_id}</td>
+                            <td className="type hidden-xs">{gettext(item.question_type)}</td>
+                            <td className="info">{item.content}</td>
+                            <td className="dtime hidden-xs">{dt}</td>
+                            <td className="status txt-status">{gettext(item.status)}</td>
+                            <td className="btns">
+                                <a href={url} className="txt-primary">{% trans '查看' %}</a>
+                                <a href="#" className="txt-primary" data-id={item.question_id}
+                                   onClick={this.removeItem}>{% trans '删除' %}</a>
+                            </td>
+                        </tr>);
+                    }.bind(this));
+
+                    if (this.state.hasMore) {
+                        more = <CLoadMore clickHandler={this.loadMoreHandler}/>
+                    }
+                }
+            }
+
+            return (<div className="item-box">
+                <h4 className="tb-title tb-title-border clearfix">
+                    <span className="tl pull-left chkbox">
+                    <a href="#" className="checked" onClick={this.loadHandler} id="status1">
+                        <i className="icon icon-square"></i> {% trans '已解决' %} </a>
+                        <a href="#" className="checked" onClick={this.loadHandler} id="status0">
+                            <i className="icon icon-square"></i> {% trans '未解决' %} </a>
+                    </span>
+                    <span className="txt-sm pull-right">{% trans '提供7x24小时服务' %}</span>
+                </h4>
+                <div className="user-form">
+                    <div className="question-list">
+                        <table width="100%" className="tb-list tb-solid tb-bordered-full txt-sm">
+                            <thead>
+                            <tr className="thead thead-condensed thead-blue">
+                                <th className="cid">{% trans '问题编号' %}</th>
+                                <th className="type hidden-xs">{% trans '问题类型' %}</th>
+                                <th className="info">{% trans '问题描述' %}</th>
+                                <th className="dtime hidden-xs">{% trans '提交时间' %}</th>
+                                <th className="status">{% trans '问题状态' %}</th>
+                                <th className="btns">{% trans '操作' %}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {rows}
+                            </tbody>
+                        </table>
+                        {more}
+                    </div>
+                </div>
+            </div>);
+        }
+    });
+
+    function PageView(props) {
+        return (<section className="main-list">
+            <div className="container">
+                <div className="clearfix">
+                    <div className="menu-box menu-user hidden-xs">
+                        <CUserNavBar activeItem="sm-question-list"/>
+                    </div>
+                    <div className="list-box">
+                        <CQuestionList source={props.source}/>
+                    </div>
+                </div>
+            </div>
+        </section>);
+    }
+
+    var isLogin = IsLogin();
+
+    ReactDOM.render(
+        <App isLogin={isLogin} ContentBox={
+            <PageView source="/api/question/get_question_list"/>
+        }/>
+        , document.getElementById("App")
+    );
+</script>
+
+</body>
+</html>

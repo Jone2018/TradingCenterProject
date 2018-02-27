@@ -1,0 +1,56 @@
+{% load i18n %}
+<div class="dialog-form">
+    <h4 class="title">{% trans '提币地址/账户管理' %}</h4>
+    <div class="btc-list">
+        <div class="info">
+            <div class="row">
+                <div class="col-sm-8"> {% trans '可以使用本站转账功能，通过网站账号（UID/邮箱/手机号）在本站用户之间转账无需确认直接到账。' %} </div>
+                <div class="col-sm-4 txt-right"><a href="#" class="btn btn-primary" onclick="return CoinBTCAdd()"><i
+                        class="icon-plus"></i> {% trans '增加新地址/账户' %}</a></div>
+            </div>
+        </div>
+        <div class="box">
+            <form name="frmDialogList" id="frmDialogList">
+                <div class="list">
+                    <ul class="row" id="btcAddrList">
+                        <li class="item col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="item-box">
+                                <div class="page-loading"><i class="icon-spin icon-spinner"></i> {% trans '正在加载...' %}
+                                </div>
+                            </div>
+                        </li>
+                        <!--<li class="item col-lg-4 col-md-4 col-sm-4 col-xs-12" id="btcItem1">
+                          <div class="item-box" onclick="CheckBtcList(1)">
+                            <div class="tl">BTC提现地址</div>
+                            <div class="addr">1GK3ajjjslssjdmdklsmcmzl,zl;slsldssa</div>
+                            <div class="lbl">BTC地址</div>
+                          </div>
+                        </li>
+
+                        <li class="item col-lg-4 col-md-4 col-sm-4 col-xs-12" id="btcItem2">
+                          <div class="item-box active" onclick="CheckBtcList(2)">
+                            <div class="tl clearfix"><span class="fl">BTC提现地址</span><span class="fr txt-orange">已认证</span></div>
+                            <div class="addr">1GK3ajjjslssjdmdklsmcmzl,zl;slsldssa</div>
+                            <div class="lbl">BTC地址</div>
+                          </div>
+                        </li>
+
+                        <li class="item col-lg-4 col-md-4 col-sm-4 col-xs-12" id="btcItem3">
+                          <div class="item-box" onclick="CheckBtcList(3)">
+                            <div class="tl">BTC提现地址</div>
+                            <div class="addr">1GK3ajjjslssjdmdklsmcmzl,zl;slsldssa</div>
+                            <div class="lbl">BTC地址</div>
+                          </div>
+                        </li>-->
+                    </ul>
+                </div>
+                <div class="btns">
+                    <button type="button" class="btn btn-info"
+                            onClick="CloseDialogX('winBtcList')">{% trans '取消' %}</button>
+                    <button type="button" class="btn btn-primary" onclick="ActBtcList()">{% trans '确定' %}</button>
+                </div>
+                <input name="id" type="hidden" value="0"/>
+            </form>
+        </div>
+    </div>
+</div>

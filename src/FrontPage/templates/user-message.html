@@ -1,0 +1,253 @@
+<!doctype html>
+{% load i18n %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
+    <link rel="shortcut icon" href="/static/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/usercenter.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/user-msg.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/layer/theme/default/layer.css">
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/jquery.scrollTo.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap/layer/layer.js"></script>
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/common.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/static/js/swiper/css/swiper.min.css">
+    <script src="/static/js/swiper/js/swiper.min.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script src="/static/js/accessLimit.js"></script>
+    <script src="/static/js/user-message.js"></script>
+
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div id="App"></div>
+
+<script type="text/babel" src="/static/jsx/approot.jsx"></script>
+<script type="text/babel" src="/static/jsx/header.jsx"></script>
+<script type="text/babel" src="/static/jsx/footer.jsx"></script>
+<script type="text/babel" src="/static/jsx/usernavbar.jsx"></script>
+<script type="text/babel">
+
+    function PageView(props) {
+        return (<section className="main-list msg-list">
+            <div className="container">
+                <div className="clearfix">
+                    <div className="menu-box menu-user hidden-xs">
+                        <CUserNavBar activeItem="sm-message"/>
+                    </div>
+                    <div className="list-box">
+                        <MessageList type={props.type} source={props.source}/>
+                    </div>
+                </div>
+            </div>
+        </section>);
+    }
+
+    var MessageList = React.createClass({
+        getInitialState: function () {
+            return {
+                items: [],
+                pageIndex: 1,
+                pageCount: 1,
+                non_count: 0,
+                hasMore: false,
+                status: 0,
+                type: this.props.type
+            };
+        },
+        componentDidMount: function componentDidMount() {
+            var type = this.state.type;
+            var pageIndex = this.state.pageIndex;
+            this.refreshMsg(type, pageIndex);
+            //console.log(type);
+        },
+        refreshMsg: function refreshMsg(type, pageIndex) {
+            ShowLoading("{% trans '正在加载' %}");
+
+            $.getJSON(this.props.source, {}, function (res) {
+                //console.log(res);
+
+                if (res.result) {
+                    this.setState({
+                        non_count: res.data.count
+                    });
+                }
+            }.bind(this));
+
+            var api = "/api/notice/get_all_messages";
+            if (type == 0) {
+                api = "/api/notice/get_notRead_messages";
+            }
+            else if (type == 1) {
+                api = "/api/notice/get_isRead_messages";
+            }
+
+            $.getJSON(api, {
+                limit: 10 * pageIndex,
+                page: 1
+            }, function (res) {
+
+                //console.log(res);
+                CloseLoading(500);
+
+                if (res.result) {
+                    var iMore = res.data && res.data.length == pageIndex * 10;
+
+                    this.setState({
+                        items: res.data,
+                        status: 1,
+                        hasMore: iMore,
+                        type: type,
+                        pageIndex: pageIndex
+                    });
+                }
+                else {
+                    this.setState({
+                        status: 2,
+                        hasMore: false,
+                        type: type,
+                        items: []
+                    });
+                }
+
+            }.bind(this));
+        },
+        submitHandler: function submitHandler(e) {
+            e.preventDefault();
+        },
+        loadHandler: function loadHandler(e) {
+            e.preventDefault();
+            var ths = $(e.target);
+            var type = ths.data("id");
+
+            $("#types .checked").removeClass("checked");
+            ths.addClass("checked");
+
+            this.refreshMsg(type, 1);
+
+        },
+        loadAllHandler: function loadAllHandler(e) {
+            e.preventDefault();
+            $("#types .checked").removeClass("checked");
+            this.refreshMsg(2, 1);
+        },
+        loadMoreHandler: function loadMoreHandler(e) {
+            e.preventDefault();
+            var type = this.state.type;
+            var index = this.state.pageIndex + 1;
+            this.refreshMsg(type, index);
+        },
+        actionHandler: function actionHandler(e) {
+            e.preventDefault();
+            var ths = $(e.target);
+            var flag = ths.data("flag");
+            if (flag == "read") {
+                MsgIsRead('#frmAction');
+            }
+            else if (flag == "delete") {
+                MsgDelete('#frmAction');
+            }
+        },
+        render: function render() {
+            var rows = [];
+            var status = this.state.status;
+            var moreLink = "";
+            if (status == 0) {
+                rows.push(<tr key='0'>
+                    <td colSpan="4" className="txt-no-records"><CLoading text="{% trans '正在加载中' %}"/></td>
+                </tr>);
+            }
+            else if (!this.state.items || this.state.items.length == 0) {
+                rows.push(<tr key='0'>
+                    <td colSpan="4" className="txt-no-records"> {% trans '没有找到匹配的信息' %}</td>
+                </tr>);
+            }
+            else {
+                this.state.items.forEach(function (item) {
+                    var url = "user-message-view.html?id=" + item.message_id;
+                    var dt = FormatDate(item.message_createTime, "yyyy-MM-dd");
+                    var css = item.message_isRead ? "titem txt-grey" : "titem";
+                    rows.push(<tr className={css} key={item.message_id}>
+                        <td className="cid"><input type="checkbox" name="message_id" value={item.message_id}/></td>
+                        <td className="title txt-left"><a href={url}>{item.message_title}</a></td>
+                        <td className="dtime">{dt}</td>
+                        <td className="type hidden-xs">{gettext(item.message_type)}</td>
+                    </tr>);
+                });
+
+                if (this.state.hasMore) {
+                    moreLink = <CLoadMore clickHandler={this.loadMoreHandler}/>;
+                }
+            }
+
+            return (<div className="item-box">
+                <h4 className="tb-title tb-title-border clearfix">
+                    <span className="tl txt-primary pull-left">{% trans '消息中心' %}
+                        <small>{% trans '(未读' %}<span>{this.state.non_count}</span>{% trans '封，' %}<a
+                            href="#" onClick={this.loadAllHandler}
+                            data-id="2">{% trans '查看全部消息' %}</a>)</small></span>
+                    <span className="pull-right btns">
+				<a href="#" className="btn btn-default" onClick={this.actionHandler} data-flag="read"><i
+                    className="icon-eye"></i>{% trans '标记为已读' %} </a>
+				<a href="#" className="btn btn-default" onClick={this.actionHandler} data-flag="delete"><i
+                    className="icon-trash"></i> {% trans '删除' %}</a>
+			</span>
+                    <span className="pull-right chkbox" id="types">
+            	<a href="#" onClick={this.loadHandler} data-id="0"><i
+                    className="icon-square"></i> {% trans '未读消息' %}</a>
+				<a href="#" onClick={this.loadHandler} data-id="1"><i
+                    className="icon-square"></i> {% trans '已读消息' %}</a>
+            </span>
+                </h4>
+                <form className="form-horizontal" id="frmAction" method="post" onSubmit={this.submitHandler}>
+                    <table className="tb-list tb-solid txt-sm">
+                        <thead>
+                        <tr className="thead thead-condensed">
+                            <td className="cid"></td>
+                            <td className="title txt-left">{% trans '消息内容' %}</td>
+                            <td className="dtime">{% trans '发生时间' %}</td>
+                            <td className="type hidden-xs">{% trans '消息类型' %}</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {rows}
+                        </tbody>
+                    </table>
+                </form>
+                {moreLink}
+            </div>);
+        }
+    });
+
+    var isLogin = IsLogin();
+
+    ReactDOM.render(
+        <App isLogin={isLogin} ContentBox={
+            <PageView type="2" source="/api/notice/get_message_count"/>
+        }/>
+        , document.getElementById("App")
+    );
+</script>
+
+</body>
+</html>

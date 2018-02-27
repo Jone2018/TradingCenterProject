@@ -1,0 +1,305 @@
+<!doctype html>
+{% load i18n %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
+    <link rel="shortcut icon" href="/static/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+
+    <link rel="stylesheet" type="text/css" href="/static/css/usercenter.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/recharge-wkc.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/dialog.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/layer/theme/default/layer.css">
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/jquery.scrollTo.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap/layer/layer.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/common.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/static/js/swiper/css/swiper.min.css">
+    <script src="/static/js/swiper/js/swiper.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/validator/css/bootstrapValidator.min.css">
+    <script src="/static/bootstrap/validator/js/bootstrapValidator.js"></script>
+    <script src="/static/js/accessLimit.js"></script>
+    <script src="/static/js/qrcode.js"></script>
+    <script src="/static/js/recharge-wkc.js"></script>
+
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div id="App"></div>
+
+<script type="text/babel" src="/static/jsx/approot.jsx"></script>
+<script type="text/babel" src="/static/jsx/header.jsx"></script>
+<script type="text/babel" src="/static/jsx/footer.jsx"></script>
+<script type="text/babel" src="/static/jsx/fmnavbar.jsx"></script>
+<script type="text/babel" src="/static/jsx/elements.jsx"></script>
+<script type="text/babel">
+
+    var WKCForm = React.createClass({
+        componentDidMount: function () {
+            RefreshCode('#rndCode');
+            BindWKC(this.chgHandler);
+        },
+        submitHandler: function (e) {
+            e.preventDefault();
+        },
+        chgHandler: function () {
+            this.props.changeHandler();
+        },
+        refreshHandler: function (e) {
+            e.preventDefault();
+            RefreshCode('#rndCode');
+        },
+        render: function () {
+            var userID = "0." + GetItem("uid");
+            return (<div className="wkc-form">
+                <h4 className="tb-title">{% trans '玩客币充值' %}</h4>
+                <div className="box">
+                    <div className="row">
+                        <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div><b className="txt-red">{% trans '充值之前请仔细阅读以下提示' %}：</b>
+                                <p>{% trans '（1）玩客币(WKC)充币金额小数部分的值为自己的UID号，如10.10001，若填写不正确，不保证入账时间；' %}</p>
+                                <p>{% trans '（2）玩客币充值数量小于10币，不保证入账时间；' %}</p>
+                                <p className="txt-red">{% trans '（3）在成功提交充值订单后将显示充值地址，请将玩客币转入该地址。' %}</p>
+                            </div>
+                            <div id="div_wkc_address" className="hidden">
+                                <b>{% trans '请将币转入这个地址' %}：</b>
+                                <p><span id="wkc_address"></span></p>
+                                <div><span id="wkc_qrc"></span></div>
+                            </div>
+                        </div>
+                        <div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <form className="form-horizontal" id="frmAction" method="post"
+                                  onSubmit={this.submitHandler}>
+                                <CFormGroup>
+                                    <CLabel>{% trans '转出地址' %}：</CLabel>
+                                    <CTextInput name="address" colIn="1" title="{% trans '请输入转出地址' %}"/>
+                                </CFormGroup>
+                                <CFormGroup className="form-group">
+                                    <CLabel>{% trans '充币数量' %}：</CLabel>
+                                    <CTextInput name="amount" id="amount" colIn="col-sm-4"
+                                                title="{% trans '请输入充币数量' %}"/>
+                                    <div className="col-sm-4 wkc-uid" id="wkcUID">{userID}</div>
+                                </CFormGroup>
+                                <CFormGroup>
+                                    <CLabel
+                                        className="col-sm-3 col-xs-12 control-label">{% trans '验&nbsp;&nbsp;证&nbsp;&nbsp;码' %}：</CLabel>
+                                    <CTextInput name="captcha_value" colIn="col-sm-4 col-xs-8"
+                                                title="{% trans '请输入验证码' %}"/>
+                                    <CLinkButton colIn="col-sm-4 col-xs-4" linkHandler={this.refreshHandler}>
+                                        <img src="/static/images/spacer.gif" id="rndCode" height="32"/>
+                                    </CLinkButton>
+                                </CFormGroup>
+                                <CFormGroup>
+                                    <CButton colIn="col-sm-offset-3 col-sm-9">{% trans '确定' %}</CButton>
+                                </CFormGroup>
+                                <CHidden name="captcha_key" id="captcha_key"/>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>);
+        }
+    });
+
+    function CWKCStatus(props) {
+        var st = props.status;
+        switch (props.status) {
+            case "0":
+                st = "{% trans '确认中' %}";
+                break;
+            case "1":
+                st = "{% trans '已撤销' %}";
+                break;
+            case "2":
+                st = "{% trans '确认成功' %}";
+                break;
+            case "3":
+                st = "{% trans '确认失败' %}";
+                break;
+        }
+        return <span>{st}</span>;
+    }
+
+
+    var WKCList = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0,
+                items: [],
+                pageIndex: 1,
+                pageCount: 0
+            };
+        },
+        componentDidMount: function () {
+            this.Refresh(1);
+        },
+        Refresh: function (pageIndex) {
+            var index = pageIndex || this.state.pageIndex;
+            //ShowLoading("正在加载...");
+
+            $.getJSON(this.props.source, {
+                page: index,
+                num_per_page: 10
+            }, function (res) {
+
+                //console.log(res);
+                //CloseLoading(500);
+
+                if (res.result) {
+                    this.setState({
+                        items: res.data,
+                        pageIndex: index,
+                        pageCount: res.num_pages,
+                        status: 1
+                    });
+                }
+                else {
+                    this.setState({
+                        status: 2,
+                        pageIndex: index,
+                        pageCount: 0
+                    });
+                }
+            }.bind(this));
+        },
+        cancelWKC: function (id, e) {
+            e.preventDefault();
+            CancelOrder(id, this.cancelSuccess);
+        },
+        cancelSuccess: function () {
+            this.Refresh(this.state.pageIndex);
+        },
+        clickHandler: function (e) {
+            e.preventDefault();
+            var ths = $(e.target);
+            var flag = ths.data("flag");
+            var index = this.state.pageIndex;
+            if (flag == "next") {
+                index++;
+            }
+            else if (flag == "prev") {
+                index--;
+            }
+            else {
+                return;
+            }
+
+            if (index <= 0) index = 1;
+            if (index >= this.state.pageCount) index = this.state.pageCount;
+
+            this.Refresh(index);
+        },
+        render: function () {
+            var rows = [];
+            if (this.state.status == 0) {
+                rows.push(<tr key='0'>
+                    <td colSpan="6"><CLoading text="{% trans '正在加载...' %}"/></td>
+                </tr>);
+            }
+            else {
+                if (!this.state.items || this.state.items.length == 0) {
+                    rows.push(<tr key='0'>
+                        <td colSpan="6" className="txt-no-records"> {% trans '没有找到匹配的记录' %}</td>
+                    </tr>);
+                }
+                else {
+                    var num = 0;
+                    this.state.items.forEach(function (item) {
+                        var id = item.id;
+                        var amount = FormatNumX(item.amount, 8);
+                        var time = FormatDate(item.create_time, "yyyy-MM-dd hh:mm");
+                        var status = gettext(item.status);
+                        var addr = item.address;
+                        var lnkIn = "--";
+                        if (status == "{% trans '确认中' %}") {
+                            lnkIn = (<a href="#" className="blue"
+                                        onClick={this.cancelWKC.bind(this, id)}>{% trans '撤消' %}</a>);
+                        }
+                        num++;
+
+                        rows.push(<tr className="titem" key={num}>
+                            <td className="id">{id}</td>
+                            <td className="addr">{addr}</td>
+                            <td className="amount">{amount}</td>
+                            <td className="time">{time}</td>
+                            <td className="status">{status}</td>
+                            <td className="btns">
+                                {lnkIn}
+                            </td>
+                        </tr>);
+                    }.bind(this));
+                }
+            }
+
+            return (<div className="wkc-list">
+                <h4 className="tb-title"><span className="tl">{% trans '玩客币充值记录' %}</span></h4>
+                <table className="tb-list tb-solid">
+                    <thead>
+                    <tr className="thead thead-blue thead-condensed">
+                        <th className="id">ID</th>
+                        <th className="addr">{% trans '转出地址' %}</th>
+                        <th className="amount">{% trans '充值金额' %}</th>
+                        <th className="time">{% trans '申请时间' %}</th>
+                        <th className="status">{% trans '充值状态' %}</th>
+                        <th className="btns">{% trans '操作' %}</th>
+                    </tr>
+
+                    </thead>
+                    <tbody>
+                    {rows}
+                    </tbody>
+                </table>
+                <CPager pageIndex={this.state.pageIndex} pageCount={this.state.pageCount}
+                        clickHandler={this.clickHandler}/>
+            </div>);
+        }
+    });
+
+    var PageView = React.createClass(
+        {
+            changeHandler: function () {
+                this.refs.refWKCList.Refresh(1);
+            },
+            render: function () {
+                return (<section className="main-list recharge-wkc-list">
+                    <div className="container">
+                        <div className="item-box">
+                            <WKCForm changeHandler={this.changeHandler}/>
+                            <WKCList ref="refWKCList" source={this.props.source}/>
+                        </div>
+                    </div>
+                </section>);
+            }
+        });
+
+    var isLogin = IsLogin();
+
+    ReactDOM.render(
+        <App isLogin={isLogin} ContentBox={
+            <PageView source="/api/finance/wkc_charge_list"/>
+        }/>
+        , document.getElementById("App")
+    );
+</script>
+</body>
+</html>

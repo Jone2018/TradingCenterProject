@@ -1,0 +1,208 @@
+<!doctype html>
+{% load i18n %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
+    <link rel="shortcut icon" href="/static/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/usercenter.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/layer/theme/default/layer.css">
+    <script src="/static/js/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="/static/js/jquery.scrollTo.js" type="text/javascript"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="/static/bootstrap/layer/layer.js" type="text/javascript"></script>
+    <script src="/static/js/jquery.cookie.js" type="text/javascript"></script>
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/common.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/validator/css/bootstrapValidator.min.css">
+    <script src="/static/bootstrap/validator/js/bootstrapValidator.js" type="text/javascript"></script>
+    <script src="/static/js/accessLimit.js" type="text/javascript"></script>
+    <script src="/static/js/user-tradepwd.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="/static/js/swiper/css/swiper.min.css">
+    <script src="/static/js/swiper/js/swiper.min.js"></script>
+
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js" type="text/javascript"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js" type="text/javascript"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js" type="text/javascript"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div id="App"></div>
+<!--
+<section class="main-list">
+  <div class="container">
+    <div class="clearfix">
+      <div class="menu-box menu-user hidden-xs">
+        <div class="item-box">
+          <div class="userinfo clearfix"> <img src="/static/images/pic-01.jpg" class="thu bind" data-key="avatar_url" />
+            <div class="info"><span class="bind" data-key="nickname">随遇而安</span><br>
+              UID <span class="bind" data-key="uid">13983</span></div>
+          </div>
+          <ul>
+            <li><a href="user-mobile.html"><i class="icon-mobile icon-large txt-center"></i>手机绑定</a></li>
+            <li><a href="user-email.html"><i class="icon-envelope"></i>邮箱绑定</a></li>
+            <li class="active"><a href="user-tradepwd.html"><i class="icon-lock icon-large"></i>交易密码</a></li>
+            <li><a href="user-idcard.html"><i class="icon-credit-card"></i>身份验证</a></li>
+            <li><a href="user-question.html"><i class="icon-question-circle"></i>我的工单</a></li>
+            <li><a href="user-question-list.html"><i class="icon-list-alt"></i>工单详情</a></li>
+            <li><a href="user-message.html"><i class="icon-paper-plane"></i>站内信</a></li>
+            <li><a href="user-api.html"><i class="icon-database"></i>我的API</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="list-box">
+        <div class="item-box">
+          <h4 class="tb-title tb-title-border"> <span class="tl">设置交易密码</span> </h4>
+          <div class="user-form">
+            <div class="form-box">
+              <form class="form-horizontal" name="frmAction" id="frmAction" method="post" onSubmit="return false">
+                <div class="form-group">
+                  <div class="col-sm-12">
+                    <div class="fld-info txt-center">您设置交易密码以后，每次登录后的首次挂单，需要输入交易密码，这样可以保障您的帐号安全。</div>
+                  </div>
+                </div>
+                <div class="form-group hide" id="is_set">
+                  <label class="col-sm-3 control-label">原密码：</label>
+                  <div class="col-sm-9">
+                    <input type="password" class="form-control fld-xs-block" id="old_password" name="old_password" placeholder="请输入6位数原密码" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">交易密码：</label>
+                  <div class="col-sm-9">
+                    <input type="password" class="form-control fld-xs-block" id="trade_password" name="trade_password" placeholder="请输入6位数密码" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">重复密码：</label>
+                  <div class="col-sm-9">
+                    <input type="password" class="form-control fld-xs-block" id="trade_password2" name="trade_password2" placeholder="请输入6位数密码" />
+                  </div>
+                </div>
+                <div class="form-group">
+                <label class="col-sm-3 control-label">验证码：</label>
+                <div class="col-sm-6 radio">
+                  <label>
+                    <input type="radio" name="captcha_type" value="phone" checked="checked" />
+                    手机</label>
+                  <label>
+                    <input type="radio" name="captcha_type" value="email" />
+                    邮箱</label>
+                </div>
+              </div>
+                <div class="form-group">
+                  <div class="col-sm-4 col-sm-offset-3">
+                    <input type="text" class="form-control fld-xs-block" id="captcha" name="captcha" placeholder="请输入验证码" />
+                  </div>
+                  <div class="col-sm-4"> <a href="#" class="btn-link fld-xs-block" onclick="return SendMsgX(this)">发送验证码</a> </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-sm-offset-3 col-sm-9">
+                    <button type="submit" class="btn btn-primary btn-block fld-xs-block">确定</button>
+                  </div>
+                </div>
+                <input type="hidden" name="email" id="email" value="" class="bind" data-key="email" />
+                <input type="hidden" name="phone_number" id="phone_number" value="" class="bind" data-key="phone_number_cn" />
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+-->
+<script type="text/babel" src="/static/jsx/approot.jsx"></script>
+<script type="text/babel" src="/static/jsx/header.jsx"></script>
+<script type="text/babel" src="/static/jsx/footer.jsx"></script>
+<script type="text/babel" src="/static/jsx/usernavbar.jsx"></script>
+<script type="text/babel" src="/static/jsx/elements.jsx"></script>
+<script type="text/babel">
+
+    function PageView(props) {
+        return (<section className="main-list">
+            <div className="container">
+                <div className="clearfix">
+                    <div className="menu-box menu-user hidden-xs">
+                        <CUserNavBar activeItem="sm-tradepwd"/>
+                    </div>
+                    <div className="list-box">
+                        <FormBox/>
+                    </div>
+                </div>
+            </div>
+        </section>);
+    }
+
+    var FormBox = React.createClass({
+        componentDidMount: function () {
+
+        },
+        submitHandler: function (e) {
+            e.preventDefault();
+        },
+        sendMsgHandler: function (e) {
+            e.preventDefault();
+            SendMsgX(e.target)
+        },
+        render: function () {
+            var css = GetItem("is_set_password") ? "form-group" : "form-group hidden";
+            var email = GetItem("email");
+            var mobi = GetItem("phone_number_cn");
+
+            return (<CFormBox title="{% trans '设置交易密码' %}" submitHandler={this.submitHandler}>
+                <CFormGroup>
+                    <CLabel>{% trans '交易密码' %}：</CLabel>
+                    <CTextInput type="password" name="trade_password" id="trade_password" colIn="1"
+                                title="{% trans '请输入6位数密码' %}"/>
+                </CFormGroup>
+                <CFormGroup>
+                    <CLabel>{% trans '重复密码：' %}</CLabel>
+                    <CTextInput type="password" name="trade_password2" id="trade_password2" colIn="1"
+                                title="{% trans '请输入6位数密码' %}"/>
+                </CFormGroup>
+                <CFormGroup>
+                    <CLabel>{% trans '验证码：' %}</CLabel>
+                    <CCol className="col-sm-6 radio">
+                        <CRadioBox name="captcha_type" value="phone" checked="checked" text="{% trans '手机' %}"/>
+                        <CRadioBox name="captcha_type" value="email" text="{% trans '邮箱' %}"/>
+                    </CCol>
+                </CFormGroup>
+                <CFormGroup>
+                    <CTextInput name="captcha" colIn="col-sm-4 col-sm-offset-3" title="{% trans '请输入验证码' %}"/>
+                    <CLinkButton className="btn-link fld-xs-block" colIn="col-sm-4" linkHandler={this.sendMsgHandler}
+                                 text="{% trans '发送验证码' %}"/>
+                </CFormGroup>
+                <CFormGroup>
+                    <CButton colIn="col-sm-offset-3 col-sm-9">{% trans '确定' %}</CButton>
+                </CFormGroup>
+                <CHidden name="email" id="email" value={email}/>
+                <CHidden name="phone_number" id="phone_number" value={mobi}/>
+            </CFormBox>);
+        }
+    });
+
+    var isLogin = IsLogin();
+
+    ReactDOM.render(
+        <App isLogin={isLogin} ContentBox={
+            <PageView/>
+        }/>
+        , document.getElementById("App")
+    );
+</script>
+</body>
+</html>

@@ -1,0 +1,314 @@
+<!doctype html>
+{% load i18n %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
+    <link rel="shortcut icon" href="/static/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/usercenter.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/user-id-upload.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/layer/theme/default/layer.css">
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/jquery.scrollTo.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap/layer/layer.js"></script>
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/common.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/static/js/swiper/css/swiper.min.css">
+    <script src="/static/js/swiper/js/swiper.min.js"></script>
+    <script src="/static/js/user-idcard-upload.js"></script>
+    <script src="/static/js/uploadifive/jquery.uploadifive.js"></script>
+    <script src="http://gosspublic.alicdn.com/aliyun-oss-sdk-4.4.4.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="/static/js/uploadifive/uploadifive.css">
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script src="/static/js/accessLimit.js"></script>
+
+    <script type="text/javascript">
+
+
+    </script>
+
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<body>
+<div id="App"></div>
+
+<script type="text/babel" src="/static/jsx/approot.jsx"></script>
+<script type="text/babel" src="/static/jsx/header.jsx"></script>
+<script type="text/babel" src="/static/jsx/footer.jsx"></script>
+<script type="text/babel" src="/static/jsx/usernavbar.jsx"></script>
+<script type="text/babel">
+
+    function PageView(props) {
+        return (<section className="main-list">
+            <div className="container">
+                <div className="clearfix">
+                    <div className="menu-box menu-user hidden-xs">
+                        <CUserNavBar activeItem="sm-idcard"/>
+                    </div>
+                    <div className="list-box">
+                        <CPhotoBox/>
+                    </div>
+                </div>
+            </div>
+        </section>);
+    }
+
+    function CPhotoItem(props) {
+        var css = "box icon_id0" + props.itemIndex;
+        var itemID = props.itemID;
+        var fldID = props.itemFld;
+        var txt = props.text;
+        return (<div className="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+            <div className={css} id={itemID}>
+                <div className="preview"></div>
+                <a href="#" className="txt-primary" data-rel={fldID} onClick={props.clickHandler}> {txt} </a>
+            </div>
+        </div>);
+    }
+
+    var CPhotoBox = React.createClass({
+        getInitialState: function () {
+            return {
+                fldID: '',
+                uploading: false,
+                front: '',
+                back: '',
+                handon: '',
+                key: "",
+                expires: "",
+                policy: "",
+                OSSAccessKeyId: "",
+                signature: ""
+            }
+        },
+        componentDidMount: function () {
+            this.formReset(false);
+        },
+        formReset: function (iClick) {
+            $("#frmUpload")[0].reset();
+            $.getJSON('/api/account/get_token', function (res) {
+                this.setState({
+                    key: res.dir,
+                    expires: res.expire,
+                    policy: res.policy,
+                    OSSAccessKeyId: res.accessid,
+                    signature: res.signature
+                });
+            }.bind(this));
+        },
+        submitHandler: function (e) {
+            e.preventDefault();
+            AjaxSubmitX("#frmAction");
+        },
+        changeVal: function (e) {
+            var ths = $(e.target);
+            var val = ths.val();
+            var nm = ths.attr("name");
+            if (nm == "pic_front") {
+                this.setState({
+                    front: val
+                });
+            }
+            else if (nm == "pic_back") {
+                this.setState({
+                    back: val
+                });
+            }
+            else if (nm == "pic_handon") {
+                this.setState({
+                    handon: val
+                });
+            }
+        },
+        skipHandler: function (e) {
+            e.preventDefault();
+            ShowConfirm("{% trans '提示' %}", "{% trans '您确定要跳过认证吗？跳过后信息将不保存' %}")
+        },
+        clickHandler: function (e) {
+            if (!this.state.uploading) {
+                var ths = $(e.target);
+                this.setState({
+                    fldID: ths.data("rel")
+                });
+                $("#file").trigger("click");
+
+                this.formReset(true);
+            }
+        },
+        changeFileHandler: function (e) {
+            var nm = $("#file").val();
+            var ext = GetExt(nm);
+            if (IsImage(ext)) {
+                var id = CreateRND(20);
+                var key = this.state.key + id + ext;
+                var frm = $("#frmUpload");
+                frm.find("input[name='key']").val(key);
+                frm.find("input[name='success_action_redirect']").val("https://www.chaobi.la/oss-success.html?id=" + id + "&s=" + key);
+                frm.submit();
+
+                this.CreatePreview();
+
+                this.setState({
+                    uploading: true
+                });
+
+                AjaxUpload(id, this.uploadComplete);
+            }
+            else {
+                ShowMsgError("{% trans '请选择有效的图片文件' %}");
+            }
+        },
+        CreatePreview: function () {
+            if (window.FileReader) {
+                var lnk = $("a[data-rel='" + this.state.fldID + "']");
+                if (lnk.length > 0) {
+                    var preview = lnk.parent().find(".preview");
+                    $("<img />").appendTo(preview);
+                    var img = preview.find("img");
+                    var file = document.getElementById("file").files[0];
+                    var reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    reader.onload = function (e) {
+                        preview.show();
+                        img.attr("src", e.target.result);
+                    }
+                }
+            }
+
+        },
+        uploadComplete: function (res) {
+            var type = this.state.fldID;
+            if (res.result) {
+                var src = res.src;
+                var front = (type == "pic_front" ? src : this.state.front);
+                var back = (type == "pic_back" ? src : this.state.back);
+                var handon = (type == "pic_handon" ? src : this.state.handon);
+                this.setState({
+                    front: front,
+                    back: back,
+                    handon: handon,
+                    uploading: false
+                });
+            }
+            else {
+                var lnk = $("a[data-rel='" + type + "']");
+                if (lnk.length > 0) {
+                    var preview = lnk.parent().find(".preview");
+                    preview.html("");
+                    preview.hide();
+                }
+                this.setState({
+                    uploading: false
+                });
+            }
+            this.formReset();
+        },
+        render: function () {
+            var realname = GetItem("temp_realname");
+            var id_card_no = GetItem("temp_id_card_no");
+            var id_type = GetItem("temp_id_type");
+
+            return (<div className="item-box">
+                <h4 className="tb-title tb-title-border clearfix"><span
+                    className="tl pull-left">{% trans '照片认证' %}</span>
+                    <a href="#" className="txt-primary pull-right" onClick={this.skipHandler}>{% trans '跳过' %}</a>
+                </h4>
+                <div className="form-idcard">
+                    <form method="post" name="frmAction" id="frmAction" onSubmit={this.submitHandler}>
+                        <div className="photo">
+                            <div className="row">
+                                <CPhotoItem itemIndex="1" itemID="picIDCard" itemFld="pic_front"
+                                            text="{% trans '上传正面' %}"
+                                            clickHandler={this.clickHandler}/>
+                                <CPhotoItem itemIndex="2" itemID="picIDCardBack" itemFld="pic_back"
+                                            text="{% trans '上传背面' %}"
+                                            clickHandler={this.clickHandler}/>
+                                <CPhotoItem itemIndex="3" itemID="picPersonal" itemFld="pic_handon"
+                                            text="{% trans '上传手持身份证' %}"
+                                            clickHandler={this.clickHandler}/>
+                            </div>
+                        </div>
+                        <div className="info">
+                            <div className="row">
+                                <div className="col-lg-12">
+                                    <div className="box">
+                                        <p>{% trans '照片要求' %}：<br/>
+                                            {% trans '1.请上传 李楠 (证件号：3****************2)对应的证件照片' %}<br/>
+                                            {% trans '示例图如下' %}：<br/>
+                                            {% trans '身份证正面照' %}<br/>
+                                            <img width="50%" height="auto" src="/static/images/example_front.png"/><br/>
+                                            {% trans '身份证背面照' %}<br/>
+                                            <img width="50%" height="auto" src="/static/images/example_back.png"/><br/>
+                                            {% trans '身份证手持照' %}<br/>
+                                            <img width="70%" height="auto"
+                                                 src="/static/images/example_handon.png"/><br/>
+                                            {% trans '2.文件大小不能大于6MB。文件格式必须为jpg、png或者gif。' %}<br/>
+                                            {% trans '3.手持身份证照片要求: 手持身份证照片，身份证信息清晰且无遮挡。' %} </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="btns">
+                            <div className="clearfix">
+                                <button type="submit"
+                                        className="btn btn-primary pull-left fld-xs-block">{% trans '下一步' %}</button>
+                                <a href="#"
+                                   className="btn btn-link txt-primary pull-right fld-xs-block">{% trans '操作指南' %}</a>
+                            </div>
+                        </div>
+                        <input name="pic_front" type="hidden" value={this.state.front} onChange={this.changeVal}/>
+                        <input name="pic_back" type="hidden" value={this.state.back} onChange={this.changeVal}/>
+                        <input name="pic_handon" type="hidden" value={this.state.handon} onChange={this.changeVal}/>
+                        <input name="realname" type="hidden" value={realname}/>
+                        <input name="id_card_no" type="hidden" value={id_card_no}/>
+                        <input name="id_type" type="hidden" value={id_type}/>
+                    </form>
+                    <div className="hidden">
+                        <form action="https://suiqiu-reainame.oss-cn-shanghai.aliyuncs.com" id="frmUpload"
+                              target="tgUpload" method="post" encType="multipart/form-data">
+                            <input type="hidden" name="OSSAccessKeyId" value={this.state.OSSAccessKeyId}/>
+                            <input type="hidden" name="policy" value={this.state.policy}/>
+                            <input type="hidden" name="signature" value={this.state.signature}/>
+                            <input type="hidden" name="key"/>
+                            <input type="hidden" name="success_action_redirect"/>
+                            <input type="hidden" name="success_action_status" value="201"/>
+                            <input name="file" type="file" id="file" onChange={this.changeFileHandler}/>
+                        </form>
+                        <iframe id="tgUpload" name="tgUpload" width="1" height="1"></iframe>
+                    </div>
+                </div>
+            </div>);
+        }
+    });
+
+    var isLogin = IsLogin();
+
+    ReactDOM.render(
+        <App isLogin={isLogin} ContentBox={
+            <PageView/>
+        }/>
+        , document.getElementById("App")
+    );
+</script>
+</body>
+</html>

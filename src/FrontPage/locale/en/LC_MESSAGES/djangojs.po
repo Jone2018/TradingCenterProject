@@ -1,0 +1,1761 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-12-07 12:05+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: FrontPage/static/js/accessLimit.js:15
+msgid "请登录后再访问"
+msgstr "Please login and visit again"
+
+#: FrontPage/static/js/accessLimit.js:15
+msgid "提示"
+msgstr "Hint"
+
+#: FrontPage/static/js/bill-query.js:51
+msgid "全部币种"
+msgstr "All currencies"
+
+#: FrontPage/static/js/bill.js:37
+msgid "请确认是否要撤消提币"
+msgstr "Please confirm whether you want to cancel the order"
+
+#: FrontPage/static/js/bill.js:37 FrontPage/static/js/recharge-wkc.js:166
+#: FrontPage/static/js/transaction.js:768
+msgid "撤消提示"
+msgstr "Undo hints"
+
+#: FrontPage/static/js/bill.js:38 FrontPage/static/js/recharge-wkc.js:167
+#: FrontPage/static/js/transaction.js:769
+msgid "正在撤消..."
+msgstr "Cancelled..."
+
+#: FrontPage/static/js/bill.js:59 FrontPage/static/js/recharge-wkc.js:195
+#: FrontPage/static/js/recharge.js:478 FrontPage/static/js/transaction.js:791
+#: FrontPage/static/js/user-message.js:108
+msgid "处理成功"
+msgstr "Success"
+
+#: FrontPage/static/js/common.js:73
+msgid "扫描微信二维码"
+msgstr "Scanning WeChat QR code"
+
+#: FrontPage/static/js/common.js:234 FrontPage/static/js/common.js:273
+msgid "处理中..."
+msgstr "In Process..."
+
+#: FrontPage/static/js/common.js:254 FrontPage/static/js/common.js:289
+#: FrontPage/static/js/common.js:421 FrontPage/static/js/common.js:579
+#: FrontPage/static/js/common.js:634 FrontPage/static/js/common.js:665
+#: FrontPage/static/js/recharge.js:201 FrontPage/static/js/recharge.js:261
+#: FrontPage/static/js/recharge.js:292 FrontPage/static/js/recharge.js:331
+msgid "服务端错误，请稍后再试"
+msgstr "Server error, please try again later"
+
+#: FrontPage/static/js/common.js:399
+msgid "正在退出..."
+msgstr "Exiting..."
+
+#: FrontPage/static/js/common.js:410
+msgid "账户已退出"
+msgstr "The account has been log out"
+
+#: FrontPage/static/js/common.js:507 FrontPage/static/js/recharge.js:113
+#: FrontPage/static/js/recharge.js:518 FrontPage/static/js/user-api.js:397
+msgid "正在加载..."
+msgstr "Loading..."
+
+#: FrontPage/static/js/common.js:536
+msgid "秒后可发送"
+msgstr "seconds before send again"
+
+#: FrontPage/static/js/common.js:559 FrontPage/static/js/common.js:614
+#: FrontPage/static/js/common.js:645
+msgid "验证码正在发送中..."
+msgstr "The Captcha is sending..."
+
+#: FrontPage/static/js/common.js:572 FrontPage/static/js/common.js:627
+#: FrontPage/static/js/common.js:658
+msgid "验证码发送成功"
+msgstr "Captcha sent successfully"
+
+#: FrontPage/static/js/common.js:592 FrontPage/static/js/forgot.js:21
+#: FrontPage/static/js/forgot.js:98 FrontPage/static/js/login.js:52
+msgid "请输入有效的邮箱地址"
+msgstr "Please enter a valid email address"
+
+#: FrontPage/static/js/common.js:604
+msgid "不是有效的邮箱地址"
+msgstr "It is not a valid email address"
+
+#: FrontPage/static/js/common.js:679 FrontPage/static/js/user-mobile.js:21
+msgid "请输入有效的手机号码"
+msgstr "Please enter a valid phone number"
+
+#: FrontPage/static/js/config.js:7 FrontPage/static/js/config_expand.js:7
+msgid "比特币"
+msgstr "Bitcoin"
+
+#: FrontPage/static/js/config.js:8 FrontPage/static/js/config_expand.js:8
+msgid "BTC比特币"
+msgstr "BTC Bitcoin"
+
+#: FrontPage/static/js/config.js:28 FrontPage/static/js/config_expand.js:28
+msgid "玩客币"
+msgstr "Wanke Coin"
+
+#: FrontPage/static/js/config.js:29 FrontPage/static/js/config.js:49
+#: FrontPage/static/js/config_expand.js:29
+#: FrontPage/static/js/config_expand.js:49
+#: FrontPage/static/js/config_expand.js:77
+msgid "WKC玩客币"
+msgstr "WKC Wanke Coin"
+
+#: FrontPage/static/js/config.js:70
+msgid "ETH以太坊"
+msgstr "ETH Ethereum"
+
+#: FrontPage/static/js/config_expand.js:106
+msgid "错误请求"
+msgstr "Error request"
+
+#: FrontPage/static/js/config_expand.js:110
+msgid "用户未登录"
+msgstr "User not logged in"
+
+#: FrontPage/static/js/config_expand.js:114
+msgid "请求参数格式错误"
+msgstr "Request parameter format error"
+
+#: FrontPage/static/js/config_expand.js:118
+msgid "获取图像验证码失败"
+msgstr "Failed to obtain image captcha"
+
+#: FrontPage/static/js/config_expand.js:122
+msgid "手机号码格式不正确"
+msgstr "The phone number is not in the right format"
+
+#: FrontPage/static/js/config_expand.js:126
+msgid "手机验证码已发送，请耐心等待"
+msgstr "Mobile phone verification code has been sent, please be patient"
+
+#: FrontPage/static/js/config_expand.js:130
+msgid "手机验证码发送失败"
+msgstr "Mobile phone verification code failed to send"
+
+#: FrontPage/static/js/config_expand.js:134
+msgid "手机号码不能为空"
+msgstr "Mobile phone number can not be empty"
+
+#: FrontPage/static/js/config_expand.js:138
+msgid "验证码校验失败"
+msgstr "Captcha validate failed"
+
+#: FrontPage/static/js/config_expand.js:142
+msgid "验证码不能为空"
+msgstr "Captcha cannot be empty"
+
+#: FrontPage/static/js/config_expand.js:146
+msgid "两次输入的密码不一致"
+msgstr "The password for the two input is inconsistent"
+
+#: FrontPage/static/js/config_expand.js:150
+msgid "密码至少需要8位"
+msgstr "The password needs at least 8 digits"
+
+#: FrontPage/static/js/config_expand.js:154
+msgid "用户注册失败"
+msgstr "User registration failed"
+
+#: FrontPage/static/js/config_expand.js:158
+msgid "用户名或密码错误"
+msgstr "ERROR Incorrect username or password"
+
+#: FrontPage/static/js/config_expand.js:162
+msgid "用户名或密码不能为空"
+msgstr "Username or password cannot be empty"
+
+#: FrontPage/static/js/config_expand.js:166
+msgid "用户名必须以字母开头，长度在4-18之间，且只能包含字母、数字和下划线"
+msgstr ""
+"user name must start with letters, length between 4-18, and can only contain "
+"letters, numbers and underscores"
+
+#: FrontPage/static/js/config_expand.js:170
+msgid "用户未激活"
+msgstr "Account not activated"
+
+#: FrontPage/static/js/config_expand.js:174
+msgid "输入密码错误"
+msgstr "Password input error"
+
+#: FrontPage/static/js/config_expand.js:178
+msgid "密码不能为空"
+msgstr "Password cannot be empty"
+
+#: FrontPage/static/js/config_expand.js:182
+msgid "增加BTC地址失败"
+msgstr "Failed to add BTC address"
+
+#: FrontPage/static/js/config_expand.js:186
+msgid "该手机号码未注册"
+msgstr "PhoneNumber not registered"
+
+#: FrontPage/static/js/config_expand.js:190
+msgid "该手机号码已注册"
+msgstr "PhoneNumber has been registered"
+
+#: FrontPage/static/js/config_expand.js:194
+msgid "无法获取ICO项目信息"
+msgstr "Unable to get ICO project information"
+
+#: FrontPage/static/js/config_expand.js:198
+msgid "获取用户资金失败"
+msgstr "Failed to get user funds"
+
+#: FrontPage/static/js/config_expand.js:202
+msgid "获取财务记录失败"
+msgstr "Failed to get financial records"
+
+#: FrontPage/static/js/config_expand.js:206
+msgid "新增提币地址失败"
+msgstr "Failed to add coin address"
+
+#: FrontPage/static/js/config_expand.js:210
+msgid "取消提币失败"
+msgstr "Failed to cancel withdraw"
+
+#: FrontPage/static/js/config_expand.js:214
+msgid "提币失败"
+msgstr "Failed to withdraw"
+
+#: FrontPage/static/js/config_expand.js:218
+msgid "获取提币地址失败"
+msgstr "Failed to get withdraw address"
+
+#: FrontPage/static/js/config_expand.js:222
+msgid "请确认充值数量，必须为数字"
+msgstr "Please confirm the amount of recharge, must be a number"
+
+#: FrontPage/static/js/config_expand.js:226
+msgid "请确认充值数量，必须大于0.001"
+msgstr "Please confirm that the amount of recharge must be greater than 0.001"
+
+#: FrontPage/static/js/config_expand.js:230
+msgid "提交ICO订单失败"
+msgstr "Failed to submit ICO order"
+
+#: FrontPage/static/js/config_expand.js:234
+msgid "请确认提现数量，提现数量必须小于可用余额"
+msgstr ""
+"Please confirm the amount of withdrawals and the amount of withdrawals must "
+"be less than the available balance"
+
+#: FrontPage/static/js/config_expand.js:238
+#: FrontPage/static/js/config_expand.js:350
+msgid "无法获取ICO订单信息"
+msgstr "Failed to get ICO order information"
+
+#: FrontPage/static/js/config_expand.js:242
+msgid "找不到此币种，请确认币种信息"
+msgstr "Cannot find this currency. Please confirm currency information"
+
+#: FrontPage/static/js/config_expand.js:246
+msgid "该地址备注已添加过，请重新添加备注信息"
+msgstr "This address label has already been used. Please try another label."
+
+#: FrontPage/static/js/config_expand.js:250
+msgid "用户资金不足"
+msgstr "Insufficient funds"
+
+#: FrontPage/static/js/config_expand.js:254
+msgid "冻结资金失败"
+msgstr "Freezing capital failure"
+
+#: FrontPage/static/js/config_expand.js:258
+msgid "订单数据为空"
+msgstr "The order is empty"
+
+#: FrontPage/static/js/config_expand.js:262
+msgid "解冻资金失败"
+msgstr "Thawing capital failure"
+
+#: FrontPage/static/js/config_expand.js:266
+msgid "不支持该交易对"
+msgstr "The transaction is not supported"
+
+#: FrontPage/static/js/config_expand.js:270
+msgid "交易价格必须大于0"
+msgstr "Transaction price must be greater than 0"
+
+#: FrontPage/static/js/config_expand.js:274
+msgid "交易数量必须大于0"
+msgstr "The amount of the transaction must be greater than 0"
+
+#: FrontPage/static/js/config_expand.js:278
+msgid "仅支持买单与卖单"
+msgstr "Bid or ask only"
+
+#: FrontPage/static/js/config_expand.js:282
+msgid "不支持该交易动作"
+msgstr "This transaction is not supported"
+
+#: FrontPage/static/js/config_expand.js:286
+msgid "交易下单失败"
+msgstr "Fail to order"
+
+#: FrontPage/static/js/config_expand.js:290
+msgid "无法获取交易订单信息"
+msgstr "Unable to obtain the order information"
+
+#: FrontPage/static/js/config_expand.js:294
+msgid "撤消交易订单失败"
+msgstr "Failed to cancel the order"
+
+#: FrontPage/static/js/config_expand.js:298
+msgid "估值或投资额不能负数"
+msgstr "Valuation or investment cannot be negative"
+
+#: FrontPage/static/js/config_expand.js:302
+msgid "获取交易订单列表失败"
+msgstr "Failed to get the order list"
+
+#: FrontPage/static/js/config_expand.js:306
+msgid "删除提币地址失败"
+msgstr "Failed to delete the withdraw address"
+
+#: FrontPage/static/js/config_expand.js:310
+msgid "邮件地址格式错误"
+msgstr "Email address format error"
+
+#: FrontPage/static/js/config_expand.js:314
+msgid "邮件链接已发送，请耐心等待"
+msgstr "Mail link has been sent, please be patient"
+
+#: FrontPage/static/js/config_expand.js:318
+msgid "邮件地址不能为空"
+msgstr "The email address cannot be empty"
+
+#: FrontPage/static/js/config_expand.js:322
+msgid "邮件发送失败"
+msgstr "Failed to send mail"
+
+#: FrontPage/static/js/config_expand.js:326
+msgid "邮件激活失败"
+msgstr "Failed to activate mail"
+
+#: FrontPage/static/js/config_expand.js:330
+msgid "邮件地址已注册"
+msgstr "This email address has been registered"
+
+#: FrontPage/static/js/config_expand.js:334
+msgid "修改邮件地址失败"
+msgstr "Failed to modify mail address"
+
+#: FrontPage/static/js/config_expand.js:338
+msgid "该手机号码与原手机号码一致，请更换手机号码"
+msgstr ""
+"This phone number is the same as the original phone number, please replace "
+"the phone number"
+
+#: FrontPage/static/js/config_expand.js:342
+msgid "该邮箱与原邮箱地址一致，请更换邮箱地址"
+msgstr ""
+"This mailbox is the same as the original email address. Please change the "
+"email address"
+
+#: FrontPage/static/js/config_expand.js:346
+msgid "交易密码不能与原交易密码一致"
+msgstr ""
+"The transaction password cannot be the same as the original transaction "
+"password"
+
+#: FrontPage/static/js/config_expand.js:354
+#: FrontPage/static/js/user-idcard-upload.js:209
+msgid "真实姓名不能为空"
+msgstr "Real name can't be empty"
+
+#: FrontPage/static/js/config_expand.js:358
+msgid "请上传身份证正面照片"
+msgstr "Please upload a photo of the front of your ID card"
+
+#: FrontPage/static/js/config_expand.js:362
+msgid "请上传身份证反面照片"
+msgstr "Please upload a photo of the back of your ID card"
+
+#: FrontPage/static/js/config_expand.js:366
+msgid "请上传手持身份证照片"
+msgstr "Please upload a photo with your ID card in hand"
+
+#: FrontPage/static/js/config_expand.js:370
+msgid "设置手机号码失败"
+msgstr "Failed to set phone number"
+
+#: FrontPage/static/js/config_expand.js:374
+msgid "用户实名认证提交失败"
+msgstr "Failed to submit user authentication"
+
+#: FrontPage/static/js/config_expand.js:378
+msgid "用户资料修改失败"
+msgstr "Failed to modify user data"
+
+#: FrontPage/static/js/config_expand.js:382
+msgid "电子邮箱已被绑定"
+msgstr "The mailbox has been bound"
+
+#: FrontPage/static/js/config_expand.js:386
+msgid "该花名已被占用，请更换后重新尝试"
+msgstr "The nickname has been occupied. Please try another one."
+
+#: FrontPage/static/js/config_expand.js:390
+msgid "自动交款选项设置错误"
+msgstr "Automatic payment setting error"
+
+#: FrontPage/static/js/config_expand.js:394
+msgid "充币地址被禁用"
+msgstr "The recharge address is disabled"
+
+#: FrontPage/static/js/config_expand.js:398
+msgid "ICO项目已锁定，不允许下单"
+msgstr "The ICO project is locked. Can not be traded anymore."
+
+#: FrontPage/static/js/config_expand.js:402
+msgid "今日提币金额已达上限"
+msgstr "Today's withdraw limits has been reached"
+
+#: FrontPage/static/js/config_expand.js:406
+msgid "当前状态不支持撤单"
+msgstr "The current state does not allow cancellation"
+
+#: FrontPage/static/js/config_expand.js:410
+msgid "交易数量必须大于0.1"
+msgstr "The amout must be greater than 0.1"
+
+#: FrontPage/static/js/config_expand.js:414
+msgid "该交易对不存在"
+msgstr "The transaction does not exist"
+
+#: FrontPage/static/js/config_expand.js:418
+msgid "对方账户信息不正确"
+msgstr "Counterparty's account information is incorrect"
+
+#: FrontPage/static/js/config_expand.js:422
+msgid "转账失败"
+msgstr "Failed to transfer"
+
+#: FrontPage/static/js/config_expand.js:426
+msgid "不能给自己转账"
+msgstr "Can't transfer to yourself"
+
+#: FrontPage/static/js/config_expand.js:430
+msgid "对方账户未激活"
+msgstr "Counterparty's account is not activated"
+
+#: FrontPage/static/js/config_expand.js:434
+msgid "转账数量必须大于0"
+msgstr "The amount of transfer must be greater than 0"
+
+#: FrontPage/static/js/config_expand.js:438
+msgid "请先设置交易密码"
+msgstr "Please set the transaction password first"
+
+#: FrontPage/static/js/config_expand.js:442
+msgid "不支持的工单类型"
+msgstr "Unsupported ticket type"
+
+#: FrontPage/static/js/config_expand.js:446
+msgid "问题描述不能为空"
+msgstr "The problem description can not be empty"
+
+#: FrontPage/static/js/config_expand.js:450
+msgid "创建工单失败"
+msgstr "Failed to create ticket"
+
+#: FrontPage/static/js/config_expand.js:454
+msgid "获取工单列表失败"
+msgstr "Failed to get the ticket list"
+
+#: FrontPage/static/js/config_expand.js:458
+msgid "获取工单详情失败"
+msgstr "Failed to get details of ticket"
+
+#: FrontPage/static/js/config_expand.js:462
+msgid "获取公告列表失败"
+msgstr "Failed to get the announcement list"
+
+#: FrontPage/static/js/config_expand.js:466
+msgid "获取公告详情失败"
+msgstr "Failure to obtain announcement details"
+
+#: FrontPage/static/js/config_expand.js:470
+#: FrontPage/static/js/transaction.js:511
+#: FrontPage/static/js/transaction.js:677
+msgid "交易金额必须大于0.000005"
+msgstr "The transaction amount must be greater than 0.000005"
+
+#: FrontPage/static/js/config_expand.js:474
+msgid "获取BTC/CNY汇率失败"
+msgstr "Failed to get BTC/CNY exchange rate"
+
+#: FrontPage/static/js/config_expand.js:478
+msgid "系统维护中"
+msgstr "System maintenance..."
+
+#: FrontPage/static/js/config_expand.js:482
+msgid "API密钥对数量超过上限"
+msgstr "The number of API key pairs exceeds the upper limit"
+
+#: FrontPage/static/js/config_expand.js:486
+msgid "IP地址格式错误"
+msgstr "IP address format error"
+
+#: FrontPage/static/js/config_expand.js:490
+msgid "该API权限不存在"
+msgstr "This API permission does not exist"
+
+#: FrontPage/static/js/config_expand.js:494
+msgid "该API密钥对不存在"
+msgstr "This API key pair does not exist"
+
+#: FrontPage/static/js/config_expand.js:498
+msgid "API密钥对描述不能重复"
+msgstr "API key pair descriptions cannot be duplicated"
+
+#: FrontPage/static/js/config_expand.js:502
+msgid "比特币地址输入不正确"
+msgstr "Incorrect bitcoin address input"
+
+#: FrontPage/static/js/config_expand.js:506
+msgid "签名不正确"
+msgstr "Incorrect signature"
+
+#: FrontPage/static/js/config_expand.js:510
+msgid "领取ULOGOS失败"
+msgstr "Failed to receive ULOGOS"
+
+#: FrontPage/static/js/config_expand.js:514
+msgid "比特币区块高度478558快照中不存在该地址"
+msgstr "This address is not in the bitcoin block-height-478558 snapshot"
+
+#: FrontPage/static/js/config_expand.js:518
+msgid "比特币地址余额不对"
+msgstr "Bitcoin address balance is incorrect"
+
+#: FrontPage/static/js/config_expand.js:522
+msgid "比特币地址余额获取失败"
+msgstr "Failed to get bitcoin address balance"
+
+#: FrontPage/static/js/config_expand.js:526
+msgid "暂不支持该类型比特币地址领取ULOGOS"
+msgstr "This type of bitcoin address has not been supported to receive ULOGOS"
+
+#: FrontPage/static/js/config_expand.js:530
+msgid "获取账单详情失败"
+msgstr "Failed to obtain billing details"
+
+#: FrontPage/static/js/config_expand.js:534
+msgid "获取OTC所在地列表失败"
+msgstr "Failed to get the list of OTC locations"
+
+#: FrontPage/static/js/config_expand.js:538
+msgid "获取OTC列表失败"
+msgstr "Failed to get OTC list"
+
+#: FrontPage/static/js/config_expand.js:542
+msgid "删除工单失败"
+msgstr "Failed to delete ticket"
+
+#: FrontPage/static/js/config_expand.js:546
+#: FrontPage/static/js/config_expand.js:570
+msgid "玩客币地址格式不正确"
+msgstr "The WKC address format is incorrect"
+
+#: FrontPage/static/js/config_expand.js:550
+msgid "充值数量大于1"
+msgstr "Recharge amount is greater than 1"
+
+#: FrontPage/static/js/config_expand.js:554
+msgid "尚未进行实名认证"
+msgstr "Real name authentication hasn't been done yet"
+
+#: FrontPage/static/js/config_expand.js:558
+msgid "获取实名认证信息失败"
+msgstr "Failed to obtain real name authentication information"
+
+#: FrontPage/static/js/config_expand.js:562
+msgid "不支持的证件类型"
+msgstr "Unsupported document type"
+
+#: FrontPage/static/js/config_expand.js:566
+msgid "API权限ID格式错误"
+msgstr "API permission ID format error"
+
+#: FrontPage/static/js/config_expand.js:574
+msgid "玩客币充值数量必须至少为1"
+msgstr "Please confirm that the amount of recharge must be greater than 1"
+
+#: FrontPage/static/js/config_expand.js:580
+#: FrontPage/static/js/config_expand.js:590
+msgid "买单"
+msgstr "Bid"
+
+#: FrontPage/static/js/config_expand.js:584
+#: FrontPage/static/js/config_expand.js:594
+msgid "卖单"
+msgstr "Ask"
+
+#: FrontPage/static/js/config_expand.js:600
+msgid "未成交"
+msgstr "Not deal"
+
+#: FrontPage/static/js/config_expand.js:604
+#: FrontPage/static/js/config_expand.js:630
+msgid "部分成交"
+msgstr "Deal partly"
+
+#: FrontPage/static/js/config_expand.js:608
+msgid "全部成交"
+msgstr "Deal done"
+
+#: FrontPage/static/js/config_expand.js:612
+#: FrontPage/static/js/config_expand.js:626
+msgid "正在撤消"
+msgstr "Cancelled..."
+
+#: FrontPage/static/js/config_expand.js:616
+msgid "部分撤消"
+msgstr "Cancelled partly"
+
+#: FrontPage/static/js/config_expand.js:620
+msgid "全部撤消"
+msgstr "All Cancelled"
+
+#: FrontPage/static/js/config_expand.js:634
+#: FrontPage/static/js/config_expand.js:668
+msgid "已撤消"
+msgstr "Cancelled"
+
+#: FrontPage/static/js/config_expand.js:638
+msgid "无法撤消"
+msgstr "Cannot cancel"
+
+#: FrontPage/static/js/config_expand.js:644
+msgid "普通订单"
+msgstr "Regular order"
+
+#: FrontPage/static/js/config_expand.js:648
+msgid "撤消订单"
+msgstr "Cancel order"
+
+#: FrontPage/static/js/config_expand.js:654
+msgid "买入"
+msgstr "Buy"
+
+#: FrontPage/static/js/config_expand.js:658
+msgid "卖出"
+msgstr "Sell"
+
+#: FrontPage/static/js/config_expand.js:664
+msgid "已成交"
+msgstr "concluded"
+
+#: FrontPage/static/js/config_expand.js:672
+msgid "待成交"
+msgstr "Not completed"
+
+#: FrontPage/static/js/config_expand.js:678
+msgid "未提交"
+msgstr "Unsubmitted"
+
+#: FrontPage/static/js/config_expand.js:682
+msgid "待审核"
+msgstr "Under verification"
+
+#: FrontPage/static/js/config_expand.js:686
+msgid "即将开始"
+msgstr "About to start"
+
+#: FrontPage/static/js/config_expand.js:690
+msgid "进行中"
+msgstr "On going"
+
+#: FrontPage/static/js/config_expand.js:694
+#: FrontPage/static/js/config_expand.js:724
+msgid "已锁定"
+msgstr "Locked"
+
+#: FrontPage/static/js/config_expand.js:698
+msgid "已成功"
+msgstr "Succeeded"
+
+#: FrontPage/static/js/config_expand.js:702
+msgid "失败"
+msgstr "Failed"
+
+#: FrontPage/static/js/config_expand.js:706
+msgid "未通过"
+msgstr "Verification failed"
+
+#: FrontPage/static/js/config_expand.js:710
+#: FrontPage/static/js/config_expand.js:804
+msgid "审核通过"
+msgstr "Verification passed"
+
+#: FrontPage/static/js/config_expand.js:716
+msgid "已提交"
+msgstr "Submitted"
+
+#: FrontPage/static/js/config_expand.js:720
+#: FrontPage/static/js/config_expand.js:776
+#: FrontPage/static/js/config_expand.js:786
+#: FrontPage/static/js/config_expand.js:816
+msgid "已撤销"
+msgstr "Cancelled"
+
+#: FrontPage/static/js/config_expand.js:728
+msgid "已中标"
+msgstr "Winning bid"
+
+#: FrontPage/static/js/config_expand.js:732
+msgid "候补"
+msgstr "Waiting"
+
+#: FrontPage/static/js/config_expand.js:736
+msgid "出局"
+msgstr "Out"
+
+#: FrontPage/static/js/config_expand.js:740
+msgid "待认购"
+msgstr "To be purchased"
+
+#: FrontPage/static/js/config_expand.js:744
+msgid "弃标"
+msgstr "Discarded"
+
+#: FrontPage/static/js/config_expand.js:748
+msgid "已过期"
+msgstr "Expired"
+
+#: FrontPage/static/js/config_expand.js:752
+msgid "认购成功"
+msgstr "Purchased"
+
+#: FrontPage/static/js/config_expand.js:758
+#: FrontPage/static/js/config_expand.js:1078
+msgid "充值"
+msgstr "Recharge"
+
+#: FrontPage/static/js/config_expand.js:762
+#: FrontPage/static/js/config_expand.js:1082
+msgid "提现"
+msgstr "Withdraw"
+
+#: FrontPage/static/js/config_expand.js:768
+#: FrontPage/static/js/config_expand.js:782
+msgid "确认中"
+msgstr "Pending"
+
+#: FrontPage/static/js/config_expand.js:772
+msgid "已确认"
+msgstr "Confirmed"
+
+#: FrontPage/static/js/config_expand.js:790
+msgid "确认成功"
+msgstr "Confirmed"
+
+#: FrontPage/static/js/config_expand.js:794
+msgid "确认失败"
+msgstr "Failed"
+
+#: FrontPage/static/js/config_expand.js:800
+msgid "审核中"
+msgstr "Under verification"
+
+#: FrontPage/static/js/config_expand.js:808
+msgid "审核未通过"
+msgstr "Verification failed"
+
+#: FrontPage/static/js/config_expand.js:812
+msgid "已汇出"
+msgstr "Remitted"
+
+#: FrontPage/static/js/config_expand.js:822
+#: FrontPage/static/js/config_expand.js:836
+msgid "已冻结"
+msgstr "Frozen"
+
+#: FrontPage/static/js/config_expand.js:826
+#: FrontPage/static/js/config_expand.js:832
+msgid "已解冻"
+msgstr "Thawed"
+
+#: FrontPage/static/js/config_expand.js:842
+msgid "已过户"
+msgstr "Transferred"
+
+#: FrontPage/static/js/config_expand.js:846
+#: FrontPage/static/js/config_expand.js:856
+#: FrontPage/static/js/config_expand.js:866
+#: FrontPage/static/js/config_expand.js:876
+msgid "已取消"
+msgstr "Cancelled"
+
+#: FrontPage/static/js/config_expand.js:852
+msgid "已转账"
+msgstr "Transferred"
+
+#: FrontPage/static/js/config_expand.js:862
+msgid "已到账"
+msgstr "Transferred"
+
+#: FrontPage/static/js/config_expand.js:872
+msgid "已扣除"
+msgstr "Deducted"
+
+#: FrontPage/static/js/config_expand.js:882
+msgid "充值订单"
+msgstr "Recharge order"
+
+#: FrontPage/static/js/config_expand.js:886
+msgid "提现订单"
+msgstr "Withdraw order"
+
+#: FrontPage/static/js/config_expand.js:890
+#: FrontPage/static/js/config_expand.js:968
+#: FrontPage/static/js/config_expand.js:1062
+msgid "资金发放"
+msgstr "Funds returned"
+
+#: FrontPage/static/js/config_expand.js:894
+msgid "资金过户"
+msgstr "Funds transfered"
+
+#: FrontPage/static/js/config_expand.js:898
+msgid "手续费"
+msgstr "Transaction fee"
+
+#: FrontPage/static/js/config_expand.js:902
+msgid "资金冻结"
+msgstr "Funds frozen"
+
+#: FrontPage/static/js/config_expand.js:906
+msgid "资金解冻"
+msgstr "Funds unfrozen"
+
+#: FrontPage/static/js/config_expand.js:910
+msgid "资金转账"
+msgstr "Funds transfer"
+
+#: FrontPage/static/js/config_expand.js:916
+#: FrontPage/static/js/config_expand.js:1026
+msgid "充值确认中"
+msgstr "Recharge in confirm"
+
+#: FrontPage/static/js/config_expand.js:920
+#: FrontPage/static/js/config_expand.js:1018
+msgid "充值已确认"
+msgstr "Recharge confirmed"
+
+#: FrontPage/static/js/config_expand.js:924
+#: FrontPage/static/js/config_expand.js:1022
+msgid "充值已取消"
+msgstr "Recharge cancelled"
+
+#: FrontPage/static/js/config_expand.js:928
+#: FrontPage/static/js/config_expand.js:1038
+msgid "提现申请"
+msgstr "Withdraw application"
+
+#: FrontPage/static/js/config_expand.js:932
+msgid "提现审核成功"
+msgstr "Withdraw verification passed"
+
+#: FrontPage/static/js/config_expand.js:936
+#: FrontPage/static/js/config_expand.js:1034
+msgid "提现审核失败"
+msgstr "Withdraw verification failed"
+
+#: FrontPage/static/js/config_expand.js:940
+msgid "提现已汇出"
+msgstr "Withdraw remitted"
+
+#: FrontPage/static/js/config_expand.js:944
+#: FrontPage/static/js/config_expand.js:1030
+msgid "提现取消"
+msgstr "Withdraw cancelled"
+
+#: FrontPage/static/js/config_expand.js:948
+msgid "ICO订单提交"
+msgstr "Submit ICO order"
+
+#: FrontPage/static/js/config_expand.js:952
+msgid "ICO订单撤销"
+msgstr "Cancel ICO order"
+
+#: FrontPage/static/js/config_expand.js:956
+msgid "ICO订单放弃候补"
+msgstr "Give up the waiting ICO order"
+
+#: FrontPage/static/js/config_expand.js:960
+msgid "ICO订单放弃中标"
+msgstr "Give up the winning ICO bid"
+
+#: FrontPage/static/js/config_expand.js:964
+msgid "ICO订单认购成功"
+msgstr "Fulfill the ICO order"
+
+#: FrontPage/static/js/config_expand.js:972
+#: FrontPage/static/js/config_expand.js:1058
+msgid "资金发放取消"
+msgstr "Funds transfer cancelled"
+
+#: FrontPage/static/js/config_expand.js:976
+msgid "ulogos清退"
+msgstr "Return ulogos"
+
+#: FrontPage/static/js/config_expand.js:980
+msgid "交易订单提交"
+msgstr "Transaction order submission"
+
+#: FrontPage/static/js/config_expand.js:984
+msgid "交易订单撤消"
+msgstr "Transaction order revocation"
+
+#: FrontPage/static/js/config_expand.js:988
+msgid "交易订单返还"
+msgstr "Transaction order return"
+
+#: FrontPage/static/js/config_expand.js:992
+msgid "交易订单收入"
+msgstr "Transaction order revenue"
+
+#: FrontPage/static/js/config_expand.js:996
+msgid "交易订单支出"
+msgstr "Transaction order expenditure"
+
+#: FrontPage/static/js/config_expand.js:1000
+#: FrontPage/static/js/config_expand.js:1054
+msgid "转账收入"
+msgstr "Transfer income"
+
+#: FrontPage/static/js/config_expand.js:1004
+#: FrontPage/static/js/config_expand.js:1050
+msgid "转账支出"
+msgstr "Transfer expenditure"
+
+#: FrontPage/static/js/config_expand.js:1008
+#: FrontPage/static/js/config_expand.js:1046
+msgid "转账收入取消"
+msgstr "Transfer income cancelled"
+
+#: FrontPage/static/js/config_expand.js:1012
+#: FrontPage/static/js/config_expand.js:1042
+msgid "转账支出取消"
+msgstr "transfer expenditure cancelled"
+
+#: FrontPage/static/js/config_expand.js:1068
+msgid "待处理"
+msgstr "Pending"
+
+#: FrontPage/static/js/config_expand.js:1072
+msgid "已处理"
+msgstr "deal"
+
+#: FrontPage/static/js/config_expand.js:1086
+msgid "账户"
+msgstr "Account"
+
+#: FrontPage/static/js/config_expand.js:1090
+msgid "转账"
+msgstr "Transfer"
+
+#: FrontPage/static/js/config_expand.js:1094
+#: FrontPage/static/js/config_expand.js:1118
+msgid "其它"
+msgstr "Other"
+
+#: FrontPage/static/js/config_expand.js:1100
+msgid "未激活"
+msgstr "Not activated"
+
+#: FrontPage/static/js/config_expand.js:1104
+msgid "已激活"
+msgstr "Activated"
+
+#: FrontPage/static/js/config_expand.js:1110
+msgid "通知"
+msgstr "Notice"
+
+#: FrontPage/static/js/config_expand.js:1114
+msgid "活动"
+msgstr "Activity"
+
+#: FrontPage/static/js/config_expand.js:1124
+msgid "官方公告"
+msgstr "Official announcement"
+
+#: FrontPage/static/js/config_expand.js:1128
+msgid "论证公告"
+msgstr "Argumentation announcement"
+
+#: FrontPage/static/js/config_expand.js:1132
+msgid "停牌公告"
+msgstr "Suspension notice"
+
+#: FrontPage/static/js/config_expand.js:1138
+msgid "随求交易所股东"
+msgstr "SuiQiu exchange shareholders"
+
+#: FrontPage/static/js/forgot.js:7 FrontPage/static/js/login.js:38
+#: FrontPage/static/js/recharge-wkc.js:75 FrontPage/static/js/recharge.js:595
+#: FrontPage/static/js/recharge.js:707 FrontPage/static/js/recharge.js:780
+#: FrontPage/static/js/register-idcard.js:4
+#: FrontPage/static/js/register-trade-pwd.js:4
+#: FrontPage/static/js/register.js:6 FrontPage/static/js/user-api.js:68
+#: FrontPage/static/js/user-api.js:187 FrontPage/static/js/user-api.js:277
+#: FrontPage/static/js/user-api.js:341 FrontPage/static/js/user-email.js:6
+#: FrontPage/static/js/user-idcard.js:6 FrontPage/static/js/user-mobile.js:6
+#: FrontPage/static/js/user-passwd.js:6 FrontPage/static/js/user-question.js:18
+#: FrontPage/static/js/user-tradepwd.js:13
+msgid "请输入一个有效的值"
+msgstr "Please enter a valid value"
+
+#: FrontPage/static/js/forgot.js:18
+msgid "请输入的电子邮箱地址"
+msgstr "Please enter your e-mail address"
+
+#: FrontPage/static/js/forgot.js:29 FrontPage/static/js/login.js:68
+#: FrontPage/static/js/user-email.js:28
+msgid "请输入的验证码"
+msgstr "Please enter the verification code"
+
+#: FrontPage/static/js/forgot.js:34 FrontPage/static/js/recharge-wkc.js:110
+#: FrontPage/static/js/user-api.js:84 FrontPage/static/js/user-api.js:203
+#: FrontPage/static/js/user-api.js:293 FrontPage/static/js/user-api.js:365
+#: FrontPage/static/js/user-email.js:33 FrontPage/static/js/user-mobile.js:34
+#: FrontPage/static/js/user-tradepwd.js:81
+msgid "请输入有效的验证码"
+msgstr "Please enter a valid verification code"
+
+#: FrontPage/static/js/forgot.js:44 FrontPage/static/js/forgot.js:54
+#: FrontPage/static/js/register.js:29 FrontPage/static/js/register.js:39
+msgid "请输入大小写字母与数字的组合的8-32位密码"
+msgstr ""
+"Please enter a 8-32 bit password with a combination of uppercase and "
+"lowercase letters and numbers"
+
+#: FrontPage/static/js/forgot.js:58
+#: FrontPage/static/js/register-trade-pwd.js:43
+#: FrontPage/static/js/register.js:43 FrontPage/static/js/user-passwd.js:52
+#: FrontPage/static/js/user-tradepwd.js:68
+msgid "二次输入的密码不相同"
+msgstr "The password for the two input is not the same"
+
+#: FrontPage/static/js/forgot.js:76
+msgid "密码已重置，请登录"
+msgstr "The password has been reset. Please login"
+
+#: FrontPage/static/js/index.js:40
+msgid "随求用户协议"
+msgstr "SuiQiu User Agreement"
+
+#: FrontPage/static/js/index.js:45
+msgid "我已阅读并同意该协议"
+msgstr "I have read and agreed to the agreement"
+
+#: FrontPage/static/js/index.js:130
+msgid "请输入手机号/邮箱"
+msgstr "Please enter your phone number or email address"
+
+#: FrontPage/static/js/index.js:136
+msgid "请输入密码"
+msgstr "Please enter password"
+
+#: FrontPage/static/js/index.js:142 FrontPage/static/js/recharge-wkc.js:105
+#: FrontPage/static/js/user-api.js:79 FrontPage/static/js/user-api.js:198
+#: FrontPage/static/js/user-api.js:288 FrontPage/static/js/user-api.js:360
+#: FrontPage/static/js/user-tradepwd.js:76
+msgid "请输入验证码"
+msgstr "Please enter captcha"
+
+#: FrontPage/static/js/index.js:169 FrontPage/static/js/login.js:103
+msgid "登录成功，正在跳转"
+msgstr "Login successful,redirect..."
+
+#: FrontPage/static/js/login.js:49
+msgid "请输入邮箱地址"
+msgstr "Please enter your email address"
+
+#: FrontPage/static/js/login.js:60
+msgid "请输入有效的登录密码"
+msgstr "Please enter a valid login password"
+
+#: FrontPage/static/js/recharge-wkc.js:86
+msgid "请输入转出地址"
+msgstr "Please enter the transfer address"
+
+#: FrontPage/static/js/recharge-wkc.js:94
+msgid "请输入充币数量"
+msgstr "Please enter the recharge amount"
+
+#: FrontPage/static/js/recharge-wkc.js:97
+msgid "请输入一个整数"
+msgstr "Please enter an integer"
+
+#: FrontPage/static/js/recharge-wkc.js:166
+msgid "请确认是否要撤消充值订单"
+msgstr "Please confirm whether you want to cancel the order"
+
+#: FrontPage/static/js/recharge-wkc.js:209
+msgid "充值提交成功"
+msgstr "Recharge submitted successfully"
+
+#: FrontPage/static/js/recharge.js:122
+msgid "请将币转入到这个地址"
+msgstr "Please transfer to this address"
+
+#: FrontPage/static/js/recharge.js:134
+msgid "加载失败，请重试"
+msgstr "Load failed. Please try again"
+
+#: FrontPage/static/js/recharge.js:444
+msgid "已认证"
+msgstr "Authenticated"
+
+#: FrontPage/static/js/recharge.js:457
+msgid "请确认是否要删除提币地址"
+msgstr "Please confirm if you want to delete the coin address"
+
+#: FrontPage/static/js/recharge.js:457 FrontPage/static/js/user-message.js:15
+#: FrontPage/static/js/user-question-list.js:9
+msgid "删除提示"
+msgstr "Delete hints"
+
+#: FrontPage/static/js/recharge.js:606
+msgid "请输入对方UID"
+msgstr "Please input counterparty's UID"
+
+#: FrontPage/static/js/recharge.js:614
+msgid "请输入交易密码"
+msgstr "Please enter the transaction password"
+
+#: FrontPage/static/js/recharge.js:619
+msgid "请输入6位数交易密码"
+msgstr "Please enter the 6 digit transaction password"
+
+#: FrontPage/static/js/recharge.js:627
+msgid "请输入对方邮箱/手机号码"
+msgstr "Please enter counterparty's Email/PhoneNumber"
+
+#: FrontPage/static/js/recharge.js:635 FrontPage/static/js/recharge.js:726
+msgid "请输入转账数量"
+msgstr "Please enter the amount of the transfer"
+
+#: FrontPage/static/js/recharge.js:638 FrontPage/static/js/recharge.js:729
+msgid "请输入有效的转账数量"
+msgstr "Please enter a valid amount of the transfer"
+
+#: FrontPage/static/js/recharge.js:670
+msgid "请输入有效的邮箱/手机号码"
+msgstr "Please enter a valid Email/PhoneNumber"
+
+#: FrontPage/static/js/recharge.js:684
+msgid "转帐成功"
+msgstr "Transfer successfully"
+
+#: FrontPage/static/js/recharge.js:718 FrontPage/static/js/recharge.js:791
+#: FrontPage/static/js/user-mobile.js:29
+msgid "请输入收到的验证码"
+msgstr "Please enter the received verification code"
+
+#: FrontPage/static/js/recharge.js:735
+msgid "提币金额为"
+msgstr "The amount of withdraw is "
+
+#: FrontPage/static/js/recharge.js:735
+msgid "之间"
+msgstr " "
+
+#: FrontPage/static/js/recharge.js:751
+msgid "请选择提现地址"
+msgstr "Please select a withdraw address"
+
+#: FrontPage/static/js/recharge.js:763
+msgid "提币成功"
+msgstr "Withdraw successfully"
+
+#: FrontPage/static/js/recharge.js:799
+msgid "请输入提币地址"
+msgstr "Please enter the withdraw address"
+
+#: FrontPage/static/js/recharge.js:807
+msgid "请输入标签"
+msgstr "Please enter a label"
+
+#: FrontPage/static/js/recharge.js:870
+msgid "地址添加成功"
+msgstr "Add address successfully"
+
+#: FrontPage/static/js/register-idcard.js:15
+#: FrontPage/static/js/user-idcard.js:17
+msgid "请输入的真实姓名"
+msgstr "Please enter the real name"
+
+#: FrontPage/static/js/register-idcard.js:19
+#: FrontPage/static/js/user-idcard.js:21
+msgid "请输入有效的真实姓名"
+msgstr "Please enter a valid real name"
+
+#: FrontPage/static/js/register-idcard.js:27
+#: FrontPage/static/js/user-idcard.js:29
+msgid "请输入有效的证件号码"
+msgstr "please enter a valid ID number"
+
+#: FrontPage/static/js/register-idcard.js:35
+msgid "请再输入一次证件号码"
+msgstr "Please enter the valid ID number again"
+
+#: FrontPage/static/js/register-idcard.js:39
+msgid "二次输入的证件号码不相同"
+msgstr "The two input ID number is not the same"
+
+#: FrontPage/static/js/register-idcard.js:57
+#: FrontPage/static/js/register-trade-pwd.js:61
+msgid "资料已提交,请继续完善资料"
+msgstr ""
+"The information has been submitted, and please continue to improve the "
+"profile"
+
+#: FrontPage/static/js/register-trade-pwd.js:15
+msgid "请输入的交易密码"
+msgstr "Please enter the transaction password"
+
+#: FrontPage/static/js/register-trade-pwd.js:18
+#: FrontPage/static/js/register-trade-pwd.js:34
+#: FrontPage/static/js/user-tradepwd.js:43
+#: FrontPage/static/js/user-tradepwd.js:59
+msgid "只允许输入数字密码"
+msgstr "Only numbers are allow in the password"
+
+#: FrontPage/static/js/register-trade-pwd.js:23
+#: FrontPage/static/js/register-trade-pwd.js:39
+#: FrontPage/static/js/user-tradepwd.js:48
+#: FrontPage/static/js/user-tradepwd.js:64
+msgid "请输入有效的六位数字密码"
+msgstr "Please enter a valid six digit password"
+
+#: FrontPage/static/js/register-trade-pwd.js:31
+msgid "请再输入一次交易密码"
+msgstr "Please enter the transaction password again"
+
+#: FrontPage/static/js/register.js:16 FrontPage/static/js/register.js:19
+msgid "请输入有效的电子邮箱地址"
+msgstr "Please enter a valid email address"
+
+#: FrontPage/static/js/register.js:51
+msgid "请阅读并同意相关的注册条款"
+msgstr "Please read and agree to the relevant registration terms"
+
+#: FrontPage/static/js/register.js:69
+msgid "注册成功，请继续完成邮箱激活"
+msgstr ""
+"Registered successfully, please continue to complete mailbox activation"
+
+#: FrontPage/static/js/taHighStock.js:2 FrontPage/static/js/taHighStock.js:265
+msgid "周日"
+msgstr "Sunday"
+
+#: FrontPage/static/js/taHighStock.js:3 FrontPage/static/js/taHighStock.js:266
+msgid "周一"
+msgstr "Monday"
+
+#: FrontPage/static/js/taHighStock.js:4 FrontPage/static/js/taHighStock.js:267
+msgid "周二"
+msgstr "Tuesday"
+
+#: FrontPage/static/js/taHighStock.js:5 FrontPage/static/js/taHighStock.js:268
+msgid "周三"
+msgstr "Wednesday"
+
+#: FrontPage/static/js/taHighStock.js:6 FrontPage/static/js/taHighStock.js:269
+msgid "周四"
+msgstr "Thursday"
+
+#: FrontPage/static/js/taHighStock.js:7 FrontPage/static/js/taHighStock.js:270
+msgid "周五"
+msgstr "Friday"
+
+#: FrontPage/static/js/taHighStock.js:8 FrontPage/static/js/taHighStock.js:271
+msgid "周六"
+msgstr "Saturday"
+
+#: FrontPage/static/js/taHighStock.js:89
+msgid "周线"
+msgstr "Weekly line"
+
+#: FrontPage/static/js/taHighStock.js:92
+msgid "日线"
+msgstr "Daily line"
+
+#: FrontPage/static/js/taHighStock.js:95 FrontPage/static/js/taHighStock.js:98
+#: FrontPage/static/js/taHighStock.js:101
+msgid "小时线"
+msgstr "hourly"
+
+#: FrontPage/static/js/taHighStock.js:104
+msgid "分钟线"
+msgstr "min"
+
+#: FrontPage/static/js/taHighStock.js:237
+#: FrontPage/static/js/taHighStock.js:251
+msgid "一月"
+msgstr "January"
+
+#: FrontPage/static/js/taHighStock.js:238
+#: FrontPage/static/js/taHighStock.js:252
+msgid "二月"
+msgstr "February"
+
+#: FrontPage/static/js/taHighStock.js:239
+#: FrontPage/static/js/taHighStock.js:253
+msgid "三月"
+msgstr "March"
+
+#: FrontPage/static/js/taHighStock.js:240
+#: FrontPage/static/js/taHighStock.js:254
+msgid "四月"
+msgstr "April"
+
+#: FrontPage/static/js/taHighStock.js:241
+#: FrontPage/static/js/taHighStock.js:255
+msgid "五月"
+msgstr "May"
+
+#: FrontPage/static/js/taHighStock.js:242
+#: FrontPage/static/js/taHighStock.js:256
+msgid "六月"
+msgstr "June"
+
+#: FrontPage/static/js/taHighStock.js:243
+#: FrontPage/static/js/taHighStock.js:257
+msgid "七月"
+msgstr "July"
+
+#: FrontPage/static/js/taHighStock.js:244
+#: FrontPage/static/js/taHighStock.js:258
+msgid "八月"
+msgstr "August"
+
+#: FrontPage/static/js/taHighStock.js:245
+#: FrontPage/static/js/taHighStock.js:259
+msgid "九月"
+msgstr "September"
+
+#: FrontPage/static/js/taHighStock.js:246
+#: FrontPage/static/js/taHighStock.js:260
+msgid "十月"
+msgstr "October"
+
+#: FrontPage/static/js/taHighStock.js:247
+#: FrontPage/static/js/taHighStock.js:261
+msgid "十一月"
+msgstr "November"
+
+#: FrontPage/static/js/taHighStock.js:248
+#: FrontPage/static/js/taHighStock.js:262
+msgid "十二月"
+msgstr "December"
+
+#: FrontPage/static/js/taHighStock.js:274
+msgid "范围"
+msgstr "Range"
+
+#: FrontPage/static/js/taHighStock.js:283
+msgid "全部"
+msgstr "All"
+
+#: FrontPage/static/js/taHighStock.js:294
+#: FrontPage/static/js/taHighStock.js:346
+#: FrontPage/static/js/taHighStock.js:369
+msgid "价格"
+msgstr "Price"
+
+#: FrontPage/static/js/taHighStock.js:303
+#: FrontPage/static/js/taHighStock.js:374
+msgid "成交量"
+msgstr "Volume"
+
+#: FrontPage/static/js/taHighStock.js:348
+msgid "开"
+msgstr "Open"
+
+#: FrontPage/static/js/taHighStock.js:349
+msgid "高"
+msgstr "High"
+
+#: FrontPage/static/js/taHighStock.js:350
+msgid "低"
+msgstr "Low"
+
+#: FrontPage/static/js/taHighStock.js:351
+msgid "收"
+msgstr "Close"
+
+#: FrontPage/static/js/taHighStock.js:382
+#: FrontPage/static/js/taHighStock.js:391
+msgid "均线"
+msgstr "Average"
+
+#: FrontPage/static/js/taHighStock.js:428
+#: FrontPage/static/js/taHighStock.js:434
+#: FrontPage/static/js/taHighStock.js:437
+msgid "年"
+msgstr "Year"
+
+#: FrontPage/static/js/taHighStock.js:428
+#: FrontPage/static/js/taHighStock.js:434
+#: FrontPage/static/js/taHighStock.js:437
+msgid "月"
+msgstr "Month"
+
+#: FrontPage/static/js/taHighStock.js:428
+#: FrontPage/static/js/taHighStock.js:434
+#: FrontPage/static/js/taHighStock.js:437
+msgid "日"
+msgstr "Day"
+
+#: FrontPage/static/js/transaction.js:495
+#: FrontPage/static/js/transaction.js:661
+msgid "请输入有效的数量"
+msgstr "Please enter a valid amount"
+
+#: FrontPage/static/js/transaction.js:500
+#: FrontPage/static/js/transaction.js:666
+msgid "请输入有效的价格"
+msgstr "please enter a valid price"
+
+#: FrontPage/static/js/transaction.js:504
+#: FrontPage/static/js/transaction.js:670
+msgid "下单数量必须大于0.1"
+msgstr "The amount must be greater than 0.1"
+
+#: FrontPage/static/js/transaction.js:513
+msgid "下单价格已超出最新成交价的10%，需要您输入交易密码进行确认。"
+msgstr ""
+"The order price has exceeded 10% of the latest transaction price, you need "
+"to enter the transaction password to confirm."
+
+#: FrontPage/static/js/transaction.js:537
+#: FrontPage/static/js/transaction.js:703
+msgid "下单价格已低于最新成交价的10%，需要您输入交易密码进行确认"
+msgstr ""
+"The order price has been less than 10% of the latest transaction price, you "
+"need to enter the transaction password to confirm."
+
+#: FrontPage/static/js/transaction.js:575
+#: FrontPage/static/jsx/usernavbar.jsx:20
+msgid "交易密码"
+msgstr "Trade Password"
+
+#: FrontPage/static/js/transaction.js:577
+msgid "请输入6位数字交易密码"
+msgstr "Please enter the 6 digit transaction password"
+
+#: FrontPage/static/js/transaction.js:624
+#: FrontPage/static/js/transaction.js:742
+msgid "已提交下单申请"
+msgstr "Application submitted"
+
+#: FrontPage/static/js/transaction.js:674
+msgid "下单价格必须大于0"
+msgstr "The price must be greater than 0"
+
+#: FrontPage/static/js/transaction.js:768
+msgid "请确认是否要撤消订单"
+msgstr "Please confirm whether you want to cancel the order"
+
+#: FrontPage/static/js/user-api.js:101
+#: FrontPage/static/js/user-question-list.js:24
+msgid "删除成功"
+msgstr "Successfully deleted"
+
+#: FrontPage/static/js/user-api.js:310
+msgid "修改成功"
+msgstr "Successfully modified"
+
+#: FrontPage/static/js/user-api.js:352
+msgid "请输入备注名"
+msgstr "Please enter a label"
+
+#: FrontPage/static/js/user-api.js:382
+msgid "申请已提交"
+msgstr "An application has been submitted"
+
+#: FrontPage/static/js/user-email.js:17
+msgid "请输入的电子邮箱"
+msgstr "Please enter e-mail address"
+
+#: FrontPage/static/js/user-email.js:20
+msgid "请输入有效的电子邮箱"
+msgstr "Please enter a valid e-mail address"
+
+#: FrontPage/static/js/user-email.js:51
+msgid "邮件已绑定成功"
+msgstr "The mail was bound successfully"
+
+#: FrontPage/static/js/user-idcard-list.js:7
+msgid "您还没有提交实名认证，请继续完成实名认证!"
+msgstr ""
+"You have not submitted the real name authentication, please continue to "
+"complete the real name authentication!"
+
+#: FrontPage/static/js/user-idcard-upload.js:77
+msgid "正在上传文件"
+msgstr "Uploading files"
+
+#: FrontPage/static/js/user-idcard-upload.js:93
+msgid "图片已上传成功"
+msgstr "The picture has been uploaded successfully"
+
+#: FrontPage/static/js/user-idcard-upload.js:109
+msgid "上传失败，请重试"
+msgstr "Upload failed. Please try again"
+
+#: FrontPage/static/js/user-idcard-upload.js:189
+msgid "请上传证件正面"
+msgstr "Please upload the front of the certificate"
+
+#: FrontPage/static/js/user-idcard-upload.js:196
+msgid "请上传证件背面"
+msgstr "Please upload the back of the certificate"
+
+#: FrontPage/static/js/user-idcard-upload.js:203
+msgid "请上传手持身份证和当日字条"
+msgstr "Please upload a handheld ID card and a note show the date"
+
+#: FrontPage/static/js/user-idcard-upload.js:215
+msgid "证件号码不能为空"
+msgstr "Certificate number can not be empty"
+
+#: FrontPage/static/js/user-idcard-upload.js:230
+msgid "设置实名认证资料已提交"
+msgstr "Real name authentication submitted"
+
+#: FrontPage/static/js/user-message.js:11
+msgid "请选择要删除的信息"
+msgstr "Please select the information to delete"
+
+#: FrontPage/static/js/user-message.js:15
+msgid "请确认是否要删除所选信息?"
+msgstr "Please make sure that you want to delete the selected information?"
+
+#: FrontPage/static/js/user-message.js:37
+#: FrontPage/static/js/user-message.js:81
+msgid "请选择要处理的信息"
+msgstr "Please select the information to be processed"
+
+#: FrontPage/static/js/user-mobile.js:17
+msgid "请输入手机号码"
+msgstr "Please enter your phone number"
+
+#: FrontPage/static/js/user-mobile.js:52
+msgid "手机已绑定成功"
+msgstr "The phone number has been successfully bound"
+
+#: FrontPage/static/js/user-passwd.js:17
+msgid "请输入原密码"
+msgstr "Please input the old password"
+
+#: FrontPage/static/js/user-passwd.js:22
+msgid "请输入有效的8-32原密码"
+msgstr "Please enter the old password with a length of 8-32 digits"
+
+#: FrontPage/static/js/user-passwd.js:30 FrontPage/static/js/user-passwd.js:43
+#: FrontPage/static/js/user-tradepwd.js:40
+msgid "请输入新交易密码"
+msgstr "Please enter a new transaction password"
+
+#: FrontPage/static/js/user-passwd.js:35 FrontPage/static/js/user-passwd.js:48
+msgid "请输入有效的8-32新密码"
+msgstr "Please enter a new password with a length of 8-32 digits"
+
+#: FrontPage/static/js/user-passwd.js:70
+msgid "密码修改成功"
+msgstr "Password modification succeeded"
+
+#: FrontPage/static/js/user-question-list.js:9
+msgid "请确认是否要删除工单"
+msgstr "Please confirm whether you want to delete the ticket"
+
+#: FrontPage/static/js/user-question-list.js:34
+msgid "删除失败"
+msgstr "Delete failed"
+
+#: FrontPage/static/js/user-question.js:29
+msgid "请输入的您遇到的问题"
+msgstr "Please enter the questions you have encountered"
+
+#: FrontPage/static/js/user-question.js:48
+msgid "工单已提交成功"
+msgstr "The ticket has been submitted successfully"
+
+#: FrontPage/static/js/user-tradepwd.js:56
+msgid "请再输入新交易密码"
+msgstr "Please enter the new transaction password again"
+
+#: FrontPage/static/js/user-tradepwd.js:103
+msgid "交易密码已修改"
+msgstr "The transaction password has been modified"
+
+#: FrontPage/static/jsx/elements.jsx:5
+msgid "使用QQ快捷登录"
+msgstr "Quick Login with QQ"
+
+#: FrontPage/static/jsx/elements.jsx:7
+msgid "或"
+msgstr "or"
+
+#: FrontPage/static/jsx/fmnavbar.jsx:6
+msgid "资金管理"
+msgstr "Assets Management"
+
+#: FrontPage/static/jsx/fmnavbar.jsx:12
+msgid "财务记录"
+msgstr "Financial Records"
+
+#: FrontPage/static/jsx/fmnavbar.jsx:18
+msgid "账单详情"
+msgstr "Bill Details"
+
+#: FrontPage/static/jsx/fmnavbar.jsx:26 FrontPage/static/jsx/header.jsx:317
+msgid "财务中心"
+msgstr "Finance"
+
+#: FrontPage/static/jsx/footer.jsx:15 FrontPage/static/jsx/header.jsx:331
+msgid "帮助中心"
+msgstr "Help"
+
+#: FrontPage/static/jsx/footer.jsx:16
+msgid "注册登录"
+msgstr "Signup/Login"
+
+#: FrontPage/static/jsx/footer.jsx:17
+msgid "交易指南"
+msgstr "Transaction"
+
+#: FrontPage/static/jsx/footer.jsx:18
+msgid "费用说明"
+msgstr "Fee Description"
+
+#: FrontPage/static/jsx/footer.jsx:24
+msgid "联系我们"
+msgstr "Contact Us"
+
+#: FrontPage/static/jsx/footer.jsx:26
+msgid "合作邮箱"
+msgstr "Cooperative Email"
+
+#: FrontPage/static/jsx/footer.jsx:27
+msgid "QQ群一"
+msgstr "QQ group one"
+
+#: FrontPage/static/jsx/footer.jsx:27
+msgid "已满"
+msgstr "Full"
+
+#: FrontPage/static/jsx/footer.jsx:28
+msgid "QQ群二"
+msgstr "QQ group two"
+
+#: FrontPage/static/jsx/footer.jsx:41
+msgid "选择您的国家或区域"
+msgstr "Choose your country or region"
+
+#: FrontPage/static/jsx/footer.jsx:51
+msgid "用户协议"
+msgstr "User Agreement"
+
+#: FrontPage/static/jsx/footer.jsx:52
+msgid "隐私条款"
+msgstr "Privacy clause"
+
+#: FrontPage/static/jsx/footer.jsx:74 FrontPage/static/jsx/header.jsx:309
+msgid "加入QQ群"
+msgstr "Join QQ group"
+
+#: FrontPage/static/jsx/header.jsx:9
+msgid "退出"
+msgstr "Sign out"
+
+#: FrontPage/static/jsx/header.jsx:20
+msgid "您好，欢迎来到中国领先的区块链资产交易平台！"
+msgstr "Hello,Welcome to China's leading blockchain assets trading platform!"
+
+#: FrontPage/static/jsx/header.jsx:132
+msgid "首页"
+msgstr "Home"
+
+#: FrontPage/static/jsx/header.jsx:133
+msgid "交易"
+msgstr "Exchange"
+
+#: FrontPage/static/jsx/header.jsx:134
+msgid "场外交易"
+msgstr "OTC"
+
+#: FrontPage/static/jsx/header.jsx:306
+msgid "登录/注册"
+msgstr "Login/Sign up"
+
+#: FrontPage/static/jsx/header.jsx:314
+msgid "个人中心"
+msgstr "Profile"
+
+#: FrontPage/static/jsx/header.jsx:346
+msgid "退出登录"
+msgstr "sign out"
+
+#: FrontPage/static/jsx/usernavbar.jsx:6
+msgid "手机绑定"
+msgstr "Phone"
+
+#: FrontPage/static/jsx/usernavbar.jsx:13
+msgid "邮箱绑定"
+msgstr "Email"
+
+#: FrontPage/static/jsx/usernavbar.jsx:27
+msgid "身份验证"
+msgstr "Authentication"
+
+#: FrontPage/static/jsx/usernavbar.jsx:34
+msgid "我的工单"
+msgstr "My Ticket"
+
+#: FrontPage/static/jsx/usernavbar.jsx:40
+msgid "工单详情"
+msgstr "Details of Ticket"
+
+#: FrontPage/static/jsx/usernavbar.jsx:46
+msgid "登录密码"
+msgstr "Login password"
+
+#: FrontPage/static/jsx/usernavbar.jsx:120
+msgid "未设置"
+msgstr "Not set"
+
+#: FrontPage/static/jsx/usernavbar.jsx:150
+msgid "站内信"
+msgstr "Mail"

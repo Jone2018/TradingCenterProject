@@ -1,0 +1,1 @@
+{% load i18n %}{% blocktrans %}[随求]用户注册邮箱激活确认{% endblocktrans %}
