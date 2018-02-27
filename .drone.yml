@@ -1,5 +1,5 @@
 pipeline:
-  staticfiles:
+  publish_static_app:
     image: python:2.7
     commands:
       - ls
@@ -8,22 +8,12 @@ pipeline:
       - python src/manage.py collectstatic --noinput
       - ls src/
 
-  publish_app:
-    image: plugins/docker
-    repo: suiqiu/tradingcenter
-    dockerfile: Dockerfile
-    secrets: [ docker_username, docker_password ]
-    tag: [ latest ]
-    when:
-      # branch: master
-      event: push
-
-  # publish_static_app:
+  # publish_app:
   #   image: plugins/docker
-  #   repo: suiqiu/staticfiles
-  #   dockerfile: Dockerfile.static
+  #   repo: suiqiu/tradingcenter
+  #   dockerfile: Dockerfile
   #   secrets: [ docker_username, docker_password ]
   #   tag: [ latest ]
   #   when:
-  #     branch: master
+  #     branch: 2.1
   #     event: push
