@@ -1,4 +1,7 @@
-cd $(pwd)/deploy/packages/aliyun-python-sdk-core/
+export base=$(pwd)
+cd $base/deploy/packages/aliyun-python-sdk-core/
+echo $(pwd)
 pip install .
-cd $(pwd)/deploy/packages/aliyun-python-sdk-dysmsapi/
+cd $base/deploy/packages/aliyun-python-sdk-dysmsapi/
+echo $(pwd)
 pip install .
