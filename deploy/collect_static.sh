@@ -1,3 +1,4 @@
+echo $(pwd)
 cd packages/aliyun-python-sdk-core/
 ls
 pip install .
