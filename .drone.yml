@@ -6,4 +6,4 @@ pipeline:
       - sh deploy/collect_static.sh
       - pip install -r deploy/requirements.txt
       - python src/manage.py collectstatic --noinput
-      - ls
+      - ls src/
