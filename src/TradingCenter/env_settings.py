@@ -6,9 +6,9 @@ DEV_SETTINGS = {
     "DBPWD": "root",
     "DBHOST": "54.250.252.161",
     "DBPORT": "3306",
-    "REDISHOST": "localhost",
-    "KAFKAHOST": "localhost",
-    "MEMCACHE_HOST": "localhost",
+    "REDISHOST": "116.196.100.165",
+    "KAFKAHOST": "116.196.100.165",
+    "MEMCACHE_HOST": "116.196.100.165",
     "MEMCACHE_PORT": "11211",
 }
 

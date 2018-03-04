@@ -16,12 +16,22 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework.documentation import include_docs_urls
+from django.views.generic import TemplateView
+from django.views.i18n import JavaScriptCatalog
+
+from FrontPage import views
+
 
 API_TITLE = 'SuiQiu API View'
 API_DESCRIPTION = API_TITLE
 
 
 urlpatterns = [
+    url(r"^$", TemplateView.as_view(template_name="index.html"), name="home"),
+    url(r'^i18n/', include('django.conf.urls.i18n')),
+    url(r"^(?P<template_name>.*\..+)$", views.as_i18n_view),
+    url(r'^jsi18n/$', JavaScriptCatalog.as_view(), name="javascript-catalog"),
+
     url(r'^admin/', admin.site.urls),
 
     url(r'^docs/', include_docs_urls(title=API_TITLE, description=API_DESCRIPTION)),

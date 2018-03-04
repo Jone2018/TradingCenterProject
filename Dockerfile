@@ -18,4 +18,6 @@ WORKDIR /app
 
 RUN pip install -r deploy/requirements.txt
 
+RUN python src/manage.py collectstatic --no-input
+
 CMD ["gunicorn", "-b", ":8000", "--chdir", "src", "-k", "gevent", "TradingCenter.wsgi"]

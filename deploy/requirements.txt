@@ -27,3 +27,4 @@ gunicorn
 coreapi
 pygments
 markdown
+whitenoise
