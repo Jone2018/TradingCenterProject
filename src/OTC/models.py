@@ -230,9 +230,9 @@ TicketValidTime = datetime.timedelta(minutes=30)
 
 # Create your models here.
 class Advertise(models.Model):
-    coin = models.ForeignKey(CoinType, on_delete=models.CASCADE)
+    coin = models.ForeignKey(CoinType, on_delete=models.CASCADE, help_text="币种")
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    direction = models.PositiveSmallIntegerField(choices=DIRECTION_CHOICES)
+    direction = models.PositiveSmallIntegerField(choices=DIRECTION_CHOICES, help_text="买/卖")
     country = models.CharField(max_length=4, choices=COUNTRY_CHOICES, default="CN", blank=False)
     margin = models.FloatField(max_length=4)  # 溢价 用于计算Price  => margin % * Currency Price
     gap = models.DecimalField(decimal_places=2, max_digits=7)  # 买单广告对应最高成交价，卖单反之

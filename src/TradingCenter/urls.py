@@ -21,21 +21,20 @@ from django.views.i18n import JavaScriptCatalog
 
 from FrontPage import views
 
-
 API_TITLE = 'SuiQiu API View'
 API_DESCRIPTION = API_TITLE
-
 
 urlpatterns = [
     url(r"^$", TemplateView.as_view(template_name="index.html"), name="home"),
     url(r'^i18n/', include('django.conf.urls.i18n')),
+    url(r'^docs/', include_docs_urls(title=API_TITLE, description=API_DESCRIPTION)),
     url(r"^(?P<template_name>.*\..+)$", views.as_i18n_view),
     url(r'^jsi18n/$', JavaScriptCatalog.as_view(), name="javascript-catalog"),
 
-    url(r'^admin/', admin.site.urls),
+    # url(r'^admin/', admin.site.urls),
 
-    url(r'^docs/', include_docs_urls(title=API_TITLE, description=API_DESCRIPTION)),
-    url(r'^api-auth/', include('rest_framework.urls')),
+    # url(r'^docs/', include_docs_urls(title=API_TITLE, description=API_DESCRIPTION)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='api-auth')),
 
     url(r"^api/account/", include("Account.urls", namespace='account')),
     url(r'^api/social/', include('social_django.urls', namespace='social')),

@@ -1,19 +1,11 @@
 pipeline:
-  publish_static_app:
-    image: python:2.7
-    commands:
-      - ls
-      - sh deploy/collect_static.sh
-      - pip install -r deploy/requirements.txt
-      - python src/manage.py collectstatic --noinput
-      - ls src/
 
-  # publish_app:
-  #   image: plugins/docker
-  #   repo: suiqiu/tradingcenter
-  #   dockerfile: Dockerfile
-  #   secrets: [ docker_username, docker_password ]
-  #   tag: [ latest ]
-  #   when:
-  #     branch: 2.1
-  #     event: push
+  publish_app:
+    image: plugins/docker
+    repo: suiqiu/tradingcenter
+    dockerfile: Dockerfile
+    secrets: [ docker_username, docker_password ]
+    tag: [ latest ]
+    when:
+      branch: 2.1
+      event: push
