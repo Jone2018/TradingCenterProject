@@ -8,16 +8,12 @@ pipeline:
     tags:
       - latest
       - ${DRONE_BRANCH}
-      # - $$BRANCH
     when:
       branch: [ master ]
       event: push
 
   deploy:
     image: quay.io/honestbee/drone-kubernetes
-    # kubernetes_server: https://13.231.151.210:6443
-    # kubernetes_cert: ${KUBERNETES_CERT}
-    # kubernetes_token: ${KUBERNETES_TOKEN}
     secrets: [ KUBERNETES_SERVER, KUBERNETES_CERT, KUBERNETES_TOKEN ]
     namespace: ingress-nginx
     deployment: tradingcenter
