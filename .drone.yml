@@ -20,3 +20,16 @@ pipeline:
     repo: suiqiu/tradingcenter
     container: tradingcenter
     tag: latest
+
+  slack:
+    image: plugins/slack
+    webhook: ${SLACK_WEBHOOK}
+    channel: drone-ci
+    icon_url: https://unsplash.it/256/256/?random
+    image_url: https://unsplash.it/256/256/?random
+    template: >
+      {{#success build.status}}
+        Author: {{build.author}}, build {{build.number}} succeeded. Good job. {{build.commit}}
+      {{else}}
+        Author: {{build.author}}, build {{build.number}} failed. Fix me please. {{build.commit}}
+      {{/success}}
