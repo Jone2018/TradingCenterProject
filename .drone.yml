@@ -8,6 +8,7 @@ pipeline:
     tags:
       - latest
       - ${DRONE_BRANCH}
+      - ${DRONE_COMMIT}
     when:
       branch: [ master ]
       event: push
@@ -19,7 +20,8 @@ pipeline:
     deployment: tradingcenter
     repo: suiqiu/tradingcenter
     container: tradingcenter
-    tag: latest
+    # tag: latest
+    tag: ${DRONE_COMMIT}
 
   slack:
     image: plugins/slack
