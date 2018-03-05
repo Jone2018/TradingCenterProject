@@ -13,7 +13,7 @@ var siteConfig = {
             "coin_id": 2,
             "code": "ETH",
             "name": "以太坊",
-            "fname": "ETH以太坊",
+            "fname":"ETH以太坊",
             "src": "/static/images/icon_eth.png",
             "explorer": "https://etherscan.io/tx/{txid}"
         },
@@ -21,22 +21,22 @@ var siteConfig = {
             "coin_id": 3,
             "code": "ETC",
             "name": "以太经典",
-            "fname": "ETC以太经典",
-            "src": "/static/images/icon_etc.jpg",
-            "explorer": "https://etcchain.com/tx/{txid}"
+            "fname":"ETC以太经典",
+            "src": "/static/images/icon_etc.png",
+            "explorer": "http://gastracker.io/tx/{txid}"
         },
         {
             "coin_id": 4,
             "code": "ULOGOS",
             "name": "ULOGOS",
-            "fname": "ULOGOS",
+            "fname":"ULOGOS",
             "src": "/static/images/icon_ulogos.png"
         },
         {
             "coin_id": 5,
             "code": "BITCOIN LOGO",
             "name": "BITCOIN LOGO",
-            "fname": "BITCOIN LOGO",
+            "fname":"BITCOIN LOGO",
             "src": "/static/images/icon_bitcoinlogo.png"
         },
         {
@@ -101,27 +101,49 @@ var siteConfig = {
             "fname": "Numeraire",
             "src": "/static/images/icon_nmr.png",
             "explorer": "https://etherscan.io/tx/{txid}"
-        }
+        },
+        {
+            "coin_id": 14,
+            "code": "BCC",
+            "name": "Bitcoin Cash",
+            "fname":"BCC比特现金",
+            "src": "/static/images/icon_bcc.png",
+            "explorer": "https://www.blocktrail.com/BCC/tx/{txid}"
+        },
+        {
+            "coin_id": 15,
+            "code": "TEL",
+            "name": "Telcoin",
+            "fname":"Telcoin",
+            "src": "/static/images/icon_tel.png",
+        },
+        {
+            "coin_id": 16,
+            "code": "USDT",
+            "name": "Tether",
+            "fname":"Tether",
+            "src": "/static/images/icon_usdt.png",
+        },
     ],
     "pair_choice": [
         {
-            "code": 10003,
+            "code":10003,
             "name": gettext("WKC玩客币"),
-            "icon": "icon_wkc",
-            "coin_type_a": 1,
-            "coin_type_b": 6
+            "icon":"icon_wkc",
+            "coin_type_a":1,
+            "coin_type_b":6
         },
         {
             "code": 10000,
             "name": "ULOGOS",
-            "icon": "icon_btc",
+            "icon":"icon_btc",
             "coin_type_a": 1,
             "coin_type_b": 4
         },
         {
             "code": 10001,
             "name": "BITCOIN LOGO",
-            "icon": "icon_btc",
+            "icon":"icon_btc",
             "coin_type_a": 1,
             "coin_type_b": 5
         },
@@ -169,7 +191,7 @@ var siteConfig = {
         },
         {
             "code": 10008,
-            "name": "Primecoin",
+            "name": "XPM质数币",
             "icon": "icon_xpm",
             "coin_type_a": 1,
             "coin_type_b": 11
@@ -187,6 +209,34 @@ var siteConfig = {
             "icon": "icon_nmr",
             "coin_type_a": 1,
             "coin_type_b": 13
+        },
+        {
+            "code": 10011,
+            "name": "ETC以太经典",
+            "icon": "icon_etc",
+            "coin_type_a": 1,
+            "coin_type_b": 3
+        },
+        {
+            "code": 10012,
+            "name": "BCC比特现金",
+            "icon": "icon_bcc",
+            "coin_type_a": 1,
+            "coin_type_b": 14
+        },
+        {
+            "code": 10013,
+            "name": "TEL",
+            "icon": "icon_tel",
+            "coin_type_a": 1,
+            "coin_type_b": 15
+        },
+        {
+            "code": 10014,
+            "name": "ETH以太坊",
+            "icon": "icon_eth",
+            "coin_type_a": 16,
+            "coin_type_b": 2
         }
     ],
     "language": [
@@ -1251,7 +1301,7 @@ var siteConfig = {
     "auth_type": [
         {
             "code": 0,
-            "name": gettext("随求交易所股东")
+            "name": gettext("bitbiex交易所股东")
         }
     ]
 }

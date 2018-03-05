@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <title>{% trans 'bitbiex—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
     <link rel="shortcut icon" href="/static/images/favicon.ico"/>
@@ -64,7 +64,7 @@
                         <a href="notices.html?id=0" className="citem0"><i className="icon-file-text icon-large"></i>
                             {% trans '公司公告' %}</a>
                         <a href="notices.html?id=1" className="citem1"><i
-                            className="icon-list-alt icon-large"></i> {% trans '论证报告' %}</a>
+                                className="icon-list-alt icon-large"></i> {% trans '论证报告' %}</a>
                         <a href="notices.html?id=2" className="citem2"><i className="icon-bar-chart-o icon-large"></i>
                             {% trans '停盘公告' %}</a>
                     </div>
@@ -72,11 +72,11 @@
                         <div className="item-box">
                             <ul className="txt-lg">
                                 <li className="citem0"><a href="notices.html?id=0"><i
-                                    className="icon-file-text icon-large"></i> {% trans '公司公告' %}</a></li>
+                                        className="icon-file-text icon-large"></i> {% trans '公司公告' %}</a></li>
                                 <li className="citem1"><a href="notices.html?id=1"><i
-                                    className="icon-list-alt icon-large"></i> {% trans '论证报告' %}</a></li>
+                                        className="icon-list-alt icon-large"></i> {% trans '论证报告' %}</a></li>
                                 <li className="citem2"><a href="notices.html?id=2"><i
-                                    className="icon-bar-chart-o icon-large"></i> {% trans '停盘公告' %}</a></li>
+                                        className="icon-bar-chart-o icon-large"></i> {% trans '停盘公告' %}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -142,7 +142,7 @@
                         var dt = FormatDate(item.create_time, "yyyy-MM-dd");
                         rows.push(<li className="item clearfix" key={item.notice_id}>
                             <a href={url} target="_blank" className="tl"><i
-                                className="icon-angle-double-right"></i> {item.title}</a>
+                                    className="icon-angle-double-right"></i> {item.title}</a>
                             <span className="dtime">{dt}</span>
                         </li>);
                     });
@@ -163,9 +163,9 @@
     var isLogin = IsLogin();
 
     ReactDOM.render(
-        <App isLogin={isLogin} ContentBox={
-            <PageView/>
-        }/>
+            <App isLogin={isLogin} ContentBox={
+                <PageView/>
+            }/>
         , document.getElementById("App")
     );
 </script>

@@ -1,3 +1,4 @@
-function PageInit() {
-    $(".mm-ucenter a").addClass("active");
+function PageInit()
+{
+	$(".mm-ucenter  > a").addClass("active");
 }

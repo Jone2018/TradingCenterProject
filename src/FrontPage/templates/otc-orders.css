@@ -1,0 +1,108 @@
+.otc-list {
+	background-color: #f6f6f6;
+}
+.otc-list .item-box {
+	padding: 20px 0;
+}
+
+.otc-query {
+	padding: 20px 0 0 0;
+}
+.otc-tabs {
+	background: url(../images/line.png) left bottom repeat-x;
+}
+.otc-tabs .item {
+	float: left;
+}
+.otc-tabs .sitem {
+	float: right;
+	text-align: right;
+}
+.otc-tabs .sitem  a
+{
+	display: inline-block;
+	color: #999;
+	padding: 8px 0;
+	line-height: 20px;
+}
+.otc-tabs .sitem  a:hover
+{
+	color: #333;
+}
+.otc-tabs .item a {
+	display: block;
+	text-align: center;
+	font-size: 16px;
+	line-height: 20px;
+	padding: 8px 20px;
+	color: #727272;
+}
+.otc-tabs .item:hover a, .otc-tabs .item a:hover, .otc-tabs .active a {
+	border-bottom: 2px solid #2785fa;
+	color: #2785fa;
+}
+
+.tb-orders
+{
+	
+}
+
+.tb-orders .thead
+{
+	
+}
+
+.tb-orders .tline
+{
+	
+}
+
+.tb-orders .titem
+{
+	
+}
+
+.tb-orders .tmsg
+{
+	
+}
+
+.tb-orders .titem .name .thu
+{
+	border-radius: 25px;
+	width: 45px;
+	height: 45px;
+}
+
+@media screen and (max-width:767px) 
+{
+	.otc-tabs
+	{
+		background-image: none;
+	}
+	.otc-tabs .item,
+	.otc-tabs .sitem
+	{
+		display: inline-block;
+		float: none;
+		margin: 5px;
+	}
+	.otc-tabs .item a
+	{
+		font-size: 14px;
+		padding: 8px;
+		background-color: #666;
+		color: #FFF;
+		text-align: center;
+		border-radius: 6px;
+	}
+	
+	.otc-tabs .active a,
+	.otc-tabs .item a:hover,
+	.otc-tabs .item a:focus
+	{
+		background-color: #2785fa;
+		color: #FFF;
+		border-bottom: none;
+	}
+}

@@ -1,0 +1,196 @@
+.otc-ads
+{
+	padding: 20px 0;
+	background-color: #f6f6f6;
+	font-size: 12px;
+}
+
+.pg-title
+{
+	font-size: 20px;
+	margin: 0;
+	padding: 10px 0;
+	line-height: 175%;
+}
+
+.title
+{
+	font-size: 16px;
+	padding: 8px 0;
+	margin: 0;
+	line-height: 175%;
+}
+
+.line-btm
+{
+	border-bottom: 1px solid #ddd;
+}
+
+.trade-cont
+{
+	line-height: 175%;
+	color: #727272;
+}
+
+.trade-type
+{
+	
+}
+
+.trade-other
+{
+	
+}
+
+.gp-item
+{
+	padding: 8px 0;
+}
+
+.gp-item .lbl
+{
+	line-height: 150%;
+	padding: 8px 0;
+}
+
+.gp-item .lbl em,
+.gp-item .tips
+{
+	font-style: normal;
+	color: #BBB;
+	background-color: transparent;
+}
+
+.gp-item .tips
+{
+	line-height: 150%;
+}
+
+.gp-item .tips span
+{
+	color: #c30;
+}
+
+.gp-item .lbl em.mark
+{
+	color: #c30;
+}
+
+.gp-item .form-control
+{
+	max-width: 600px;
+}
+
+.gp-item .coins-item
+{
+	position: relative;
+	max-width: 600px;
+}
+
+.coins-item .coins
+{
+	position: absolute;
+	top: 0;
+	right: 10px;
+	line-height: 36px;
+	text-align: right;
+}
+
+.gp-item .text-box,
+.gp-item .ta-box,
+.gp-item .radio-box,
+.gp-item .check-box,
+.gp-item .select-box,
+.gp-item .button-box,
+.gp-item .slider-box
+{
+	
+}
+
+.gp-item label
+{
+	font-weight: normal;
+}
+
+.gp-item .button-box .btn
+{
+	min-width: 280px;
+}
+
+
+.gp-item .slider-box
+{
+	
+}
+
+.gp-item .slider-box .si
+{
+	float: left;
+	width: 50%;
+	max-width: 600px;
+}
+
+.gp-item .slider-box .si-low
+{
+	width: 40px;
+	text-align: center;
+}
+
+.gp-item .slider-box .si-sup
+{
+	width: 40px;
+	text-align: center;
+}
+
+.gp-item .slider-box .si-low,
+.gp-item .slider-box .si-box,
+.gp-item .slider-box .si-sup
+{
+	padding: 8px 0;
+	line-height:20px;
+}
+.gp-item .slider-box .ti .pct
+{
+	position: absolute;
+	right: 10px;
+	top: 0;
+	line-height: 36px;
+}
+.gp-item .slider-box .ti
+{
+	float: left;
+	width: 100px;
+	position: relative;
+}
+
+
+
+.ui-widget-content
+{
+	border: 0;
+	background-color: #F6f6f6;
+	background-image: url(/static/images/slider.png);
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+
+.ui-widget-content .ui-state-default,
+.ui-widget-content .ui-state-hover,
+.ui-widget-content .ui-state-active
+{
+	border: none;
+	background-image: none;
+	border-radius: 50% !important;
+	outline:none;
+	background-color: #2785fa;
+}
+
+.ui-slider-horizontal .ui-slider-handle
+{
+	top: -0.2em;
+}
+
+@media screen and (max-width:767px)
+{
+	
+}

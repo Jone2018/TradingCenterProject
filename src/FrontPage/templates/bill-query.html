@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <title>{% trans 'bitbiex—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
     <link rel="shortcut icon" href="/static/images/favicon.ico"/>
@@ -185,7 +185,7 @@
                     this.state.items.forEach(function (item) {
                         var time = FormatDate(item.timestamp, "yyyy-MM-dd hh:mm");
                         var chg = FormatNumX(item.amount, 8);
-                        var type = GetCoinType(item.coin_type, "fname");
+					var type = GetCoinType(item.coin_type,"fname");
                         var fee = FormatNumX(item.fee, 8);
                         var frozen = FormatNumX(item.frozen, 8);
                         var available = FormatNumX(item.available, 8);
@@ -193,10 +193,10 @@
                         num++;
                         rows.push(<tr className="titem" key={num}>
                             <td className="time">{time}</td>
-                            <td className="type hidden-xs">{type}</td>
+					  <td className="type hidden-xs">{type}</td>
                             <td className="chg">{chg}</td>
                             <td className="fee">{fee}</td>
-                            <td className="live">{available}</td>
+					  <td className="live">{available}</td>
                             <td className="lock hidden-xs">{frozen}</td>
                             <td className="cfm hidden-xs">{unconfirmed}</td>
                             <td className="info">{gettext(item.reason)}</td>
@@ -206,30 +206,30 @@
             }
 
             return (<div className="item-box">
-                    <h4 className="tb-title tb-title-border"><span className="tl">{% trans '我的账单' %}</span></h4>
-                    <QuerySearch searchHandler={this.searchHandler} fType={this.state.fType}/>
-                    <div className="bill-list">
-                        <table className="tb-list tb-solid" id="tb1">
-                            <thead>
-                            <tr className="thead thead-blue thead-condensed">
-                                <td className="time">{% trans '时间' %}</td>
-                                <td className="type hidden-xs">{% trans '币种' %}</td>
-                                <td className="chg">{% trans '变动金额' %}</td>
-                                <td className="fee">{% trans '手续费' %}</td>
-                                <td className="live">{% trans '可用资金' %}</td>
-                                <td className="lock hidden-xs">{% trans '挂单资金' %}</td>
-                                <td className="cfm hidden-xs">{% trans '确认中资金' %}</td>
-                                <td className="info">{% trans '变动原因' %}</td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {rows}
-                            </tbody>
-                        </table>
-                        <CPager pageIndex={this.state.pageIndex} pageCount={this.state.pageCount}
-                                clickHandler={this.clickHandler}/>
+                        <h4 className="tb-title tb-title-border"><span className="tl">{% trans '我的账单' %}</span></h4>
+                        <QuerySearch searchHandler={this.searchHandler} fType={this.state.fType}/>
+                        <div className="bill-list">
+                            <table className="tb-list tb-solid" id="tb1">
+                                <thead>
+                                <tr className="thead thead-blue thead-condensed">
+                                    <td className="time">{% trans '时间' %}</td>
+                                    <td className="type hidden-xs">{% trans '币种' %}</td>
+                                    <td className="chg">{% trans '变动金额' %}</td>
+                                    <td className="fee">{% trans '手续费' %}</td>
+                                    <td className="live">{% trans '可用资金' %}</td>
+                                    <td className="lock hidden-xs">{% trans '挂单资金' %}</td>
+                                    <td className="cfm hidden-xs">{% trans '确认中资金' %}</td>
+                                    <td className="info">{% trans '变动原因' %}</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {rows}
+                                </tbody>
+                            </table>
+                            <CPager pageIndex={this.state.pageIndex} pageCount={this.state.pageCount}
+                                    clickHandler={this.clickHandler}/>
+                        </div>
                     </div>
-                </div>
             );
         }
     });
@@ -289,16 +289,11 @@
                         <div className="rbox" id="rbox1">
                             <a href="#" data-id="-1" data-name="finance_type" className="checked"
                                onClick={this.changeFType}>{% trans '全部' %}</a>
-                            <a href="#" data-id="0" data-name="finance_type"
-                               onClick={this.changeFType}>{% trans '充值' %}</a>
-                            <a href="#" data-id="1" data-name="finance_type"
-                               onClick={this.changeFType}>{% trans '提现' %}</a>
-                            <a href="#" data-id="3" data-name="finance_type"
-                               onClick={this.changeFType}>{% trans '发放' %}</a>
-                            <a href="#" data-id="4" data-name="finance_type"
-                               onClick={this.changeFType}>{% trans '交易' %}</a>
-                            <a href="#" data-id="7" data-name="finance_type"
-                               onClick={this.changeFType}>{% trans '转账' %}</a>
+                            <a href="#" data-id="0" data-name="finance_type" onClick={this.changeFType}>{% trans '充值' %}</a>
+                            <a href="#" data-id="1" data-name="finance_type" onClick={this.changeFType}>{% trans '提现' %}</a>
+                            <a href="#" data-id="3" data-name="finance_type" onClick={this.changeFType}>{% trans '发放' %}</a>
+                            <a href="#" data-id="4" data-name="finance_type" onClick={this.changeFType}>{% trans '交易' %}</a>
+                            <a href="#" data-id="7" data-name="finance_type" onClick={this.changeFType}>{% trans '转账' %}</a>
                             <input name="finance_type" type="hidden" value={this.state.finance_type}
                                    onChange={this.changeFT}/>
                         </div>
@@ -323,8 +318,7 @@
                         </div>
 
                         <div className="cbtn">
-                            <button type="button" className="btn-submit"
-                                    onClick={this.props.searchHandler}>{% trans '搜索' %}</button>
+                            <button type="button" className="btn-submit" onClick={this.props.searchHandler}>{% trans '搜索' %}</button>
                         </div>
 
                     </div>
@@ -353,9 +347,9 @@
     var isLogin = IsLogin();
 
     ReactDOM.render(
-        <App isLogin={isLogin} ContentBox={
-            <PageView source="/api/finance/user_balance_history"/>
-        }/>
+            <App isLogin={isLogin} ContentBox={
+                <PageView source="/api/finance/user_balance_history"/>
+            }/>
         , document.getElementById("App")
     );
 </script>

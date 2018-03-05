@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <title>{% trans 'bitbiex—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
     <link rel="shortcut icon" href="/static/images/favicon.ico"/>
@@ -30,15 +30,16 @@
     <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.js" type="text/javascript"></script>
 
     <script type="text/javascript">
-        function ToogleHelp(id) {
-            $(".menu-help .active").removeClass("active");
-            $(".nav-cate .active").removeClass("active");
-            $(".nitem" + id).addClass("active");
-            $(".citem" + id).addClass("active");
-            $(".content").hide();
-            $("#help" + id).show();
+function ToogleHelp(id)
+{
+	$(".menu-help .active").removeClass("active");
+	$(".nav-cate .active").removeClass("active");
+	$(".nitem" + id).addClass("active");
+	$(".citem" + id).addClass("active");
+	$(".content").hide();
+	$("#help" + id).show();
 
-        }
+}
 
         function PageInit() {
 
@@ -47,12 +48,12 @@
                 id = 1;
             }
 
-            ToogleHelp(id);
+	ToogleHelp(id);
 
             $(".mm-help a").addClass("active");
             $(".menu-help a").click(function () {
                 var id = $(this).data("id");
-                ToogleHelp(id);
+		ToogleHelp(id);
                 return false;
             });
         }
@@ -81,30 +82,33 @@
         {id: 5, name: "交易所上线品种"}
     ];
 
-    function CHelpCate(props) {
-        function clickHandler(id, e) {
-            e.preventDefault();
-            ToogleHelp(id);
-        }
+function CHelpCate(props)
+{
+	function clickHandler(id,e)
+	{
+		e.preventDefault();
+		ToogleHelp(id);
+	}
 
-        var rows = [];
-        for (var i = 0; i < props.items.length; i++) {
-            var item = props.items[i];
-            var url = "#help" + item.id;
-            var css = "citem" + item.id;
-            var name = item.name;
+	var rows = [];
+	for(var i=0;i<props.items.length;i++)
+	{
+		var item = props.items[i];
+		var url = "#help" + item.id;
+		var css = "citem" + item.id;
+		var name = item.name;
 
-            rows.push(<a href={url} key={i} className={css} onClick={clickHandler.bind(this, item.id)}>{name}</a>)
-        }
-        return (<div className="nav-cate visible-xs-block">
-            {rows}
-        </div>)
-    }
+		rows.push(<a href={url} key={i} className={css} onClick={clickHandler.bind(this,item.id)}>{name}</a>)
+	}
+	return (<div className="nav-cate visible-xs-block">
+		{rows}
+	</div>)
+}
 
     function PageView(props) {
         return (<section className="main-list">
             <div className="container">
-                <CHelpCate items={helpItems}/>
+	  	<CHelpCate items={helpItems} />
                 <div className="clearfix">
                     <div className="menu-box menu-help hidden-xs">
                         <div className="item-box">
@@ -113,7 +117,7 @@
                         </div>
                     </div>
                     <div className="list-box help-view">
-                        <HelpContent/>
+			<HelpContent />
                     </div>
                 </div>
             </div>
@@ -122,10 +126,10 @@
 
 
     function CHelpNavItem(props) {
-        var url = "#help" + props.id;
-        var css = "nitem" + props.id;
+	var url = "#help" + props.id;
+	var css = "nitem" + props.id;
 
-        return (<li className={css}><a href={url} data-id={props.id}>{props.name}</a></li>);
+	return (<li className={css}><a href={url} data-id={props.id}>{props.name}</a></li>);
     }
 
     function CHelpNav(props) {
@@ -141,7 +145,7 @@
     var HelpContent = React.createClass({
         getInitialState: function () {
             return {
-                status: 0
+			status:0
             };
         },
         componentDidMount: function () {
@@ -149,61 +153,52 @@
         },
         render: function () {
             return (<div className="item-box">
-                <div className="help-content">
-                    <div id="help1" className="content">
-                        <h4>注册登录</h4>
-                        <p>1. 在首页，点击注册即可跳转到注册的页面。</p>
-                        <p className="center"><img src="/static/images/help01.jpg"/></p>
-                        <p>2. 随求支持邮箱注册和QQ快捷登录，用户可以选择适合自己的方式进行注册。填写好资料即可完成注册。</p>
-                        <p className="center"><img src="/static/images/help02.jpg"/></p>
-                    </div>
+			<div className="help-content">
+        		<div id="help1" className="content">
+					<h4>注册登录</h4>
+					<p>1. 在首页，点击注册即可跳转到注册的页面。</p>
+					<p className="center"><img src="/static/images/help01.png" /></p>
+					<p>2. bitbiex支持邮箱注册,填写好资料即可完成注册。</p>
+					<p className="center"><img src="/static/images/help02.png" /></p>
+				</div>
 
-                    <div id="help2" className="content">
-                        <h4>交易指南</h4>
-                        <p>1.
-                            充值（以BTC为例）：登录后点击“财务中心”。在您创建账户后，系统会自动为您分配一个BTC的充值地址，您可以在充值BTC时向这个地址进行充值。如果您有BTC钱包的话，也可以使用二维码扫码充值。</p>
-                        <p className="center"><img src="/static/images/help03.jpg"/></p>
-                        <p>2. 交易界面：按照右币种类型，选择自己的交易类型（以WKC为例，选择买入或卖出）。</p>
-                        <p className="center"><img src="/static/images/help04.jpg"/></p>
-                        <p>3. 提现（以BTC为例）：登录后点击“财务中心”。您在向别人付款或者提现到您钱包的时候可以使用此功能。</p>
-                        <p>您在添加地址并认证地址后，页面就会如同显示。您可以点击添加地址，添加您要付款的地址。</p>
-                        <p><strong>地址标签：</strong>地址标签是便于您记忆地址是哪里的，请您在填写标签的时候，一定要填写可以让您快速识别地址的文字。</p>
-                        <p><strong>网络手续费：</strong>该手续费是在您在提币时向网络矿工进行支付的，一般情况下该手续费越高网络确认速度越快，平台在您支付（提现）BTC的时候是不收取手续费的，每笔提币的网络手续费为当前网络最佳手续费。
-                        </p>
-                        <p><strong>认证地址：</strong>认证地址是为了大家可以快速提现，一般不是您常用的地址，请勿进行认证。</p>
-                        <p className="center"><img src="/static/images/help05.jpg"/></p>
-                    </div>
+				<div id="help2" className="content">
+					<h4>交易指南</h4>
+					<p>1. 充值（以BTC为例）：登录后点击“财务中心”。在您创建账户后，系统会自动为您分配一个BTC的充值地址，您可以在充值BTC时向这个地址进行充值。如果您有BTC钱包的话，也可以使用二维码扫码充值。</p>
+					<p className="center"><img src="/static/images/help03.png" /></p>
+					<p>2. 交易界面：按照右币种类型，选择自己的交易类型（以WKC为例，选择买入或卖出）。</p>
+					<p className="center"><img src="/static/images/help04.jpg" /></p>
+					<p>3. 提现（以BTC为例）：登录后点击“财务中心”。您在向别人付款或者提现到您钱包的时候可以使用此功能。</p>
+					<p>您在添加地址并认证地址后，页面就会如同显示。您可以点击添加地址，添加您要付款的地址。</p>
+					<p><strong>地址标签：</strong>地址标签是便于您记忆地址是哪里的，请您在填写标签的时候，一定要填写可以让您快速识别地址的文字。</p>
+					<p><strong>网络手续费：</strong>该手续费是在您在提币时向网络矿工进行支付的，一般情况下该手续费越高网络确认速度越快，平台在您支付（提现）BTC的时候是不收取手续费的，每笔提币的网络手续费为当前网络最佳手续费。</p>
+					<p><strong>认证地址：</strong>认证地址是为了大家可以快速提现，一般不是您常用的地址，请勿进行认证。</p>
+					<p className="center"><img src="/static/images/help05.png" /></p>
+				</div>
 
-                    <div id="help3" className="content">
-                        <h4>费用说明</h4>
-                        <p>1. 交易手续费是用户在随求达成区块链资产交易而向随求支付的交易服务费用。
-                            标准网络撮合服务，交易手续费不超过交易委托订单金额的千分之二（即买卖双方各千分之二），随求保留对单个用户下调交易手续费的权利。 提供额外服务的，单独设置手续费率。</p>
-                        <p>2.
-                            用户有权随时提取在随求账户中的余额，但需向随求支付相应的提现手续费用。单个币种的最低提现手续费为提现币种折合1.5美元，为保障用户的提现快速到账，随求有权根据当前最佳手续费（计费标准为最近一个区块的手续费率对应的最小交易手续费）进行收取。</p>
-                        <p>3.
-                            区块链资产存在分叉、快照继承、赠送等方式产生衍生资产的情况。用户理解，由于领取这些衍生资产时需要动用私钥，可能会大大提升丢币风险，所以随求有权不替用户代领这些资产。随求承诺绝不会偷领这类资产。</p>
-                    </div>
+				<div id="help3" className="content">
+					<h4>费用说明</h4>
+					<p>1. 交易手续费是用户在bitbiex达成区块链资产交易而向bitbiex支付的交易服务费用。 标准网络撮合服务，交易手续费不超过交易委托订单金额的千分之二（即买卖双方各千分之二），bitbiex保留对单个用户下调交易手续费的权利。 提供额外服务的，单独设置手续费率。</p>
+					<p>2. 用户有权随时提取在bitbiex账户中的余额，但需向bitbiex支付相应的提现手续费用。单个币种的最低提现手续费为提现币种折合1.5美元，为保障用户的提现快速到账，bitbiex有权根据当前最佳手续费（计费标准为最近一个区块的手续费率对应的最小交易手续费）进行收取。</p>
+					<p>3. 区块链资产存在分叉、快照继承、赠送等方式产生衍生资产的情况。用户理解，由于领取这些衍生资产时需要动用私钥，可能会大大提升丢币风险，所以bitbiex有权不替用户代领这些资产。bitbiex承诺绝不会偷领这类资产。</p>
+				</div>
 
-                    <div id="help4" className="content">
-                        <h4>交易规则</h4>
-                        <p>用户了解并同意：用户承诺在其进入随求交易，通过随求与其他用户进行区块链资产交易的过程中良好遵守如下随求区块链资产交易规则。</p>
-                        <p>(a) 用户在随求浏览区块链资产交易信息时，应当仔细阅读交易信息中包含的全部内容，包括但不限于区块链资产价格、委托量、手续费、买入或卖出方向，
-                            用户完全接受交易信息中包含的全部内容后方可点击按钮进行交易。</p>
-                        <p>(b) 用户了解并同意随求会时时更新可使用的充值的区块链资产。</p>
-                        <p>(c) 用户了解并同意，用户有权随时提取在随求账户中的余额，但需向随求支付相应的提现手续费用。</p>
-                        <p>(d)
-                            用户在浏览完交易信息确认无误之后可以提交交易委托。用户提交交易委托后，即用户授权随求代理用户进行相应的交易撮合，随求在有满足用户委托价格的交易时将会自动完成撮合交易而无需提前通知用户。</p>
-                        <p>(e) 用户可以通过管理中心的交易明细中查看相应的成交记录，确认自己的详情交易记录。</p>
-                        <p>(f) 在委托未达成交易之前，用户有权随时撤销或修改委托。</p>
-                    </div>
+				<div id="help4" className="content">
+					<h4>交易规则</h4>
+					<p>用户了解并同意：用户承诺在其进入bitbiex交易，通过bitbiex与其他用户进行区块链资产交易的过程中良好遵守如下bitbiex区块链资产交易规则。</p>
+					<p>(a) 用户在bitbiex浏览区块链资产交易信息时，应当仔细阅读交易信息中包含的全部内容，包括但不限于区块链资产价格、委托量、手续费、买入或卖出方向， 用户完全接受交易信息中包含的全部内容后方可点击按钮进行交易。</p>
+					<p>(b) 用户了解并同意bitbiex会时时更新可使用的充值的区块链资产。</p>
+					<p>(c) 用户了解并同意，用户有权随时提取在bitbiex账户中的余额，但需向bitbiex支付相应的提现手续费用。</p>
+					<p>(d) 用户在浏览完交易信息确认无误之后可以提交交易委托。用户提交交易委托后，即用户授权bitbiex代理用户进行相应的交易撮合，bitbiex在有满足用户委托价格的交易时将会自动完成撮合交易而无需提前通知用户。</p>
+					<p>(e) 用户可以通过管理中心的交易明细中查看相应的成交记录，确认自己的详情交易记录。</p>
+					<p>(f) 在委托未达成交易之前，用户有权随时撤销或修改委托。</p>
+				</div>
 
-                    <div id="help5" className="content">
-                        <h4>交易所上线品种</h4>
-                        <p>目前随求交易所已上线玩客币-比特币(WKC-BTC)交易对，关于玩客币的更多信息，请访问官方网站：<a
-                            href="http://red.xunlei.com/index.php?r=site/coin"
-                            target="_blank">http://red.xunlei.com/index.php?r=site/coin</a></p>
-                    </div>
-                </div>
+				<div id="help5" className="content">
+					<h4>交易所上线品种</h4>
+					<p></p>
+				</div>
+			</div>
             </div>);
         }
     });
@@ -211,9 +206,9 @@
     var isLogin = IsLogin();
 
     ReactDOM.render(
-        <App isLogin={isLogin} ContentBox={
-            <PageView/>
-        }/>
+            <App isLogin={isLogin} ContentBox={
+                <PageView/>
+            }/>
         , document.getElementById("App")
     );
 </script>

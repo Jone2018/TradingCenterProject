@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <title>{% trans 'bitbiex—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
     <link rel="shortcut icon" href="/static/images/favicon.ico"/>
@@ -75,14 +75,14 @@
                 type: this.props.type
             };
         },
-        componentDidMount: function componentDidMount() {
+	componentDidMount: function componentDidMount() {
             var type = this.state.type;
             var pageIndex = this.state.pageIndex;
             this.refreshMsg(type, pageIndex);
             //console.log(type);
         },
-        refreshMsg: function refreshMsg(type, pageIndex) {
-            ShowLoading("{% trans '正在加载' %}");
+	refreshMsg: function refreshMsg(type, pageIndex) {
+		ShowLoading("{% trans '正在加载' %}");
 
             $.getJSON(this.props.source, {}, function (res) {
                 //console.log(res);
@@ -111,7 +111,7 @@
                 CloseLoading(500);
 
                 if (res.result) {
-                    var iMore = res.data && res.data.length == pageIndex * 10;
+				var iMore = res.data && res.data.length == pageIndex * 10;
 
                     this.setState({
                         items: res.data,
@@ -132,10 +132,10 @@
 
             }.bind(this));
         },
-        submitHandler: function submitHandler(e) {
+	submitHandler: function submitHandler(e) {
             e.preventDefault();
         },
-        loadHandler: function loadHandler(e) {
+	loadHandler: function loadHandler(e) {
             e.preventDefault();
             var ths = $(e.target);
             var type = ths.data("id");
@@ -146,18 +146,18 @@
             this.refreshMsg(type, 1);
 
         },
-        loadAllHandler: function loadAllHandler(e) {
+	loadAllHandler: function loadAllHandler(e) {
             e.preventDefault();
             $("#types .checked").removeClass("checked");
             this.refreshMsg(2, 1);
         },
-        loadMoreHandler: function loadMoreHandler(e) {
+	loadMoreHandler: function loadMoreHandler(e) {
             e.preventDefault();
             var type = this.state.type;
             var index = this.state.pageIndex + 1;
             this.refreshMsg(type, index);
         },
-        actionHandler: function actionHandler(e) {
+	actionHandler: function actionHandler(e) {
             e.preventDefault();
             var ths = $(e.target);
             var flag = ths.data("flag");
@@ -168,7 +168,7 @@
                 MsgDelete('#frmAction');
             }
         },
-        render: function render() {
+	render: function render() {
             var rows = [];
             var status = this.state.status;
             var moreLink = "";
@@ -191,7 +191,7 @@
                         <td className="cid"><input type="checkbox" name="message_id" value={item.message_id}/></td>
                         <td className="title txt-left"><a href={url}>{item.message_title}</a></td>
                         <td className="dtime">{dt}</td>
-                        <td className="type hidden-xs">{gettext(item.message_type)}</td>
+                        <td className="type hidden-xs">{ gettext(item.message_type) }</td>
                     </tr>);
                 });
 
@@ -204,19 +204,19 @@
                 <h4 className="tb-title tb-title-border clearfix">
                     <span className="tl txt-primary pull-left">{% trans '消息中心' %}
                         <small>{% trans '(未读' %}<span>{this.state.non_count}</span>{% trans '封，' %}<a
-                            href="#" onClick={this.loadAllHandler}
-                            data-id="2">{% trans '查看全部消息' %}</a>)</small></span>
+                                href="#" onClick={this.loadAllHandler}
+                                data-id="2">{% trans '查看全部消息' %}</a>)</small></span>
                     <span className="pull-right btns">
 				<a href="#" className="btn btn-default" onClick={this.actionHandler} data-flag="read"><i
-                    className="icon-eye"></i>{% trans '标记为已读' %} </a>
+                        className="icon-eye"></i>{% trans '标记为已读' %} </a>
 				<a href="#" className="btn btn-default" onClick={this.actionHandler} data-flag="delete"><i
-                    className="icon-trash"></i> {% trans '删除' %}</a>
+                        className="icon-trash"></i> {% trans '删除' %}</a>
 			</span>
                     <span className="pull-right chkbox" id="types">
             	<a href="#" onClick={this.loadHandler} data-id="0"><i
-                    className="icon-square"></i> {% trans '未读消息' %}</a>
+                        className="icon-square"></i> {% trans '未读消息' %}</a>
 				<a href="#" onClick={this.loadHandler} data-id="1"><i
-                    className="icon-square"></i> {% trans '已读消息' %}</a>
+                        className="icon-square"></i> {% trans '已读消息' %}</a>
             </span>
                 </h4>
                 <form className="form-horizontal" id="frmAction" method="post" onSubmit={this.submitHandler}>
@@ -242,9 +242,9 @@
     var isLogin = IsLogin();
 
     ReactDOM.render(
-        <App isLogin={isLogin} ContentBox={
-            <PageView type="2" source="/api/notice/get_message_count"/>
-        }/>
+            <App isLogin={isLogin} ContentBox={
+                <PageView type="2" source="/api/notice/get_message_count"/>
+            }/>
         , document.getElementById("App")
     );
 </script>

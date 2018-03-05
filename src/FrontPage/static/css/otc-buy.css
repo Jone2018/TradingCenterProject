@@ -1,0 +1,316 @@
+.otc-detail
+{
+	padding: 20px 0;
+	background-color: #f6f6f6;
+	font-size: 12px;
+}
+
+.title
+{
+	font-size: 18px;
+	padding: 8px 0;
+	margin: 0;
+	line-height: 175%;
+}
+
+.line-btm
+{
+	border-bottom: 1px solid #ddd;
+}
+
+.otc-info
+{
+	
+}
+
+.otc-info .intro
+{
+	padding-bottom: 20px;
+}
+
+.otc-info .intro .thu img
+{
+	width: 75px;
+	height: 75px;
+	border-radius: 50%;
+}
+.otc-info .intro .thu
+{
+	float: left;
+}
+
+.otc-info .intro .info
+{
+	float: left;
+}
+
+.otc-info .intro .cont
+{
+	color: #727272;
+	line-height: 150%;
+	padding: 8px;
+}
+
+.otc-info .intro .nm
+{
+	font-weight: bold;
+	font-size: 14px;
+	padding: 6px;
+	line-height: 175%;
+}
+
+.otc-info .intro .vd
+{
+	display: inline-block;
+	font-style: normal;
+	border: 1px solid #c30;
+	color: #c30;
+	font-size: 12px;
+	padding: 2px;
+	line-height: 14px;
+	transform: scale(.75);
+    -webkit-transform: scale(.75);
+    -moz-transform: scale(.75);
+    -ms-transform: scale(.75);
+}
+
+.otc-info .intro .credit
+{
+	
+}
+
+.otc-info .intro .credit i,
+.otc-info .intro .credit em
+{
+	display: block;
+	line-height: 150%;
+	text-align: center;
+	font-style: normal;
+}
+
+.otc-info .intro .credit i
+{
+	
+}
+
+.otc-info .intro .credit em
+{
+	color: #727272;
+}
+
+.otc-info .intro .credit span
+{
+	padding: 8px;
+}
+
+
+/*****/
+.otc-info .trade-info
+{
+	padding-top: 20px;
+}
+
+.tb-info
+{
+	
+}
+
+.tb-info th,
+.tb-info td
+{
+	padding: 8px 8px 8px 0;
+	line-height: 150%;
+	font-size: 14px;
+}
+/*******/
+.otc-info .trade-from
+{
+	
+}
+
+.otc-info .trade-form .form-box
+{
+	padding: 8px 0;
+}
+
+.otc-info .trade-form .input-item
+{
+	width: 45%;
+}
+.otc-info .trade-form .input-item,
+.otc-info .trade-form .input-spr
+{
+	float: left;
+}
+
+.otc-info .trade-form .input-spr
+{
+	width: 10%;
+	text-align: center;
+	line-height: 46px;
+	font-size: 18px;
+	color: #3eb4ea;
+}
+
+.otc-info .trade-form .input-item
+{
+	position: relative;
+}
+
+.otc-info .trade-form .input-item .coins
+{
+	position: absolute;
+	right: 15px;
+	top: 0;
+	line-height: 46px;
+	text-align: right;
+}
+
+.otc-info .trade-form .input-item input
+{
+	height: 46px;
+	line-height: 46px;
+	border: 1px solid #ddd;
+	text-indent: 10px;
+	width: 100%;
+	border-radius: 4px;
+}
+
+.otc-info .trade-form .input-item input:hover,
+.otc-info .trade-form .input-item input:focus
+{
+	border:1px solid #999;
+}
+
+.otc-info .trade-form .form-item
+{
+	padding-bottom: 20px;
+}
+
+/******/
+.otc-info .rule
+{
+	line-height: 150%;
+}
+
+
+/*******/
+.cmt-list .item
+{
+	background-color: #fff;
+	border-radius: 8px;
+	padding: 8px;
+	margin-top: 5px;
+}
+
+.cmt-list .item:hover
+{
+	box-shadow: 0 0 10px rgba(0,0,0,0.14);
+}
+
+.cmt-list .item .thu img
+{
+	width: 90%;
+	height: 45px;
+	max-width: 100%;
+	border-radius: 50%;
+}
+.cmt-list .item .thu
+{
+	float: left;
+	width: 20%;
+}
+
+
+.cmt-list .item .info
+{
+	float: left;
+	width: 80%;
+}
+
+
+.cmt-list .item .box
+{
+	padding-left: 8px;
+}
+
+.cmt-list .item .tp
+{
+	color: #c30;
+}
+.cmt-list .item .cont
+{
+	color: #727272;
+	line-height: 175%;
+}
+
+@media screen and (max-width:767px)
+{
+	.otc-info .trade-form .input-item,
+	.otc-info .trade-form .input-spr
+	{
+		width: 100%;
+	}
+	.otc-info .trade-form .input-item,
+	.otc-info .trade-form .input-spr
+	{
+		float: none;
+		padding: 2px 0;
+		margin: 0;
+	}
+}
+
+/*****/
+.order-confirm
+{
+	
+}
+
+.order-confirm .item
+{
+	padding: 8px 0;
+	line-height: 150%;
+}
+
+.order-confirm .item .tl
+{
+	color: #999;
+}
+
+.order-confirm .item .dl
+{
+	color: #666;
+}
+
+.order-confirm .tips
+{
+	color: #c30;
+}
+
+@media screen and (max-width:414px)
+{
+	.otc-info .intro .thu
+	{
+		float: none;
+		text-align: center;
+		display: block;
+	}
+
+	.otc-info .intro .info
+	{
+		float: none;
+		display: block;
+		text-align: center;
+	}
+	
+	.otc-info .intro .credit
+	{
+		text-align: center;
+	}
+	
+	.otc-info .intro .credit span.fl
+	{
+		float: none;
+		display: inline-block;
+	}
+}

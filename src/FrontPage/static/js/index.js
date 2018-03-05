@@ -1,69 +1,77 @@
 function PageInit() {
     RefreshCode("#rndCode");
 
-    $(".mm-home a").addClass("active");
+    $(".mm-home  > a").addClass("active");
 
 
     $(window).resize(function () {
         ResizeAll();
     });
 
-    if (IsLogin()) {
-        $.getJSON("/api/account/get_is_read", function (res) {
-            if (res.result && res.data && !res.data.is_read) {
-                ShowRules();
-            }
+	if(IsLogin())
+	{
+		$.getJSON("/api/account/get_is_read",function(res){
+			if(res.result && res.data && !res.data.is_read)
+			{
+				ShowRules();
+			}
 
-        });
-    }
+		});
+}
 
 }
 
 var srTimerID;
-var srSeconds = 10;
+var srSeconds=10;
+function ShowRules()
+{
+	$.get("dialog/rules.html",function(html){
+		var winWd = $(window).width();
+		var winHt = $(window).height();
 
-function ShowRules() {
-    $.get("dialog/rules.html", function (html) {
-        var winWd = $(window).width();
-        var winHt = $(window).height();
+		var wd = winWd > 991 ? 800 : winWd * 0.9;
+		var ht = winHt > 500 ? 500 : winHt * 0.8;
 
-        var wd = winWd > 991 ? 800 : winWd * 0.9;
-        var ht = winHt > 500 ? 500 : winHt * 0.8;
+		srTimerID = setInterval(function(){
+			TRules();
+		},1000);
 
-        srTimerID = setInterval(function () {
-            TRules();
-        }, 1000);
+		layer.open({
+			title: gettext('bitbiex用户协议'),
+			content:html,
+			area:[wd + "px",ht + "px"],
+			isFixed:true,
+			closeBtn:false,
+			btn:[gettext('我已阅读并同意该协议')],
+			yes:function(index, layero){
+				if(srSeconds <= 0)
+				{
+					$.getJSON("/api/account/set_is_read",{
 
-        layer.open({
-            title: gettext('随求用户协议'),
-            content: html,
-            area: [wd + "px", ht + "px"],
-            isFixed: true,
-            closeBtn: false,
-            btn: [gettext('我已阅读并同意该协议')],
-            yes: function (index, layero) {
-                if (srSeconds <= 0) {
-                    $.getJSON("/api/account/set_is_read", {}, function (res) {
+					},function(res){
 
-                    });
+					});
 
-                    layer.close(index);
-                }
-            }
-        });
+					layer.close(index);
+				}
+			}
+		});
 
-        $(".layui-layer-btn0").css({"background-color": "#999", "border-color": "#999"});
-    }, "html");
+		$(".layui-layer-btn0").css({"background-color":"#999","border-color":"#999"});
+	},"html");
 }
 
-function TRules() {
-    if (--srSeconds <= 0) {
-        clearInterval(srTimerID);
-        $(".layui-layer-btn0").removeAttr("style").html("我已阅读并同意该协议");
-    }
-    else {
-        $(".layui-layer-btn0").html("我已阅读并同意该协议(" + srSeconds + "秒)");
-    }
+function TRules()
+{
+	if(--srSeconds <= 0)
+	{
+		clearInterval(srTimerID);
+		$(".layui-layer-btn0").removeAttr("style").html("我已阅读并同意该协议");
+	}
+	else
+	{
+		$(".layui-layer-btn0").html("我已阅读并同意该协议(" + srSeconds + "秒)");
+	}
 }
 
 function InitSlider() {
@@ -119,19 +127,19 @@ function AjaxLogin(el) {
     var pwd = frm.find("input[name='password']");
     var cde = frm.find("input[name='captcha_value']");
     if (IsEmpty(usr.val())) {
-        ShowMsgError(gettext('请输入手机号/邮箱'));
+		ShowMsgError(gettext('请输入手机号/邮箱'));
         usr.focus();
         return false;
     }
 
     if (IsEmpty(pwd.val())) {
-        ShowMsgError(gettext('请输入密码'));
+		ShowMsgError(gettext('请输入密码'));
         pwd.focus();
         return false;
     }
 
     if (IsEmpty(cde.val())) {
-        ShowMsgError(gettext('请输入验证码'));
+		ShowMsgError(gettext('请输入验证码'));
         cde.focus();
         return false;
     }
@@ -158,8 +166,8 @@ function cbLogin(res) {
         SetItem('last_login_ip', res.data.last_login_ip);
         SetItem('last_login_time', res.data.last_login_time);
 
-        ShowMsgOK(gettext('登录成功，正在跳转'), 3000, function () {
-            document.location = "index.html";
+		ShowMsgOK(gettext('登录成功，正在跳转'),3000,function(){
+			document.location = "index.html";
         });
     }
     else {

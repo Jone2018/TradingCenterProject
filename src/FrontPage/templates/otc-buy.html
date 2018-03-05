@@ -1,0 +1,249 @@
+<!doctype html>
+{% load i18n %}
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
+    <link rel="shortcut icon" href="/static/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/otc-buy.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/layer/theme/default/layer.css">
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/jquery.scrollTo.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap/layer/layer.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/common.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/js/swiper/css/swiper.min.css">
+    <script src="/static/js/swiper/js/swiper.min.js"></script>
+    <script src="/static/js/otc.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".mm-otc a").addClass("active");
+        });
+		
+		function AjaxSubmit()
+		{
+			var winWd = $(window).width();
+			var wd = parseInt(winWd * 0.98);
+			var cont = $("#confirm").html();
+			
+			if(wd > 450)
+			{
+				wd = 450;
+			}
+			else if(wd < 300) 
+			{
+				wd = 300;
+			}
+			
+			layer.open({
+				title:"下单确认",
+				area:wd + "px",
+				content:cont,
+				btn:["确认购买","取消"],
+				yes:function(index, layero){
+					layer.close(index);
+					
+					layer.load(2, {time: 3*1000});
+				},
+				btn2:function(index, layero){
+					layer.close(index);
+				}
+			})
+			
+			return false;
+		}
+    </script>
+	
+		
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+    </head>
+    <body>
+<div id="App"></div>
+<div id="otcInfoTemp" style="display: none;">
+      <div class="row">
+    <div class="col-lg-9 col-md-8 col-sm-6 col-xs-12">
+          <div class="otc-info">
+        <div class="intro">
+              <div class="clearfix"> <a href="#" class="thu"><img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/lihualiang.png" /></a>
+            <div class="info">
+				<div class="clearfix nms"><span class="nm">一切皆有可能</span><span class="vd">己实名</span><a href="#" class=""><i class="icon"></i></a></div>
+                  <div class="clearfix credit"> <span class="fl"><i>交易次数</i><em>1000+</em></span> <span class="fl"><i>信任人数</i><em>1451</em></span> <span class="fl"><i>好评度</i><em>99%</em></span> <span class="fl"><i>历史成交</i><em>300+ BTC</em></span> </div>
+                </div>
+          </div>
+              <div class="cont">支付宝，银行卡都可以，长期要货，货搬砖的可加微信长期合作，每天大量供货，方便快捷，出现任何客户打错钱的客户，全部会予以归还，平台诚信* * * *, * * * * * * *</div>
+            </div>
+			  <div class="line-btm">
+			  </div>
+        <div class="trade-info">
+              <table class="tb-info">
+            <tr>
+                  <th>最新报价:</th>
+                  <td></td>
+                  <td class="price">42900 CNY/BTC</td>
+                </tr>
+            <tr>
+                  <th>交易限额:</th>
+                  <td></td>
+                  <td class="ad-limits">10000-300000 CNY</td>
+                </tr>
+            <tr>
+                  <th>付款方式:</th>
+                  <td></td>
+                  <td>银行转账</td>
+                </tr>
+            <tr>
+                  <th>付款期限:</th>
+                  <td></td>
+                  <td>30 分钟</td>
+                </tr>
+          </table>
+            </div>
+        <div class="trade-form">
+              <h2 class="title">你想购买多少？</h2>
+              <div class="form-box">
+            <form method="post" onSubmit="return AjaxSubmit()">
+                  <div class="clearfix form-item">
+                <div class="input-item">
+                      <input type="number" placeholder="输入您想购买的金额" class=" input " name="amount" margin="0.7" price="42900" >
+                      <div class="coins">CNY</div>
+                    </div>
+                <div class="input-spr"> <i class="icon icon-exchange"></i> </div>
+                <div class="input-item">
+                      <input type="number" placeholder="输入您想购买的数量" class="input" name="qty" margin="0.7" price="42900" >
+                      <div class="coins">BTC</div>
+                    </div>
+              </div>
+                  <div class="btns">
+                <button type="submit" class="btn btn-block btn-primary btn-lg">立即购买</button>
+              </div>
+                </form>
+          </div>
+            </div>
+        <div class="rule">
+              <h2 class="title">交易须知</h2>
+              <p>1.交易前请详细了解对方的交易信息。<br>
+            2.请通过平台进行沟通约定，并保存好相关聊天记录。<br>
+            3.如遇到交易纠纷，可通过申诉来解决问题。<br>
+            4.在您发起交易请求后，BTC 被锁定在托管中，受到随求网保护。如果您是买家，发起交易请求后，请在付款周期内付款并把交易标记为付款已完成。卖家在收到付款后将会放行处于托管中的 BTC。<br>
+            交易前请阅读《随求服务条款》以及常见问题、交易指南等帮助文档。<br>
+            5.请注意欺诈风险，交易前请检查该用户收到的评价和相关信用信息，并对新近创建的账户多加留意。<br>
+            6.托管服务保护网上交易的买卖双方。在发生争议的情况下，我们将评估所提供的所有信息，并将托管的 BTC 放行给其合法所有者。<br>
+          </p>
+            </div>
+      </div>
+        </div>
+    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+          <div class="otc-cmts">
+			  <h2 class="title">客户评价 <small>(好评度99%)</small></h2>
+        <div class="comments">
+              <ul class="cmt-list">
+            <li class="item">
+                  <div class="clearfix"> <a href="#" class="thu"> <img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/ylp.png" alt="" /> </a>
+                <div class="info">
+					<div class="box">
+                      <div class="nms clearfix"> <span class="nm fl">fa***ok</span> <span class="tp fr"><i class="icon icon-"></i>好评</span> </div>
+                      <div class="cont"> 交易迅速，好评 </div>
+					</div>
+                    </div>
+              </div>
+                </li>
+				  <li class="item">
+                  <div class="clearfix"> <a href="#" class="thu"> <img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/yiqiejieyoukeneng.png" alt="" /> </a>
+                <div class="info">
+					<div class="box">
+                      <div class="nms clearfix"> <span class="nm fl">fa***ok</span> <span class="tp fr"><i class="icon icon-"></i>好评</span> </div>
+                      <div class="cont"> 交易迅速，好评 </div>
+					</div>
+                    </div>
+              </div>
+                </li>
+				  <li class="item">
+                  <div class="clearfix"> <a href="#" class="thu"> <img src="http://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/gaoly.jpg" alt="" /> </a>
+                <div class="info">
+					<div class="box">
+                      <div class="nms clearfix"> <span class="nm fl">fa***ok</span> <span class="tp fr"><i class="icon icon-"></i>好评</span> </div>
+                      <div class="cont"> 交易迅速，好评 </div>
+					</div>
+                    </div>
+              </div>
+                </li>
+          </ul>
+            </div>
+      </div>
+        </div>
+  </div>
+    </div>
+		<div id="confirm" style="display: none;">
+			<div class="order-confirm">
+  <div class="item"> <span class="tl">购买价格: </span> <span class="dl"><span>50000.00</span> CNY</span> </div>
+  <div class="item"> <span class="tl">购买金额: </span> <span class="dl"><span class="amount">100000.00</span> CNY</span> </div>
+  <div class="item"> <span class="tl">购买数量: </span> <span class="dl"><span class="qty">2.00000000</span> BTC</span> </div>
+  <div class="item tips">提醒：请确认价格再下单，下单后此交易的 BTC 将托管锁定，请放心购买。</div>
+</div>
+		</div>
+
+<script type="text/babel" src="/static/jsx/approot.jsx"></script> 
+<script type="text/babel" src="/static/jsx/header.jsx"></script> 
+<script type="text/babel" src="/static/jsx/footer.jsx"></script> 
+<script type="text/babel" src="/static/jsx/usernavbar.jsx"></script> 
+<script type="text/babel" src="/static/jsx/elements.jsx"></script> 
+<script type="text/babel">
+
+    function CCate(props) {
+        var items = [];
+        var num = 0;
+        props.items.forEach(function (item) {
+            num++;
+            items.push(<a href="#" key={num} onClick={props.clickHandler} data-id={item}><i
+                    className="icon-check-circle"></i> {item}</a>);
+        });
+        return (<div className="nav-cate visible-xs-block">{items}</div>);
+    }
+
+    var PageView = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0,
+                items: []
+            };
+        },
+        componentDidMount: function () {
+            $("#otcInfo").html($("#otcInfoTemp").html());
+        },
+        render: function () {
+            return (<section className="otc-detail">
+                <div className="container">
+					<div id="otcInfo"></div>
+                </div>
+            </section>);
+        }
+    });
+	
+    var isLogin = IsLogin();
+
+    ReactDOM.render(
+            <App isLogin={isLogin} ContentBox={
+                <PageView/>
+            }/>
+        , document.getElementById("App")
+    );
+</script>
+</body>
+</html>

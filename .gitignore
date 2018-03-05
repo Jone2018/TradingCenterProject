@@ -69,3 +69,5 @@ local_settings.py
 .env
 
 *.pid
+
+staticfiles/

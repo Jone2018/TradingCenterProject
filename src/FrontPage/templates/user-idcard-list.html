@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <title>{% trans 'bitbiex—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
     <link rel="shortcut icon" href="/static/images/favicon.ico"/>
@@ -77,7 +77,7 @@
     function CIDItem(props) {
         return (<div className="item">
             <h4 className="title clearfix"><span className="pull-left">{props.title}</span> <span
-                className="pull-right txt-primary">{props.status}</span></h4>
+                    className="pull-right txt-primary">{props.status}</span></h4>
             <div className="box">
                 <div className="row">
                     {props.children}
@@ -171,7 +171,7 @@
 
             return (<div className="item-box">
                 <h4 className="tb-title clearfix"><span className="tl txt-primary pull-left"><i
-                    className="icon-check-circle icon-large"></i> {title}</span>{lnk}</h4>
+                        className="icon-check-circle icon-large"></i> {title}</span>{lnk}</h4>
                 <div className="idcard-list">
                     <CIDItem title="{% trans '证件信息' %}" status={idStatus}>
                         <div className="col-sm-offset-2 col-sm-10">
@@ -199,9 +199,9 @@
     var isLogin = IsLogin();
 
     ReactDOM.render(
-        <App isLogin={isLogin} ContentBox={
-            <PageView/>
-        }/>
+            <App isLogin={isLogin} ContentBox={
+                <PageView/>
+            }/>
         , document.getElementById("App")
     );
 </script>

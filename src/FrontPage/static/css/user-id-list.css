@@ -1,37 +1,46 @@
-.idcard-list {
-    padding-bottom: 30px;
+.idcard-list
+{
+	padding-bottom:30px;
 }
 
-.idcard-list .title {
-    border-top: 1px solid #c4c4c4;
-    padding: 10px 35px;
-    line-height: 30px;
+.idcard-list .title
+{
+	border-top:1px solid #c4c4c4;
+	padding:10px 35px;
+	line-height:30px;	
 }
 
-.idcard-list .item {
-    padding-bottom: 20px;
+.idcard-list .item
+{
+	padding-bottom:20px;
 }
 
-.idcard-list .item .box {
-    padding-left: 35px;
-    padding-right: 35px;
+.idcard-list .item .box
+{
+	padding-left:35px;
+	padding-right:35px;
 }
 
-.idcard-list .item .cont {
-    line-height: 36px;
+.idcard-list .item .cont
+{
+	line-height:36px;
 }
 
-.idcard-list .item .cont-box {
-    line-height: 175%;
-    border: 1px solid #dfdfdf;
-    border-radius: 10px;
-    padding: 10px;
+.idcard-list .item .cont-box
+{
+	line-height:175%;
+	border:1px solid #dfdfdf;
+	border-radius:10px;
+	padding:10px;
 }
 
-@media (max-width: 767px) {
-    .idcard-list .title,
-    .idcard-list .item .box {
-        padding-left: 15px;
-        padding-right: 15px;
-    }
+
+@media (max-width:767px)
+{
+	.idcard-list .title,
+	.idcard-list .item .box
+	{
+		padding-left:15px;
+		padding-right:15px;
+	}	
 }

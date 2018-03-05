@@ -1,104 +1,125 @@
-.form-idcard {
-    padding: 15px 0;
+.form-idcard
+{
+	padding:15px 0;
 }
 
 .form-idcard .photo,
 .form-idcard .info,
-.form-idcard .btns {
-    width: 80%;
-    padding: 15px 0;
-    margin: 0 auto;
+.form-idcard .btns
+{
+	width:80%;
+	padding:15px 0;
+	margin:0 auto;
 }
 
-.form-idcard .btns {
-    padding: 30px 0;
+.form-idcard .btns
+{
+	padding:30px 0;
 }
 
-.form-idcard .photo .box {
-    border: 1px dashed #aaa;
-    border-radius: 20px;
-    height: 140px;
-    margin: 15px 0;
-    position: relative;
+.form-idcard .photo .box
+{
+	border:1px dashed #aaa;
+	border-radius:20px;
+	height:140px;
+	margin:15px 0;
+	position:relative;
 }
 
-.form-idcard .photo .box .preview {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
-    background-color: #FFF;
-    display: none;
+.form-idcard .photo .box .preview
+{
+	position:absolute;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	border-radius:20px;
+	background-color:#FFF;
+	display:none;
 }
 
-.form-idcard .photo .box .preview img {
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
+.form-idcard .photo .box .preview img
+{
+	width:100%;
+	height:100%;
+	border-radius:20px;	
 }
 
-.form-idcard .photo .box.error {
-    border: 1px dashed #F00;
+.form-idcard .photo .box.error
+{
+	border:1px dashed #F00;	
 }
 
-.form-idcard .photo .box.ok {
-    border: 1px dashed #0C0;
+.form-idcard .photo .box.ok
+{
+	border:1px dashed #0C0;	
 }
 
-.form-idcard .photo .box:hvoer {
-    border: 1px dashed #666;
+
+.form-idcard .photo .box:hvoer
+{
+	border:1px dashed #666;	
 }
 
-.form-idcard .photo a {
-    display: block;
-    margin-top: 110px;
-    line-height: 20px;
-    text-align: center;
-    background-color: rgba(252, 252, 252, 0.75);
-    border-radius: 20px;
+.form-idcard .photo a
+{
+	display:block;
+	margin-top:110px;
+	line-height:20px;
+	text-align:center;
+	background-color:rgba(252,252,252,0.75);
+	border-radius:20px;
 }
 
-.form-idcard .info .box {
-    border: 1px solid #c4c4c4;
-    border-radius: 20px;
-    padding: 15px;
-    line-height: 26px;
-    color: #525252;
+.form-idcard .info .box
+{
+	border:1px solid #c4c4c4;
+	border-radius:20px;
+	padding:15px;
+	line-height:26px;
+	color:#525252;
 }
 
-.form-idcard .btns button {
-    min-width: 180px;
-    margin-left: 40%;
+
+.form-idcard .btns button
+{
+	min-width:180px;
+	margin-left:40%;	
 }
 
-.icon_id01 {
-    background: url(../images/icon_id1.png) center center no-repeat;
+.icon_id01
+{
+	background:url(../images/icon_id1.png) center center no-repeat;	
 }
 
-.icon_id02 {
-    background: url(../images/icon_id2.png) center center no-repeat;
+.icon_id02
+{
+	background:url(../images/icon_id2.png) center center no-repeat;	
 }
 
-.icon_id03 {
-    background: url(../images/icon_id3.png) center center no-repeat;
+.icon_id03
+{
+	background:url(../images/icon_id3.png) center center no-repeat;	
 }
 
-@media (max-width: 767px) {
-    .form-idcard .photo,
-    .form-idcard .info,
-    .form-idcard .btns {
-        width: 90%;
-    }
-
-    .form-idcard .photo {
-        padding-top: 0;
-        padding-bottom: 0;
-    }
-
-    .form-idcard .btns {
-        padding: 15px 0;
-    }
+@media (max-width:767px)
+{
+	.form-idcard .photo,
+	.form-idcard .info,
+	.form-idcard .btns
+	{
+		width:90%;
+	}
+	
+	.form-idcard .photo
+	{
+		padding-top:0;
+		padding-bottom:0;	
+	}
+	
+	.form-idcard .btns
+	{
+		padding:15px 0;	
+	}
 
 }

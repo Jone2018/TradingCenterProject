@@ -1,0 +1,517 @@
+<!doctype html>
+{% load i18n %}
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
+    <link rel="shortcut icon" href="/static/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/otc-orders.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/layer/theme/default/layer.css">
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/jquery.scrollTo.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap/layer/layer.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/common.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/js/swiper/css/swiper.min.css">
+    <script src="/static/js/swiper/js/swiper.min.js"></script>
+    <script src="/static/js/otc.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+	<script src="/static/js/jquery.slimscroll.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+           
+        });
+		
+		function ToggleMsg(id)
+		{
+			var msg = $("#msg" + id);
+			var titm = $("#titem" + id);
+			var btn = titm.find(".expend a");
+			if(msg.hasClass("isopen"))
+				{
+					msg.slideUp().removeClass("isopen");
+					btn.html('展开 <i class="icon icon-angle-double-down"></i>');
+				}
+			else {
+				msg.slideDown().addClass("isopen");
+				btn.html('收起 <i class="icon icon-angle-double-up"></i>');
+				
+				
+			}
+			
+			return false;
+		}
+		
+		function sendMsg(id)
+		{
+			var msg = $("#msg" + id + " .msg-list");
+			var cont = $("#msg" + id).find("input[name='content']");
+			if(cont.val().replace(/\s+/,"").length > 0)
+				{
+					var mi = GetMsgItem(cont.val());
+					cont.val("");
+					$(mi).appendTo(msg);
+					
+					$("#simScroll"+id).slimScroll({ scrollBy: '60px' });
+				}
+		}
+		
+		function PageInit()
+		{
+			$(".mm-otc > a").addClass("active");
+			
+			$(".simScroll").slimScroll({
+				height:"300px",
+				alwaysVisible:false,
+				start:"bottom"
+			});
+			
+		}
+		
+		function GetMsgItem(m)
+		{
+			var h = '<li class="item item-usr">';
+				 h+='<div class="clearfix">';
+				h+='<a href="#" class="thu"><img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/lihualiang.png" alt="" /></a>';
+				h+='<div class="info">';
+				h+='<div class="box">';
+				h+=m;
+				h+='</div>';
+				h+='</div>';
+				h+='</div>';
+				h+='</li>';
+			
+			return h;
+		}
+    </script>
+    <!--[if gte IE 6]>
+	<link rel="stylesheet" type="text/css" href="/static/css/otc-ie.css" />
+	<![endif]-->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+    </head>
+    <body>
+<div id="App"></div>
+<div id="ordersTemp" style="display: none;">
+      <div class="otc-query">
+    <h2 class="title">订单管理</h2>
+    <ul class="otc-tabs clearfix">
+          <li class="item active"> <a href="otc-orders.html" class="itm">进行中</a></li>
+          <li class="item">
+			  <div class="dropdown">
+  <a id="dLabel" class="itm" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    已结束
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="dLabel">
+	  <li><a href="#">比特币(BTC)</a></li>
+	  <li><a href="#">以太坊(ETH)</a></li>
+	  <li><a href="#">比特币现金(BCH)</a></li>
+	  <li><a href="#">莱特币(LTC)</a></li>
+  </ul>
+				  
+				  
+</div>
+		</li>
+        </ul>
+  </div>
+      <div class="otc-orders">
+    <div class="item-box">
+          <table class="tb-orders">
+        <thead>
+              <tr class="thead">
+				<td class="name">交易伙伴</td>
+				<td class="no">订单号</td>
+				<td class="type">类型</td>
+				  <td class="amount"><span class="hidden-xs">交易</span>金额</td>
+				  <td class="qty"><span class="hidden-xs">交易</span>数量</td>
+				  <td class="time hidden-xs"><span class="hidden-xs">创建</span>时间</td>
+				  <td class="status"><span class="hidden-xs">交易</span>状态</td>
+				  <td class="btns hidden-xs"><span class="hidden-xs">交易</span>操作</td>
+				<td class="expend"></td>
+			  </tr>
+            </thead>
+			 <tbody>
+				 <tr class="tline"><td colspan="9">&nbsp;</td></tr>
+				 <tr class="titem tactive" id="titem1">
+					 <td class="name"><div class="clearfix"> <img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/caicai.png" class="thu" />
+                  <div class="info">
+					  <a href="#" class="txt-primary">二蛋</a>
+                </div>
+                </div></td>
+					 <td class="no"><a href="otc-order-detail.html" class="txt-primary">2064190</a></td>
+					<td class="type">购买BTC</td>
+					<td class="amount">10000 CNY</td>
+					<td class="qty">0.13495277 BTC</td>
+					<td class="time hidden-xs">2018-02-18 11:17:01</td>
+					<td class="status">交易中</td>
+					 <td class="btns hidden-xs"><a href="#">取消<span class="hidden-xs">交易</span></a></td>
+					 <td class="expend"><a href="#" onClick="return ToggleMsg(1)">收起 <i class="icon icon-angle-double-up"></i></a></td>
+				 </tr>
+				 <tr class="tmsg isopen" id="msg1">
+					 <td colspan="9">
+						<div class="messages">
+							<div class="simScroll" id="simScroll1">
+					 	<ul class="msg-list">
+							<li class="item item-usr">
+								<div class="clearfix">
+									<a href="#" class="thu"><img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/lihualiang.png" alt="" /></a>
+									<div class="info">
+										<div class="box">
+										你好，在吗?
+										</div>
+									</div>
+								</div>
+							</li>
+							<li class="item item-otc">
+								<div class="clearfix">
+										<a href="#" class="thu"><img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/lihualiang.png" alt="" /></a>
+										<div class="info">
+											<div class="box">
+											在的
+											</div>
+										</div>
+									</div>
+							</li>
+							<li class="item item-usr">
+								<div class="clearfix">
+									<a href="#" class="thu"><img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/lihualiang.png" alt="" /></a>
+									<div class="info">
+										<div class="box">
+										你好，在吗?
+										</div>
+									</div>
+								</div>
+							</li>
+							<li class="item item-otc">
+								<div class="clearfix">
+										<a href="#" class="thu"><img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/lihualiang.png" alt="" /></a>
+										<div class="info">
+											<div class="box">
+											在的
+											</div>
+										</div>
+									</div>
+							</li>
+							<li class="item item-usr">
+								<div class="clearfix">
+									<a href="#" class="thu"><img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/lihualiang.png" alt="" /></a>
+									<div class="info">
+										<div class="box">
+										你好，在吗?
+										</div>
+									</div>
+								</div>
+							</li>
+							<li class="item item-otc">
+								<div class="clearfix">
+										<a href="#" class="thu"><img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/lihualiang.png" alt="" /></a>
+										<div class="info">
+											<div class="box">
+											在的
+											</div>
+										</div>
+									</div>
+							</li>
+						 </ul>
+							</div>
+						<div class="msg-tools">
+								<div class="clearfix">
+									<a href="#" class="icons"><i class="icon icon-paperclip"></i></a>
+									<div class="tbox">
+										<div class="iconx"><i class="icon icon-comments"></i></div>
+										<input type="text" class="msg" name="content" placeholder="说点什么吧" />
+										<div class="btn-send">
+											<button type="button" onClick="sendMsg(1)" >发送 <i class="icon icon-angle-right"></i></button>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						 </div>
+					 </td>
+				 </tr>
+				 
+				 <tr class="tline"><td colspan="9">&nbsp;</td></tr>
+				 <tr class="titem tactive" id="titem2">
+					 <td class="name"><div class="clearfix"> <img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/caicai.png" class="thu" />
+                  <div class="info">
+					  <a href="#" class="txt-primary">二蛋</a>
+                </div>
+                </div></td>
+					 <td class="no"><a href="otc-order-detail.html" class="txt-primary">2064190</a></td>
+					<td class="type">购买BTC</td>
+					<td class="amount">10000 CNY</td>
+					<td class="qty">0.13495277 BTC</td>
+					<td class="time hidden-xs">2018-02-18 11:17:01</td>
+					<td class="status">交易中</td>
+					 <td class="btns hidden-xs"><a href="#">取消交易</a></td>
+					 <td class="expend"><a href="#" onClick="return ToggleMsg(2)">展开 <i class="icon icon-angle-double-down"></i></a></td>
+				 </tr>
+				 <tr class="tmsg" id="msg2" style="display: none;">
+					 <td colspan="9">
+						<div class="messages">
+						<div class="simScroll" id="simScroll2">
+					 	<ul class="msg-list">
+							<li class="item item-usr">
+								<div class="clearfix">
+									<a href="#" class="thu"><img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/lihualiang.png" alt="" /></a>
+									<div class="info">
+										<div class="box">
+										你好，在吗?
+										</div>
+									</div>
+								</div>
+							</li>
+							<li class="item item-otc">
+								<div class="clearfix">
+										<a href="#" class="thu"><img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/lihualiang.png" alt="" /></a>
+										<div class="info">
+											<div class="box">
+											在的
+											</div>
+										</div>
+									</div>
+							</li>
+							<li class="item item-usr">
+								<div class="clearfix">
+									<a href="#" class="thu"><img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/lihualiang.png" alt="" /></a>
+									<div class="info">
+										<div class="box">
+										你好，在吗?
+										</div>
+									</div>
+								</div>
+							</li>
+							<li class="item item-otc">
+								<div class="clearfix">
+										<a href="#" class="thu"><img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/lihualiang.png" alt="" /></a>
+										<div class="info">
+											<div class="box">
+											在的
+											</div>
+										</div>
+									</div>
+							</li>
+							<li class="item item-usr">
+								<div class="clearfix">
+									<a href="#" class="thu"><img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/lihualiang.png" alt="" /></a>
+									<div class="info">
+										<div class="box">
+										你好，在吗?
+										</div>
+									</div>
+								</div>
+							</li>
+							<li class="item item-otc">
+								<div class="clearfix">
+										<a href="#" class="thu"><img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/lihualiang.png" alt="" /></a>
+										<div class="info">
+											<div class="box">
+											在的
+											</div>
+										</div>
+									</div>
+							</li>
+						 </ul>
+							</div>
+						<div class="msg-tools">
+								<div class="clearfix">
+									<a href="#" class="icons"><i class="icon icon-paperclip"></i></a>
+									<div class="tbox">
+										<div class="iconx"><i class="icon icon-comments"></i></div>
+										<input type="text" class="msg" name="content" placeholder="说点什么吧" />
+										<div class="btn-send">
+											<button type="button" onClick="sendMsg(2)" >发送 <i class="icon icon-angle-right"></i></button>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						 </div>
+					 </td>
+				 </tr>
+				 
+				  <tr class="tline"><td colspan="9">&nbsp;</td></tr>
+				 <tr class="titem tactive" id="titem3">
+					 <td class="name"><div class="clearfix"> <img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/caicai.png" class="thu" />
+                  <div class="info">
+					  <a href="#" class="txt-primary">二蛋</a>
+                </div>
+                </div></td>
+					 <td class="no"><a href="otc-order-detail.html" class="txt-primary">2064190</a></td>
+					<td class="type">购买BTC</td>
+					<td class="amount">10000 CNY</td>
+					<td class="qty">0.13495277 BTC</td>
+					<td class="time hidden-xs">2018-02-18 11:17:01</td>
+					<td class="status">交易中</td>
+					 <td class="btns hidden-xs"><a href="#">取消交易</a></td>
+					 <td class="expend"><a href="#" onClick="return ToggleMsg(3)">展开 <i class="icon icon-angle-double-down"></i></a></td>
+				 </tr>
+				 <tr class="tmsg" id="msg3" style="display: none;">
+					 <td colspan="9">
+						<div class="messages">
+							<div class="simScroll" id="simScroll3">
+					 	<ul class="msg-list">
+							<li class="item item-usr">
+								<div class="clearfix">
+									<a href="#" class="thu"><img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/lihualiang.png" alt="" /></a>
+									<div class="info">
+										<div class="box">
+										你好，在吗?
+										</div>
+									</div>
+								</div>
+							</li>
+							<li class="item item-otc">
+								<div class="clearfix">
+										<a href="#" class="thu"><img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/lihualiang.png" alt="" /></a>
+										<div class="info">
+											<div class="box">
+											在的
+											</div>
+										</div>
+									</div>
+							</li>
+							<li class="item item-usr">
+								<div class="clearfix">
+									<a href="#" class="thu"><img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/lihualiang.png" alt="" /></a>
+									<div class="info">
+										<div class="box">
+										你好，在吗?
+										</div>
+									</div>
+								</div>
+							</li>
+							<li class="item item-otc">
+								<div class="clearfix">
+										<a href="#" class="thu"><img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/lihualiang.png" alt="" /></a>
+										<div class="info">
+											<div class="box">
+											在的
+											</div>
+										</div>
+									</div>
+							</li>
+							<li class="item item-usr">
+								<div class="clearfix">
+									<a href="#" class="thu"><img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/lihualiang.png" alt="" /></a>
+									<div class="info">
+										<div class="box">
+										你好，在吗?
+										</div>
+									</div>
+								</div>
+							</li>
+							<li class="item item-otc">
+								<div class="clearfix">
+										<a href="#" class="thu"><img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/lihualiang.png" alt="" /></a>
+										<div class="info">
+											<div class="box">
+											在的
+											</div>
+										</div>
+									</div>
+							</li>
+						 </ul>
+							</div>
+						<div class="msg-tools">
+								<div class="clearfix">
+									<a href="#" class="icons"><i class="icon icon-paperclip"></i></a>
+									<div class="tbox">
+										<div class="iconx"><i class="icon icon-comments"></i></div>
+										<input type="text" class="msg" name="content" placeholder="说点什么吧" />
+										<div class="btn-send">
+											<button type="button" onClick="sendMsg(3)">发送 <i class="icon icon-angle-right"></i></button>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						 </div>
+					 </td>
+				 </tr>
+			  </tbody>
+        
+      </table>
+		<div class="page-bar">
+			<nav aria-label="Page navigation">
+        <ul class="pagination">
+              <li> <a href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span>上一页 </a> </li>
+              <li><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">5</a></li>
+              <li> <a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span>下一页 </a> </li>
+            </ul>
+      </nav>
+		</div>
+        </div>
+  </div>
+    </div>
+<script type="text/babel" src="/static/jsx/approot.jsx"></script> 
+<script type="text/babel" src="/static/jsx/header.jsx"></script> 
+<script type="text/babel" src="/static/jsx/footer.jsx"></script> 
+<script type="text/babel" src="/static/jsx/usernavbar.jsx"></script> 
+<script type="text/babel" src="/static/jsx/elements.jsx"></script> 
+<script type="text/babel">
+
+    function CCate(props) {
+        var items = [];
+        var num = 0;
+        props.items.forEach(function (item) {
+            num++;
+            items.push(<a href="#" key={num} onClick={props.clickHandler} data-id={item}><i
+                    className="icon-check-circle"></i> {item}</a>);
+        });
+        return (<div className="nav-cate visible-xs-block">{items}</div>);
+    }
+
+    var PageView = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0,
+                items: []
+            };
+        },
+        componentDidMount: function () {
+            $("#otcOrders").html($("#ordersTemp").html());
+			PageInit();
+        },
+        render: function () {
+            return (<section className="otc-list">
+                <div className="container">
+					<div id="otcOrders"></div>
+                </div>
+            </section>);
+        }
+    });
+	
+    var isLogin = IsLogin();
+
+    ReactDOM.render(
+            <App isLogin={isLogin} ContentBox={
+                <PageView/>
+            }/>
+        , document.getElementById("App")
+    );
+</script>
+</body>
+</html>

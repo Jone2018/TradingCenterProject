@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <title>{% trans 'bitbiex—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
     <link rel="shortcut icon" href="/static/images/favicon.ico"/>
@@ -119,8 +119,8 @@
                     cont = (<div className="news-view">
                         <h3 className="title">{this.state.title}</h3>
                         <div className="dtime txt-sm"><span>{this.state.author}</span> <span><i
-                            className="icon-clock-o"></i> {date}</span> <span><i
-                            className="icon-eye"></i> {this.state.view_count}</span></div>
+                                className="icon-clock-o"></i> {date}</span> <span><i
+                                className="icon-eye"></i> {this.state.view_count}</span></div>
                         <div className="content" dangerouslySetInnerHTML={this.createContentHtml()}>
 
                         </div>
@@ -135,9 +135,9 @@
     var isLogin = IsLogin();
 
     ReactDOM.render(
-        <App isLogin={isLogin} ContentBox={
-            <PageView/>
-        }/>
+            <App isLogin={isLogin} ContentBox={
+                <PageView/>
+            }/>
         , document.getElementById("App")
     );
 </script>

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <title>{% trans 'bitbiex—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
     <link rel="shortcut icon" href="/static/images/favicon.ico"/>
@@ -53,51 +53,50 @@
 
 
     var FormBox = React.createClass({
-        displayName: "FormBox",
+	displayName: "FormBox",
 
-        componentDidMount: function componentDidMount() {
-        },
-        submitHandler: function submitHandler(e) {
+	componentDidMount: function componentDidMount() {},
+	submitHandler: function submitHandler(e) {
             e.preventDefault();
         },
-        sendMsgHandler: function sendMsgHandler(e) {
+	sendMsgHandler: function sendMsgHandler(e) {
             e.preventDefault();
             SendMobiMsgX(e.target, '#mobile');
         },
-        render: function render() {
+	render: function render() {
             var mobile = GetItem("phone_number");
-            var mItem = "";
+		var mItem = "";
 
-            if (mobile) {
-                if (mobile.substring(0, 1) == "+") {
-                    mobile = FormatMask(mobile, 6, 4);
-                }
-                else {
-                    mobile = FormatMask(mobile, 3, 4);
-                }
-
-                mItem = <CFormGroup>
-                    <CLabel>{% trans '已绑手机' %}：</CLabel>
-                    <CStaticText text={mobile} colIn="1"/>
-                </CFormGroup>;
+		if(mobile)
+		{
+            if (mobile.substring(0, 1) == "+") {
+                mobile = FormatMask(mobile, 6, 4);
+            }
+            else {
+                mobile = FormatMask(mobile, 3, 4);
             }
 
-            return (<CFormBox title="{% trans '设置手机号' %}" submitHandler={this.submitHandler}>
+			mItem = <CFormGroup>
+					  <CLabel>{% trans '已绑手机' %}：</CLabel>
+					  <CStaticText text={mobile} colIn="1" />
+					</CFormGroup>;
+		}
+
+		return (<CFormBox title="{% trans '设置手机号' %}" submitHandler={this.submitHandler}>
                 <CFormGroup>
                     <CStaticInfo colIn="col-sm-9 col-sm-offset-3">{% trans '为了您的资产安全，修改手机号后24小时以内不允许提币' %}</CStaticInfo>
                 </CFormGroup>
                 <CFormGroup>
-                    <CLabel>{% trans '手机号' %}：</CLabel>
-                    <CTextInput name="phone_number" id="mobile" colIn="1" title="{% trans '请输入手机号码' %}"/>
+					  <CLabel>{% trans '手机号' %}：</CLabel>
+					  <CTextInput name="phone_number" id="mobile" colIn="1" title="{% trans '请输入手机号码' %}" />
                 </CFormGroup>
                 <CFormGroup>
-                    <CLabel>{% trans '验证码' %}：</CLabel>
-                    <CTextInput name="captcha" colIn="col-sm-4" title="{% trans '请输入验证码' %}"/>
-                    <CLinkButton className="btn-link fld-xs-block" colIn="col-sm-4" linkHandler={this.sendMsgHandler}
-                                 text="{% trans '发送验证码' %}"/>
+					  <CLabel>{% trans '验证码' %}：</CLabel>
+					  <CTextInput name="captcha" colIn="col-sm-4" title="{% trans '请输入验证码' %}" />
+					  <CLinkButton className="btn-link fld-xs-block" colIn="col-sm-4" linkHandler={this.sendMsgHandler} text="{% trans '发送验证码' %}" />
                 </CFormGroup>
                 <CFormGroup>
-                    <CButton colIn="col-sm-offset-3 col-sm-9">{% trans '确定' %}</CButton>
+						<CButton colIn="col-sm-offset-3 col-sm-9">{% trans '确定' %}</CButton>
                 </CFormGroup>
             </CFormBox>);
         }
@@ -122,9 +121,9 @@
     var isLogin = IsLogin();
 
     ReactDOM.render(
-        <App isLogin={isLogin} ContentBox={
-            <PageView/>
-        }/>
+            <App isLogin={isLogin} ContentBox={
+                <PageView/>
+            }/>
         , document.getElementById("App")
     );
 </script>

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <title>{% trans 'bitbiex—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
     <link rel="shortcut icon" href="/static/images/favicon.ico"/>
@@ -180,7 +180,7 @@
                             lnk = <a href={explorer} target="_blank" className="blue">{% trans '详情' %}</a>
                         }
                         if (item.finance_type == 1 && item.status == 10) {
-                            lnk = <a href="#" className="blue" onClick={this.cancelHandler.bind(this, item.id)}>
+                            lnk = <a href="#" className="blue" onClick={this.cancelHandler.bind(this,item.id)}>
                                 {% trans '撤消' %}</a>
                         }
 
@@ -199,28 +199,28 @@
                 }
             }
             return (<div className="bill-list">
-                    <h4 className="tb-title clearfix"><span className="tl pull-left">{% trans '财务记录' %}</span>
-                        <span className="cbox pull-right"><a href="#" onClick={this.toggleHandler}>
+                        <h4 className="tb-title clearfix"><span className="tl pull-left">{% trans '财务记录' %}</span>
+                            <span className="cbox pull-right"><a href="#" onClick={this.toggleHandler}>
                             <i className="icon-toggle-off icon-large"></i>{% trans '仅显示充值记录' %}</a></span></h4>
-                    <table className="tb-list tb-solid" id="tb1">
-                        <thead>
-                        <tr className="thead thead-blue thead-condensed">
-                            <td className="no">{% trans '订单号' %}</td>
-                            <td className="type">{% trans '类型' %}</td>
-                            <td className="amount-odr">{% trans '订单金额' %}</td>
-                            <td className="time">{% trans '时间' %}</td>
-                            <td className="status">{% trans '状态' %}</td>
-                            <td className="amount-ttl hidden-xs">{% trans '实际到账金额' %}</td>
-                            <td className="btns">{% trans '操作' %}</td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {rows}
-                        </tbody>
-                    </table>
-                    <CPager pageIndex={this.state.pageIndex} pageCount={this.state.pageCount}
-                            clickHandler={this.clickHandler}/>
-                </div>
+                        <table className="tb-list tb-solid" id="tb1">
+                            <thead>
+                            <tr className="thead thead-blue thead-condensed">
+                                <td className="no">{% trans '订单号' %}</td>
+                                <td className="type">{% trans '类型' %}</td>
+                                <td className="amount-odr">{% trans '订单金额' %}</td>
+                                <td className="time">{% trans '时间' %}</td>
+                                <td className="status">{% trans '状态' %}</td>
+                                <td className="amount-ttl hidden-xs">{% trans '实际到账金额' %}</td>
+                                <td className="btns">{% trans '操作' %}</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {rows}
+                            </tbody>
+                        </table>
+                        <CPager pageIndex={this.state.pageIndex} pageCount={this.state.pageCount}
+                                clickHandler={this.clickHandler}/>
+                    </div>
             );
         }
     });
@@ -248,9 +248,9 @@
     var isLogin = IsLogin();
 
     ReactDOM.render(
-        <App isLogin={isLogin} ContentBox={
-            <PageView source="/api/finance/user_balance_log"/>
-        }/>
+            <App isLogin={isLogin} ContentBox={
+                <PageView source="/api/finance/user_balance_log"/>
+            }/>
         , document.getElementById("App")
     );
 </script>

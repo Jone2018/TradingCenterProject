@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <title>{% trans 'bitbiex—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
     <link rel="shortcut icon" href="/static/images/favicon.ico"/>
@@ -54,15 +54,15 @@
 
 
     var ApiList = React.createClass({
-        displayName: "ApiList",
+	displayName: "ApiList",
 
-        getInitialState: function getInitialState() {
+	getInitialState: function getInitialState() {
             return {
                 status: 0,
                 items: []
             };
         },
-        componentDidMount: function componentDidMount() {
+	componentDidMount: function componentDidMount() {
             $.getJSON(this.props.source, {}, function (res) {
                 if (res.result) {
                     this.setState({
@@ -78,32 +78,32 @@
                 }
             }.bind(this));
         },
-        removeHandler: function removeHandler(e) {
+	removeHandler: function removeHandler(e) {
             e.preventDefault();
             var ths = $(e.target);
             var id = ths.parent().data("id");
             ShowDel(id);
         },
-        addHandler: function addHandler(e) {
+	addHandler: function addHandler(e) {
             e.preventDefault();
 
             ShowAdd();
 
         },
-        viewHandler: function viewHandler(e) {
+	viewHandler: function viewHandler(e) {
             e.preventDefault();
             var ths = $(e.target);
             var id = ths.parent().data("id");
             ShowView(id);
 
         },
-        updateHandler: function updateHandler(e) {
+	updateHandler: function updateHandler(e) {
             e.preventDefault();
             var ths = $(e.target);
             var id = ths.parent().data("id");
             ShowUpdate(id);
         },
-        render: function render() {
+	render: function render() {
             var rows = [];
             if (this.state.status == 0) {
                 rows.push(<tr key="0">
@@ -123,7 +123,7 @@
                         rows.push(<tr className="titem" key={item.id} id={id}>
                             <td className="lbl">{item.comment}</td>
                             <td className="key">{item.key}</td>
-                            <td className="lmt">{gettext(item.permission)}</td>
+                            <td className="lmt">{ gettext(item.permission) }</td>
                             <td className="dt">{item.create_at}</td>
                             <td className="bn" data-id={item.id}>
                                 <a href="#" onClick={this.viewHandler}>{% trans '查看' %}</a>
@@ -137,18 +137,18 @@
             }
 
             return (<div className="item-box">
-                <h4 className="tb-title tb-title-border clearfix"><span className="tl txt-primary pull-left">Chaobi.la's API</span>
+                <h4 className="tb-title tb-title-border clearfix"><span className="tl txt-primary pull-left">bitbiex.com's API</span>
                 </h4>
                 <div className="api-list">
                     <div className="box">
-                        <div className="cont">{% blocktrans %}Chaobi.la为您提供了强大的API，您可以根据自身需求建立不同权限的API，并利用API进行自动交易或者提现。
+                        <div className="cont">{% blocktrans %}bitbiex.com为您提供了强大的API，您可以根据自身需求建立不同权限的API，并利用API进行自动交易或者提现。
                             API的交易权限让您可以快速的获取当前市场最新行情及时的下单交易、查询自己可用和冻结金额、查询自己当前尚未成交的挂单、买进或卖出、撤单；提现权限可以让您快速提现到您的认证地址。
                             （注：API变更一分钟后生效）
                             注：您可以在通知中心开启重要公告邮件提示！{% endblocktrans %}
                         </div>
                         <div className="btns">
                             <button type="button" className="btn btn-primary" onClick={this.addHandler}><i
-                                className="icon-plus"></i> {% trans '新建API' %}
+                                    className="icon-plus"></i> {% trans '新建API' %}
                             </button>
                         </div>
                         <div className="list list-bordered">
@@ -191,9 +191,9 @@
     var isLogin = IsLogin();
 
     ReactDOM.render(
-        <App isLogin={isLogin} ContentBox={
-            <PageView source="/api/account/get_api_list"/>
-        }/>
+            <App isLogin={isLogin} ContentBox={
+                <PageView source="/api/account/get_api_list"/>
+            }/>
         , document.getElementById("App")
     );
 </script>

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <title>{% trans 'bitbiex—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
     <link rel="shortcut icon" href="/static/images/favicon.ico"/>
@@ -84,8 +84,7 @@
         return (<div className="login-form">
             <form method="post" name="frmLogin" id="frmLogin" onSubmit={submitHandler}>
                 <h3 className="tl clearfix">
-                    <span className="pull-left">{% trans '随求登录' %}</span>
-                    <a href="/api/social/login/qq/" className="qq"><i className="icon-qq"></i> {% trans 'QQ快捷登录' %}</a>
+                    <span className="pull-left">{% trans 'bitbiex登录' %}</span>
                 </h3>
                 <div className="fld">
                     <input name="username" type="text" className="lg" placeholder="{% trans '输入手机号/邮箱' %}"/>
@@ -150,7 +149,7 @@
                     <div className="fld">{% trans '手机号码' %}：<span>{mobi}</span></div>
                     <div className="fld">{% trans '邮箱地址' %}：<span>{email}</span></div>
                     <div className="fld">{% trans '总&nbsp;资&nbsp;产' %}：<i className="icon-btc"></i> <span
-                        data-toggle="tooltip" data-placement="right" title="&yen;" id="fnAmountBTC">--</span></div>
+                            data-toggle="tooltip" data-placement="right" title="&yen;" id="fnAmountBTC">--</span></div>
                     <div className="btns"><a href="#" onClick={this.logoutHandler}>{% trans '退出登录' %}</a></div>
                 </div>
             </div>);
@@ -251,7 +250,7 @@
                 <span className="col tp"><i className="icon-volume-up txt-orange"></i> {% trans '公告：' %}</span>
                 <span className="col tl"><a href={url1}>{title}</a></span>
                 <span className="col more"><a href={url2}>{% trans '更多' %}<i
-                    className="txt-sm icon-angle-double-right"></i></a></span>
+                        className="txt-sm icon-angle-double-right"></i></a></span>
             </div>);
         }
     });
@@ -326,8 +325,8 @@
             return (<section className="home-news">
                 <div className="container">
                     <h4 className="clearfix title"><span className="tl"><i
-                        className="icon-chevron-circle-right txt-primary"></i> {% trans '重要公告' %}</span> <a
-                        href="notices.html?important=1" className="more">{% trans '更多' %}</a></h4>
+                            className="icon-chevron-circle-right txt-primary"></i> {% trans '重要公告' %}</span> <a
+                            href="notices.html?important=1" className="more">{% trans '更多' %}</a></h4>
                     <div className="row">
                         {rows}
                     </div>
@@ -399,8 +398,8 @@
             return (<div className="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div className="item-box">
                     <h4 className="title clearfix"><span className="tl"><i
-                        className="icon-chevron-circle-right txt-primary"></i> {this.props.title}</span> <a
-                        className="more" href={url}>{% trans '更多' %}</a></h4>
+                            className="icon-chevron-circle-right txt-primary"></i> {this.props.title}</span> <a
+                            className="more" href={url}>{% trans '更多' %}</a></h4>
                     <ul className="list">
                         {rows}
                     </ul>
@@ -460,7 +459,7 @@
                     };
                     rows.push(<tr className={css} key={num}>
                         <td className="iconx">
-                            <i className="icon_coin" style={coin_logo_style}></i>
+                            <i className="icon_coin"  style={coin_logo_style}></i>
                         </td>
                         <td className="cname">{name}</td>
                         <td className="lprice">{price}</td>

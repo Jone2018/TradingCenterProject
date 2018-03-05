@@ -8,20 +8,21 @@ var weekDays = [
     gettext('周六')
 ];
 var pageHSData = {
-    values: [],
-    vols: [],
-    ma5: [],
-    ma20: []
+    values:[],
+    vols:[],
+    ma5:[],
+    ma20:[]
 };
 
-function HSInit() {
+function HSInit()
+{
     if (GetItem('chart_time')) {
         $('#chart_time > a').removeClass('cur');
     } else {
         $('#chart_1h').addClass("cur").siblings().removeClass("cur");
         $('#chart_time > a').removeClass('cur');
         SetItem('chart_time', 60);
-        $('#chart_1h').addClass('cur');
+       $('#chart_1h').addClass('cur');
     }
 
     $("#hsTitle").html(GetHTName(GetItem('chart_time')));
@@ -41,11 +42,11 @@ function HSInit() {
 
         var time = GetItem('chart_time');
         var code = GetItem("pair_code") || 10002;
-        if (time < 0) time = 60;
+		if(time < 0) time = 60;
 
         $("#hsTitle").html(GetHTName(time));
 
-        SetTime(code, time);
+        SetTime(code,time);
     });
 
 
@@ -62,43 +63,45 @@ function HSInit() {
 
     $('#chart_white').click(function () {
         SetItem('chart_theme', 'white');
-        setTimeout(function () {
+        setTimeout(function(){
             document.location.reload();
-        }, 1000);
+        },1000);
     });
     $('#chart_black').click(function () {
         SetItem('chart_theme', 'black');
         //console.log(GetItem('chart_theme'));
-        setTimeout(function () {
+        setTimeout(function(){
             document.location.reload();
-        }, 1000);
+        },1000);
     });
 
-    $("#paint_chart").css("height", "400px;");
+    $("#paint_chart").css("height","400px;");
 
     HighStockInit();
 }
 
-function GetHTName(ctime) {
-    var s = "5分钟线";
-    switch (ctime) {
+function GetHTName(ctime)
+{
+    var s="5分钟线";
+    switch(ctime)
+    {
         case "10080":
             s = gettext("周线");
             break;
         case "1440":
-            s = gettext("日线");
-            break;
-        case "720":
-            s = "12" + gettext("小时线");
+			s =  gettext("日线");
+			break;
+		case "720":
+			s = "12" + gettext("小时线");
             break;
         case "240":
-            s = "4" + gettext("小时线");
+            s =  "4" + gettext("小时线");
             break;
         case "60":
-            s = "1" + gettext("小时线");
+            s =  "1" + gettext("小时线");
             break;
         case "30":
-            s = "30" + gettext("分钟线");
+            s =  "30" + gettext("分钟线");
             break;
     }
 
@@ -106,7 +109,8 @@ function GetHTName(ctime) {
 }
 
 
-function HighStockInit() {
+function HighStockInit()
+{
     var chartData = arguments;
     var height = 400;
 
@@ -128,16 +132,16 @@ function HighStockInit() {
             lineColor: '#707073',
             minorGridLineColor: '#505053',
             tickColor: '#707073',
-            title: {style: {color: '#A0A0A3'}},
-            dateTimeLabelFormats: {
-                second: '%H:%M:%S',
-                minute: '%H:%M',
-                hour: '%H:%M',
-                day: '%Y-%m-%d',
-                week: '%Y-%m-%d',
-                month: '%Y-%m',
-                year: '%Y'
-            }
+                title: {style: {color: '#A0A0A3'}},
+				  dateTimeLabelFormats: {
+						second: '%H:%M:%S',
+						minute: '%H:%M',
+						hour: '%H:%M',
+						day: '%Y-%m-%d',
+						week: '%Y-%m-%d',
+						month: '%Y-%m',
+						year: '%Y'
+					}
         },
         yAxis: {
             gridLineColor: '#707073',
@@ -209,16 +213,20 @@ function HighStockInit() {
 
     var time = GetItem("chart_time") || 5;
     var selIndex = 2;
-    if (time == "30" || time == "60") {
+    if(time == "30" || time == "60")
+    {
         selIndex = 3;
     }
-    else if (time == "240") {
+    else if(time == "240")
+    {
         selIndex = 3;
     }
-    else if (time == "720" || time == "1440") {
+			else if(time == "720" || time == "1440")
+    {
         selIndex = 4
     }
-    else if (time > 1440) {
+    else if(time > 1440)
+    {
         selIndex = 5;
     }
 
@@ -269,9 +277,9 @@ function HighStockInit() {
             buttons: [
                 {type: 'minute', count: 60, text: '1h'},
                 {type: 'minute', count: 720, text: '12h'},
-                {type: 'day', count: 1, text: '1d'},
+                {type: 'day', count: 1, text: '1d' },
                 {type: 'day', count: 7, text: '1w'},
-                {type: 'day', count: 30, text: '1m'},
+                {type: 'day', count: 30, text: '1m' },
                 {type: 'all', text: gettext('全部')}], selected: selIndex, inputEnabled: false
         },
         credits: {enabled: false},
@@ -301,48 +309,50 @@ function HighStockInit() {
             gridLineDashStyle: 'Dash',
             showLastLabel: true
         }],
-        xAxis: {
-            type: 'datetime',
-            dateTimeLabelFormats: {
-                second: '%H:%M:%S',
-                minute: '%H:%M',
-                hour: '%H:%M',
-                day: '%m月%d日',
-                week: '%m月%d日',
-                month: '%Y年%m月',
-                year: '%Y年'
-            }
-        },
-        navigator: {
             xAxis: {
-                dateTimeLabelFormats: {
-                    second: '%Y-%m-%d<br/>%H:%M:%S',
-                    minute: '%Y-%m-%d<br/>%H:%M',
-                    hour: '%Y-%m-%d<br/>%H:%M',
-                    day: '%m月%d日',
-                    week: '%m月%d日',
-                    month: '%Y年%m月',
-                    year: '%Y年'
-                }
-            }
-        },
+				type: 'datetime',
+				dateTimeLabelFormats: {
+					second: '%H:%M:%S',
+					minute: '%H:%M',
+					hour: '%H:%M',
+					day: '%m月%d日',
+					week: '%m月%d日',
+					month: '%Y年%m月',
+					year: '%Y年'
+				}
+			},
+			navigator: {
+                xAxis: {
+						dateTimeLabelFormats: {
+								second: '%Y-%m-%d<br/>%H:%M:%S',
+								minute: '%Y-%m-%d<br/>%H:%M',
+								hour: '%Y-%m-%d<br/>%H:%M',
+								day: '%m月%d日',
+								week: '%m月%d日',
+								month: '%Y年%m月',
+								year: '%Y年'
+							}
+					}
+            },
         plotOptions: {candlestick: {color: 'rgb(229, 86, 0)', upColor: 'rgb(102, 153, 0)'}},
         tooltip: {
             crosshairs: [true, true],
             shared: true,
-            useHTML: true,
+            useHTML:true,
             formatter: function () {
                 var s = '<span style="border-bottom:1px solid #ccc;padding-bottom:5px;margin-bottom:5px;display:block;" ><b>' + FormatTooltip(this.x) + '</b></span>';
 
                 $.each(this.points, function (i) {
-                    if (this.series.name == gettext("价格")) {
+                    if(this.series.name == gettext("价格"))
+                    {
                         s += gettext('开') + ': ' + this.point.open + '';
                         s += '<br/>' + gettext("高") + ': ' + this.point.high + '';
                         s += '<br/>' + gettext("低") + ': ' + this.point.low + '';
-                        s += '<br/>' + gettext("收") + ': ' + this.point.close + '';
+                        s += '<br/>' +  gettext("收") + ': ' + this.point.close + '';
                     }
-                    else {
-                        s += '<br/>' + this.series.name + ': ' + FormatNumX(parseFloat(this.y), 8) + '';
+                    else
+                    {
+								s += '<br/>' + this.series.name + ': ' + FormatNumX(parseFloat(this.y),8) + '';
                     }
 
                 });
@@ -351,7 +361,7 @@ function HighStockInit() {
             },
             xDateFormat: '%Y-%m-%d %H:%M %A',
             color: '#f0f',
-            borderColor: '#058dc7'
+                borderColor: '#058dc7'
         },
         series: [
             {
@@ -375,7 +385,7 @@ function HighStockInit() {
                 data: [],
                 threshold: null,
                 lineWidth: 1,
-                tooltip: {valueDecimals: 8}
+                    tooltip: {valueDecimals: 8}
             }, {
                 animation: false,
                 name: '20' + gettext('均线'),
@@ -384,21 +394,23 @@ function HighStockInit() {
                 data: [],
                 threshold: null,
                 lineWidth: 1,
-                tooltip: {valueDecimals: 8}
+                    tooltip: {valueDecimals: 8}
             }]
     });
 }
 
-function FormatUTCDate(s, fmt) {
+function FormatUTCDate(s,fmt)
+{
     var utc = new Date(s * 1000);
 
-    return FormatDate(utc, fmt);
+    return FormatDate(utc,fmt);
 }
 
-function FormatTooltip(utcTime) {
+function FormatTooltip(utcTime)
+{
     var dt = new Date(utcTime);
     var tp = GetItem("chart_time") || 5;
-    var s = "";
+    var s="";
 
     var yy = dt.getFullYear();
     var mm = PadLeft(dt.getMonth() + 1);
@@ -409,19 +421,20 @@ function FormatTooltip(utcTime) {
 
     var ww = GetWeekName(dt.getDay());
 
-    switch (tp.toString()) {
+    switch(tp.toString())
+    {
         case "10080":
         case "1440":
-            s = [ww, ",", yy, gettext('年'), mm, gettext('月'), dd, gettext('日')].join('');
+            s = [ww,",",yy,gettext('年'),mm,gettext('月'),dd,gettext('日')].join('');
             break;
         case "240":
         case "60":
         case "30":
         case "5":
-            s = [yy, gettext('年'), mm, gettext('月'), dd, gettext('日'), hh, ":", mn].join('');
+            s = [yy,gettext('年'),mm,gettext('月'),dd,gettext('日'),hh,":",mn].join('');
             break;
         default:
-            s = [yy, gettext('年'), mm, gettext('月'), dd, gettext('日'), hh, ":", mn].join('');
+            s = [yy,gettext('年'),mm,gettext('月'),dd,gettext('日'),hh,":",mn].join('');
             break;
     }
 
@@ -429,37 +442,46 @@ function FormatTooltip(utcTime) {
 }
 
 
-function GetWeekName(d) {
+
+function GetWeekName(d)
+{
     var w = "";
-    if (d >= 0 && d < 7) {
+    if(d>=0 && d < 7)
+    {
         w = weekDays[d];
     }
 
     return w;
 }
 
-function PadLeft(m) {
+function PadLeft(m)
+{
     return m < 10 ? "0" + m : m;
 }
 
 
-function HChartReset(res) {
+function HChartReset(res)
+{
 
     var myChart = HighStockInit.chart;
     //console.log("reset")
 
-    if (myChart) {
+    if(myChart)
+    {
         var data = splitDataX(res);
         pageHSData = data;
 
-        //console.log(data);
-        for (var i = 0; i < data.vols.length; i++) {
-            for (var j = 0; j < data.vols.length; j++) {
-                if (i != j && data.vols[i][0] == data.vols[j][0]) {
-                    console.log("------", i, j, "-----", data.vols[i][0], data.vols[j][0]);
-                }
-            }
-        }
+			//console.log(data);
+			for(var i=0;i<data.vols.length;i++)
+			{
+				for(var j=0;j<data.vols.length;j++)
+				{
+					if(i != j && data.vols[i][0] == data.vols[j][0])
+					{
+						console.log("------",i,j,"-----",data.vols[i][0],data.vols[j][0]);
+					}
+				}
+			}
 
         myChart.series[0].setData(data.values);
         myChart.series[1].setData(data.vols);
@@ -471,21 +493,25 @@ function HChartReset(res) {
 }
 
 
-function HChartAdd(res) {
+
+
+function HChartAdd(res)
+{
     //console.log("addPoint");
     var myChart = HighStockInit.chart;
-    if (myChart && myChart.series && myChart.series.length > 0) {
+    if(myChart && myChart.series && myChart.series.length > 0)
+    {
         var tick = Math.round(parseFloat(res.time) * 1000);
-        var val = [tick, parseFloat(FormatNumX(res.open, 8)), parseFloat(FormatNumX(res.high, 8)), parseFloat(FormatNumX(res.low, 8)), parseFloat(FormatNumX(res.close, 8))];
-        var vol = [tick, parseFloat(FormatNumX(res.vol, 8))];
+			var val = [tick,parseFloat(FormatNumX(res.open,8)),parseFloat(FormatNumX(res.high,8)),parseFloat(FormatNumX(res.low,8)),parseFloat(FormatNumX(res.close,8))];
+			var vol = [tick,parseFloat(FormatNumX(res.vol,8))];
 
         var xIndex = GetPHDataIndex(tick);
         var isUpdate = xIndex >= 0;
 
-        var m5 = GetSumX(res.high, 5, isUpdate);
-        var m20 = GetSumX(res.high, 20, isUpdate);
-        var ma5 = [tick, m5];
-        var ma20 = [tick, m20];
+        var m5 = GetSumX(res.high,5,isUpdate);
+        var m20 = GetSumX(res.high,20,isUpdate);
+        var ma5 = [tick,m5];
+        var ma20 = [tick,m20];
 
         //console.log(FormatUTCDate(res.time,"yyyy-MM-dd hh:mm:ss"));
         //console.log("-----");
@@ -495,8 +521,9 @@ function HChartAdd(res) {
         //console.log(ma20);
         //console.log("-----");
 
-        if (xIndex >= 0) {
-            console.log("updatePoint");
+        if(xIndex >= 0)
+        {
+				console.log("updatePoint");
 
             pageHSData.values[xIndex] = val;
             pageHSData.vols[xIndex] = vol;
@@ -509,8 +536,9 @@ function HChartAdd(res) {
             myChart.series[3].setData(pageHSData.ma20);
             myChart.redraw();
         }
-        else {
-            console.log("addPoint");
+        else
+        {
+				console.log("addPoint");
 
             myChart.series[0].addPoint(val);
             myChart.series[1].addPoint(vol);
@@ -521,15 +549,20 @@ function HChartAdd(res) {
     }
 }
 
-function GetPHDataIndex(tick) {
-    if (pageHSData && pageHSData.values) {
+function GetPHDataIndex(tick)
+{
+    if(pageHSData && pageHSData.values)
+    {
         var data = pageHSData.values;
         var len = data.length;
-        for (var i = len - 1; i >= 0; i--) {
-            if (data[i][0] == tick) {
+        for(var i=len-1;i>=0;i--)
+        {
+            if(data[i][0] == tick)
+            {
                 return i;
             }
-            else if (data[i][0] < tick) {
+            else if(data[i][0] < tick)
+            {
                 break;
             }
         }
@@ -538,14 +571,19 @@ function GetPHDataIndex(tick) {
     return -1;
 }
 
-function GetHSDataIndex(data, tick) {
-    if (data && data.length > 0) {
+function GetHSDataIndex(data,tick)
+{
+    if(data && data.length > 0)
+    {
         var len = data.length;
-        for (var i = len - 1; i >= 0; i--) {
-            if (data[0] == tick) {
+        for(var i=len-1;i>=0;i--)
+        {
+            if(data[0] == tick)
+            {
                 return i;
             }
-            else if (data[0] < tick) {
+            else if(data[0] < tick)
+            {
                 break;
             }
         }
@@ -554,75 +592,90 @@ function GetHSDataIndex(data, tick) {
 }
 
 
-function splitDataX(rawData) {
+function splitDataX(rawData)
+{
     var values = []
     var vols = [];
 
     var ma5 = [];
     var ma20 = [];
 
-    for (var i = 0; i < rawData.length; i++) {
+    for(var i=0;i<rawData.length;i++)
+    {
         var itm = rawData[i];
         var tick = Math.round(itm.time * 1000);
 
-        values.push([tick, parseFloat(itm.open), parseFloat(itm.high), parseFloat(itm.low), parseFloat(itm.close)]);
-        vols.push([tick, parseFloat(itm.vol)]);
+        values.push([tick,parseFloat(itm.open),parseFloat(itm.high),parseFloat(itm.low),parseFloat(itm.close)]);
+        vols.push([tick,parseFloat(itm.vol)]);
 
-        ma5.push([tick, GetSum(values, i, 5)]);
-        ma20.push([tick, GetSum(values, i, 20)]);
+        ma5.push([tick,GetSum(values,i,5)]);
+        ma20.push([tick,GetSum(values,i,20)]);
 
     }
 
     return {
-        values: values,
-        vols: vols,
-        ma5: ma5,
-        ma20: ma20
+        values:values,
+        vols:vols,
+        ma5:ma5,
+        ma20:ma20
     };
 }
 
-function GetSum(vals, iStart, dayCount) {
+function GetSum(vals,iStart,dayCount)
+{
     var sm = 0;
-    for (var i = 0; i < dayCount; i++) {
-        if (iStart - i < 0)
+    for(var i=0;i<dayCount;i++)
+    {
+        if(iStart - i < 0)
             break;
 
         sm += parseFloat(vals[iStart - i][2]);
     }
-    return parseFloat((sm / dayCount).toFixed(8));
+		return parseFloat((sm/dayCount).toFixed(8));
 }
 
-function GetSumX(lastVal, dayCount, isUpdate) {
-    var s = parseFloat(lastVal);
-    if (pageHSData) {
+function GetSumX(lastVal,dayCount,isUpdate)
+{
+    var s=parseFloat(lastVal);
+    if(pageHSData)
+    {
         var vals = pageHSData.values;
 
-        if (vals) {
+        if(vals)
+        {
             var len = vals.length;
 
-            if (isUpdate) {
-                for (var i = 2; i <= dayCount; i++) {
-                    if (len - i >= 0) {
-                        s += parseFloat(vals[len - i][2]);
+            if(isUpdate)
+            {
+                for(var i=2;i<=dayCount;i++)
+                {
+                    if(len - i >= 0)
+                    {
+                        s += parseFloat(vals[len-i][2]);
                     }
                 }
             }
-            else {
-                for (var i = 1; i < dayCount; i++) {
-                    if (len - i >= 0) {
-                        s += parseFloat(vals[len - i][2]);
+            else
+            {
+                for(var i=1;i<dayCount;i++)
+                {
+                    if(len - i >= 0)
+                    {
+                        s += parseFloat(vals[len-i][2]);
                     }
                 }
             }
         }
     }
 
-    return parseFloat((s / dayCount).toFixed(8));
+		return parseFloat((s/dayCount).toFixed(8));
 }
 
 
-function SetTime(code, mins) {
-    if (wsTransaction && wsTransaction.readyState == 1) {
+function SetTime(code,mins)
+{
+    if(wsTransaction && wsTransaction.readyState == 1)
+    {
         var msg = {
             type: "subscribe",
             message: "k_line",

@@ -1,36 +1,39 @@
-.bill-table {
-    padding: 0 10px;
+.bill-table
+{
+	padding:0 10px;	
 }
 
-.bill-table table {
-    border-left: 1px solid #cfcfcf;
-    border-right: 1px solid #cfcfcf;
+.bill-table table
+{
+	border-left:1px solid #cfcfcf;
+	border-right:1px solid #cfcfcf;
 }
 
-.bill-list .search {
-    padding: 20px 30px;
+.bill-list .search
+{
+	padding:20px 30px;
 }
 
-.bill-list .search select {
-    min-width: 180px;
-    margin-right: 30px;
+.bill-list .search select
+{
+	min-width:180px;
+	margin-right:30px;
 }
 
-.cny {
-    display: none;
-    color: #999;
-}
+.cny { display:none; color:#999; }
 
-@media (max-width: 767px) {
-    .bill-table {
-        padding: 0;
-    }
-
-    .bill-list .search {
-        padding: 10px;
-    }
-
-    .bill-list .search .form-control {
-        margin-bottom: 10px;
-    }
+@media (max-width:767px)
+{
+	.bill-table
+	{
+		padding:0;	
+	}
+	.bill-list .search
+	{
+		padding:10px;
+	}
+	.bill-list .search .form-control
+	{
+		margin-bottom:10px;	
+	}
 }

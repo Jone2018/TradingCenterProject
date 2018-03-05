@@ -1,0 +1,767 @@
+
+.page-bar
+{
+	text-align: center;
+}
+
+.otc-list {
+	background-color: #f6f6f6;
+}
+.otc-list .item-box {
+	padding: 20px 0;
+}
+
+.otc-query {
+	padding: 20px 0 0 0;
+}
+
+.otc-query .title
+{
+	padding: 6px 10px;
+	line-height: 150%;
+	background-color: #1798f2;
+	color: #FFF;
+	font-size: 18px;
+}
+
+.otc-tabs {
+	background: url(../images/line.png) left bottom repeat-x;
+}
+.otc-tabs .item {
+	float: left;
+}
+.otc-tabs .item a.itm {
+	display: block;
+	text-align: center;
+	font-size: 16px;
+	line-height: 20px;
+	padding: 8px 30px;
+	color: #727272;
+}
+.otc-tabs .item:hover a.itm, .otc-tabs .item a.itm:hover, .otc-tabs .active a.itm {
+	border-bottom: 2px solid #2785fa;
+	color: #2785fa;
+}
+
+.tb-orders
+{
+	width: 100%;
+}
+
+.tb-orders .thead td
+{
+	padding: 10px 5px;
+	line-height: 175%;
+	font-size: 14px;
+}
+.tb-orders .thead td,
+.tb-orders .titem td
+{
+	text-align: center;
+	border-top: 1px solid #e4e9ed;
+	border-bottom: 1px solid #e4e9ed;
+	background-color: #f8fafb;
+}
+
+.tb-orders .titem td
+{
+	font-size: 13px;
+}
+
+.tb-orders .titem td
+{
+	padding: 5px;
+}
+
+.tb-orders .tmsg td
+{
+	padding:0;
+	background-color: #FFF;
+	border: 1px solid #e4e9ed;
+}
+
+.tb-orders .thead td.name,
+.tb-orders .titem td.name
+{
+	border-left: 1px solid #e4e9ed;
+}
+
+.tb-orders .thead td.expend,
+.tb-orders .titem td.expend
+{
+	border-right: 1px solid #e4e9ed;
+}
+
+.tb-orders .thead
+{
+	
+}
+
+.tb-orders .thead .name,
+.tb-orders .titem .name
+{
+	width: 15%;
+}
+
+.tb-orders .thead .no
+{
+	width: 10%;
+}
+.tb-orders .thead .type
+{
+	width: 10%;
+}
+.tb-orders .thead .amount
+{
+	width: 10%;
+}
+.tb-orders .thead .qty
+{
+	width: 10%;
+}
+.tb-orders .thead .time
+{
+	width: 15%;
+}
+.tb-orders .thead .status
+{
+	width: 10%;
+}
+.tb-orders .thead .btns
+{
+	width: 10%;
+}
+.tb-orders .thead .expend
+{
+	width: 10%;
+}
+
+.tb-orders .tline
+{
+	
+}
+.tb-orders .tline td
+{
+	line-height: 10px;
+}
+
+.tb-orders .titem
+{
+	
+}
+
+.tb-orders .tmsg
+{
+	
+}
+
+.tb-orders .titem .name .thu
+{
+	border-radius: 25px;
+	width: 45px;
+	height: 45px;
+	float: left;
+}
+
+.tb-orders .titem .name .info
+{
+	float: left;
+	padding-left: 10px;
+	padding-top: 10px;
+	line-height: 25px;
+}
+
+.tb-orders .titem .name
+{
+	
+}
+
+.tb-orders .titem .no
+{
+	
+}
+
+.tb-orders .titem .type
+{
+	
+}
+.tb-orders .titem .amount,
+.tb-orders .titem .qty
+{
+	font-family: Arial,Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	font-size: 12px;
+}
+.tb-orders .titem .time
+{
+	color: #999;
+	font-family: Arial,Segoe, "Segoe UI", "DejaVu Sans", "Trebuchet MS", Verdana, "sans-serif";
+	font-size: 12px;
+}
+.tb-orders .titem .status
+{
+	color: #118300;
+}
+.tb-orders .titem .btns
+{
+	
+}
+.tb-orders .titem .expend
+{
+	
+}
+
+
+
+
+.messages
+{
+	
+}
+
+.messages .msg-list
+{
+	padding: 10px;
+}
+
+.msg-list .item
+{
+	margin-bottom: 10px;
+}
+
+.msg-list .item .thu img
+{
+	width: 45px;
+	height: 45px;
+	border-radius: 25px;
+}
+
+.msg-list .item-usr .thu
+{
+	float: left;
+}
+
+.msg-list .item-usr .info
+{
+	float: left;
+}
+
+.msg-list .item-otc .thu
+{
+	float: right;
+}
+
+.msg-list .item-otc .info
+{
+	float: right;
+}
+
+.msg-list .item .info .box
+{
+	padding: 10px 20px;
+	line-height: 25px;
+	border-radius: 20px;
+	word-break: break-all;
+	word-wrap: break-word;
+}
+
+.msg-list .item-usr .info
+{
+	margin-left: 10px;
+}
+.msg-list .item-usr .info .box
+{
+	background-color:lightcyan;
+}
+
+.msg-list .item-otc .info
+{
+	margin-right: 10px;
+}
+
+.msg-list .item-otc .info .box
+{
+	background-color: aliceblue;
+}
+
+.messages .msg-tools
+{
+	background-color: #f0f0f0;
+	padding: 10px;
+	border-top: 1px solid #eee;
+}
+
+.messages .msg-tools .icons,
+.messages .msg-tools .tbox
+{
+	float: left;
+}
+
+.messages .msg-tools .icons
+{
+	text-align: right;
+	width: 3%;
+	max-width: 50px;
+	margin-right: 1%;
+}
+.messages .msg-tools .icons
+{
+	font-size: 24px;
+	line-height: 45px;
+}
+
+.messages .msg-tools .tbox
+{
+	position: relative;
+	width: 94%;
+}
+
+.messages .msg-tools .iconx
+{
+	position: absolute;
+	left: 10px;
+	top: 0;
+	line-height: 45px;
+	font-size: 24px;
+}
+
+.messages .msg-tools .btn-send
+{
+	position: absolute;
+	right: 10px;
+	top: 7px;
+}
+
+.messages .msg-tools .tbox .msg
+{
+	border: 1px solid #f0f0f0;
+	background-color: #FFFFFF;
+	width: 100%;
+	height: 45px;
+	line-height: 45px;
+	border-radius: 25px;
+	padding-left: 40px;
+}
+
+.messages .msg-tools .btn-send button
+{
+	background-color: #1ba1e6;
+	border: 1px solid #1ba1e6;
+	border-radius: 20px;
+	height: 30px;
+	line-height: 30px;
+	margin: 0;
+	padding: 0 15px;
+	font-size: 14px;
+	color: #FFF;
+	outline: none;
+}
+
+.messages .msg-tools .btn-send button:hover,
+.messages .msg-tools .btn-send button:focus
+{
+	background-color:#0E92D6;
+}
+
+
+/*******/
+.otc-view
+{
+	background-color: #f6f6f6;
+	font-size: 14px;
+}
+
+.otc-view .item-box
+{
+	padding: 20px 0 50px 0;
+}
+
+.steps
+{
+	padding: 20px 0;
+}
+
+.steps ul
+{
+	width: 60%;
+	margin: 0 auto;
+}
+
+.steps .item
+{
+	width: 14.266666%;
+	text-align: center;
+	float: left;
+}
+
+.steps .item .icons
+{
+	text-align: center;
+	font-size: 24px;
+	color: #d1dee6;
+}
+
+.binfo
+{
+	padding: 8px 0;
+	line-height: 30px;
+}
+
+.binfo .tl
+{
+	font-weight: bold;
+	font-size: 14px;
+}
+.binfo .spr
+{
+	color: #ccc;
+	font-size: 14px;
+}
+.binfo .inf
+{
+	color: #666;
+	font-size: 12px;
+}
+
+.oinfo
+{
+	padding: 8px;
+	line-height: 30px;
+	background-color: #e4ebf1;
+}
+
+.oinfo
+{
+	
+}
+
+.ov-tabs-items
+{
+	margin-top: 10px;
+}
+
+.steps .item .tl
+{
+	text-align: center;
+	line-height: 150%;
+	color: #999;
+	font-size: 12px;
+}
+
+
+.steps .active .icons,
+.steps .active .tl
+{
+	color: #1798f2;
+}
+
+.hline
+{
+	line-height: 5px;
+	height: 5px;
+	border-bottom: 1px solid #e7ecf0;
+	margin-bottom: 5px;
+}
+
+.dinfo .tl
+{
+	font-size: 16px;
+	padding: 10px 0;
+	margin: 0;
+	line-height: 150%;
+}
+
+.dinfo .item
+{
+	margin-bottom: 10px;
+	font-size: 14px;
+	line-height: 150%;
+}
+
+.dinfo .item .ttl
+{
+	color: #333;
+}
+
+.dinfo .item .inf
+{
+	color: #999;
+}
+
+.dinfo .btnx a
+{
+	color: #1798f2;
+}
+
+.dinfo .btnx a:hover
+{
+	color:#1090E9;
+}
+
+.oinfo .tl,
+.oinfo .amount,
+.oinfo .price,
+.oinfo .qty
+{
+	float: left;
+	padding: 8px 15px;
+	line-height: 20px;
+	color: #727272;
+}
+
+.oinfo .tl
+{
+	color: #1798f2;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.oinfo em
+{
+	font-style: normal;
+	color: #333;
+}
+
+.dtabs
+{
+	background-color: #FFF;
+	border: 1px solid #e7ecf0;
+	margin-top: 10px;
+}
+
+.ov-tabs
+{
+	background-color: #f3f5f7;
+	background-color: #e4ebf1;
+}
+
+.ov-tabs ul
+{
+	background: url(../images/line.png) left bottom repeat-x;
+}
+
+.ov-tabs .item
+{
+	width: 50%;
+	float: left;
+}
+
+.ov-tabs .item a
+{
+	display: block;
+	padding: 10px;
+	line-height: 20px;
+	text-align: center;
+}
+
+.ov-tabs .active
+{
+	background-color: #e4ebf1;
+}
+
+.ov-tabs .active a
+{
+	color: #1798f2;
+	border-bottom: 2px solid #1798f2;
+}
+
+/*******/
+.otc-trade
+{
+	padding: 20px 10px;
+}
+
+.otc-trade .thu
+{
+	width: 10%;
+	max-width: 80px;
+	float: left;
+	text-align: center;
+}
+
+.otc-trade .thu img
+{
+	width: 60px;
+	height: 60px;
+	border-radius: 30px;
+}
+
+.otc-trade .info
+{
+	float: left;
+	width: 90%;
+}
+
+.otc-trade .info .nm
+{
+	padding: 15px 5px;
+	line-height: 30px;
+}
+
+.otc-trade .info table
+{
+	width: 100%;
+}
+
+.otc-trade .info td
+{
+	width: 50%;
+	padding: 5px;
+	text-align: left;
+	color: #727272;
+}
+
+.otc-trade .info em
+{
+	font-style: normal;
+	color: #333;
+}
+
+@media screen and (max-width:767px) 
+{
+	.otc-list .item-box
+	{
+		padding: 5px 0;
+	}
+	.otc-query {
+	padding: 0;
+}
+
+.otc-query .title
+{
+	font-size: 14px;
+}
+	
+	.otc-tabs
+	{
+		background-image: none;
+	}
+	.otc-tabs .item,
+	.otc-tabs .sitem
+	{
+		display: inline-block;
+		float: none;
+		margin: 5px;
+	}
+	.otc-tabs .item a.itm
+	{
+		font-size: 14px;
+		padding: 8px;
+		background-color: #666;
+		color: #FFF;
+		text-align: center;
+		border-radius: 6px;
+	}
+	
+	.otc-tabs .active a.itm,
+	.otc-tabs .item a.itm:hover,
+	.otc-tabs .item a.itm:focus
+	{
+		background-color: #2785fa;
+		color: #FFF;
+		border-bottom: none;
+	}
+	
+	.tb-orders .thead td
+	{
+		padding: 6px 3px;
+		font-size: 12px;
+	}
+	
+	.tb-orders .titem td
+	{
+		padding: 3px;
+		font-size: 12px;
+	}
+	
+	.tb-orders .titem .name .thu
+{
+	margin: 0 auto;
+	border-radius: 25px;
+	width: 45px;
+	height: 45px;
+	display: block;
+	float: none;
+}
+
+.tb-orders .titem .name .info
+{
+	float: none;
+	display: block;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+	line-height: 25px;
+}
+	
+	.messages .msg-tools .icons
+	{
+		width: 10%;
+		max-width: 30px;
+		text-align: center;
+	}
+	
+	.messages .msg-tools .tbox
+	{
+		width: 89%;
+	}
+	
+	.otc-view
+	{
+		font-size: 12px;
+	}
+
+	.otc-view .item-box
+	{
+		padding: 5px 0;
+	}
+	
+	.steps ul
+	{
+		width: 96%;
+	}
+	.oinfo .tl,
+.oinfo .amount,
+.oinfo .price,
+.oinfo .qty
+	{
+		padding: 6px 8px;
+	}
+	.dinfo .item
+	{
+		font-size: 12px;
+	}
+	
+	.otc-trade
+	{
+		padding: 5px;
+	}
+	
+	.otc-trade .thu
+{
+	width: 100%;
+	max-width:100%;
+	float: none;
+	text-align: center;
+}
+
+.otc-trade .thu img
+{
+	width: 80px;
+	height: 80px;
+	border-radius: 40px;
+}
+
+.otc-trade .info
+{
+	float: none;
+	width: 100%;
+}
+
+.otc-trade .info .nm
+{
+	padding: 5px;
+	line-height: 30px;
+	text-align: center;
+}
+	
+}

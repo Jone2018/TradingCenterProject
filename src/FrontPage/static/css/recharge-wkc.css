@@ -1,24 +1,28 @@
-.recharge-wkc-list .box {
-    padding: 20px;
+.recharge-wkc-list .box
+{
+	padding:20px;	
 }
 
-.wkc-uid {
-    /*position:absolute;
-    top:3px;
-    right:20%;
-    height:25px;
-    line-height:25px;
-    color:#999;
-    text-align:right;
-    z-index:999;*/
-    line-height: 35px;
-    text-align: left;
-    color: #c30;
+.wkc-uid
+{
+	/*position:absolute;
+	top:3px;
+	right:20%;
+	height:25px;
+	line-height:25px;
+	color:#999;
+	text-align:right;
+	z-index:999;*/
+	line-height:35px;
+	text-align:left;
+	color:#c30;
 }
 
-@media (max-width: 767px) {
-    .recharge-wkc-list .box {
-        padding: 10px 5px;
-    }
+@media (max-width:767px)
+{
+	.recharge-wkc-list .box
+	{
+		padding:10px 5px;	
+	}
 
 }

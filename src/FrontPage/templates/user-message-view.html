@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <title>{% trans 'bitbiex—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
     <link rel="shortcut icon" href="/static/images/favicon.ico"/>
@@ -51,9 +51,9 @@
     var id = GetQueryString("id");
 
     var MessageContent = React.createClass({
-        displayName: 'MessageContent',
+	displayName: 'MessageContent',
 
-        getInitialState: function getInitialState() {
+	getInitialState: function getInitialState() {
             return {
                 status: 0,
                 isFound: false,
@@ -65,7 +65,7 @@
                 message_type: ''
             };
         },
-        componentDidMount: function componentDidMount() {
+	componentDidMount: function componentDidMount() {
             $.getJSON(this.props.source, {
                 message_id: this.props.id
             }, function (res) {
@@ -96,10 +96,10 @@
                 }
             }.bind(this));
         },
-        createContentHtml: function createContentHtml() {
+	createContentHtml: function createContentHtml() {
             return {__html: this.state.message_content};
         },
-        render: function render() {
+	render: function render() {
             var cont;
             if (this.state.status == 0) {
                 cont = <div key="0"><CLoading text="正在加载..."/></div>;
@@ -120,11 +120,11 @@
             }
 
             return (
-                <div className="item-box">
-                    <h4 className="tb-title tb-title-border clearfix"><a className="tl txt-primary"
-                                                                         href="user-message.html">返回</a></h4>
-                    {cont}
-                </div>
+                    <div className="item-box">
+                        <h4 className="tb-title tb-title-border clearfix"><a className="tl txt-primary"
+                                                                             href="user-message.html">返回</a></h4>
+                        {cont}
+                    </div>
             );
         }
     });
@@ -145,9 +145,9 @@
     }
 
     ReactDOM.render(
-        <App ContentBox={
-            <PageView source="/api/notice/message_info" id={id}/>
-        }/>
+            <App ContentBox={
+                <PageView source="/api/notice/message_info" id={id}/>
+            }/>
         , document.getElementById("App")
     );
 </script>

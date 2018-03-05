@@ -1,0 +1,623 @@
+<!doctype html>
+{% load i18n %}
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
+    <link rel="shortcut icon" href="/static/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/layer/theme/default/layer.css">
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/jquery.scrollTo.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap/layer/layer.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/common.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/js/swiper/css/swiper.min.css">
+    <script src="/static/js/swiper/js/swiper.min.js"></script>
+    <script src="/static/js/otc.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/otc-ads.css">
+		
+    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(".mm-otc a").addClass("active");
+        });
+		
+		function ChangeSlider(el)
+		{
+			var newVal = $(el).val();
+			if(isNaN(newVal))
+				{
+					newVal = 0;
+				}
+			else{
+				newVal = parseFloat(newVal);
+			}
+			
+			if(newVal < -99)
+			{
+				newVal = -99;
+			}
+			
+			if(newVal > 99)
+			{
+				newVal = 99;
+			}
+			
+			$(el).val(newVal.toFixed(2));
+			
+			$( "#slider" ).slider( "option", "value", newVal);
+		}
+    </script>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+    </head>
+    <body>
+<div id="App"></div>
+<div id="otcNewTemp" style="display: none;">
+      <form method="post" onSubmit="return false;">
+    <div class="form-box">
+    <h1 class="pg-title">发布一个 BTC 交易广告</h1>
+    <div class="trade-cont">如果您经常交易 BTC，可以发布自己的 BTC 交易广告。如果您只想购买或出售一次，我们建议您直接从购买或出售列表中下单交易。<br>
+          发布一则交易广告是免费的。<br>
+          您的 随求网 钱包中至少需要有 0.05BTC，您的广告才会显示在交易列表中。<br>
+          发布交易广告的 随求网 用户每笔完成的交易需要缴纳 0.7% 的费用。<br>
+          您必须在交易广告或交易聊天中提供您的付款详细信息，发起交易后，价格会锁定，除非定价中有明显的错误。<br>
+          所有交流必须在 随求网 上进行，请注意高风险有欺诈风险的付款方式。</div>
+    <div class="trade-type">
+          <h2 class="title line-btm">交易类型</h2>
+          <div class="gp-item">
+        <div class="lbl"><em class="mark">*</em>选择广告类型: <em>您想要创建什么样的交易广告？如果您希望出售 BTC，请确保您在 随求网 的钱包中有 BTC。</em></div>
+        <div class="radio-box">
+              <label>
+            <input type="radio" name="type" value="1" checked>
+            &nbsp;在线出售 BTC</label>
+              <label>
+            <input type="radio" name="type" value="2" >
+            &nbsp;在线购买 BTC</label>
+            </div>
+      </div>
+          <div class="gp-item">
+        <div class="lbl"><em class="mark">*</em>所在地: <em>请选择你要发布广告的国家。</em></div>
+        <div class="select-box">
+              <select name="country" class="form-control">
+            <option value="AO"  >AO 安哥拉</option>
+            <option value="AF"  >AF 阿富汗</option>
+            <option value="AL"  >AL 阿尔巴尼亚</option>
+            <option value="DZ"  >DZ 阿尔及利亚</option>
+            <option value="AD"  >AD 安道尔共和国</option>
+            <option value="AI"  >AI 安圭拉岛</option>
+            <option value="AG"  >AG 安提瓜和巴布达</option>
+            <option value="AR"  >AR 阿根廷</option>
+            <option value="AM"  >AM 亚美尼亚</option>
+            <option value="AU"  >AU 澳大利亚</option>
+            <option value="AT"  >AT 奥地利</option>
+            <option value="AZ"  >AZ 阿塞拜疆</option>
+            <option value="BS"  >BS 巴哈马</option>
+            <option value="BH"  >BH 巴林</option>
+            <option value="BD"  >BD 孟加拉国</option>
+            <option value="BB"  >BB 巴巴多斯</option>
+            <option value="BY"  >BY 白俄罗斯</option>
+            <option value="BE"  >BE 比利时</option>
+            <option value="BZ"  >BZ 伯利兹</option>
+            <option value="BJ"  >BJ 贝宁</option>
+            <option value="BM"  >BM 百慕大群岛</option>
+            <option value="BO"  >BO 玻利维亚</option>
+            <option value="BW"  >BW 博茨瓦纳</option>
+            <option value="BR"  >BR 巴西</option>
+            <option value="BN"  >BN 文莱</option>
+            <option value="BG"  >BG 保加利亚</option>
+            <option value="BF"  >BF 布基纳法索</option>
+            <option value="MM"  >MM 缅甸</option>
+            <option value="BI"  >BI 布隆迪</option>
+            <option value="CM"  >CM 喀麦隆</option>
+            <option value="CA"  >CA 加拿大</option>
+            <option value="CF"  >CF 中非共和国</option>
+            <option value="TD"  >TD 乍得</option>
+            <option value="CL"  >CL 智利</option>
+            <option value="CN"  selected>CN 中国</option>
+            <option value="CG"  >CG 刚果</option>
+            <option value="CK"  >CK 库克群岛</option>
+            <option value="CR"  >CR 哥斯达黎加</option>
+            <option value="CU"  >CU 古巴</option>
+            <option value="CY"  >CY 塞浦路斯</option>
+            <option value="CZ"  >CZ 捷克</option>
+            <option value="DK"  >DK 丹麦</option>
+            <option value="DJ"  >DJ 吉布提</option>
+            <option value="DO"  >DO 多米尼加共和国</option>
+            <option value="EC"  >EC 厄瓜多尔</option>
+            <option value="EG"  >EG 埃及</option>
+            <option value="SV"  >SV 萨尔瓦多</option>
+            <option value="EE"  >EE 爱沙尼亚</option>
+            <option value="ET"  >ET 埃塞俄比亚</option>
+            <option value="FJ"  >FJ 斐济</option>
+            <option value="FI"  >FI 芬兰</option>
+            <option value="FR"  >FR 法国</option>
+            <option value="GF"  >GF 法属圭亚那</option>
+            <option value="GA"  >GA 加蓬</option>
+            <option value="GM"  >GM 冈比亚</option>
+            <option value="GE"  >GE 格鲁吉亚</option>
+            <option value="DE"  >DE 德国</option>
+            <option value="GH"  >GH 加纳</option>
+            <option value="GI"  >GI 直布罗陀</option>
+            <option value="GR"  >GR 希腊</option>
+            <option value="GD"  >GD 格林纳达</option>
+            <option value="GU"  >GU 关岛</option>
+            <option value="GT"  >GT 危地马拉</option>
+            <option value="GN"  >GN 几内亚</option>
+            <option value="GY"  >GY 圭亚那</option>
+            <option value="HT"  >HT 海地</option>
+            <option value="HN"  >HN 洪都拉斯</option>
+            <option value="HK"  >HK 中国香港</option>
+            <option value="HU"  >HU 匈牙利</option>
+            <option value="IS"  >IS 冰岛</option>
+            <option value="IN"  >IN 印度</option>
+            <option value="ID"  >ID 印度尼西亚</option>
+            <option value="IR"  >IR 伊朗</option>
+            <option value="IQ"  >IQ 伊拉克</option>
+            <option value="IE"  >IE 爱尔兰</option>
+            <option value="IL"  >IL 以色列</option>
+            <option value="IT"  >IT 意大利</option>
+            <option value="JM"  >JM 牙买加</option>
+            <option value="JP"  >JP 日本</option>
+            <option value="JO"  >JO 约旦</option>
+            <option value="KH"  >KH 柬埔寨</option>
+            <option value="KZ"  >KZ 哈萨克斯坦</option>
+            <option value="KE"  >KE 肯尼亚</option>
+            <option value="KR"  >KR 韩国</option>
+            <option value="KW"  >KW 科威特</option>
+            <option value="KG"  >KG 吉尔吉斯坦</option>
+            <option value="LA"  >LA 老挝</option>
+            <option value="LV"  >LV 拉脱维亚</option>
+            <option value="LB"  >LB 黎巴嫩</option>
+            <option value="LS"  >LS 莱索托</option>
+            <option value="LR"  >LR 利比里亚</option>
+            <option value="LY"  >LY 利比亚</option>
+            <option value="LI"  >LI 列支敦士登</option>
+            <option value="LT"  >LT 立陶宛</option>
+            <option value="LU"  >LU 卢森堡</option>
+            <option value="MO"  >MO 中国澳门</option>
+            <option value="MG"  >MG 马达加斯加</option>
+            <option value="MW"  >MW 马拉维</option>
+            <option value="MY"  >MY 马来西亚</option>
+            <option value="MV"  >MV 马尔代夫</option>
+            <option value="ML"  >ML 马里</option>
+            <option value="MT"  >MT 马耳他</option>
+            <option value="MU"  >MU 毛里求斯</option>
+            <option value="MX"  >MX 墨西哥</option>
+            <option value="MD"  >MD 摩尔多瓦</option>
+            <option value="MC"  >MC 摩纳哥</option>
+            <option value="MN"  >MN 蒙古</option>
+            <option value="MS"  >MS 蒙特塞拉特岛</option>
+            <option value="MA"  >MA 摩洛哥</option>
+            <option value="MZ"  >MZ 莫桑比克</option>
+            <option value="NA"  >NA 纳米比亚</option>
+            <option value="NR"  >NR 瑙鲁</option>
+            <option value="NP"  >NP 尼泊尔</option>
+            <option value="NL"  >NL 荷兰</option>
+            <option value="NZ"  >NZ 新西兰</option>
+            <option value="NI"  >NI 尼加拉瓜</option>
+            <option value="NE"  >NE 尼日尔</option>
+            <option value="NG"  >NG 尼日利亚</option>
+            <option value="KP"  >KP 朝鲜</option>
+            <option value="NO"  >NO 挪威</option>
+            <option value="OM"  >OM 阿曼</option>
+            <option value="PK"  >PK 巴基斯坦</option>
+            <option value="PA"  >PA 巴拿马</option>
+            <option value="PG"  >PG 巴布亚新几内亚</option>
+            <option value="PY"  >PY 巴拉圭</option>
+            <option value="PE"  >PE 秘鲁</option>
+            <option value="PH"  >PH 菲律宾</option>
+            <option value="PL"  >PL 波兰</option>
+            <option value="PF"  >PF 法属玻利尼西亚</option>
+            <option value="PT"  >PT 葡萄牙</option>
+            <option value="PR"  >PR 波多黎各</option>
+            <option value="QA"  >QA 卡塔尔</option>
+            <option value="RO"  >RO 罗马尼亚</option>
+            <option value="RU"  >RU 俄罗斯</option>
+            <option value="LC"  >LC 圣卢西亚</option>
+            <option value="VC"  >VC 圣文森特岛</option>
+            <option value="SM"  >SM 圣马力诺</option>
+            <option value="ST"  >ST 圣多美和普林西比</option>
+            <option value="SA"  >SA 沙特阿拉伯</option>
+            <option value="SN"  >SN 塞内加尔</option>
+            <option value="SC"  >SC 塞舌尔</option>
+            <option value="SL"  >SL Leone  塞拉利昂</option>
+            <option value="SG"  >SG 新加坡</option>
+            <option value="SK"  >SK 斯洛伐克</option>
+            <option value="SI"  >SI 斯洛文尼亚</option>
+            <option value="SB"  >SB 所罗门群岛</option>
+            <option value="SO"  >SO 索马里</option>
+            <option value="ZA"  >ZA 南非</option>
+            <option value="ES"  >ES 西班牙</option>
+            <option value="LK"  >LK 斯里兰卡</option>
+            <option value="LC"  >LC 圣卢西亚</option>
+            <option value="VC"  >VC 圣文森特</option>
+            <option value="SD"  >SD 苏丹</option>
+            <option value="SR"  >SR 苏里南</option>
+            <option value="SZ"  >SZ 斯威士兰</option>
+            <option value="SE"  >SE 瑞典</option>
+            <option value="CH"  >CH 瑞士</option>
+            <option value="SY"  >SY 叙利亚</option>
+            <option value="TW"  >TW 中国台湾</option>
+            <option value="TJ"  >TJ 塔吉克斯坦</option>
+            <option value="TZ"  >TZ 坦桑尼亚</option>
+            <option value="TH"  >TH 泰国</option>
+            <option value="TG"  >TG 多哥</option>
+            <option value="TO"  >TO 汤加</option>
+            <option value="TT"  >TT 特立尼达和多巴哥</option>
+            <option value="TN"  >TN 突尼斯</option>
+            <option value="TR"  >TR 土耳其</option>
+            <option value="TM"  >TM 土库曼斯坦</option>
+            <option value="UG"  >UG 乌干达</option>
+            <option value="UA"  >UA 乌克兰</option>
+            <option value="AE"  >AE 阿拉伯联合酋长国</option>
+            <option value="GB"  >GB 英国</option>
+            <option value="US"  >US 美国</option>
+            <option value="UY"  >UY 乌拉圭</option>
+            <option value="UZ"  >UZ 乌兹别克斯坦</option>
+            <option value="VE"  >VE 委内瑞拉</option>
+            <option value="VN"  >VN 越南</option>
+            <option value="YE"  >YE 也门</option>
+            <option value="YU"  >YU 南斯拉夫</option>
+            <option value="ZW"  >ZW 津巴布韦</option>
+            <option value="ZR"  >ZR 扎伊尔</option>
+            <option value="ZM"  >ZM 赞比亚</option>
+          </select>
+            </div>
+      </div>
+        </div>
+    <div class="trade-other">
+          <h2 class="title line-btm">更多信息</h2>
+          <div class="gp-item">
+        <div class="lbl"><em class="mark">*</em>货币: <em>您希望交易付款的货币类型。</em></div>
+        <div class="select-box">
+              <select name="coin_type" class="form-control">
+            <option value="AED" > AED 阿联酋迪拉姆</option>
+            <option value="AFN" > AFN 阿富汗尼</option>
+            <option value="ALL" > ALL 阿尔巴尼列克</option>
+            <option value="AMD" > AMD 亚美尼亚德拉姆</option>
+            <option value="ANG" > ANG 荷兰盾</option>
+            <option value="AOA" > AOA 安哥拉宽扎</option>
+            <option value="ARS" > ARS 阿根廷比索</option>
+            <option value="AUD" > AUD 澳元</option>
+            <option value="AWG" > AWG 阿鲁巴弗罗林</option>
+            <option value="AZN" > AZN 阿塞拜疆马纳特</option>
+            <option value="BAM" > BAM 波黑可兑换马克</option>
+            <option value="BBD" > BBD 巴巴多斯元</option>
+            <option value="BDT" > BDT 孟加拉国塔卡</option>
+            <option value="BGN" > BGN 保加利亚列弗</option>
+            <option value="BHD" > BHD 巴林第纳尔</option>
+            <option value="BIF" > BIF 布隆迪法郎</option>
+            <option value="BMD" > BMD 百慕大元</option>
+            <option value="BND" > BND 文莱元</option>
+            <option value="BOB" > BOB 玻利维亚诺</option>
+            <option value="BRL" > BRL 巴西雷亚尔</option>
+            <option value="BSD" > BSD 巴哈马元</option>
+            <option value="BTN" > BTN 不丹努扎姆</option>
+            <option value="BWP" > BWP 博茨瓦纳普拉</option>
+            <option value="BYN" > BYN 新白俄罗斯卢布</option>
+            <option value="BYR" > BYR 白俄罗斯卢布</option>
+            <option value="BZD" > BZD 伯利兹元</option>
+            <option value="CAD" > CAD 加元</option>
+            <option value="CDF" > CDF 刚果法郎</option>
+            <option value="CHF" > CHF 瑞士法郎</option>
+            <option value="CLF" > CLF 智利比索(基金)</option>
+            <option value="CLP" > CLP 智利比索</option>
+            <option value="CNY" selected> CNY 人民币</option>
+            <option value="COP" > COP 哥伦比亚比索</option>
+            <option value="CRC" > CRC 哥斯达黎加科朗</option>
+            <option value="CUP" > CUP 古巴比索</option>
+            <option value="CVE" > CVE 佛得角埃斯库多</option>
+            <option value="CZK" > CZK 捷克克朗</option>
+            <option value="DJF" > DJF 吉布提法郎</option>
+            <option value="DKK" > DKK 丹麦克朗</option>
+            <option value="DOP" > DOP 多米尼加比索</option>
+            <option value="DZD" > DZD 阿尔及利亚第纳尔</option>
+            <option value="EGP" > EGP 埃及镑</option>
+            <option value="ERN" > ERN 厄立特里亚纳克法</option>
+            <option value="ETB" > ETB 埃塞俄比亚比尔</option>
+            <option value="EUR" > EUR 欧元</option>
+            <option value="FJD" > FJD 斐济元</option>
+            <option value="FKP" > FKP 福克兰群岛镑</option>
+            <option value="GBP" > GBP 英镑</option>
+            <option value="GEL" > GEL 格鲁吉亚拉里</option>
+            <option value="GHS" > GHS 加纳塞地</option>
+            <option value="GIP" > GIP 直布罗陀镑</option>
+            <option value="GMD" > GMD 冈比亚达拉西</option>
+            <option value="GNF" > GNF 几内亚法郎</option>
+            <option value="GTQ" > GTQ 危地马拉格查尔</option>
+            <option value="GYD" > GYD 圭亚那元</option>
+            <option value="HKD" > HKD 港币</option>
+            <option value="HNL" > HNL 洪都拉斯伦皮拉</option>
+            <option value="HRK" > HRK 克罗地亚库纳</option>
+            <option value="HTG" > HTG 海地古德</option>
+            <option value="HUF" > HUF 匈牙利福林</option>
+            <option value="IDR" > IDR 印度尼西亚卢比</option>
+            <option value="ILS" > ILS 以色列新谢克尔</option>
+            <option value="INR" > INR 印度卢比</option>
+            <option value="IQD" > IQD 伊拉克第纳尔</option>
+            <option value="IRR" > IRR 伊朗里亚尔</option>
+            <option value="ISK" > ISK 冰岛克郎</option>
+            <option value="JMD" > JMD 牙买加元</option>
+            <option value="JOD" > JOD 约旦第纳尔</option>
+            <option value="JPY" > JPY 日元</option>
+            <option value="KES" > KES 肯尼亚先令</option>
+            <option value="KGS" > KGS 吉尔吉斯斯坦索姆</option>
+            <option value="KHR" > KHR 柬埔寨瑞尔</option>
+            <option value="KMF" > KMF 科摩罗法郎</option>
+            <option value="KPW" > KPW 朝鲜元</option>
+            <option value="KRW" > KRW 韩元</option>
+            <option value="KWD" > KWD 科威特第纳尔</option>
+            <option value="KYD" > KYD 开曼群岛元</option>
+            <option value="KZT" > KZT 哈萨克斯坦坚戈</option>
+            <option value="LAK" > LAK 老挝基普</option>
+            <option value="LBP" > LBP 黎巴嫩镑</option>
+            <option value="LKR" > LKR 斯里兰卡卢比</option>
+            <option value="LRD" > LRD 利比里亚元</option>
+            <option value="LSL" > LSL 莱索托洛蒂</option>
+            <option value="LYD" > LYD 利比亚第纳尔</option>
+            <option value="MAD" > MAD 摩洛哥迪拉姆</option>
+            <option value="MDL" > MDL 摩尔多瓦列伊</option>
+            <option value="MGA" > MGA 马达加斯加阿里亚里</option>
+            <option value="MKD" > MKD 马其顿代纳尔</option>
+            <option value="MMK" > MMK 缅甸元</option>
+            <option value="MNT" > MNT 蒙古图格里克</option>
+            <option value="MOP" > MOP 澳门元</option>
+            <option value="MRO" > MRO 毛里塔尼亚乌吉亚</option>
+            <option value="MUR" > MUR 毛里求斯卢比</option>
+            <option value="MVR" > MVR 马尔代夫拉菲亚</option>
+            <option value="MWK" > MWK 马拉维克瓦查</option>
+            <option value="MXN" > MXN 墨西哥比索</option>
+            <option value="MXV" > MXV 墨西哥(资金)</option>
+            <option value="MYR" > MYR 林吉特</option>
+            <option value="MZN" > MZN 莫桑比克新梅蒂卡尔</option>
+            <option value="NAD" > NAD 纳米比亚元</option>
+            <option value="NGN" > NGN 尼日利亚奈拉</option>
+            <option value="NIO" > NIO 尼加拉瓜新科多巴</option>
+            <option value="NOK" > NOK 挪威克朗</option>
+            <option value="NPR" > NPR 尼泊尔卢比</option>
+            <option value="NZD" > NZD 新西兰元</option>
+            <option value="OMR" > OMR 阿曼里亚尔</option>
+            <option value="PAB" > PAB 巴拿马巴波亚</option>
+            <option value="PEN" > PEN 秘鲁新索尔</option>
+            <option value="PGK" > PGK 巴布亚新几内亚基那</option>
+            <option value="PHP" > PHP 菲律宾比索</option>
+            <option value="PKR" > PKR 巴基斯坦卢比</option>
+            <option value="PLN" > PLN 波兰兹罗提</option>
+            <option value="PYG" > PYG 巴拉圭瓜拉尼</option>
+            <option value="QAR" > QAR 卡塔尔里亚尔</option>
+            <option value="RON" > RON 罗马尼亚列伊</option>
+            <option value="RSD" > RSD 塞尔维亚第纳尔</option>
+            <option value="RUB" > RUB 俄罗斯卢布</option>
+            <option value="RWF" > RWF 卢旺达法郎</option>
+            <option value="SAR" > SAR 沙特里亚尔</option>
+            <option value="SBD" > SBD 所罗门群岛元</option>
+            <option value="SCR" > SCR 塞舌尔卢比</option>
+            <option value="SDG" > SDG 苏丹磅</option>
+            <option value="SEK" > SEK 瑞典克朗</option>
+            <option value="SGD" > SGD 新加坡元</option>
+            <option value="SHP" > SHP 圣赫勒拿镑</option>
+            <option value="SLL" > SLL 塞拉利昂利昂</option>
+            <option value="SOS" > SOS 索马里先令</option>
+            <option value="SRD" > SRD 苏里南元</option>
+            <option value="SSP" > SSP 南苏丹镑</option>
+            <option value="STD" > STD 圣多美多布拉</option>
+            <option value="SVC" > SVC 萨尔瓦多科朗</option>
+            <option value="SYP" > SYP 叙利亚镑</option>
+            <option value="SZL" > SZL 斯威士兰里兰吉尼</option>
+            <option value="THB" > THB 泰铢</option>
+            <option value="TJS" > TJS 塔吉克斯坦索莫尼</option>
+            <option value="TMT" > TMT 土库曼斯坦马纳特</option>
+            <option value="TND" > TND 突尼斯第纳尔</option>
+            <option value="TOP" > TOP 汤加潘加</option>
+            <option value="TRY" > TRY 土耳其里拉</option>
+            <option value="TTD" > TTD 特立尼达多巴哥元</option>
+            <option value="TWD" > TWD 新台币</option>
+            <option value="TZS" > TZS 坦桑尼亚先令</option>
+            <option value="UAH" > UAH 乌克兰格里夫纳</option>
+            <option value="UGX" > UGX 乌干达先令</option>
+            <option value="USD" > USD 美元</option>
+            <option value="UYU" > UYU 乌拉圭比索</option>
+            <option value="UZS" > UZS 乌兹别克斯坦苏姆</option>
+            <option value="VEF" > VEF 委内瑞拉玻利瓦尔</option>
+            <option value="VND" > VND 越南盾</option>
+            <option value="VUV" > VUV 瓦努阿图瓦图</option>
+            <option value="WST" > WST 萨摩亚塔拉</option>
+            <option value="XAF" > XAF 中非法郎</option>
+            <option value="XAG" > XAG 银价盎司</option>
+            <option value="XAU" > XAU 金价盎司</option>
+            <option value="XCD" > XCD 东加勒比元</option>
+            <option value="XDR" > XDR IMF特别提款权</option>
+            <option value="XOF" > XOF 西非法郎</option>
+            <option value="XPD" > XPD 钯价盎司</option>
+            <option value="XPF" > XPF 太平洋法郎</option>
+            <option value="XPT" > XPT 珀价盎司</option>
+            <option value="YER" > YER 也门里亚尔</option>
+            <option value="ZAR" > ZAR 南非兰特</option>
+            <option value="ZMW" > ZMW 赞比亚克瓦查</option>
+            <option value="ZWL" > ZWL 津巴布韦元</option>
+            <option value="GGP" > GGP 根西岛镑</option>
+          </select>
+            </div>
+      </div>
+          <div class="gp-item">
+        <div class="lbl"><em class="mark">*</em>溢价:<em>基于市场价的溢出比例，市场价是根据部分大型交易所实时价格得出的，确保您的报价趋于一个相对合理范围，比如当前价格为7000，溢价比例为10%，那么价格为7700。</em></div>
+        <div class="slider-box">
+              <div class="clearfix">
+            <div class="si">
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tbody>
+                      <tr>
+                    <td class="si-low">-99</td>
+                    <td class="si-box"><div id="slider"></div></td>
+                    <td class="si-sup">99</td>
+                  </tr>
+                    </tbody>
+              </table>
+                </div>
+            <div class="ti">
+                  <input type="text" name="percent" id="percent" onBlur="ChangeSlider(this)" class="form-control" />
+				<div class="pct">%</div>
+                </div>
+          </div>
+            </div>
+        <div class="gp-item">
+              <div class="lbl"><em class="mark">*</em>价格:<em>基于溢价比例得出的报价，10分钟更新一次。</em></div>
+              <div class="text-box coins-item">
+            <input type="text" name="price" class="form-control" />
+            <div class="coins">CNY</div>
+          </div>
+              <div class="tips">当前报价大概排在第 <span>1</span> 位</div>
+            </div>
+        <div class="gp-item">
+              <div class="lbl">最低价（选填）:<em>广告最低可成交的价格，可帮助您在价格剧烈波动时保持稳定的盈利，比如最低价为12000，市场价处于12000以下时，您的广告将依旧以12000的价格展示出来</em></div>
+              <div class="text-box coins-item">
+            <input type="text" name="price-min" class="form-control" />
+            <div class="coins">CNY</div>
+          </div>
+            </div>
+        <div class="gp-item">
+              <div class="lbl"><em class="mark">*</em>最小限额:<em>一次交易的最低的交易限制。</em></div>
+              <div class="text-box coins-item">
+            <input type="text" name="limit-l" class="form-control" />
+            <div class="coins">CNY</div>
+          </div>
+            </div>
+        <div class="gp-item">
+              <div class="lbl"><em class="mark">*</em>最大限额:<em>一次交易中的最大交易限制，您的钱包余额也会影响最大量的设置。</em></div>
+              <div class="text-box coins-item">
+            <input type="text" name="limit-u" class="form-control" />
+            <div class="coins">CNY</div>
+          </div>
+            </div>
+        <div class="gp-item">
+              <div class="lbl"><em class="mark">*</em>收款方式:</div>
+              <div class="select-box">
+            <select name="payment" class="form-control">
+                  <option value="CASH_DEPOSIT" >现金存款</option>
+                  <option value="NATIONAL_BANK" >银行转账</option>
+                  <option value="ALIPAY"  selected>支付宝</option>
+                  <option value="WECHAT_PAY" >微信支付</option>
+                  <option value="ITUNES_GIFT_CARD" >iTunes礼品卡</option>
+                  <option value="PAYPAL" >PayPal</option>
+                  <option value="WESTERN_UNION" >西联汇款</option>
+                  <option value="MONEYGRAM" >MoneyGram</option>
+                  <option value="PERFECT_MONEY" >Perfect Money</option>
+                  <option value="PAYTM" >Paytm</option>
+                  <option value="KAKAO_PAY" >Kakao Pay</option>
+                  <option value="OTHER" >其它</option>
+                </select>
+          </div>
+            </div>
+        <div class="gp-item">
+              <div class="lbl"><em class="mark">*</em>广告留言:</div>
+              <div class="ta-box">
+            <textarea type="text" class="form-control" name="message" rows="6"></textarea>
+          </div>
+            </div>
+        <div class="gp-item">
+              <div class="lbl">仅限实名认证的交易者：<em>启用后，仅限于已完成实名认证的用户与本广告交易。</em></div>
+              <div class="radio-box">
+            <label>
+                  <input type="radio" name="smlz" value="1" checked />
+                  &nbsp;启用</label>
+            <label>
+                  <input type="radio" name="smlz" value="0" />
+                  &nbsp;不启用</label>
+          </div>
+            </div>
+        <div class="gp-item">
+              <div class="lbl">仅限受信任的交易者：<em>启用后，仅限于自己信任的用户与本广告交易。</em></div>
+              <div class="check-box">
+            <label>
+                  <input type="checkbox" name="credit" value="1" />
+                  &nbsp;启用</label>
+          </div>
+            </div>
+        <div class="gp-item">
+              <div class="button-box">
+            <button type="submit" class="btn btn-primary btn-lg btn-xs-block">立即发布</button>
+          </div>
+            </div>
+      </div>
+        </div>
+  </form>
+    </div>
+<script type="text/babel" src="/static/jsx/approot.jsx"></script> 
+<script type="text/babel" src="/static/jsx/header.jsx"></script> 
+<script type="text/babel" src="/static/jsx/footer.jsx"></script> 
+<script type="text/babel" src="/static/jsx/usernavbar.jsx"></script> 
+<script type="text/babel" src="/static/jsx/elements.jsx"></script> 
+<script type="text/babel">
+
+    function CCate(props) {
+        var items = [];
+        var num = 0;
+        props.items.forEach(function (item) {
+            num++;
+            items.push(<a href="#" key={num} onClick={props.clickHandler} data-id={item}><i
+                    className="icon-check-circle"></i> {item}</a>);
+        });
+        return (<div className="nav-cate visible-xs-block">{items}</div>);
+    }
+
+    var PageView = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0,
+                items: []
+            };
+        },
+        componentDidMount: function () {
+            $("#otcInfo").html($("#otcNewTemp").html());
+			$( "#slider" ).slider({
+				classes:{
+					"ui-slider": "ui-corner-all ui-slider-new",
+  					"ui-slider-handle": "ui-corner-all ui-slider-handle-new",
+  					"ui-slider-range": "ui-corner-all ui-widget-header"
+				},
+				min:-99,
+				max:99,
+				step:0.01,
+				change: function( event, ui ) {
+					$("#percent").val(ui.value);
+				}
+			});
+        },
+        render: function () {
+            return (<section className="otc-ads">
+                <div className="container">
+					<div id="otcInfo"></div>
+                </div>
+            </section>);
+        }
+    });
+	
+    var isLogin = IsLogin();
+
+    ReactDOM.render(
+            <App isLogin={isLogin} ContentBox={
+                <PageView/>
+            }/>
+        , document.getElementById("App")
+    );
+</script>
+</body>
+</html>

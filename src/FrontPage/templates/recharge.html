@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <title>{% trans 'bitbiex—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
     <link rel="shortcut icon" href="/static/images/favicon.ico"/>
@@ -69,7 +69,7 @@
     function LinkCoinBTC(props) {
         function clickHandler(e) {
             e.preventDefault();
-            CoinToBTC(props.id, props.refreshHandler);
+		CoinToBTC(props.id,props.refreshHandler);
         }
 
         return <a href="#" onClick={clickHandler}>{% trans '提币' %}</a>;
@@ -78,7 +78,7 @@
     function LinkCoinOut(props) {
         function clickHandler(e) {
             e.preventDefault();
-            CoinOut(props.id, props.refreshHandler);
+		CoinOut(props.id,props.refreshHandler);
         }
 
         return <a href="#" onClick={clickHandler}>{% trans '转账' %}</a>;
@@ -100,28 +100,28 @@
         },
         Refresh: function (is_zero) {
             //console.log(is_zero);
-            //ShowLoading("正在加载...");
+		//ShowLoading("正在加载...");
             $.getJSON(this.props.source, {
                 is_zero: is_zero
             }, function (res) {
 
                 //console.log(res);
 
-                //CloseLoading(500);
+				//CloseLoading(500);
 
                 if (res.result) {
                     this.setState({
                         items: res.data,
-                        status: 1,
-                        is_zero: is_zero
+					  status:1,
+					  is_zero:is_zero
                     });
 
                     CountTotalAmount(res.data);
                 }
                 else {
                     this.setState({
-                        status: 2,
-                        is_zero: is_zero
+						status:2,
+						is_zero:is_zero
                     });
                 }
             }.bind(this));
@@ -150,10 +150,10 @@
 
             this.Refresh(is_zero);
         },
-        refreshHandler: function () {
-            console.log("刷新");
-            this.Refresh(this.state.is_zero);
-        },
+	refreshHandler:function(){
+		console.log("刷新");
+		this.Refresh(this.state.is_zero);
+	},
         render: function () {
             var rows = [];
             if (this.state.status == 0) {
@@ -182,19 +182,17 @@
                         var tid = "titem" + id;
 
                         var lnkIn = item.is_allow_charge ? <LinkCoinIn id={id}/> : "";
-                        var lnkOut = item.is_allow_transfer ?
-                            <LinkCoinOut id={id} refreshHandler={this.refreshHandler}/> : "";
-                        var lnkBTC = item.is_allow_withdrow ?
-                            <LinkCoinBTC id={id} refreshHandler={this.refreshHandler}/> : "";
+					var lnkOut = item.is_allow_transfer ? <LinkCoinOut id={id} refreshHandler={this.refreshHandler} /> : "";
+					var lnkBTC = item.is_allow_withdrow ? <LinkCoinBTC id={id} refreshHandler={this.refreshHandler} /> : "";
 
                         if (id == "6") {
-                            lnkIn = item.is_allow_charge ? <LinkCoinWKC url="recharge-wkc.html"/> : "";
+						lnkIn = item.is_allow_charge ? <LinkCoinWKC url="recharge-wkc.html" /> : "";
                         }
 
 
                         rows.push(<tr className="titem" key={id} id={tid}>
                             <td className="sname">{code}</td>
-                            <td className="name hidden-xs">{gettext(item.coin_name)}</td>
+                            <td className="name hidden-xs">{ gettext(item.coin_name) }</td>
                             <td className="amount-liv">{available}</td>
                             <td className="amount-smt">{frozen}</td>
                             <td className="amount-cfm">{unconfirm}</td>
@@ -205,22 +203,17 @@
                                 {lnkBTC}
                             </td>
                         </tr>);
-                        rows.push(<tr className="titem titem-qr" id={sid} key={sid}>
-                            <td colSpan="7">{% trans '请将币转入到这个地址' %} <span
-                                className="txt-red">1Go5J1fwrLimm8Fer7yhTtFV5NPz5RasRi</span> <img
-                                src="/static/images/bill_qr.png"/></td>
-                        </tr>);
-                    }.bind(this));
+					rows.push(<tr className="titem titem-qr" id={sid} key={sid}><td colSpan="7">{% trans '请将币转入到这个地址' %} <span className="txt-red">1Go5J1fwrLimm8Fer7yhTtFV5NPz5RasRi</span> <img src="/static/images/bill_qr.png" /></td></tr>);
+				}.bind(this));
                 }
             }
 
             return (<div className="item-box">
                 <h4 className="tb-title clearfix"><span className="tl pull-left">{% trans '我的资金一览表' %}</span> <span
-                    className="cbox pull-right txt-md"><a href="#" onClick={this.clickToggle}><i
-                    className="icon-toggle-on icon-large"></i> {% trans '隐藏0余额币种' %}</a></span><span
-                    className="amount pull-right txt-md">{% trans '资产估算' %}：<span
-                    id="fnAmountBTC">--</span> BTC({% trans '约人民币' %}：<span
-                    id="fnAmountCNY">--</span>)</span></h4>
+                        className="cbox pull-right txt-md"><a href="#" onClick={this.clickToggle}><i
+                        className="icon-toggle-on icon-large"></i> {% trans '隐藏0余额币种' %}</a></span><span
+                        className="amount pull-right txt-md">{% trans '资产估算' %}：<span id="fnAmountBTC">--</span> BTC({% trans '约人民币' %}：<span
+                        id="fnAmountCNY">--</span>)</span></h4>
                 <table className="tb-list tb-solid">
                     <thead>
                     <tr className="thead thead-blue thead-condensed">
@@ -260,9 +253,9 @@
     var isLogin = IsLogin();
 
     ReactDOM.render(
-        <App isLogin={isLogin} ContentBox={
-            <PageView source="/api/finance/get_funds"/>
-        }/>
+            <App isLogin={isLogin} ContentBox={
+                <PageView source="/api/finance/get_funds"/>
+            }/>
         , document.getElementById("App")
     );
 </script>

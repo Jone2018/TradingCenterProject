@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <title>{% trans 'bitbiex—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
     <link rel="shortcut icon" href="/static/images/favicon.ico"/>
@@ -84,7 +84,7 @@
                 <div className="success">
                     <div className="icons"><i className="icon-check-circle txt-primary"></i></div>
                     <h3 className="tl">{% trans '您的账户已成功注册' %}</h3>
-                    <div className="info txt-md">{% trans '激活邮件已发送，请检查您的验证邮箱并确认service@chaobi.la已在您的白名单中。' %}<br/>
+                    <div className="info txt-md">{% trans '激活邮件已发送，请检查您的验证邮箱并确认service@bitbiex.com已在您的白名单中。' %}<br/>
                         {% trans '如仍未收到，请检查下您的垃圾邮箱。' %}<a href="#" className="txt-primary"
                                                           onClick={this.clickHandler}>{% trans '点此重新发送' %}</a><br/><br/>
                         {% trans '马上充值体验吧' %}
@@ -112,9 +112,9 @@
     var isLogin = IsLogin();
 
     ReactDOM.render(
-        <App isLogin={isLogin} ContentBox={
-            <PageView/>
-        }/>
+            <App isLogin={isLogin} ContentBox={
+                <PageView/>
+            }/>
         , document.getElementById("App")
     );
 </script>

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <title>{% trans 'bitbiex—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
     <link rel="shortcut icon" href="/static/images/favicon.ico"/>
@@ -96,17 +96,14 @@
                                 </CFormGroup>
                                 <CFormGroup className="form-group">
                                     <CLabel>{% trans '充币数量' %}：</CLabel>
-                                    <CTextInput name="amount" id="amount" colIn="col-sm-4"
-                                                title="{% trans '请输入充币数量' %}"/>
+                                    <CTextInput name="amount" id="amount" colIn="col-sm-4" title="{% trans '请输入充币数量' %}"/>
                                     <div className="col-sm-4 wkc-uid" id="wkcUID">{userID}</div>
                                 </CFormGroup>
                                 <CFormGroup>
-                                    <CLabel
-                                        className="col-sm-3 col-xs-12 control-label">{% trans '验&nbsp;&nbsp;证&nbsp;&nbsp;码' %}：</CLabel>
-                                    <CTextInput name="captcha_value" colIn="col-sm-4 col-xs-8"
-                                                title="{% trans '请输入验证码' %}"/>
-                                    <CLinkButton colIn="col-sm-4 col-xs-4" linkHandler={this.refreshHandler}>
-                                        <img src="/static/images/spacer.gif" id="rndCode" height="32"/>
+						  <CLabel className="col-sm-3 col-xs-12 control-label">{% trans '验&nbsp;&nbsp;证&nbsp;&nbsp;码' %}：</CLabel>
+						  <CTextInput name="captcha_value" colIn="col-sm-4 col-xs-8" title="{% trans '请输入验证码' %}" />
+						  <CLinkButton colIn="col-sm-4 col-xs-4" linkHandler={this.refreshHandler}>
+                                        <img src="/static/images/bitbiex_logo.png" id="rndCode" height="32"/>
                                     </CLinkButton>
                                 </CFormGroup>
                                 <CFormGroup>
@@ -231,9 +228,9 @@
                         var status = gettext(item.status);
                         var addr = item.address;
                         var lnkIn = "--";
-                        if (status == "{% trans '确认中' %}") {
-                            lnkIn = (<a href="#" className="blue"
-                                        onClick={this.cancelWKC.bind(this, id)}>{% trans '撤消' %}</a>);
+					if(status == "{% trans '确认中' %}")
+					{
+						lnkIn = (<a href="#" className="blue" onClick={this.cancelWKC.bind(this,id)}>{% trans '撤消' %}</a>);
                         }
                         num++;
 
@@ -295,9 +292,9 @@
     var isLogin = IsLogin();
 
     ReactDOM.render(
-        <App isLogin={isLogin} ContentBox={
-            <PageView source="/api/finance/wkc_charge_list"/>
-        }/>
+            <App isLogin={isLogin} ContentBox={
+                <PageView source="/api/finance/wkc_charge_list"/>
+            }/>
         , document.getElementById("App")
     );
 </script>

@@ -1,3 +1,4 @@
-function PageInit() {
-    $(".mm-otc a").addClass("active");
+function PageInit()
+{
+	$(".mm-otc  > a").addClass("active");
 }

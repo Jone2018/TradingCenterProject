@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <title>{% trans 'bitbiex—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
     <link rel="shortcut icon" href="/static/images/favicon.ico"/>
@@ -73,9 +73,8 @@
         render: function () {
             return (<div className="btc-amount hidden" id="btc-amount">
                 <div className="clearfix">
-                    <span className="tl">{% trans '可用资产' %}：<span><i className="icon-btc"></i> <span
-                        id="btc_available2"></span></span></span>
-                    <a href="recharge.html" className="txt-red">{% trans '充值' %}</a>
+				<span className="tl">{% trans '可用资产' %}：<span><i className="icon-btc"></i> <span id="btc_available2"></span></span></span>
+				<a href="recharge.html" className="txt-red">{% trans '充值' %}</a>
                 </div>
             </div>);
         }
@@ -94,8 +93,8 @@
         render: function () {
             return (<div className="btc-amount hidden" id="coin-amount">
                 <div className="clearfix">
-                    <span className="tl">{% trans '可用资产' %}：<span><span id="coin_available2"></span></span></span>
-                    <a href="recharge.html" className="txt-red">{% trans '充值' %}</a>
+				<span className="tl">{% trans '可用资产' %}：<span><span id="coin_available2"></span></span></span>
+				<a href="recharge.html" className="txt-red">{% trans '充值' %}</a>
                 </div>
             </div>);
         }
@@ -119,13 +118,10 @@
                         <table width="100%" cellSpacing="0" cellPadding="0">
                             <tbody>
                             <tr className="txt-lg">
-                                <td className="price"><span id="mkBuyPrice">--</span><span
-                                    className="lbl">{% trans '买一价' %}</span></td>
-                                <td className="price"><span id="mkSellPrice">--</span><span
-                                    className="lbl">{% trans '卖一价' %}</span></td>
+                                <td className="price"><span id="mkBuyPrice">--</span><span className="lbl">{% trans '买一价' %}</span></td>
+                                <td className="price"><span id="mkSellPrice">--</span><span className="lbl">{% trans '卖一价' %}</span></td>
                                 <td><span id="mkVol">--</span><span className="lbl">{% trans '24H成交量' %}</span></td>
-                                <td className="price"><span id="mkPercent">--</span><span
-                                    className="lbl">{% trans '今日涨跌幅' %}</span></td>
+                                <td className="price"><span id="mkPercent">--</span><span className="lbl">{% trans '今日涨跌幅' %}</span></td>
                             </tr>
                             </tbody>
                         </table>
@@ -139,13 +135,13 @@
                                     <div className="hs-title visible-xs" id="hsTitle"></div>
                                     <div className="fr hs-dropmenu">
                                         <div id="chart_time" className="fl">
-                                            <a className="item" id="chart_w" data-time="10080">{% trans '周线' %}</a>
-                                            <a className="item" id="chart_d" data-time="1440">{% trans '日线' %}</a>
-                                            <a className="item" id="chart_12h" data-time="720">12{% trans '小时线' %}</a>
-                                            <a className="item" id="chart_4h" data-time="240">4{% trans '小时线' %}</a>
-                                            <a className="item" id="chart_1h" data-time="60">1{% trans '小时线' %}</a>
-                                            <a className="item" id="chart_30m" data-time="30">30{% trans '分钟线' %}</a>
-                                            <a className="item cur" id="chart_5m" data-time="5">5{% trans '分钟线' %}</a>
+									<a className="item" id="chart_w" data-time="10080">{% trans '周线' %}</a>
+									<a className="item" id="chart_d" data-time="1440">{% trans '日线' %}</a>
+									<a className="item" id="chart_12h" data-time="720">12{% trans '小时线' %}</a>
+									<a className="item" id="chart_4h" data-time="240">4{% trans '小时线' %}</a>
+									<a className="item" id="chart_1h" data-time="60">1{% trans '小时线' %}</a>
+									<a className="item" id="chart_30m" data-time="30">30{% trans '分钟线' %}</a>
+									<a className="item cur" id="chart_5m" data-time="5">5{% trans '分钟线' %}</a>
                                         </div>
                                         <div id="chart_theme" className="fl">
                                             <a className="item" id="chart_black">{% trans '黑色' %}</a>
@@ -226,26 +222,31 @@
 
         },
         sumHandler: function (e) {
-            var ths = $(e.target);
-            var val = ths.val();
-            if (val.length > 0 && /[^\d.]+/.test(val)) {
-                val = val.replace(/[^\d.]+/, "");
-                ths.val(val);
-            }
+		var ths = $(e.target);
+		var val = ths.val();
+		if(val.length > 0 && /[^\d.]+/.test(val))
+		{
+			val = val.replace(/[^\d.]+/,"");
+			ths.val(val);
+		}
 
-            if (!IsNumber($("#buyPrice").val())) {
-                $("#buyPrice").addClass("fld-error")
-            }
-            else {
-                $("#buyPrice").removeClass("fld-error");
-            }
+		if(!IsNumber($("#buyPrice").val()))
+		{
+			$("#buyPrice").addClass("fld-error")
+		}
+		else
+		{
+			$("#buyPrice").removeClass("fld-error");
+		}
 
-            if (!IsNumber($("#buyQty").val())) {
-                $("#buyQty").addClass("fld-error")
-            }
-            else {
-                $("#buyQty").removeClass("fld-error");
-            }
+		if(!IsNumber($("#buyQty").val()))
+		{
+			$("#buyQty").addClass("fld-error")
+		}
+		else
+		{
+			$("#buyQty").removeClass("fld-error");
+		}
 
             var price = $("#buyPrice").val();
             var qty = $("#buyQty").val();
@@ -278,7 +279,7 @@
                 $("#buyAmount").val("");
             }
 
-            ChangeCNYBuy();
+		ChangeCNYBuy();
         },
         chageCode: function (e) {
             this.setState({
@@ -286,10 +287,11 @@
             });
         },
         render: function () {
-            var rate = "";
-            if (IsNumber(GetItem("cny_rate"))) {
-                rate = "¥" + GetItem("cny_rate")
-            }
+		var rate = "";
+		if(IsNumber(GetItem("cny_rate")))
+		{
+			rate = "¥" + GetItem("cny_rate")
+		}
 
             return (<div className="form-buy" id="FormBuy">
                 <div className="line">
@@ -304,17 +306,20 @@
                                 <tbody>
                                 <tr>
                                     <td className="lbl lg">{% trans '买入' %}</td>
-                                    <td className="fld"><span className="coin_typename"></span></td>
+                                    <td className="fld"><span className="coin_type_b"></span></td>
                                     <td className="lbl">{% trans '委托类型:' %}</td>
                                     <td className="fld"><span>{% trans '限价' %}</span></td>
                                 </tr>
                                 <tr>
-                                    <td className="lbl"><span>{% trans '可用BTC:' %}</span></td>
+                                    <td className="lbl">
+                                        <span>{% trans '可用' %}</span>
+                                        <span className="coin_type_a"></span>
+                                        <span>{% trans ':' %}</span>
+                                    </td>
                                     <td className="fld" colSpan="3">
                                         <span>
                                             <i className="icon-btc"></i>
-                                            <span id="btc_available" onClick={this.updateBuyHandler}
-                                                  className="price">10000.00</span>
+                                            <span id="btc_available" onClick={this.updateBuyHandler} className="price">10000.00</span>
                                         </span>
                                         <span className="cny">(<span>¥ </span><span id='btc_cny_buy'></span>)</span>
                                     </td>
@@ -330,18 +335,16 @@
                         <div className="control">
                             <div className="form-group fg-item fg-item-pr">
                                 <div className="lbl-xs">{% trans '买入价格:' %}</div>
-                                <div className="input-group"><span
-                                    className="input-group-addon lbl">{% trans '价格' %}</span>
+                                <div className="input-group"><span className="input-group-addon lbl">{% trans '价格' %}</span>
                                     <input id="buyPrice" type="text" defaultValue={this.state.price} name="price"
                                            placeholder="฿" className="form-control" onBlur={this.sumHandler}
                                            onKeyUp={this.sumHandler} onChange={this.sumHandler}/>
                                     <span className="input-group-addon" id='btc2'> BTC</span></div>
-                                <div className="cny_price" id="cnyBuyPrice"></div>
+						<div className="cny_price" id="cnyBuyPrice"></div>
                             </div>
                             <div className="form-group fg-item fg-item-qty">
                                 <div className="lbl-xs">{% trans '买入数量:' %}</div>
-                                <div className="input-group"><span
-                                    className="input-group-addon lbl">{% trans '数量' %}</span>
+                                <div className="input-group"><span className="input-group-addon lbl">{% trans '数量' %}</span>
                                     <input type="text" className="form-control" name="quantity"
                                            defaultValue={this.state.qty} placeholder="" id="buyQty"
                                            onBlur={this.sumHandler} onKeyUp={this.sumHandler}
@@ -350,22 +353,18 @@
                             </div>
                             <div className="form-group fg-item fg-item-pr">
                                 <div className="lbl-xs">{% trans '金额:' %}</div>
-                                <div className="input-group"><span
-                                    className="input-group-addon lbl">{% trans '金额' %}</span>
+                                <div className="input-group"><span className="input-group-addon lbl">{% trans '金额' %}</span>
                                     <input readOnly type="text" defaultValue={this.state.amount} placeholder="฿"
                                            id="buyAmount" className="form-control"/>
                                     <span className="input-group-addon" id="btc1"> BTC</span></div>
-                                <div className="cny_price" id="cnyBuyAmount"></div>
+						<div className="cny_price" id="cnyBuyAmount"></div>
                             </div>
                             <div className="form-group fg-item">
                                 <div className="lbl-xs txt-grey">{% trans '委托类型：限价' %}</div>
                             </div>
                             <div className="form-group fg-item">
-                                <label
-                                    className="pull-left txt-grey tip">{% trans '手续费' %}0.2%<br/>{% trans '比特币指数' %}:{rate}
-                                </label>
-                                <button type="submit" className="btn btn-success pull-right"
-                                        id="btnBuy">{% trans '买入' %}</button>
+                      <label className="pull-left txt-grey tip">{% trans '手续费' %}0.2%<br />{% trans '比特币指数' %}:{rate}</label>
+                      <button type="submit" className="btn btn-success pull-right" id="btnBuy">{% trans '买入' %}</button>
                             </div>
                         </div>
                     </form>
@@ -403,26 +402,31 @@
             });
         },
         sumHandler: function (e) {
-            var ths = $(e.target);
-            var val = ths.val();
-            if (val.length > 0 && /[^\d.]+/.test(val)) {
-                val = val.replace(/[^\d.]+/, "");
-                ths.val(val);
-            }
+		var ths = $(e.target);
+		var val = ths.val();
+		if(val.length > 0 && /[^\d.]+/.test(val))
+		{
+			val = val.replace(/[^\d.]+/,"");
+			ths.val(val);
+		}
 
-            if (!IsNumber($("#sellPrice").val())) {
-                $("#sellPrice").addClass("fld-error")
-            }
-            else {
-                $("#sellPrice").removeClass("fld-error");
-            }
+		if(!IsNumber($("#sellPrice").val()))
+		{
+			$("#sellPrice").addClass("fld-error")
+		}
+		else
+		{
+			$("#sellPrice").removeClass("fld-error");
+		}
 
-            if (!IsNumber($("#sellQty").val())) {
-                $("#sellQty").addClass("fld-error")
-            }
-            else {
-                $("#sellQty").removeClass("fld-error");
-            }
+		if(!IsNumber($("#sellQty").val()))
+		{
+			$("#sellQty").addClass("fld-error")
+		}
+		else
+		{
+			$("#sellQty").removeClass("fld-error");
+		}
 
             var price = $("#sellPrice").val();
             var qty = $("#sellQty").val();
@@ -460,13 +464,14 @@
                 $("#sellAmount").val("");
             }
 
-            ChangeCNYSell();
+		ChangeCNYSell();
         },
         render: function () {
-            var rate = "";
-            if (IsNumber(GetItem("cny_rate"))) {
-                rate = "¥" + GetItem("cny_rate")
-            }
+		var rate = "";
+		if(IsNumber(GetItem("cny_rate")))
+		{
+			rate = "¥" + GetItem("cny_rate")
+		}
             return (<div className="form-sell" id="FormSell">
                 <div className="line">
                     <form id="form_sell" className="form-horizontal" method="post" onSubmit={this.submitHandler}>
@@ -480,7 +485,7 @@
                                 <tbody>
                                 <tr>
                                     <td className="lbl lg">{% trans '卖出' %}</td>
-                                    <td className="fld"><span className="coin_typename"></span></td>
+                                    <td className="fld"><span className="coin_type_b"></span></td>
                                     <td className="lbl">{% trans '委托类型:' %}</td>
                                     <td className="fld"><span>{% trans '限价' %}</span></td>
                                 </tr>
@@ -491,10 +496,13 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td className="lbl">{% trans '可卖BTC:' %}</td>
+                                    <td className="lbl">{% trans '可卖' %}
+                                        <span className="coin_type_a"></span>
+                                        :
+                                    </td>
                                     <td className="fld" colSpan="3"><span><i className="icon-btc"></i></span><span
-                                        className="price" id="coin_qty_sell">10000.00</span><span
-                                        className="cny">(&yen;<span id='coin_cny_sell'>42739.00</span>)</span></td>
+                                            className="price" id="coin_qty_sell">10000.00</span><span
+                                            className="cny">(&yen;<span id='coin_cny_sell'>42739.00</span>)</span></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -502,18 +510,16 @@
                         <div className="control">
                             <div className="form-group fg-item fg-item-pr">
                                 <div className="lbl-xs">{% trans '卖出价格:' %}</div>
-                                <div className="input-group"><span
-                                    className="input-group-addon lbl">{% trans '价格' %}</span>
+                                <div className="input-group"><span className="input-group-addon lbl">{% trans '价格' %}</span>
                                     <input id="sellPrice" type="text" name="price" defaultValue={this.state.price}
                                            placeholder="฿" className="form-control" onBlur={this.sumHandler}
                                            onKeyUp={this.sumHandler} onChange={this.sumHandler}/>
                                     <span className="input-group-addon" id="btc_1">BTC </span></div>
-                                <div className="cny_price" id="cnySellPrice"></div>
+						<div className="cny_price" id="cnySellPrice"></div>
                             </div>
                             <div className="form-group fg-item fg-item-qty">
                                 <div className="lbl-xs">{% trans '卖出数量:' %}</div>
-                                <div className="input-group"><span
-                                    className="input-group-addon lbl">{% trans '数量' %}</span>
+                                <div className="input-group"><span className="input-group-addon lbl">{% trans '数量' %}</span>
                                     <input id="sellQty" className="form-control" defaultValue={this.state.qty}
                                            type="text" name="quantity" placeholder="" onBlur={this.sumHandler}
                                            onKeyUp={this.sumHandler} onChange={this.sumHandler}/>
@@ -521,21 +527,18 @@
                             </div>
                             <div className="form-group fg-item fg-item-pr">
                                 <div className="lbl-xs">{% trans '金额:' %}</div>
-                                <div className="input-group"><span
-                                    className="input-group-addon lbl">{% trans '金额' %}</span>
+                                <div className="input-group"><span className="input-group-addon lbl">{% trans '金额' %}</span>
                                     <input readOnly="readonly" type="text" defaultValue={this.state.amount}
                                            placeholder="฿" className="form-control" id="sellAmount"/>
                                     <span className="input-group-addon" id='btc_3'>BTC</span></div>
-                                <div className="cny_price" id="cnySellAmount"></div>
+						<div className="cny_price" id="cnySellAmount"></div>
                             </div>
                             <div className="form-group fg-item">
                                 <div className="lbl-xs txt-grey">{% trans '委托类型：限价' %}</div>
                             </div>
                             <div className="form-group fg-item">
-                                <label
-                                    className="pull-left txt-grey tip">{% trans '手续费' %}0.2% <br/> {% trans '比特币指数' %}:{rate}
-                                </label>
-                                <button type="submit" className="btn btn-danger pull-right">{% trans '卖出' %}</button>
+                      <label className="pull-left txt-grey tip">{% trans '手续费' %}0.2% <br/> {% trans '比特币指数' %}:{rate}</label>
+                      <button type="submit" className="btn btn-danger pull-right" >{% trans '卖出' %}</button>
                             </div>
                         </div>
                     </form>
@@ -547,15 +550,13 @@
     function CTradeFormMarketItem(props) {
         var css = props.type == "{% trans '买' %}" ? "tbitem" : "tsitem";
         var price = FormatNumX(props.price);
-        var qty = FormatNumX(props.qty)
-        var cny = FormatCNY(props.price);
+	var qty = FormatNumX(props.qty)
+	var cny = FormatCNY(props.price);
 
         return (<tr className={css} onClick={props.clickHandler} data-price={props.price} data-qty={props.qty}>
             <td className="tp">{props.type}({props.index})</td>
-            <td className="pr">{price}
-                <div className="cny">(¥{cny})</div>
-            </td>
-            <td className="qty">{qty}</td>
+			  <td className="pr">{price}<div className="cny">(¥{cny})</div></td>
+			  <td className="qty">{qty}</td>
         </tr>);
     }
 
@@ -589,11 +590,11 @@
                 var items = {};
 
                 if (type == "buy") {
-                    items["bids"] = update_depth(bids, res.data, false);
+				items["bids"] = update_depth(bids,res.data,false);
                     items["asks"] = asks;
                 }
                 else if (type == "sell") {
-                    items["asks"] = update_depth(asks, res.data, true);
+				items["asks"] = update_depth(asks,res.data,true);
                     items["bids"] = bids;
                 }
                 else {
@@ -625,27 +626,29 @@
             var pr = tr.data("price");
             var qty = tr.data("qty");
 
-            this.fillFormBuy(pr, qty);
-            this.fillFormSell(pr, qty);
-            ChangeCNYBuy();
-            ChangeCNYSell();
-        },
-        sellClickHandler: function (e) {
-            var tr = $(e.target);
-            if (tr.is("td")) {
-                tr = tr.parent();
-            }
+		this.fillFormBuy(pr,qty);
+		this.fillFormSell(pr,qty);
+		ChangeCNYBuy();
+		ChangeCNYSell();
+	},
+	sellClickHandler:function(e){
+		var tr = $(e.target);
+		if(tr.is("td"))
+		{
+			tr = tr.parent();
+		}
 
-            var pr = tr.data("price");
-            var qty = tr.data("qty");
+		var pr  = tr.data("price");
+		var qty = tr.data("qty");
 
-            this.fillFormBuy(pr, qty);
-            this.fillFormSell(pr, qty);
+		this.fillFormBuy(pr,qty);
+		this.fillFormSell(pr,qty);
 
-            ChangeCNYBuy();
-            ChangeCNYSell();
-        },
-        fillFormBuy: function (pr, qty) {
+		ChangeCNYBuy();
+		ChangeCNYSell();
+	},
+	fillFormBuy:function(pr,qty)
+	{
             if (IsNumber(pr) && IsNumber(qty)) {
                 pr = FormatNumX(pr);
                 qty = FormatNumX(qty);
@@ -666,7 +669,8 @@
                 $("#buyAmount").val(amount);
             }
         },
-        fillFormSell: function (pr, qty) {
+	fillFormSell:function(pr,qty)
+	{
             if (IsNumber(pr) && IsNumber(qty)) {
                 pr = FormatNumX(pr);
                 qty = FormatNumX(qty);
@@ -708,8 +712,7 @@
                         }
                         num++;
                         var txt = "{% trans '买' %}";
-                        rows.push(<CTradeFormMarketItem key={num} type="{% trans '买' %}" index={num} price={item[0]}
-                                                        qty={item[1]}
+                        rows.push(<CTradeFormMarketItem key={num} type="{% trans '买' %}" index={num} price={item[0]} qty={item[1]}
                                                         clickHandler={this.buyClickHandler}/>);
 
                     }
@@ -728,8 +731,7 @@
                             sellPrice = item[0];
                         }
 
-                        rows.push(<CTradeFormMarketItem key={num2} type="{% trans '卖' %}" index={num} price={item[0]}
-                                                        qty={item[1]}
+                        rows.push(<CTradeFormMarketItem key={num2} type="{% trans '卖' %}" index={num} price={item[0]} qty={item[1]}
                                                         clickHandler={this.sellClickHandler}/>);
 
                     }
@@ -760,12 +762,12 @@
     function CMarketTopItem(props) {
         var price = FormatNumX(props.price);
         var cny = FormatCNY(price);
-        var qty = FormatNumX(props.qty);
+	var qty = FormatNumX(props.qty);
 
         return (<tr className="titem" onClick={props.clickHandler} data-price={props.price} data-qty={props.qty}>
             <td className="tp">{props.type}({props.index})</td>
             <td className="pr">{price}<span className="cny">(&yen;{cny})</span></td>
-            <td className="qty">{qty}</td>
+			  <td className="qty">{qty}</td>
         </tr>);
     }
 
@@ -800,11 +802,11 @@
                 var items = {};
 
                 if (type == "buy") {
-                    items["bids"] = update_depth(bids, res.data, false);
+				items["bids"] = update_depth(bids,res.data,false);
                     items["asks"] = asks;
                 }
                 else if (type == "sell") {
-                    items["asks"] = update_depth(asks, res.data, true);
+				items["asks"] = update_depth(asks,res.data,true);
                     items["bids"] = bids;
                 }
                 else {
@@ -841,28 +843,30 @@
             var pr = tr.data("price");
             var qty = tr.data("qty");
 
-            this.fillFormBuy(pr, qty);
-            this.fillFormSell(pr, qty);
+		this.fillFormBuy(pr,qty);
+		this.fillFormSell(pr,qty);
 
-            ChangeCNYBuy();
-            ChangeCNYSell();
-        },
-        sellClickHandler: function (e) {
-            var tr = $(e.target);
-            if (tr.is("td")) {
-                tr = tr.parent();
-            }
+		ChangeCNYBuy();
+		ChangeCNYSell();
+	},
+	sellClickHandler:function(e){
+		var tr = $(e.target);
+		if(tr.is("td"))
+		{
+			tr = tr.parent();
+		}
 
-            var pr = tr.data("price");
-            var qty = tr.data("qty");
+		var pr  = tr.data("price");
+		var qty = tr.data("qty");
 
-            this.fillFormBuy(pr, qty);
-            this.fillFormSell(pr, qty);
+		this.fillFormBuy(pr,qty);
+		this.fillFormSell(pr,qty);
 
-            ChangeCNYBuy();
-            ChangeCNYSell();
-        },
-        fillFormBuy: function (pr, qty) {
+		ChangeCNYBuy();
+		ChangeCNYSell();
+	},
+	fillFormBuy:function(pr,qty)
+	{
             if (IsNumber(pr) && IsNumber(qty)) {
                 pr = FormatNumX(pr);
                 qty = FormatNumX(qty);
@@ -882,7 +886,8 @@
                 $("#buyAmount").val(amount);
             }
         },
-        fillFormSell: function (pr, qty) {
+	fillFormSell:function(pr,qty)
+	{
             if (IsNumber(pr) && IsNumber(qty)) {
                 pr = FormatNumX(pr);
                 qty = FormatNumX(qty);
@@ -905,7 +910,7 @@
 
             var items = this.state.items;
             var sz = (size == 5 || size == 30 ? size : 10);
-            $("#mkTopSize").html(sz + "条");
+		$("#mkTopSize").html(sz + "条");
             this.setState({
                 size: sz,
                 items: items
@@ -978,13 +983,11 @@
             }
 
             return (<div className="tab-item market-top visible-lg-block visible-md-block">
-                <div className="title clearfix"><span className="tl">{% trans '最新交易价:' %}<span
-                    id="last-trade-price"></span></span>
+                <div className="title clearfix"><span className="tl">{% trans '最新交易价:' %}<span id="last-trade-price"></span></span>
                     <span className="dd hidden">
-            <div className="dropdown"> {% trans '合并深度：' %}<a href="#" className="ditem" data-toggle="dropdown"
-                                                             data-placement="right"
-                                                             aria-haspopup="true" aria-expanded="false">0.01 <i
-                className="icon-caret-down txt-orange"></i></a>
+            <div className="dropdown"> {% trans '合并深度：' %}<a href="#" className="ditem" data-toggle="dropdown" data-placement="right"
+                                               aria-haspopup="true" aria-expanded="false">0.01 <i
+                    className="icon-caret-down txt-orange"></i></a>
               <ul className="dropdown-menu" aria-labelledby="dLabel">
                 <li><a href="#">0.01</a></li>
                 <li><a href="#">0.02</a></li>
@@ -992,11 +995,9 @@
             </div>
             </span>
                     <span className="dd">
-            <div className="dropdown"> {% trans '显示' %}：<a href="#" className="ditem" data-toggle="dropdown"
-                                                           data-placement="right"
-                                                           aria-haspopup="true" aria-expanded="false"><span
-                id="mkTopSize">10{% trans '条' %}</span> <i
-                className="icon-caret-down txt-orange"></i></a>
+            <div className="dropdown"> {% trans '显示' %}：<a href="#" className="ditem" data-toggle="dropdown" data-placement="right"
+                                             aria-haspopup="true" aria-expanded="false"><span id="mkTopSize">10{% trans '条' %}</span> <i
+                    className="icon-caret-down txt-orange"></i></a>
               <ul className="dropdown-menu" aria-labelledby="dLabel">
 			  	  <li><a href="#" onClick={this.sizeHandler.bind(this, 5)}>5{% trans '条' %}</a></li>
                 <li><a href="#" onClick={this.sizeHandler.bind(this, 10)}>10{% trans '条' %}</a></li>
@@ -1005,9 +1006,8 @@
             </div>
             </span>
                     <span className="dd">
-            <div className="cbox">{% trans '参考价格：' %}<a href="#" id="toggleCNY" className="checked"
-                                                        onClick={this.toggleHandler}><i
-                className="icon-toggle-on icon-large"></i> {% trans '人民币' %}</a></div>
+            <div className="cbox">{% trans '参考价格：' %}<a href="#" id="toggleCNY" className="checked"  onClick={this.toggleHandler}><i
+                    className="icon-toggle-on icon-large"></i> {% trans '人民币' %}</a></div>
             </span></div>
                 <div className="clearfix">
                     <div className="list-buy" id="ListBuy">
@@ -1071,13 +1071,12 @@
             <td className="price">{price}</td>
             <td className="qty">{qty}</td>
             <td className="status">{gettext(item.status)}</td>
-            <td className="btns"><a href="#" className="blue" onClick={props.cancelHandler}
-                                    data-id={item.order_id}>{% trans '撤消' %}</a></td>
+            <td className="btns"><a href="#" className="blue" onClick={props.cancelHandler} data-id={item.order_id}>{% trans '撤消' %}</a></td>
         </tr>);
     }
 
-    var olTimeID;
-    var olSeconds = 0;
+var olTimeID;
+var olSeconds=0;
     var COrderList = React.createClass({
         getInitialState: function () {
             return {
@@ -1090,19 +1089,21 @@
         },
         componentDidMount: function () {
             this.Refresh(this.props.code, 1);
-            olTimeID = setInterval(function () {
-                this.autoRefresh();
-            }.bind(this), 1000);
-        },
-        autoRefresh: function () {
-            if (++olSeconds >= 10) {
-                var code = this.state.pair_code;
-                var index = this.state.pageIndex;
+			olTimeID = setInterval(function(){
+				this.autoRefresh();
+			}.bind(this),1000);
+	  },
+	autoRefresh:function()
+	{
+		if(++olSeconds >= 10)
+		{
+			var code = this.state.pair_code;
+			var index = this.state.pageIndex;
 
-                this.Refresh(code, index);
+			this.Refresh(code,index);
 
-                olSeconds = 0;
-            }
+			olSeconds = 0;
+		}
         },
         Refresh: function (code, pageIndex) {
             //console.log(code);
@@ -1117,7 +1118,7 @@
                 //console.log(res);
 
                 if (res.result) {
-                    var hasMore = (res.data && res.data.length == (index * 10));
+				var hasMore = (res.data && res.data.length == (index * 10));
                     this.setState({
                         items: res.data,
                         pair_code: code,
@@ -1185,15 +1186,13 @@
                 var isLogin = IsLogin();
                 if (isLogin) {
                     rows.push(<tr key="0">
-                        <td colSpan="7" className="txt-no-records"><a href="#"
-                                                                      onClick={this.loadHandler}>{% trans '已经加载全部订单记录' %}</a>
+                    <td colSpan="7" className="txt-no-records"><a href="#" onClick={this.loadHandler}>{% trans '已经加载全部订单记录' %}</a>
                         </td>
                     </tr>);
                 }
                 else {
                     rows.push(<tr key="0">
-                        <td colSpan="7" className="txt-no-records"><a href="#"
-                                                                      onClick={this.loadHandler}>{% trans '登录后可查看订单记录' %}</a>
+                        <td colSpan="7" className="txt-no-records"><a href="#" onClick={this.loadHandler}>{% trans '登录后可查看订单记录' %}</a>
                         </td>
                     </tr>);
                 }
@@ -1314,9 +1313,8 @@
             }
 
             return (<div className="tab-item market-last" id="MarketLast">
-                <div className="title clearfix"><span className="tl">{% trans '最新成交记录' %}</span> <span
-                    className="rt hidden"><span
-                    id="timer-mkt">10</span> {% trans '秒后自动刷新' %}</span></div>
+                <div className="title clearfix"><span className="tl">{% trans '最新成交记录' %}</span> <span className="rt hidden"><span
+                        id="timer-mkt">10</span> {% trans '秒后自动刷新' %}</span></div>
                 <table width="100%" cellSpacing="0" cellPadding="0" className="tb-trade">
                     <thead>
                     <tr className="thead">
@@ -1347,6 +1345,7 @@
         var type = item.pair_code;
         var logo = GetCoinType(GetPairCode(type, "coin_type_b"), "src");
         var name = GetPairCode(type, "name");
+        var baseCoinName = GetCoinType(GetPairCode(type, "coin_type_a"), "code");
         var css = item.change_24h < 0 ? "titem txt-drop" : "titem txt-up";
         if (props.active) css += " active"
 
@@ -1358,8 +1357,11 @@
         };
 
         return (<tr className={css} onClick={props.clickHandler} data-id={type} id={id}>
-            <td className="star icon_xs"><i className="icon_coin" style={coin_logo_style}></i></td>
+            <td className="star icon_xs">
+                <i className="icon_coin" style={coin_logo_style}></i>
+            </td>
             <td className="nm">{name}</td>
+            <td className="hide bcn">{baseCoinName}</td>
             <td className="price">{price}</td>
             <td className="pct">{pct}%</td>
         </tr>);
@@ -1443,8 +1445,7 @@
                         UpdateLastTradeVol(item.price, item.vol, item.change_24h);
                         ChangeCateCode(item.pair_code);
                     }
-                    rows.push(<CTradeCateItem key={num} data={item} active={active}
-                                              clickHandler={this.clickHandler.bind(this, item.pair_code)}/>);
+                    rows.push(<CTradeCateItem key={num} data={item} active={active} clickHandler={this.clickHandler.bind(this, item.pair_code)}/>);
                 }.bind(this));
             }
             else {
@@ -1474,10 +1475,10 @@
     });
 
     var pvTimerID = 0;
-    var pvSeconds = 0;
+var pvSeconds=0;
     var wsTransaction;
-    var wsAutoConn = true;
-    var iCount = 0;
+var wsAutoConn = true;
+var iCount = 0;
 
     var PageView = React.createClass({
         getInitialState: function () {
@@ -1491,71 +1492,76 @@
         componentDidMount: function () {
             var code = this.props.code;
             //console.log("componentDidMount");
-            this.WSConnection(code);
+			this.WSConnection(code);
             this.UpdateAmount(code);
 
-            pvTimerID = setInterval(function () {
-                this.wsHeart();
-            }.bind(this), 1000);
+			pvTimerID = setInterval(function(){
+				this.wsHeart();
+			}.bind(this),1000);
+		  },
+		wsHeart:function(){
+			pvSeconds++;
+			if(pvSeconds >= 30)
+			{
+				//console.log("heart");
+				if(wsTransaction && wsTransaction.readyState == 1)
+				{
+					wsTransaction.send("ping");
+				}
+				pvSeconds = 0;
+			}
         },
-        wsHeart: function () {
-            pvSeconds++;
-            if (pvSeconds >= 30) {
-                //console.log("heart");
-                if (wsTransaction && wsTransaction.readyState == 1) {
-                    wsTransaction.send("ping");
-                }
-                pvSeconds = 0;
-            }
-        },
-        WSConnection: function (code) {
+		WSConnection:function(code){
             if (wsTransaction && wsTransaction.readyState == 1) {
                 wsTransaction.close();
-                return;
+				return;
             }
-            var pair_code = code || this.state.pair_code;
+			var pair_code = code || this.state.pair_code;
 
-            var size = GetItem("chart_time") || 60;
-            var host = this.state.host + "?pair_code=" + pair_code + "&size=" + size;
+			var size = GetItem("chart_time") || 60;
+			var host = this.state.host + "?pair_code=" + pair_code + "&size=" + size;
 
             this.ResetAll();
 
 
-            //console.log("WS连接");
+			//console.log("WS连接");
 
             wsTransaction = new WebSocket(host);
             wsTransaction.onopen = this.onOpen;
             wsTransaction.onmessage = this.onMessage;
             wsTransaction.onclose = this.onClose;
 
-            wsAutoConn = true;
-        },
-        wsSendMsg: function (code, mins) {
-            if (wsTransaction && wsTransaction.readyState == 1) {
-                var msg = {
-                    type: "subscribe",
-                    message: "k_line",
-                    params: {
-                        size: parseInt(mins),
-                        pair_code: code
-                    }
-                };
+			wsAutoConn = true;
+		},
+		wsSendMsg:function(code,mins)
+		{
+			if(wsTransaction && wsTransaction.readyState == 1)
+			{
+				var msg = {
+					type: "subscribe",
+					message: "k_line",
+					params: {
+						size: parseInt(mins),
+						pair_code: code
+					}
+				};
 
-                wsTransaction.send(JSON.stringify(msg));
-            }
-            else {
-                this.WSConnection(code);
-            }
+				wsTransaction.send(JSON.stringify(msg));
+			}
+			else
+			{
+				this.WSConnection(code);
+			}
         },
         RefreshWS: function (code) {
             this.setState({
-                pair_code: code,
-                status: 0,
-                items: []
+				pair_code:code,
+				status:0,
+				items:[]
             });
 
-            //wsAutoConn = false;
-            this.WSConnection(code);
+			//wsAutoConn = false;
+			this.WSConnection(code);
 
         },
         onOpen: function (evt) {
@@ -1606,7 +1612,7 @@
         },
         onClose: function (evt) {
             //console.log("连接已关闭...");
-            this.WSConnection(this.state.pair_code);
+			this.WSConnection(this.state.pair_code);
         },
         closeWS: function () {
             if (wsTransaction && wsTransaction.readyState == 1) {
@@ -1625,7 +1631,7 @@
             }
 
             if (res && res.page_info) {
-                //UpdateLastTradeVol(res.page_info.newest_price,res.page_info.vol,res.page_info.chg);
+				//UpdateLastTradeVol(res.page_info.newest_price,res.page_info.vol,res.page_info.chg);
             }
 
             if (res && res.trade_history) {
@@ -1639,7 +1645,7 @@
             HChartReset(data);
         },
         onMsgKline: function (data) {
-            HChartAdd(data);
+			HChartAdd(data);
         },
         onMsgPageData: function (res) {
             /*
@@ -1706,56 +1712,57 @@
         },
         testHandler: function (e) {
             e.preventDefault();
-            iCount++;
+			iCount++;
 
-            if (pageHSData.values && pageHSData.values.length > 0) {
-                var tick = pageHSData.values[pageHSData.values.length - 1][0] / 1000;
+			if(pageHSData.values && pageHSData.values.length > 0)
+			{
+				var tick = pageHSData.values[pageHSData.values.length-1][0] / 1000;
 
-                this.onMsgKline({
-                    "high": Math.random() * 1,
-                    "pair_code": 10002,
-                    "low": Math.random() * 1,
-                    "type": "k_line",
-                    "close": Math.random() * 1,
-                    "vol": 0 + iCount * 50,
-                    "time": tick,
-                    "open": Math.random() * 1
-                });
-            }
-        },
-        testAddHandler: function (e) {
-            e.preventDefault();
-            iCount++;
+            this.onMsgKline({
+					"high": Math.random() * 1,
+                "pair_code": 10002,
+					"low": Math.random() * 1,
+                "type": "k_line",
+					"close": Math.random() * 1,
+				"vol":0 + iCount * 50,
+					"time": tick,
+					"open": Math.random() * 1
+				});
+			}
+		},
+		testAddHandler:function(e){
+			e.preventDefault();
+			iCount++;
 
-            if (pageHSData.values && pageHSData.values.length > 0) {
-                var tick = pageHSData.values[pageHSData.values.length - 1][0] / 1000;
+			if(pageHSData.values && pageHSData.values.length > 0)
+			{
+				var tick = pageHSData.values[pageHSData.values.length-1][0] / 1000;
 
-                this.onMsgKline({
-                    "high": Math.random() * 1,
-                    "pair_code": 10002,
-                    "low": Math.random() * 1,
-                    "type": "k_line",
-                    "close": Math.random() * 1,
-                    "vol": 0 + Math.random() * 100,
-                    "time": tick + 300,
-                    "open": Math.random() * 1
-                });
-            }
+				this.onMsgKline({
+					"high": Math.random() * 1,
+					"pair_code": 10002,
+					"low": Math.random() * 1,
+					"type": "k_line",
+					"close": Math.random() * 1,
+					"vol":0 + Math.random() * 100,
+					"time": tick + 300,
+					"open": Math.random() * 1
+				});
+			}
         },
         render: function () {
             var items = this.state.items;
             var test = "";
             if (GetQueryString("test") == "1") {
-                test = <div>
-                    <div className="txt-right"><a href="#" onClick={this.testAddHandler}>{% trans '新增时间线测试' %}</a></div>
-                    <div className="txt-right"><a href="#" onClick={this.testHandler}>{% trans '修改时间线测试' %}</a></div>
-                </div>;
-            }
-            var mask = "";
-            if (!IsLogin()) {
-                mask =
-                    <div className="tbMask"><a href="login.html" className="btn btn-primary">{% trans '登录后才能交易' %}</a>
-                    </div>;
+				test = <div>
+						<div className="txt-right"><a href="#" onClick={this.testAddHandler}>{% trans '新增时间线测试' %}</a></div>
+						<div className="txt-right"><a href="#" onClick={this.testHandler}>{% trans '修改时间线测试' %}</a></div>
+					</div>;
+			}
+			var mask = "";
+			if(!IsLogin())
+			{
+				mask = <div className="tbMask"><a href="login.html" className="btn btn-primary">{% trans '登录后才能交易' %}</a></div>;
             }
             return (<section className="main-list transaction">
                 <div className="container">
@@ -1765,9 +1772,9 @@
                             <CMobiCoinAmount/>
                             <CMobiBTCAmount/>
                             <CKLine/>
-                            {test}
+							{test}
                             <div className="tab-item trade-box">
-                                {mask}
+								{mask}
                                 <div className="clearfix">
                                     <CTradeFormBuy code={this.state.pair_code} cbChange={this.orderChangeHandler}/>
                                     <CTradeFormSell code={this.state.pair_code} cbChange={this.orderChangeHandler}/>
@@ -1817,7 +1824,7 @@
             const host = window.location.protocol === "https:" ? "wss://" + window.location.host + "/ws" : "ws://" + window.location.host + "/ws";
             return (<section>
                 <HeaderBar isLogin={isLogin} ddType="1"/>
-                <PageView code={pairCode} host={host}/>
+                <PageView code={pairCode} host={host} />
                 <FooterBar/>
                 <ScrollBar/>
             </section>);
@@ -1825,14 +1832,18 @@
     });
 
 
-    var CreatePage = function () {
+    var CreatePage = function ()
+    {
         ReactDOM.render(React.createElement(AppRoot, null), document.getElementById("App"));
     }
-    $(function () {
-        $.getJSON("/api/market/get_cny_rate", {}, function (res) {
+    $(function(){
+        $.getJSON("/api/market/get_cny_rate",{
+
+        },function(res){
             console.log(res);
-            if (res.result && res.data && res.data.cny_rate) {
-                SetItem("cny_rate", res.data.cny_rate);
+            if(res.result && res.data && res.data.cny_rate)
+            {
+                SetItem("cny_rate",res.data.cny_rate);
             }
             CreatePage();
         });

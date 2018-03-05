@@ -1,42 +1,40 @@
-.recharge-list .tb-title .amount {
-    margin-right: 20px;
+.recharge-list .tb-title .amount
+{
+	margin-right:20px;
 }
 
-.recharge-list .btns a {
-    margin: 3px;
-    display: inline-block;
-    color: #00a0e9;
+.recharge-list .btns a
+{
+	margin:3px;
+	display:inline-block;
+	color:#00a0e9;
 }
 
-.recharge-list .btns a:hover {
-    color: #338fff;
+.recharge-list .btns a:hover
+{
+	color:#338fff;
 }
 
-.recharge-list .titem-qr {
-    display: none;
+.recharge-list .titem-qr
+{
+	display:none;	
 }
 
-.recharge-list .titem-qr td {
-    text-align: right;
+.recharge-list .titem-qr td
+{
+	text-align:right;
 }
 
-.qrspan {
-    float: right;
-    margin-right: 5px;
-}
+.qrspan { float:right; margin-right:5px; }
+.qritem { line-height:100px; }
+.qrinfo{float:right; margin-right:5px; }
 
-.qritem {
-    line-height: 100px;
-}
 
-.qrinfo {
-    float: right;
-    margin-right: 5px;
-}
-
-@media (max-width: 767px) {
-    .recharge-list .tb-title .amount {
-        margin-right: 0;
-        clear: right;
-    }
+@media (max-width:767px)
+{
+	.recharge-list .tb-title .amount
+	{
+		margin-right:0;
+		clear:right;	
+	}
 }

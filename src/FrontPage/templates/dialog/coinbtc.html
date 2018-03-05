@@ -50,14 +50,12 @@
                         <div class="col-sm-6">
                             <input type="text" class="form-control fld-xs-block" id="amount_btc" readonly/>
                         </div>
-                        <div class="col-sm-3"><span class="form-control-static">{% trans '手续费' %}：<span
-                                class="withdraw_fee"></span><span class="CoinCode"></span></span></div>
+            <div class="col-sm-3"><span class="form-control-static">{% trans '手续费' %}：<span class="withdraw_fee"></span><span class="CoinCode"></span></span></div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-3 control-label">{% trans '验证码：' %}</label>
                         <div class="col-sm-6 radio">
-                            <label><input type="radio" name="captcha_type" value="phone"
-                                          checked="checked"/>{% trans '手机' %}</label>
+                            <label><input type="radio" name="captcha_type" value="phone" checked="checked"/>{% trans '手机' %}</label>
                             <label><input type="radio" name="captcha_type" value="email"/>{% trans '邮箱' %}</label>
                         </div>
                     </div>
@@ -85,14 +83,11 @@
             </div>
             <div class="col-sm-4 col-xs-12">
                 <div class="info txt-sm">
-                    <h5>{% trans '提现须知' %}: </h5>
-                    <p>{% trans '1.提现手续费：当前为' %}<span class="withdraw_fee"></span><span
-                            class="CoinCode"></span>{% trans '，最低手续费为提现币种折合1.5美元，为保障用户的提现快速到账，当前最佳手续费如果高于最低手续费将按照当前最佳手续费进行收取' %}
-                        <br/>
-                        {% trans '2.最低提现金额为' %} <span class="low_limit"></span><span class="CoinCode"></span> <br/>
-                        <span class="txt-red">{% trans '3.提现限额：每日最高限额：' %}<span class="day_limit"></span><span
-                                class="CoinCode"></span> </span><br/>
-                        {% trans ' 4. 发起提币后，正常情况下24小时内到账' %}</p>
+          <h5>{% trans '提现须知' %}: </h5>
+          <p>{% trans '1.提现手续费：当前为' %}<span class="withdraw_fee"></span><span class="CoinCode"></span>{% trans '，最低手续费为提现币种折合1.5美元，为保障用户的提现快速到账，当前最佳手续费如果高于最低手续费将按照当前最佳手续费进行收取' %} <br />
+              {% trans '2.最低提现金额为' %} <span class="low_limit"></span><span class="CoinCode"></span> <br />
+            <span class="txt-red">{% trans '3.提现限额：每日最高限额：' %}<span class="day_limit"></span><span class="CoinCode"></span> </span><br />
+              {% trans ' 4. 发起提币后，正常情况下24小时内到账' %}</p>
                 </div>
             </div>
         </div>

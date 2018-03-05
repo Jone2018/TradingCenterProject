@@ -1,84 +1,101 @@
-.question-view {
-    padding: 20px 35px;
+.question-view
+{
+	padding:20px 35px;
 }
 
-.question-view .btns a {
-    margin: 5px;
+.question-view .btns a
+{
+	margin:5px;	
 }
 
-.reply {
-    padding: 30px 0;
+.reply
+{
+	padding:30px 0;
 }
 
-.reply .item {
-    width: 80%;
-    margin: 15px auto;
+.reply .item
+{
+	width:80%;
+	margin:15px auto;
 }
 
-.reply .cont {
-    border: 1px solid #c4c4c4;
-    padding: 10px;
-    line-height: 150%;
-    border-radius: 10px;
-    width: 80%;
-    float: left;
+.reply .cont
+{
+	border:1px solid #c4c4c4;
+	padding:10px;
+	line-height:150%;
+	border-radius:10px;
+	width:80%;
+	float:left;
 }
 
-.reply .time {
-    color: #aaa;
+.reply .time
+{
+	color:#aaa;
 }
 
-.reply .name {
-    float: left;
-    width: 20%;
-    background: url(../images/icon_qst.png) left center no-repeat;
+.reply .name
+{
+	float:left;
+	width:20%;
+	background:url(../images/icon_qst.png) left center no-repeat;
 }
 
-.reply .name .box {
-    padding: 20px 0 20px 20px;
-    text-align: center;
-    line-height: 20px;
-    text-align: center;
+.reply .name .box
+{
+	padding:20px 0 20px 20px;
+	text-align:center;
+	line-height:20px;
+	text-align:center;
 }
 
-.question-view .thead .cid {
-    width: 10%;
+.question-view .thead .cid
+{
+	width:10%;
 }
 
-.question-view .thead .type {
-    width: 10%;
+.question-view .thead .type
+{
+	width:10%;
 }
 
-.question-view .thead .info {
-
+.question-view .thead .info
+{ 
+	
 }
 
-.question-view .thead .dtime {
-    width: 15%;
+.question-view .thead .dtime
+{
+	width:15%;
 }
 
-.question-view .thead .status {
-    width: 10%;
+.question-view .thead .status
+{
+	width:10%;
 }
 
-@media (max-width: 767px) {
-    .question-view {
-        padding: 10px 5px;
-    }
 
-    .reply {
-        padding: 15px 0;
-    }
-
-    .reply .item {
-        width: 100%;
-    }
-
-    .reply .cont {
-        width: 70%;
-    }
-
-    .reply .name {
-        width: 30%;
-    }
+@media (max-width:767px)
+{
+	.question-view
+	{
+		padding:10px 5px;
+	}
+	.reply
+	{
+		padding:15px 0;
+	}
+	.reply .item
+	{
+		width:100%;	
+	}
+	.reply .cont
+	{
+		width:70%;	
+	}
+	
+	.reply .name
+	{
+		width:30%;	
+	}
 }

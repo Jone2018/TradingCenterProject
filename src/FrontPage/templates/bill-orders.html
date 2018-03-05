@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <title>{% trans 'bitbiex—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
     <link rel="shortcut icon" href="/static/images/favicon.ico"/>
@@ -91,7 +91,7 @@
             }
 
             if (IsEmpty(pair_code)) {
-                pair_code = 10002;
+			pair_code = 10002;
             }
 
             $.getJSON(this.props.source, {
@@ -166,9 +166,9 @@
                 else {
                     var num = 0;
                     this.state.items.forEach(function (item) {
-                        var type = item.direction;// == 1 ? "卖单" : "买单";
-                        var oTime = FormatDate(item.create_time, "yyyy-MM-dd hh:mm:ss");
-                        var sTime = FormatDate(item.sell_time, "yyyy-MM-dd hh:mm:ss");
+					var type = item.direction;// == 1 ? "卖单" : "买单";
+					var oTime = FormatDate(item.create_time,"yyyy-MM-dd hh:mm:ss");
+					var sTime = FormatDate(item.sell_time,"yyyy-MM-dd hh:mm:ss");
                         var oPrice = FormatNumX(item.price, 8);
                         var sPrice = FormatNumX(item.sell_price, 8);
                         var iQty = FormatNumX(item.quantity, 8);
@@ -193,11 +193,11 @@
                             <td className="odr-qty">{iQty}</td>
                             <td className="trans-time hidden-xs">{sTime}</td>
                             <td className="trans-price hidden-xs">{sPrice}<span
-                                className="cny">(&yen;{cnySPrice})</span></td>
+                                    className="cny">(&yen;{cnySPrice})</span></td>
                             <td className="trans-qty hidden-xs">{sQty}</td>
                             <td className="trans-amount hidden-xs">{amount}<span
-                                className="cny">(&yen;{cnyAmount})</span></td>
-                            <td className="trans-status">{gettext(item.status)}</td>
+                                    className="cny">(&yen;{cnyAmount})</span></td>
+						<td className="trans-status">{ gettext(item.status) }</td>
                         </tr>);
                     });
                 }
@@ -213,13 +213,12 @@
                 });
             }
 
-            var pager = (<div className="btns-load" id="pgOrderList">
-                <a href="#" onClick={this.loadHandler}>{% trans '没有更多了' %}</a>
+		var pager = (<div className="btns-load" id="pgOrderList">
+		  		<a href="#" onClick={this.loadHandler}>{% trans '没有更多了' %}</a>
             </div>);
             if (this.state.hasMore) {
-                pager = (<div className="pager btns-load" id="pgOrderList">
-                    <a href="#" onClick={this.loadHandler}><i className="icon-angle-double-down"></i> {% trans '加载更多' %}
-                    </a>
+			pager = (<div className="pager btns-load" id="pgOrderList">
+		  		<a href="#" onClick={this.loadHandler}><i className="icon-angle-double-down"></i> {% trans '加载更多' %}</a>
                 </div>)
             }
             else {
@@ -227,48 +226,47 @@
             }
 
             return (<div className="bill-order-list">
-                    <h4 className="tb-title clearfix">
-                        <span className="tl pull-left">{% trans '成交记录' %}</span>
-                        <a href="#" onClick={this.refreshHandler} className="pull-right"><i
-                            className="icon-refresh"></i> {% trans '刷新' %}</a>
-                    </h4>
-                    <div className="search">
-                        <div className="form-inline">
-                            <select name="coin_price" id="coin_price" className="form-control"
-                                    onChange={this.changeCNYHandler}>
-                                <option value="btc">{% trans 'BTC定价' %}</option>
-                                <option value="cny">{% trans 'CNY定价' %}</option>
-                            </select>
-                            <select name="pair_code" id="pair_code" className="form-control"
-                                    onChange={this.changePTypeHandler}>
-                                {opts}
-                            </select>
+                        <h4 className="tb-title clearfix">
+                            <span className="tl pull-left">{% trans '成交记录' %}</span>
+                            <a href="#" onClick={this.refreshHandler} className="pull-right"><i
+                                    className="icon-refresh"></i> {% trans '刷新' %}</a>
+                        </h4>
+                        <div className="search">
+                            <div className="form-inline">
+                                <select name="coin_price" id="coin_price" className="form-control"
+                                        onChange={this.changeCNYHandler}>
+                                    <option value="btc">{% trans 'BTC定价' %}</option>
+                                    <option value="cny">{% trans 'CNY定价' %}</option>
+                                </select>
+                                <select name="pair_code" id="pair_code" className="form-control"
+                                        onChange={this.changePTypeHandler}>
+                                    {opts}
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div className="bill-table">
-                        <table className="tb-list tb-solid" id="tb2">
-                            <thead>
-                            <tr className="thead thead-blue thead-condensed">
-                                <td className="no">{% trans '订单号' %}</td>
-                                <td className="type"><span className="hidden-xs">{% trans '订单' %}</span>{% trans '类型' %}
-                                </td>
-                                <td className="odr-time hidden-xs"><span>{% trans '挂单' %}</span>{% trans '时间' %}</td>
-                                <td className="odr-price"><span>{% trans '挂单' %}</span>{% trans '价格' %}</td>
-                                <td className="odr-qty"><span>{% trans '挂单' %}</span>{% trans '数量' %}</td>
-                                <td className="trans-time hidden-xs">{% trans '成交时间' %}</td>
-                                <td className="trans-price hidden-xs">{% trans '成交价' %}</td>
-                                <td className="trans-qty hidden-xs">{% trans '成交数量' %}</td>
-                                <td className="trans-amount hidden-xs">{% trans '成交金额' %}</td>
-                                <td className="trans-status">{% trans '成交状态' %}</td>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            {rows}
-                            </tbody>
-                        </table>
-                    </div>
+                        <div className="bill-table">
+                            <table className="tb-list tb-solid" id="tb2">
+                                <thead>
+                                <tr className="thead thead-blue thead-condensed">
+                                    <td className="no">{% trans '订单号' %}</td>
+                                    <td className="type"><span className="hidden-xs">{% trans '订单' %}</span>{% trans '类型' %}</td>
+                                    <td className="odr-time hidden-xs"><span>{% trans '挂单' %}</span>{% trans '时间' %}</td>
+                                    <td className="odr-price"><span>{% trans '挂单' %}</span>{% trans '价格' %}</td>
+                                    <td className="odr-qty"><span>{% trans '挂单' %}</span>{% trans '数量' %}</td>
+                                    <td className="trans-time hidden-xs">{% trans '成交时间' %}</td>
+                                    <td className="trans-price hidden-xs">{% trans '成交价' %}</td>
+                                    <td className="trans-qty hidden-xs">{% trans '成交数量' %}</td>
+                                    <td className="trans-amount hidden-xs">{% trans '成交金额' %}</td>
+                                    <td className="trans-status">{% trans '成交状态' %}</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {rows}
+                                </tbody>
+                            </table>
+                        </div>
                     {pager}
-                </div>
+                    </div>
             );
         }
     });
@@ -296,9 +294,9 @@
     var isLogin = IsLogin();
 
     ReactDOM.render(
-        <App isLogin={isLogin} ContentBox={
-            <PageView source="/api/trade/get_order_list"/>
-        }/>
+            <App isLogin={isLogin} ContentBox={
+                <PageView source="/api/trade/get_order_list"/>
+            }/>
         , document.getElementById("App")
     );
 </script>

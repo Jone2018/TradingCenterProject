@@ -1,43 +1,41 @@
 //nil
 var GLOBAL_VAR = {
-    KLineAllData: new Object,
-    KLineData: new Object,
-    time_type: "2",
-    mark_from: "11",
-    limit: "1000",
-    requestParam: "marketFrom=11&type=2&limit=1000",
-    periodMap: null,
-    chartMgr: null,
-    G_HTTP_REQUEST: null,
-    TimeOutId: null,
-    button_down: false,
+    KLineAllData      :  new Object,
+    KLineData         :  new Object,
+    time_type         :  "2",
+    mark_from         :  "11",
+    limit             :  "1000",
+    requestParam      :  "marketFrom=11&type=2&limit=1000",
+    periodMap	      :  null,
+    chartMgr          :  null,
+    G_HTTP_REQUEST    :  null,
+    TimeOutId 		  :  null,
+    button_down       :  false,
     //url				  :  "/myapi/klineData.do"
-    url: "/js/data.html"
+    url				  :  "/js/data.html"
 };
-String.prototype.toFixed = function (rate) {
+String.prototype.toFixed=function(rate){
     return Number(this).toFixed(rate);
 }
 GLOBAL_VAR.periodMap = {
-    "01w": "4", "03d": "15", "01d": "3", "12h": "14",
-    "06h": "13", "04h": "12", "02h": "11", "01h": "10",
-    "30m": "9", "15m": "2", "05m": "1", "03m": "7",
-    "01m": "0"
+    "01w" : "4" , "03d" : "15", "01d" : "3" , "12h" : "14",
+    "06h" : "13", "04h" : "12", "02h" : "11", "01h" : "10",
+    "30m" : "9" , "15m" : "2" , "05m" : "1" , "03m" : "7" ,
+    "01m" : "0"
 };
 GLOBAL_VAR.tagMapPeriod = {
-    "1w": "01w", "3d": "03d", "1d": "01d", "12h": "12h",
-    "6h": "06h", "4h": "04h", "2h": "02h", "1h": "01h",
-    "30m": "30m", "15m": "15m", "5m": "05m", "3m": "03m",
-    "1m": "01m"
+    "1w" : "01w", "3d" : "03d", "1d" : "01d", "12h" : "12h",
+    "6h" : "06h", "4h" : "04h", "2h" : "02h", "1h"  : "01h",
+    "30m": "30m", "15m": "15m", "5m" : "05m", "3m"  : "03m",
+    "1m" : "01m"
 };
 var classId = 0;
-
 /**
  * Class.
  */
 function create_class() {
     var argc = arguments.length;
-    var func = function () {
-    };
+    var func = function () {};
     var superClass;
     if (argc) {
         superClass = arguments[0];
@@ -76,7 +74,6 @@ function create_class() {
     newClass.prototype = new func();
     return newClass;
 }
-
 function is_instance(obj, clazz) {
     var classId = clazz.prototype.__classId;
     if (obj.__classId == classId)
@@ -89,7 +86,6 @@ function is_instance(obj, clazz) {
     }
     return false;
 }
-
 /**
  * Class: MEvent.
  */
@@ -99,7 +95,7 @@ MEvent.prototype.__construct = function () {
 };
 MEvent.prototype.addHandler = function (o, f) {
     if (this._indexOf(o, f) < 0)
-        this._handlers.push({obj: o, func: f});
+        this._handlers.push({obj:o, func:f});
 };
 MEvent.prototype.removeHandler = function (o, f) {
     var i = this._indexOf(o, f);
@@ -134,86 +130,71 @@ String.fromFloat = function (v, fractionDigits) {
     }
 };
 var ExprEnv = create_class();
-ExprEnv.get = function () {
-    return ExprEnv.inst;
-};
-ExprEnv.set = function (env) {
-    ExprEnv.inst = env;
-};
-ExprEnv.prototype.getDataSource = function () {
-    return this._ds;
-};
-ExprEnv.prototype.setDataSource = function (ds) {
-    return this._ds = ds;
-};
-ExprEnv.prototype.getFirstIndex = function () {
-    return this._firstIndex;
-};
-ExprEnv.prototype.setFirstIndex = function (n) {
-    return this._firstIndex = n;
-};
+ExprEnv.get = function() { return ExprEnv.inst; };
+ExprEnv.set = function(env) { ExprEnv.inst = env; };
+ExprEnv.prototype.getDataSource = function() { return this._ds; };
+ExprEnv.prototype.setDataSource = function(ds) { return this._ds = ds; };
+ExprEnv.prototype.getFirstIndex = function() { return this._firstIndex; };
+ExprEnv.prototype.setFirstIndex = function(n) { return this._firstIndex = n; };
 var Expr = create_class();
 Expr.prototype.__construct = function () {
     this._rid = 0;
 };
-Expr.prototype.execute = function (index) {
-};
-Expr.prototype.reserve = function (rid, count) {
-};
-Expr.prototype.clear = function () {
-};
+Expr.prototype.execute = function (index) {};
+Expr.prototype.reserve = function (rid, count) {};
+Expr.prototype.clear = function () {};
 var OpenExpr = create_class(Expr);
 var HighExpr = create_class(Expr);
 var LowExpr = create_class(Expr);
 var CloseExpr = create_class(Expr);
 var VolumeExpr = create_class(Expr);
-OpenExpr.prototype.execute = function (index) {
+OpenExpr.prototype.execute = function(index) {
     return ExprEnv.get()._ds.getDataAt(index).open;
 };
-HighExpr.prototype.execute = function (index) {
+HighExpr.prototype.execute = function(index) {
     return ExprEnv.get()._ds.getDataAt(index).high;
 };
-LowExpr.prototype.execute = function (index) {
+LowExpr.prototype.execute = function(index) {
     return ExprEnv.get()._ds.getDataAt(index).low;
 };
-CloseExpr.prototype.execute = function (index) {
+CloseExpr.prototype.execute = function(index) {
     return ExprEnv.get()._ds.getDataAt(index).close;
 };
-VolumeExpr.prototype.execute = function (index) {
+VolumeExpr.prototype.execute = function(index) {
     return ExprEnv.get()._ds.getDataAt(index).volume;
 };
 var ConstExpr = create_class(Expr);
-ConstExpr.prototype.__construct = function (v) {
+ConstExpr.prototype.__construct = function(v) {
     ConstExpr.__super.__construct.call(this);
     this._value = v;
 };
-ConstExpr.prototype.execute = function (index) {
+ConstExpr.prototype.execute = function(index) {
     return this._value;
 };
 var ParameterExpr = create_class(Expr);
-ParameterExpr.prototype.__construct = function (name, minValue, maxValue, defaultValue) {
+ParameterExpr.prototype.__construct = function(name, minValue, maxValue, defaultValue) {
     ParameterExpr.__super.__construct.call(this);
     this._name = name;
     this._minValue = minValue;
     this._maxValue = maxValue;
     this._value = this._defaultValue = defaultValue;
 };
-ParameterExpr.prototype.execute = function (index) {
+ParameterExpr.prototype.execute = function(index) {
     return this._value;
 };
-ParameterExpr.prototype.getMinValue = function () {
+ParameterExpr.prototype.getMinValue = function() {
     return this._minValue;
 };
-ParameterExpr.prototype.getMaxValue = function () {
+ParameterExpr.prototype.getMaxValue = function() {
     return this._maxValue;
 };
-ParameterExpr.prototype.getDefaultValue = function () {
+ParameterExpr.prototype.getDefaultValue = function() {
     return this._defaultValue;
 };
-ParameterExpr.prototype.getValue = function () {
+ParameterExpr.prototype.getValue = function() {
     return this._value;
 };
-ParameterExpr.prototype.setValue = function (v) {
+ParameterExpr.prototype.setValue = function(v) {
     if (v == 0)
         this._value = 0;
     else if (v < this._minValue)
@@ -227,42 +208,42 @@ var OpAExpr = create_class(Expr);
 var OpABExpr = create_class(Expr);
 var OpABCExpr = create_class(Expr);
 var OpABCDExpr = create_class(Expr);
-OpAExpr.prototype.__construct = function (a) {
+OpAExpr.prototype.__construct = function(a) {
     OpAExpr.__super.__construct.call(this);
     this._exprA = a;
 };
-OpAExpr.prototype.reserve = function (rid, count) {
+OpAExpr.prototype.reserve = function(rid, count) {
     if (this._rid < rid) {
         this._rid = rid;
         this._exprA.reserve(rid, count);
     }
 };
-OpAExpr.prototype.clear = function () {
+OpAExpr.prototype.clear = function() {
     this._exprA.clear();
 };
-OpABExpr.prototype.__construct = function (a, b) {
+OpABExpr.prototype.__construct = function(a, b) {
     OpABExpr.__super.__construct.call(this);
     this._exprA = a;
     this._exprB = b;
 };
-OpABExpr.prototype.reserve = function (rid, count) {
+OpABExpr.prototype.reserve = function(rid, count) {
     if (this._rid < rid) {
         this._rid = rid;
         this._exprA.reserve(rid, count);
         this._exprB.reserve(rid, count);
     }
 };
-OpABExpr.prototype.clear = function () {
+OpABExpr.prototype.clear = function() {
     this._exprA.clear();
     this._exprB.clear();
 };
-OpABCExpr.prototype.__construct = function (a, b, c) {
+OpABCExpr.prototype.__construct = function(a, b, c) {
     OpABCExpr.__super.__construct.call(this);
     this._exprA = a;
     this._exprB = b;
     this._exprC = c;
 };
-OpABCExpr.prototype.reserve = function (rid, count) {
+OpABCExpr.prototype.reserve = function(rid, count) {
     if (this._rid < rid) {
         this._rid = rid;
         this._exprA.reserve(rid, count);
@@ -270,19 +251,19 @@ OpABCExpr.prototype.reserve = function (rid, count) {
         this._exprC.reserve(rid, count);
     }
 };
-OpABCExpr.prototype.clear = function () {
+OpABCExpr.prototype.clear = function() {
     this._exprA.clear();
     this._exprB.clear();
     this._exprC.clear();
 };
-OpABCDExpr.prototype.__construct = function (a, b, c, d) {
+OpABCDExpr.prototype.__construct = function(a, b, c, d) {
     OpABCDExpr.__super.__construct.call(this);
     this._exprA = a;
     this._exprB = b;
     this._exprC = c;
     this._exprD = d;
 };
-OpABCDExpr.prototype.reserve = function (rid, count) {
+OpABCDExpr.prototype.reserve = function(rid, count) {
     if (this._rid < rid) {
         this._rid = rid;
         this._exprA.reserve(rid, count);
@@ -291,45 +272,45 @@ OpABCDExpr.prototype.reserve = function (rid, count) {
         this._exprD.reserve(rid, count);
     }
 };
-OpABCDExpr.prototype.clear = function () {
+OpABCDExpr.prototype.clear = function() {
     this._exprA.clear();
     this._exprB.clear();
     this._exprC.clear();
     this._exprD.clear();
 };
 var NegExpr = create_class(OpAExpr);
-NegExpr.prototype.__construct = function (a) {
+NegExpr.prototype.__construct = function(a) {
     NegExpr.__super.__construct.call(this, a);
 };
-NegExpr.prototype.execute = function (index) {
+NegExpr.prototype.execute = function(index) {
     return -(this._exprA.execute(index));
 };
 var AddExpr = create_class(OpABExpr);
 var SubExpr = create_class(OpABExpr);
 var MulExpr = create_class(OpABExpr);
 var DivExpr = create_class(OpABExpr);
-AddExpr.prototype.__construct = function (a, b) {
+AddExpr.prototype.__construct = function(a, b) {
     AddExpr.__super.__construct.call(this, a, b);
 };
-SubExpr.prototype.__construct = function (a, b) {
+SubExpr.prototype.__construct = function(a, b) {
     SubExpr.__super.__construct.call(this, a, b);
 };
-MulExpr.prototype.__construct = function (a, b) {
+MulExpr.prototype.__construct = function(a, b) {
     MulExpr.__super.__construct.call(this, a, b);
 };
-DivExpr.prototype.__construct = function (a, b) {
+DivExpr.prototype.__construct = function(a, b) {
     DivExpr.__super.__construct.call(this, a, b);
 };
-AddExpr.prototype.execute = function (index) {
+AddExpr.prototype.execute = function(index) {
     return this._exprA.execute(index) + this._exprB.execute(index);
 };
-SubExpr.prototype.execute = function (index) {
+SubExpr.prototype.execute = function(index) {
     return this._exprA.execute(index) - this._exprB.execute(index);
 };
-MulExpr.prototype.execute = function (index) {
+MulExpr.prototype.execute = function(index) {
     return this._exprA.execute(index) * this._exprB.execute(index);
 };
-DivExpr.prototype.execute = function (index) {
+DivExpr.prototype.execute = function(index) {
     var a = this._exprA.execute(index);
     var b = this._exprB.execute(index);
     if (a == 0)
@@ -343,56 +324,56 @@ var GeExpr = create_class(OpABExpr);
 var LtExpr = create_class(OpABExpr);
 var LeExpr = create_class(OpABExpr);
 var EqExpr = create_class(OpABExpr);
-GtExpr.prototype.__construct = function (a, b) {
+GtExpr.prototype.__construct = function(a, b) {
     GtExpr.__super.__construct.call(this, a, b);
 };
-GeExpr.prototype.__construct = function (a, b) {
+GeExpr.prototype.__construct = function(a, b) {
     GeExpr.__super.__construct.call(this, a, b);
 };
-LtExpr.prototype.__construct = function (a, b) {
+LtExpr.prototype.__construct = function(a, b) {
     LtExpr.__super.__construct.call(this, a, b);
 };
-LeExpr.prototype.__construct = function (a, b) {
+LeExpr.prototype.__construct = function(a, b) {
     LeExpr.__super.__construct.call(this, a, b);
 };
-EqExpr.prototype.__construct = function (a, b) {
+EqExpr.prototype.__construct = function(a, b) {
     EqExpr.__super.__construct.call(this, a, b);
 };
-GtExpr.prototype.execute = function (index) {
+GtExpr.prototype.execute = function(index) {
     return this._exprA.execute(index) > this._exprB.execute(index) ? 1 : 0;
 };
-GeExpr.prototype.execute = function (index) {
+GeExpr.prototype.execute = function(index) {
     return this._exprA.execute(index) >= this._exprB.execute(index) ? 1 : 0;
 };
-LtExpr.prototype.execute = function (index) {
+LtExpr.prototype.execute = function(index) {
     return this._exprA.execute(index) < this._exprB.execute(index) ? 1 : 0;
 };
-LeExpr.prototype.execute = function (index) {
+LeExpr.prototype.execute = function(index) {
     return this._exprA.execute(index) <= this._exprB.execute(index) ? 1 : 0;
 };
-EqExpr.prototype.execute = function (index) {
+EqExpr.prototype.execute = function(index) {
     return this._exprA.execute(index) == this._exprB.execute(index) ? 1 : 0;
 };
 var MaxExpr = create_class(OpABExpr);
-MaxExpr.prototype.__construct = function (a, b) {
+MaxExpr.prototype.__construct = function(a, b) {
     MaxExpr.__super.__construct.call(this, a, b);
 };
-MaxExpr.prototype.execute = function (index) {
+MaxExpr.prototype.execute = function(index) {
     return Math.max(this._exprA.execute(index), this._exprB.execute(index));
 };
 var AbsExpr = create_class(OpAExpr);
-AbsExpr.prototype.__construct = function (a) {
+AbsExpr.prototype.__construct = function(a) {
     AbsExpr.__super.__construct.call(this, a);
 };
-AbsExpr.prototype.execute = function (index) {
+AbsExpr.prototype.execute = function(index) {
     return Math.abs(this._exprA.execute(index));
 };
 var RefExpr = create_class(OpABExpr);
-RefExpr.prototype.__construct = function (a, b) {
+RefExpr.prototype.__construct = function(a, b) {
     RefExpr.__super.__construct.call(this, a, b);
     this._offset = -1;
 };
-RefExpr.prototype.execute = function (index) {
+RefExpr.prototype.execute = function(index) {
     if (this._offset < 0) {
         this._offset = this._exprB.execute(index);
         if (this._offset < 0)
@@ -408,51 +389,51 @@ RefExpr.prototype.execute = function (index) {
 };
 var AndExpr = create_class(OpABExpr);
 var OrExpr = create_class(OpABExpr);
-AndExpr.prototype.__construct = function (a, b) {
+AndExpr.prototype.__construct = function(a, b) {
     AndExpr.__super.__construct.call(this, a, b);
 };
-OrExpr.prototype.__construct = function (a, b) {
+OrExpr.prototype.__construct = function(a, b) {
     OrExpr.__super.__construct.call(this, a, b);
 };
-AndExpr.prototype.execute = function (index) {
+AndExpr.prototype.execute = function(index) {
     return (this._exprA.execute(index) != 0) && (this._exprB.execute(index) != 0) ? 1 : 0;
 };
-OrExpr.prototype.execute = function (index) {
+OrExpr.prototype.execute = function(index) {
     return (this._exprA.execute(index) != 0) || (this._exprB.execute(index) != 0) ? 1 : 0;
 };
 var IfExpr = create_class(OpABCExpr);
-IfExpr.prototype.__construct = function (a, b, c) {
+IfExpr.prototype.__construct = function(a, b, c) {
     IfExpr.__super.__construct.call(this, a, b, c);
 };
-IfExpr.prototype.execute = function (index) {
+IfExpr.prototype.execute = function(index) {
     return this._exprA.execute(index) != 0 ? this._exprB.execute(index) : this._exprC.execute(index);
 };
 var AssignExpr = create_class(OpAExpr);
-AssignExpr.prototype.__construct = function (name, a) {
+AssignExpr.prototype.__construct = function(name, a) {
     AssignExpr.__super.__construct.call(this, a);
     this._name = name;
     this._buf = [];
 };
-AssignExpr.prototype.getName = function () {
+AssignExpr.prototype.getName = function() {
     return this._name;
 };
-AssignExpr.prototype.execute = function (index) {
+AssignExpr.prototype.execute = function(index) {
     return this._buf[index];
 };
-AssignExpr.prototype.assign = function (index) {
+AssignExpr.prototype.assign = function(index) {
     this._buf[index] = this._exprA.execute(index);
     if (ExprEnv.get()._firstIndex >= 0)
         if (isNaN(this._buf[index]) && !isNaN(this._buf[index - 1]))
             throw this._name + ".assign(" + index + "): NaN";
 };
-AssignExpr.prototype.reserve = function (rid, count) {
+AssignExpr.prototype.reserve = function(rid, count) {
     if (this._rid < rid) {
         for (var c = count; c > 0; c--)
             this._buf.push(NaN);
     }
     AssignExpr.__super.reserve.call(this, rid, count);
 };
-AssignExpr.prototype.clear = function () {
+AssignExpr.prototype.clear = function() {
     AssignExpr.__super.clear.call(this);
     this._buf = [];
 };
@@ -460,64 +441,64 @@ var OutputStyle = {
     None: 0, Line: 1, VolumeStick: 2, MACDStick: 3, SARPoint: 4
 };
 var OutputExpr = create_class(AssignExpr);
-OutputExpr.prototype.__construct = function (name, a, style, color) {
+OutputExpr.prototype.__construct = function(name, a, style, color) {
     OutputExpr.__super.__construct.call(this, name, a);
     this._style = (style === undefined) ? OutputStyle.Line : style;
     this._color = color;
 };
-OutputExpr.prototype.getStyle = function () {
+OutputExpr.prototype.getStyle = function() {
     return this._style;
 };
-OutputExpr.prototype.getColor = function () {
+OutputExpr.prototype.getColor = function() {
     return this._color;
 };
 var RangeOutputExpr = create_class(OutputExpr);
-RangeOutputExpr.prototype.__construct = function (name, a, style, color) {
+RangeOutputExpr.prototype.__construct = function(name, a, style, color) {
     RangeOutputExpr.__super.__construct.call(this, name, a, style, color);
 };
-RangeOutputExpr.prototype.getName = function () {
+RangeOutputExpr.prototype.getName = function() {
     return this._name + this._exprA.getRange();
 };
 var RangeExpr = create_class(OpABExpr);
-RangeExpr.prototype.__construct = function (a, b) {
+RangeExpr.prototype.__construct = function(a, b) {
     RangeExpr.__super.__construct.call(this, a, b);
     this._range = -1;
     this._buf = [];
 };
-RangeExpr.prototype.getRange = function () {
+RangeExpr.prototype.getRange = function() {
     return this._range;
 };
-RangeExpr.prototype.initRange = function () {
+RangeExpr.prototype.initRange = function() {
     this._range = this._exprB.execute(0);
 };
-RangeExpr.prototype.execute = function (index) {
+RangeExpr.prototype.execute = function(index) {
     if (this._range < 0)
         this.initRange();
     var rA = this._buf[index].resultA = this._exprA.execute(index);
-    var r = this._buf[index].result = this.calcResult(index, rA);
+    var r  = this._buf[index].result  = this.calcResult(index, rA);
     return r;
 };
-RangeExpr.prototype.reserve = function (rid, count) {
+RangeExpr.prototype.reserve = function(rid, count) {
     if (this._rid < rid) {
         for (var c = count; c > 0; c--)
-            this._buf.push({resultA: NaN, result: NaN});
+            this._buf.push({resultA:NaN, result:NaN});
     }
     RangeExpr.__super.reserve.call(this, rid, count);
 };
-RangeExpr.prototype.clear = function () {
+RangeExpr.prototype.clear = function() {
     RangeExpr.__super.clear.call(this);
     this._range = -1;
     this._buf = [];
 };
 var HhvExpr = create_class(RangeExpr);
 var LlvExpr = create_class(RangeExpr);
-HhvExpr.prototype.__construct = function (a, b) {
+HhvExpr.prototype.__construct = function(a, b) {
     HhvExpr.__super.__construct.call(this, a, b);
 };
-LlvExpr.prototype.__construct = function (a, b) {
+LlvExpr.prototype.__construct = function(a, b) {
     LlvExpr.__super.__construct.call(this, a, b);
 };
-HhvExpr.prototype.calcResult = function (index, resultA) {
+HhvExpr.prototype.calcResult = function(index, resultA) {
     if (this._range == 0)
         return NaN;
     var first = ExprEnv.get()._firstIndex;
@@ -538,7 +519,7 @@ HhvExpr.prototype.calcResult = function (index, resultA) {
         return resultA;
     }
 };
-LlvExpr.prototype.calcResult = function (index, resultA) {
+LlvExpr.prototype.calcResult = function(index, resultA) {
     if (this._range == 0)
         return NaN;
     var first = ExprEnv.get()._firstIndex;
@@ -560,10 +541,10 @@ LlvExpr.prototype.calcResult = function (index, resultA) {
     }
 };
 var CountExpr = create_class(RangeExpr);
-CountExpr.prototype.__construct = function (a, b) {
+CountExpr.prototype.__construct = function(a, b) {
     CountExpr.__super.__construct.call(this, a, b);
 };
-CountExpr.prototype.calcResult = function (index, resultA) {
+CountExpr.prototype.calcResult = function(index, resultA) {
     if (this._range == 0)
         return NaN;
     var first = ExprEnv.get()._firstIndex;
@@ -584,10 +565,10 @@ CountExpr.prototype.calcResult = function (index, resultA) {
     }
 };
 var SumExpr = create_class(RangeExpr);
-SumExpr.prototype.__construct = function (a, b) {
+SumExpr.prototype.__construct = function(a, b) {
     SumExpr.__super.__construct.call(this, a, b);
 };
-SumExpr.prototype.calcResult = function (index, resultA) {
+SumExpr.prototype.calcResult = function(index, resultA) {
     var first = ExprEnv.get()._firstIndex;
     if (first < 0)
         return resultA;
@@ -602,10 +583,10 @@ SumExpr.prototype.calcResult = function (index, resultA) {
     }
 };
 var StdExpr = create_class(RangeExpr);
-StdExpr.prototype.__construct = function (a, b) {
+StdExpr.prototype.__construct = function(a, b) {
     StdExpr.__super.__construct.call(this, a, b);
 };
-StdExpr.prototype.calcResult = function (index, resultA) {
+StdExpr.prototype.calcResult = function(index, resultA) {
     if (this._range == 0)
         return NaN;
     var stdData = this._stdBuf[index];
@@ -630,22 +611,22 @@ StdExpr.prototype.calcResult = function (index, resultA) {
     stdData.resultMA = resultA;
     return 0.0;
 };
-StdExpr.prototype.reserve = function (rid, count) {
+StdExpr.prototype.reserve = function(rid, count) {
     if (this._rid < rid) {
         for (var c = count; c > 0; c--)
-            this._stdBuf.push({resultMA: NaN});
+            this._stdBuf.push({resultMA:NaN});
     }
     StdExpr.__super.reserve.call(this, rid, count);
 };
-StdExpr.prototype.clear = function () {
+StdExpr.prototype.clear = function() {
     StdExpr.__super.clear.call(this);
     this._stdBuf = [];
 };
 var MaExpr = create_class(RangeExpr);
-MaExpr.prototype.__construct = function (a, b) {
+MaExpr.prototype.__construct = function(a, b) {
     MaExpr.__super.__construct.call(this, a, b);
 };
-MaExpr.prototype.calcResult = function (index, resultA) {
+MaExpr.prototype.calcResult = function(index, resultA) {
     if (this._range == 0)
         return NaN;
     var first = ExprEnv.get()._firstIndex;
@@ -663,14 +644,14 @@ MaExpr.prototype.calcResult = function (index, resultA) {
     }
 };
 var EmaExpr = create_class(RangeExpr);
-EmaExpr.prototype.__construct = function (a, b) {
+EmaExpr.prototype.__construct = function(a, b) {
     EmaExpr.__super.__construct.call(this, a, b);
 };
-EmaExpr.prototype.initRange = function () {
+EmaExpr.prototype.initRange = function() {
     EmaExpr.__super.initRange.call(this);
     this._alpha = 2.0 / (this._range + 1);
 };
-EmaExpr.prototype.calcResult = function (index, resultA) {
+EmaExpr.prototype.calcResult = function(index, resultA) {
     if (this._range == 0)
         return NaN;
     var first = ExprEnv.get()._firstIndex;
@@ -683,10 +664,10 @@ EmaExpr.prototype.calcResult = function (index, resultA) {
     return resultA;
 };
 var ExpmemaExpr = create_class(EmaExpr);
-ExpmemaExpr.prototype.__construct = function (a, b) {
+ExpmemaExpr.prototype.__construct = function(a, b) {
     ExpmemaExpr.__super.__construct.call(this, a, b);
 };
-ExpmemaExpr.prototype.calcResult = function (index, resultA) {
+ExpmemaExpr.prototype.calcResult = function(index, resultA) {
     var first = ExprEnv.get()._firstIndex;
     if (first < 0)
         return resultA;
@@ -702,16 +683,16 @@ ExpmemaExpr.prototype.calcResult = function (index, resultA) {
     return resultA;
 };
 var SmaExpr = create_class(RangeExpr);
-SmaExpr.prototype.__construct = function (a, b, c) {
+SmaExpr.prototype.__construct = function(a, b, c) {
     SmaExpr.__super.__construct.call(this, a, b);
     this._exprC = c;
     this._mul;
 };
-SmaExpr.prototype.initRange = function () {
+SmaExpr.prototype.initRange = function() {
     SmaExpr.__super.initRange.call(this);
     this._mul = this._exprC.execute(0);
 };
-SmaExpr.prototype.calcResult = function (index, resultA) {
+SmaExpr.prototype.calcResult = function(index, resultA) {
     if (this._range == 0)
         return NaN;
     var first = ExprEnv.get()._firstIndex;
@@ -726,7 +707,7 @@ SmaExpr.prototype.calcResult = function (index, resultA) {
     return resultA;
 };
 var SarExpr = create_class(OpABCDExpr);
-SarExpr.prototype.__construct = function (a, b, c, d) {
+SarExpr.prototype.__construct = function(a, b, c, d) {
     SarExpr.__super.__construct.call(this, a, b, c, d);
     this._buf = [];
     this._range = -1;
@@ -734,7 +715,7 @@ SarExpr.prototype.__construct = function (a, b, c, d) {
     this._step;
     this._max;
 };
-SarExpr.prototype.execute = function (index) {
+SarExpr.prototype.execute = function(index) {
     if (this._range < 0) {
         this._range = this._exprA.execute(0);
         this._min = this._exprB.execute(0) / 100.0;
@@ -799,47 +780,47 @@ SarExpr.prototype.execute = function (index) {
     }
     return data.sar;
 };
-SarExpr.prototype.reserve = function (rid, count) {
+SarExpr.prototype.reserve = function(rid, count) {
     if (this._rid < rid) {
         for (var c = count; c > 0; c--)
-            this._buf.push({longPos: true, sar: NaN, ep: NaN, af: NaN});
+            this._buf.push({longPos:true, sar:NaN, ep:NaN, af:NaN});
     }
     SarExpr.__super.reserve.call(this, rid, count);
 };
-SarExpr.prototype.clear = function () {
+SarExpr.prototype.clear = function() {
     SarExpr.__super.clear.call(this);
     this._range = -1;
 };
 var Indicator = create_class();
-Indicator.prototype.__construct = function () {
+Indicator.prototype.__construct = function() {
     this._exprEnv = new ExprEnv();
     this._rid = 0;
     this._params = [];
     this._assigns = [];
     this._outputs = [];
 };
-Indicator.prototype.addParameter = function (expr) {
+Indicator.prototype.addParameter = function(expr) {
     this._params.push(expr);
 };
-Indicator.prototype.addAssign = function (expr) {
+Indicator.prototype.addAssign = function(expr) {
     this._assigns.push(expr);
 };
-Indicator.prototype.addOutput = function (expr) {
+Indicator.prototype.addOutput = function(expr) {
     this._outputs.push(expr);
 };
-Indicator.prototype.getParameterCount = function () {
+Indicator.prototype.getParameterCount = function() {
     return this._params.length;
 };
-Indicator.prototype.getParameterAt = function (index) {
+Indicator.prototype.getParameterAt = function(index) {
     return this._params[index];
 };
-Indicator.prototype.getOutputCount = function () {
+Indicator.prototype.getOutputCount = function() {
     return this._outputs.length;
 };
-Indicator.prototype.getOutputAt = function (index) {
+Indicator.prototype.getOutputAt = function(index) {
     return this._outputs[index];
 };
-Indicator.prototype.clear = function () {
+Indicator.prototype.clear = function() {
     this._exprEnv.setFirstIndex(-1);
     var i, cnt;
     cnt = this._assigns.length;
@@ -851,7 +832,7 @@ Indicator.prototype.clear = function () {
         this._outputs[i].clear();
     }
 };
-Indicator.prototype.reserve = function (count) {
+Indicator.prototype.reserve = function(count) {
     this._rid++;
     var i, cnt;
     cnt = this._assigns.length;
@@ -863,7 +844,7 @@ Indicator.prototype.reserve = function (count) {
         this._outputs[i].reserve(this._rid, count);
     }
 };
-Indicator.prototype.execute = function (ds, index) {
+Indicator.prototype.execute = function(ds, index) {
     if (index < 0)
         return;
     this._exprEnv.setDataSource(ds);
@@ -887,21 +868,21 @@ Indicator.prototype.execute = function (ds, index) {
         }
     }
 };
-Indicator.prototype.getParameters = function () {
+Indicator.prototype.getParameters = function() {
     var params = [];
     var i, cnt = this._params.length;
     for (i = 0; i < cnt; i++)
         params.push(this._params[i].getValue());
     return params;
 };
-Indicator.prototype.setParameters = function (params) {
+Indicator.prototype.setParameters = function(params) {
     if ((params instanceof Array) && params.length == this._params.length) {
         for (var i in this._params)
             this._params[i].setValue(params[i]);
     }
 };
 var HLCIndicator = create_class(Indicator);
-HLCIndicator.prototype.__construct = function () {
+HLCIndicator.prototype.__construct = function() {
     HLCIndicator.__super.__construct.call(this);
     var M1 = new ParameterExpr("M1", 2, 1000, 60);
     this.addParameter(M1);
@@ -924,11 +905,11 @@ HLCIndicator.prototype.__construct = function () {
         Theme.Color.Indicator1
     ));
 };
-HLCIndicator.prototype.getName = function () {
+HLCIndicator.prototype.getName = function() {
     return "CLOSE";
 };
 var MAIndicator = create_class(Indicator);
-MAIndicator.prototype.__construct = function () {
+MAIndicator.prototype.__construct = function() {
     MAIndicator.__super.__construct.call(this);
     var M1 = new ParameterExpr("M1", 2, 1000, 7);
     var M2 = new ParameterExpr("M2", 2, 1000, 30);
@@ -951,11 +932,11 @@ MAIndicator.prototype.__construct = function () {
         new MaExpr(new CloseExpr(), M4)
     ));
 };
-MAIndicator.prototype.getName = function () {
+MAIndicator.prototype.getName = function() {
     return "MA";
 };
 var EMAIndicator = create_class(Indicator);
-EMAIndicator.prototype.__construct = function () {
+EMAIndicator.prototype.__construct = function() {
     EMAIndicator.__super.__construct.call(this);
     var M1 = new ParameterExpr("M1", 2, 1000, 7);
     var M2 = new ParameterExpr("M2", 2, 1000, 30);
@@ -978,11 +959,11 @@ EMAIndicator.prototype.__construct = function () {
         new EmaExpr(new CloseExpr(), M4)
     ));
 };
-EMAIndicator.prototype.getName = function () {
+EMAIndicator.prototype.getName = function() {
     return "EMA";
 };
 var VOLUMEIndicator = create_class(Indicator);
-VOLUMEIndicator.prototype.__construct = function () {
+VOLUMEIndicator.prototype.__construct = function() {
     VOLUMEIndicator.__super.__construct.call(this);
     var M1 = new ParameterExpr("M1", 2, 500, 5);
     var M2 = new ParameterExpr("M2", 2, 500, 10);
@@ -1005,11 +986,11 @@ VOLUMEIndicator.prototype.__construct = function () {
         Theme.Color.Indicator1
     ));
 };
-VOLUMEIndicator.prototype.getName = function () {
+VOLUMEIndicator.prototype.getName = function() {
     return "VOLUME";
 };
 var MACDIndicator = create_class(Indicator);
-MACDIndicator.prototype.__construct = function () {
+MACDIndicator.prototype.__construct = function() {
     MACDIndicator.__super.__construct.call(this);
     var SHORT = new ParameterExpr("SHORT", 2, 200, 12);
     var LONG = new ParameterExpr("LONG", 2, 200, 26);
@@ -1037,11 +1018,11 @@ MACDIndicator.prototype.__construct = function () {
     );
     this.addOutput(MACD);
 };
-MACDIndicator.prototype.getName = function () {
+MACDIndicator.prototype.getName = function() {
     return "MACD";
 };
 var DMIIndicator = create_class(Indicator);
-DMIIndicator.prototype.__construct = function () {
+DMIIndicator.prototype.__construct = function() {
     DMIIndicator.__super.__construct.call(this);
     var N = new ParameterExpr("N", 2, 90, 14);
     var MM = new ParameterExpr("MM", 2, 60, 6);
@@ -1146,11 +1127,11 @@ DMIIndicator.prototype.__construct = function () {
     );
     this.addOutput(ADXR);
 };
-DMIIndicator.prototype.getName = function () {
+DMIIndicator.prototype.getName = function() {
     return "DMI";
 };
 var DMAIndicator = create_class(Indicator);
-DMAIndicator.prototype.__construct = function () {
+DMAIndicator.prototype.__construct = function() {
     DMAIndicator.__super.__construct.call(this);
     var N1 = new ParameterExpr("N1", 2, 60, 10);
     var N2 = new ParameterExpr("N2", 2, 250, 50);
@@ -1170,11 +1151,11 @@ DMAIndicator.prototype.__construct = function () {
     );
     this.addOutput(DIFMA);
 };
-DMAIndicator.prototype.getName = function () {
+DMAIndicator.prototype.getName = function() {
     return "DMA";
 };
 var TRIXIndicator = create_class(Indicator);
-TRIXIndicator.prototype.__construct = function () {
+TRIXIndicator.prototype.__construct = function() {
     TRIXIndicator.__super.__construct.call(this);
     var N = new ParameterExpr("N", 2, 100, 12);
     var M = new ParameterExpr("M", 2, 100, 9);
@@ -1210,11 +1191,11 @@ TRIXIndicator.prototype.__construct = function () {
     );
     this.addOutput(MATRIX);
 };
-TRIXIndicator.prototype.getName = function () {
+TRIXIndicator.prototype.getName = function() {
     return "TRIX";
 };
 var BRARIndicator = create_class(Indicator);
-BRARIndicator.prototype.__construct = function () {
+BRARIndicator.prototype.__construct = function() {
     BRARIndicator.__super.__construct.call(this);
     var N = new ParameterExpr("N", 2, 120, 26);
     this.addParameter(N);
@@ -1273,11 +1254,11 @@ BRARIndicator.prototype.__construct = function () {
     );
     this.addOutput(AR);
 };
-BRARIndicator.prototype.getName = function () {
+BRARIndicator.prototype.getName = function() {
     return "BRAR";
 };
 var VRIndicator = create_class(Indicator);
-VRIndicator.prototype.__construct = function () {
+VRIndicator.prototype.__construct = function() {
     VRIndicator.__super.__construct.call(this);
     var N = new ParameterExpr("N", 2, 100, 26);
     var M = new ParameterExpr("M", 2, 100, 6);
@@ -1356,11 +1337,11 @@ VRIndicator.prototype.__construct = function () {
     );
     this.addOutput(MAVR);
 };
-VRIndicator.prototype.getName = function () {
+VRIndicator.prototype.getName = function() {
     return "VR";
 };
 var OBVIndicator = create_class(Indicator);
-OBVIndicator.prototype.__construct = function () {
+OBVIndicator.prototype.__construct = function() {
     OBVIndicator.__super.__construct.call(this);
     var M = new ParameterExpr("M", 2, 100, 30);
     this.addParameter(M);
@@ -1392,11 +1373,11 @@ OBVIndicator.prototype.__construct = function () {
     );
     this.addOutput(MAOBV);
 };
-OBVIndicator.prototype.getName = function () {
+OBVIndicator.prototype.getName = function() {
     return "OBV";
 };
 var EMVIndicator = create_class(Indicator);
-EMVIndicator.prototype.__construct = function () {
+EMVIndicator.prototype.__construct = function() {
     EMVIndicator.__super.__construct.call(this);
     var N = new ParameterExpr("N", 2, 90, 14);
     var M = new ParameterExpr("M", 2, 60, 9);
@@ -1449,11 +1430,11 @@ EMVIndicator.prototype.__construct = function () {
     );
     this.addOutput(MAEMV);
 };
-EMVIndicator.prototype.getName = function () {
+EMVIndicator.prototype.getName = function() {
     return "EMV";
 };
 var RSIIndicator = create_class(Indicator);
-RSIIndicator.prototype.__construct = function () {
+RSIIndicator.prototype.__construct = function() {
     RSIIndicator.__super.__construct.call(this);
     var N1 = new ParameterExpr("N1", 2, 120, 6);
     var N2 = new ParameterExpr("N2", 2, 250, 12);
@@ -1497,11 +1478,11 @@ RSIIndicator.prototype.__construct = function () {
         )
     ));
 };
-RSIIndicator.prototype.getName = function () {
+RSIIndicator.prototype.getName = function() {
     return "RSI";
 };
 var WRIndicator = create_class(Indicator);
-WRIndicator.prototype.__construct = function () {
+WRIndicator.prototype.__construct = function() {
     WRIndicator.__super.__construct.call(this);
     var N = new ParameterExpr("N", 2, 100, 10);
     var N1 = new ParameterExpr("N1", 2, 100, 6);
@@ -1556,11 +1537,11 @@ WRIndicator.prototype.__construct = function () {
     );
     this.addOutput(WR2);
 };
-WRIndicator.prototype.getName = function () {
+WRIndicator.prototype.getName = function() {
     return "WR";
 };
 var SARIndicator = create_class(Indicator);
-SARIndicator.prototype.__construct = function () {
+SARIndicator.prototype.__construct = function() {
     SARIndicator.__super.__construct.call(this);
     var N = new ConstExpr(4);
     var MIN = new ConstExpr(2);
@@ -1571,11 +1552,11 @@ SARIndicator.prototype.__construct = function () {
         OutputStyle.SARPoint
     ));
 };
-SARIndicator.prototype.getName = function () {
+SARIndicator.prototype.getName = function() {
     return "SAR";
 };
 var KDJIndicator = create_class(Indicator);
-KDJIndicator.prototype.__construct = function () {
+KDJIndicator.prototype.__construct = function() {
     KDJIndicator.__super.__construct.call(this);
     var N = new ParameterExpr("N", 2, 90, 9);
     var M1 = new ParameterExpr("M1", 2, 30, 3);
@@ -1629,11 +1610,11 @@ KDJIndicator.prototype.__construct = function () {
     );
     this.addOutput(J);
 };
-KDJIndicator.prototype.getName = function () {
+KDJIndicator.prototype.getName = function() {
     return "KDJ";
 };
 var ROCIndicator = create_class(Indicator);
-ROCIndicator.prototype.__construct = function () {
+ROCIndicator.prototype.__construct = function() {
     ROCIndicator.__super.__construct.call(this);
     var N = new ParameterExpr("N", 2, 120, 12);
     var M = new ParameterExpr("M", 2, 60, 6);
@@ -1661,11 +1642,11 @@ ROCIndicator.prototype.__construct = function () {
     );
     this.addOutput(MAROC);
 };
-ROCIndicator.prototype.getName = function () {
+ROCIndicator.prototype.getName = function() {
     return "ROC";
 };
 var MTMIndicator = create_class(Indicator);
-MTMIndicator.prototype.__construct = function () {
+MTMIndicator.prototype.__construct = function() {
     MTMIndicator.__super.__construct.call(this);
     var N = new ParameterExpr("N", 2, 120, 12);
     var M = new ParameterExpr("M", 2, 60, 6);
@@ -1683,11 +1664,11 @@ MTMIndicator.prototype.__construct = function () {
     );
     this.addOutput(MTMMA);
 };
-MTMIndicator.prototype.getName = function () {
+MTMIndicator.prototype.getName = function() {
     return "MTM";
 };
 var BOLLIndicator = create_class(Indicator);
-BOLLIndicator.prototype.__construct = function () {
+BOLLIndicator.prototype.__construct = function() {
     BOLLIndicator.__super.__construct.call(this);
     var N = new ParameterExpr("N", 2, 120, 20);
     this.addParameter(N);
@@ -1720,11 +1701,11 @@ BOLLIndicator.prototype.__construct = function () {
     );
     this.addOutput(LB);
 };
-BOLLIndicator.prototype.getName = function () {
+BOLLIndicator.prototype.getName = function() {
     return "BOLL";
 };
 var PSYIndicator = create_class(Indicator);
-PSYIndicator.prototype.__construct = function () {
+PSYIndicator.prototype.__construct = function() {
     PSYIndicator.__super.__construct.call(this);
     var N = new ParameterExpr("N", 2, 100, 12);
     var M = new ParameterExpr("M", 2, 100, 6);
@@ -1751,11 +1732,11 @@ PSYIndicator.prototype.__construct = function () {
     );
     this.addOutput(PSYMA);
 };
-PSYIndicator.prototype.getName = function () {
+PSYIndicator.prototype.getName = function() {
     return "PSY";
 };
 var STOCHRSIIndicator = create_class(Indicator);
-STOCHRSIIndicator.prototype.__construct = function () {
+STOCHRSIIndicator.prototype.__construct = function() {
     STOCHRSIIndicator.__super.__construct.call(this);
     var N = new ParameterExpr("N", 3, 100, 14);
     var M = new ParameterExpr("M", 3, 100, 14);
@@ -1809,21 +1790,21 @@ STOCHRSIIndicator.prototype.__construct = function () {
         new MaExpr(STOCHRSI, P2)
     ));
 };
-STOCHRSIIndicator.prototype.getName = function () {
+STOCHRSIIndicator.prototype.getName = function() {
     return "StochRSI";
 };
 /**
  * Created by Administrator on 2015/3/16.
  */
 var Pushing = {
-    State: {Uninitial: 0, Disable: 1, Enable: 2},
-    state: 0,
-    marketFrom: '',
-    type: '',
-    moneyType: '',
-    coinVol: '',
-    time: '',
-    Response: function (marketFrom, type, coinVol, data) {
+    State : { Uninitial : 0, Disable : 1, Enable : 2 },
+    state : 0,
+    marketFrom : '',
+    type : '',
+    moneyType : '',
+    coinVol : '',
+    time : '',
+    Response : function(marketFrom, type, coinVol, data) {
         if (Pushing.state != Pushing.State.Enable)
             return;
         if (Pushing.marketFrom != marketFrom ||
@@ -1847,7 +1828,7 @@ var Pushing = {
                 ChartManager.getInstance().redraw('All', true);
                 return;
             }
-        } catch (_) {
+        } catch ( _ ) {
             Pushing.Switch();
             ChartManager.getInstance().redraw('All', true);
             return;
@@ -1855,16 +1836,16 @@ var Pushing = {
         clear_refresh_counter();
         ChartManager.getInstance().redraw('All', true);
     },
-    Start: function (callback) {
+    Start : function(callback) {
         Pushing.state = Pushing.State.Enable;
         Pushing.PushFrom = callback;
         ChartManager.getInstance().getChart().updateDataAndDisplay2();
     },
-    Stop: function () {
+    Stop : function() {
         Pushing.state = Pushing.State.Disable;
         ChartManager.getInstance().getChart().updateDataAndDisplay2();
     },
-    Switch: function () {
+    Switch : function() {
         if (Pushing.state == Pushing.State.Uninitial)
             return;
         if (Pushing.state == Pushing.State.Enable) {
@@ -1882,7 +1863,7 @@ var Pushing = {
             else if (Pushing.marketFrom == '17') marketString = 'btc_index';
             else if (Pushing.marketFrom == '18') marketString = 'ltc_index';
             else marketString = Chart.PushNameVar[Pushing.marketFrom];
-            var now = 'OKCoin' + '.' + chart._market_from + '.' + chart._time + '.' + chart._money_type + '.' + chart._contract_unit;
+            var now = 'OKCoin'+'.'+chart._market_from+'.'+chart._time+'.'+chart._money_type+'.'+chart._contract_unit;
             var org = ChartManager.getInstance().getDataSource('frame0.k0').getName();
             if (org != now) {
                 chart.setTitle();
@@ -1914,86 +1895,46 @@ Chart._future_ltc_market_num = new Array('1', '-1', '-1', '-1', '-1');
 Chart.PushNameVar = {};
 Chart.PushNameCon = ['spot', 'this_week', 'next_week', 'month', 'quarter'];
 Chart.strMarket = {
-    'zh-cn': {
-        '01': '当周 BTC ', '02': '次周 BTC ', '03': '全月 BTC ', '04': '季度 BTC ',
-        '11': '当周 LTC ', '12': '次周 LTC ', '13': '全月 LTC ', '14': '季度 LTC '
-    },
-    'en-us': {
-        '01': 'BTC This Week ', '02': 'BTC Next Week ', '03': 'BTC Month ', '04': 'BTC Quarter ',
-        '11': 'LTC This Week ', '12': 'LTC Next Week ', '13': 'LTC Month ', '14': 'LTC Quarter '
-    },
-    'zh-tw': {
-        '01': '當周 BTC ', '02': '次周 BTC ', '03': '全月 BTC ', '04': '季度 BTC ',
-        '11': '當周 LTC ', '12': '次周 LTC ', '13': '全月 LTC ', '14': '季度 LTC '
-    }
+    'zh-cn': {'01':'当周 BTC ','02':'次周 BTC ','03':'全月 BTC ','04':'季度 BTC ',
+        '11':'当周 LTC ','12':'次周 LTC ','13':'全月 LTC ','14':'季度 LTC '},
+    'en-us': {'01':'BTC This Week ','02':'BTC Next Week ','03':'BTC Month ','04':'BTC Quarter ',
+        '11':'LTC This Week ','12':'LTC Next Week ','13':'LTC Month ','14':'LTC Quarter '},
+    'zh-tw': {'01':'當周 BTC ','02':'次周 BTC ','03':'全月 BTC ','04':'季度 BTC ',
+        '11':'當周 LTC ','12':'次周 LTC ','13':'全月 LTC ','14':'季度 LTC '}
 };
 Chart.strPeriod = {
-    'zh-cn': {
-        'line': '(分时)',
-        '0': '(1分钟)',
-        '1': '(5分钟)',
-        '2': '(15分钟)',
-        '9': '(30分钟)',
-        '10': '(1小时)',
-        '3': '(日线)',
-        '4': '(周线)'
-        ,
-        '7': '(3分钟)',
-        '11': '(2小时)',
-        '12': '(4小时)',
-        '13': '(6小时)',
-        '14': '(12小时)',
-        '15': '(3天)'
-    },
-    'en-us': {
-        'line': '(Line)', '0': '(1m)', '1': '(5m)', '2': '(15m)', '9': '(30m)', '10': '(1h)', '3': '(1d)', '4': '(1w)'
-        , '7': '(3m)', '11': '(2h)', '12': '(4h)', '13': '(6h)', '14': '(12h)', '15': '(3d)'
-    },
-    'zh-tw': {
-        'line': '(分時)',
-        '0': '(1分钟)',
-        '1': '(5分钟)',
-        '2': '(15分钟)',
-        '9': '(30分钟)',
-        '10': '(1小時)',
-        '3': '(日线)',
-        '4': '(周线)'
-        ,
-        '7': '(3分钟)',
-        '11': '(2小時)',
-        '12': '(4小時)',
-        '13': '(6小時)',
-        '14': '(12小時)',
-        '15': '(3天)'
-    }
+    'zh-cn': {'line':'(分时)','0':'(1分钟)','1':'(5分钟)','2':'(15分钟)','9':'(30分钟)','10':'(1小时)','3':'(日线)','4':'(周线)'
+        ,'7':'(3分钟)', '11':'(2小时)','12':'(4小时)','13':'(6小时)','14':'(12小时)','15':'(3天)'},
+    'en-us': {'line':'(Line)','0':'(1m)'   ,'1':'(5m)'   ,'2':'(15m)'   ,'9':'(30m)'   ,'10':'(1h)'   ,'3':'(1d)'  ,'4':'(1w)'
+        ,'7':'(3m)', '11':'(2h)','12':'(4h)','13':'(6h)','14':'(12h)','15':'(3d)'},
+    'zh-tw': {'line':'(分時)','0':'(1分钟)','1':'(5分钟)','2':'(15分钟)','9':'(30分钟)','10':'(1小時)','3':'(日线)','4':'(周线)'
+        ,'7':'(3分钟)', '11':'(2小時)','12':'(4小時)','13':'(6小時)','14':'(12小時)','15':'(3天)'}
 };
-
 function getCoinType(str) {
     return parseInt(str.toString().charAt(8));
 }
-
 Chart.prototype.__construct = function () {
     this._data = null;
     this._charStyle = "CandleStick";
     this._depthData = {
-        array: null,
-        asks_count: 0,
-        bids_count: 0,
-        asks_si: 0,
-        asks_ei: 0,
-        bids_si: 0,
-        bids_ei: 0
+        array : null,
+        asks_count : 0,
+        bids_count : 0,
+        asks_si    : 0,
+        asks_ei    : 0,
+        bids_si    : 0,
+        bids_ei    : 0
     };
-    this._time = '2';
-    this._market_from = '13';
-    this._usd_cny_rate = 1;
-    this._money_type = 0;
+    this._time          = '2';
+    this._market_from   = '13';
+    this._usd_cny_rate  = 1;
+    this._money_type    = 0;
     this._contract_unit = 1;
     this.strIsLine = false;
     this.strCurrentMarket = 20141017001;
     this.strCurrentMarketType = 1;
 };
-Chart.prototype.setTitle = function () {
+Chart.prototype.setTitle = function() {
     var lang = ChartManager.getInstance().getLanguage();
     var str = 'OKCoin ';
     if (this._market_from == "0") {
@@ -2001,44 +1942,44 @@ Chart.prototype.setTitle = function () {
     } else if (this._market_from == "3") {
         str += 'LTC';
     } else {
-        var _1 = getCoinType(this.strCurrentMarket).toString() + this.strCurrentMarketType.toString();
+        var _1 = getCoinType(this.strCurrentMarket).toString()+this.strCurrentMarketType.toString();
         str += Chart.strMarket[lang][_1];
-        str += this.strCurrentMarket.toString().slice(4, 8);
+        str += this.strCurrentMarket.toString().slice(4,8);
     }
     str += ' ';
     str += this.strIsLine ? Chart.strPeriod[lang]['line'] : Chart.strPeriod[lang][this._time];
     ChartManager.getInstance().setTitle('frame0.k0', str);
 };
-Chart.prototype.setCurrentList = function () {
+Chart.prototype.setCurrentList = function() {
 };
-Chart.prototype.setKlineIndex = function (type) {
+Chart.prototype.setKlineIndex = function(type) {
     this._market_from = type;
     this.updateDataAndDisplay();
 };
-Chart.prototype.setCurrentCoin = function (coin) {
+Chart.prototype.setCurrentCoin = function(coin) {
     this._market_from = coin.toString();
     this.updateDataAndDisplay();
 };
-Chart.prototype.setFutureList = function (content) {
-    var btc = $('#chart_symbols_btc').find('span');
-    var btc_li = $('#chart_symbols_btc').find('li');
-    this.btc_obj = {};
-    var ltc = $('#chart_symbols_ltc').find('span');
-    var ltc_li = $('#chart_symbols_ltc').find('li');
-    this.ltc_obj = {};
+Chart.prototype.setFutureList = function(content) {
+    var btc         = $('#chart_symbols_btc').find('span');
+    var btc_li      = $('#chart_symbols_btc').find('li');
+    this.btc_obj    = {};
+    var ltc         = $('#chart_symbols_ltc').find('span');
+    var ltc_li      = $('#chart_symbols_ltc').find('li');
+    this.ltc_obj    = {};
     for (var i = 1; i <= 4; i++) {
         this.btc_obj[i.toString()] = {};
         this.btc_obj[i.toString()].id = 0;
         this.btc_obj[i.toString()].type = 0;
-        this.btc_obj[i.toString()].text = $(btc[2 * i - 1]);
-        this.btc_obj[i.toString()].obj = $(btc_li[i - 1]);
+        this.btc_obj[i.toString()].text = $(btc[2*i-1]);
+        this.btc_obj[i.toString()].obj  = $(btc_li[i-1]);
         this.btc_obj[i.toString()].obj.css('display', 'none');
         this.btc_obj[i.toString()].obj.attr('name', '0');
         this.ltc_obj[i.toString()] = {};
         this.ltc_obj[i.toString()].id = 0;
         this.ltc_obj[i.toString()].type = 0;
-        this.ltc_obj[i.toString()].text = $(ltc[2 * i - 1]);
-        this.ltc_obj[i.toString()].obj = $(ltc_li[i - 1]);
+        this.ltc_obj[i.toString()].text = $(ltc[2*i-1]);
+        this.ltc_obj[i.toString()].obj  = $(ltc_li[i-1]);
         this.ltc_obj[i.toString()].obj.css('display', 'none');
         this.ltc_obj[i.toString()].obj.attr('name', '0');
     }
@@ -2048,31 +1989,31 @@ Chart.prototype.setFutureList = function (content) {
         if (getCoinType(id) == 0) {
             this.btc_obj[type].id = id;
             this.btc_obj[type].type = type;
-            this.btc_obj[type].text.html(id.toString().slice(4, 8));
+            this.btc_obj[type].text.html(id.toString().slice(4,8));
             this.btc_obj[type].obj.attr('name', id.toString());
             this.btc_obj[type].obj.css('display', 'block');
-            Chart._future_btc_market_num[type] = id.toString().slice(id.toString().length - 2);
+            Chart._future_btc_market_num[type] = id.toString().slice(id.toString().length-2);
         } else if (getCoinType(id) == 1) {
             this.ltc_obj[type].id = id;
             this.ltc_obj[type].type = type;
-            this.ltc_obj[type].text.html(id.toString().slice(4, 8));
+            this.ltc_obj[type].text.html(id.toString().slice(4,8));
             this.ltc_obj[type].obj.attr('name', id.toString());
             this.ltc_obj[type].obj.css('display', 'block');
-            Chart._future_ltc_market_num[type] = id.toString().slice(id.toString().length - 2);
+            Chart._future_ltc_market_num[type] = id.toString().slice(id.toString().length-2);
         }
     }
     for (var i = 0; i < Chart._future_btc_market_num.length; i++) {
         var tmp = Chart._future_btc_market_num[i].toString();
         if (tmp != '-1')
-            Chart.PushNameVar[tmp] = 'btc_' + Chart.PushNameCon[i];
+            Chart.PushNameVar[tmp] = 'btc_'+Chart.PushNameCon[i];
     }
     for (var i = 0; i < Chart._future_ltc_market_num.length; i++) {
         var tmp = Chart._future_ltc_market_num[i].toString();
         if (tmp != '-1')
-            Chart.PushNameVar[tmp] = 'ltc_' + Chart.PushNameCon[i];
+            Chart.PushNameVar[tmp] = 'ltc_'+Chart.PushNameCon[i];
     }
 };
-Chart.prototype.updateDataAndDisplay = function () {
+Chart.prototype.updateDataAndDisplay = function() {
     Pushing.Switch();
     /*
      GLOBAL_VAR.mark_from = this._market_from;
@@ -2092,12 +2033,12 @@ Chart.prototype.updateDataAndDisplay = function () {
      ChartManager.getInstance().redraw('All', false);
      */
 };
-Chart.prototype.updateDataAndDisplay2 = function () {
+Chart.prototype.updateDataAndDisplay2 = function() {
     GLOBAL_VAR.mark_from = this._market_from;
     GLOBAL_VAR.time_type = this._time;
     GLOBAL_VAR.limit = '1000';
     this.setTitle();
-    ChartManager.getInstance().setCurrentDataSource('frame0.k0', 'OKCoin' + '.' + this._market_from + '.' + this._time + '.' + this._money_type + '.' + this._contract_unit);
+    ChartManager.getInstance().setCurrentDataSource('frame0.k0','OKCoin'+'.'+this._market_from+'.'+this._time+'.'+this._money_type+'.'+this._contract_unit);
     ChartManager.getInstance().setNormalMode();
     var f = GLOBAL_VAR.chartMgr.getDataSource("frame0.k0").getLastDate();
     if (f == -1) {
@@ -2109,20 +2050,20 @@ Chart.prototype.updateDataAndDisplay2 = function () {
     }
     ChartManager.getInstance().redraw('All', false);
 };
-Chart.prototype.setCurrentFutureNoRaise = function (content) {
+Chart.prototype.setCurrentFutureNoRaise = function(content) {
     $('#chart_dropdown_symbols li a').removeClass('selected');
     var _alias = content;
     var _type = 0;
     var btc_li = $('#chart_symbols_btc').find('li');
     var ltc_li = $('#chart_symbols_ltc').find('li');
-    btc_li.each(function () {
+    btc_li.each(function(){
         var str = $(this).attr('name');
         if (_alias.toString() == str) {
             $('#chart_dropdown_symbols .chart_dropdown_t').html($(this).html());
             $(this).find('a').addClass('selected');
         }
     });
-    ltc_li.each(function () {
+    ltc_li.each(function(){
         var str = $(this).attr('name');
         if (_alias.toString() == str) {
             $('#chart_dropdown_symbols .chart_dropdown_t').html($(this).html());
@@ -2151,20 +2092,20 @@ Chart.prototype.setCurrentFutureNoRaise = function (content) {
     }
     this.updateDataAndDisplay();
 };
-Chart.prototype.setCurrentFuture = function (content) {
+Chart.prototype.setCurrentFuture = function(content) {
     $('#chart_dropdown_symbols li a').removeClass('selected');
     var _alias = content;
     var _type = 0;
     var btc_li = $('#chart_symbols_btc').find('li');
     var ltc_li = $('#chart_symbols_ltc').find('li');
-    btc_li.each(function () {
+    btc_li.each(function(){
         var str = $(this).attr('name');
         if (_alias.toString() == str) {
             $('#chart_dropdown_symbols .chart_dropdown_t').html($(this).html());
             $(this).find('a').addClass('selected');
         }
     });
-    ltc_li.each(function () {
+    ltc_li.each(function(){
         var str = $(this).attr('name');
         if (_alias.toString() == str) {
             $('#chart_dropdown_symbols .chart_dropdown_t').html($(this).html());
@@ -2199,7 +2140,7 @@ Chart.prototype.setCurrentFuture = function (content) {
     window._current_future_change.raise(_alias, _type);
     this.updateDataAndDisplay();
 };
-Chart.prototype.setCurrentContractUnit = function (contractUnit) {
+Chart.prototype.setCurrentContractUnit = function(contractUnit) {
     if (contractUnit == 'btc') {
         if (this._contract_unit == 0) return;
         this._contract_unit = 0;
@@ -2209,7 +2150,7 @@ Chart.prototype.setCurrentContractUnit = function (contractUnit) {
     }
     this.updateDataAndDisplay();
 };
-Chart.prototype.setCurrentMoneyType = function (moneyType) {
+Chart.prototype.setCurrentMoneyType = function(moneyType) {
     if (moneyType == 'usd') {
         if (this._money_type == 0)
             return;
@@ -2221,15 +2162,15 @@ Chart.prototype.setCurrentMoneyType = function (moneyType) {
     }
     this.updateDataAndDisplay();
 };
-Chart.prototype.setCurrentPeriod = function (period) {
+Chart.prototype.setCurrentPeriod = function(period) {
     this._time = GLOBAL_VAR.periodMap[period];
     this.updateDataAndDisplay();
 };
-Chart.prototype.updateDataSource = function (data) {
+Chart.prototype.updateDataSource = function(data) {
     this._data = data;
     ChartManager.getInstance().updateData("frame0.k0", this._data);
 };
-Chart.prototype.updateDepth = function (array) {
+Chart.prototype.updateDepth = function(array) {
     if (array == null)
         return;
     if (!array.asks || !array.bids)
@@ -2270,7 +2211,7 @@ Chart.prototype.updateDepth = function (array) {
     }
     ChartManager.getInstance().redraw('All', false);
 };
-Chart.prototype.setMainIndicator = function (indicName) {
+Chart.prototype.setMainIndicator = function(indicName) {
     this._mainIndicator = indicName;
     if (indicName == 'NONE') {
         ChartManager.getInstance().removeMainIndicator('frame0.k0');
@@ -2279,19 +2220,19 @@ Chart.prototype.setMainIndicator = function (indicName) {
     }
     ChartManager.getInstance().redraw('All', true);
 };
-Chart.prototype.setIndicator = function (index, indicName) {
+Chart.prototype.setIndicator = function(index, indicName) {
     if (indicName == 'NONE') {
         var index = 2;
         if (Template.displayVolume == false)
             index = 1;
-        var areaName = ChartManager.getInstance().getIndicatorAreaName('frame0.k0', index);
+        var areaName = ChartManager.getInstance().getIndicatorAreaName('frame0.k0',index);
         if (areaName != '')
             ChartManager.getInstance().removeIndicator(areaName);
     } else {
         var index = 2;
         if (Template.displayVolume == false)
             index = 1;
-        var areaName = ChartManager.getInstance().getIndicatorAreaName('frame0.k0', index);
+        var areaName = ChartManager.getInstance().getIndicatorAreaName('frame0.k0',index);
         if (areaName == '') {
             Template.createIndicatorChartComps('frame0.k0', indicName);
         } else {
@@ -2300,17 +2241,17 @@ Chart.prototype.setIndicator = function (index, indicName) {
     }
     ChartManager.getInstance().redraw('All', true);
 };
-Chart.prototype.addIndicator = function (indicName) {
+Chart.prototype.addIndicator = function(indicName) {
     ChartManager.getInstance().addIndicator(indicName);
     ChartManager.getInstance().redraw('All', true);
 };
-Chart.prototype.removeIndicator = function (indicName) {
+Chart.prototype.removeIndicator = function(indicName) {
     var areaName = ChartManager.getInstance().getIndicatorAreaName(2);
     ChartManager.getInstance().removeIndicator(areaName);
     ChartManager.getInstance().redraw('All', true);
 };
 var CName = create_class();
-CName.prototype.__construct = function (name) {
+CName.prototype.__construct = function(name) {
     this._names = [];
     this._comps = [];
     if (name instanceof CName) {
@@ -2332,12 +2273,12 @@ CName.prototype.__construct = function (name) {
         }
     }
 };
-CName.prototype.getCompAt = function (index) {
+CName.prototype.getCompAt = function(index) {
     if (index >= 0 && index < this._comps.length)
         return this._comps[index];
     return "";
 };
-CName.prototype.getName = function (index) {
+CName.prototype.getName = function(index) {
     if (index < 0) {
         if (this._names.length > 0)
             return this._names[this._names.length - 1];
@@ -2348,27 +2289,27 @@ CName.prototype.getName = function (index) {
     return "";
 };
 var NamedObject = create_class();
-NamedObject.prototype.__construct = function (name) {
+NamedObject.prototype.__construct = function(name) {
     this._name = name;
     this._nameObj = new CName(name);
 };
-NamedObject.prototype.getFrameName = function () {
+NamedObject.prototype.getFrameName = function() {
     return this._nameObj.getName(0);
 };
-NamedObject.prototype.getDataSourceName = function () {
+NamedObject.prototype.getDataSourceName = function() {
     return this._nameObj.getName(1);
 };
-NamedObject.prototype.getAreaName = function () {
+NamedObject.prototype.getAreaName = function() {
     return this._nameObj.getName(2);
 };
-NamedObject.prototype.getName = function () {
+NamedObject.prototype.getName = function() {
     return this._nameObj.getName(-1);
 };
-NamedObject.prototype.getNameObject = function () {
+NamedObject.prototype.getNameObject = function() {
     return this._nameObj;
 };
 var ChartArea = create_class(NamedObject);
-ChartArea.prototype.__construct = function (name) {
+ChartArea.prototype.__construct = function(name) {
     ChartArea.__super.__construct.call(this, name);
     this._left = 0;
     this._top = 0;
@@ -2381,49 +2322,49 @@ ChartArea.prototype.__construct = function (name) {
     this.Measuring = new MEvent();
 };
 ChartArea.DockStyle = {Left: 0, Top: 1, Right: 2, Bottom: 3, Fill: 4};
-ChartArea.prototype.getDockStyle = function () {
+ChartArea.prototype.getDockStyle = function() {
     return this._dockStyle;
 };
-ChartArea.prototype.setDockStyle = function (dockStyle) {
+ChartArea.prototype.setDockStyle = function(dockStyle) {
     this._dockStyle = dockStyle;
 };
-ChartArea.prototype.getLeft = function () {
+ChartArea.prototype.getLeft = function() {
     return this._left;
 };
-ChartArea.prototype.getTop = function () {
+ChartArea.prototype.getTop = function() {
     return this._top;
 };
-ChartArea.prototype.setTop = function (v) {
+ChartArea.prototype.setTop = function(v) {
     if (this._top != v) {
         this._top = v;
         this._changed = true;
     }
 };
-ChartArea.prototype.getRight = function () {
+ChartArea.prototype.getRight = function() {
     return this._right;
 };
-ChartArea.prototype.getBottom = function () {
+ChartArea.prototype.getBottom = function() {
     return this._bottom;
 };
-ChartArea.prototype.setBottom = function (v) {
+ChartArea.prototype.setBottom = function(v) {
     if (this._bottom != v) {
         this._bottom = v;
         this._changed = true;
     }
 };
-ChartArea.prototype.getCenter = function () {
+ChartArea.prototype.getCenter = function() {
     return (this._left + this._right) >> 1;
 };
-ChartArea.prototype.getMiddle = function () {
+ChartArea.prototype.getMiddle = function() {
     return (this._top + this._bottom) >> 1;
 };
-ChartArea.prototype.getWidth = function () {
+ChartArea.prototype.getWidth = function() {
     return this._right - this._left;
 };
-ChartArea.prototype.getHeight = function () {
+ChartArea.prototype.getHeight = function() {
     return this._bottom - this._top;
 };
-ChartArea.prototype.getRect = function () {
+ChartArea.prototype.getRect = function() {
     return {
         X: this._left,
         Y: this._top,
@@ -2431,30 +2372,30 @@ ChartArea.prototype.getRect = function () {
         Height: this._bottom - this._top
     };
 };
-ChartArea.prototype.contains = function (x, y) {
+ChartArea.prototype.contains = function(x, y) {
     if (x >= this._left && x < this._right)
         if (y >= this._top && y < this._bottom)
             return [this];
     return null;
 };
-ChartArea.prototype.getMeasuredWidth = function () {
+ChartArea.prototype.getMeasuredWidth = function() {
     return this._measuredWidth;
 };
-ChartArea.prototype.getMeasuredHeight = function () {
+ChartArea.prototype.getMeasuredHeight = function() {
     return this._measuredHeight;
 };
-ChartArea.prototype.setMeasuredDimension = function (width, height) {
+ChartArea.prototype.setMeasuredDimension = function(width, height) {
     this._measuredWidth = width;
     this._measuredHeight = height;
 };
-ChartArea.prototype.measure = function (context, width, height) {
+ChartArea.prototype.measure = function(context, width, height) {
     this._measuredWidth = 0;
     this._measuredHeight = 0;
-    this.Measuring.raise(this, {Width: width, Height: height});
+    this.Measuring.raise(this, {Width : width, Height : height});
     if (this._measuredWidth == 0 && this._measuredHeight == 0)
         this.setMeasuredDimension(width, height);
 };
-ChartArea.prototype.layout = function (left, top, right, bottom, forceChange) {
+ChartArea.prototype.layout = function(left, top, right, bottom, forceChange) {
     left <<= 0;
     if (this._left != left) {
         this._left = left;
@@ -2510,17 +2451,10 @@ ChartArea.prototype.select = function (area) {
     this._selected = (this == area);
     return this._selected ? this : null;
 };
-ChartArea.prototype.onMouseMove = function (x, y) {
-    return null;
-};
-ChartArea.prototype.onMouseLeave = function (x, y) {
-};
-ChartArea.prototype.onMouseDown = function (x, y) {
-    return null;
-};
-ChartArea.prototype.onMouseUp = function (x, y) {
-    return null;
-};
+ChartArea.prototype.onMouseMove = function (x, y) { return null; };
+ChartArea.prototype.onMouseLeave = function (x, y) {};
+ChartArea.prototype.onMouseDown = function (x, y) { return null; };
+ChartArea.prototype.onMouseUp = function (x, y) { return null; };
 var MainArea = create_class(ChartArea);
 MainArea.prototype.__construct = function (name) {
     MainArea.__super.__construct.call(this, name);
@@ -2662,13 +2596,13 @@ TimelineArea.prototype.onMouseMove = function (x, y) {
     return this;
 };
 var ChartAreaGroup = create_class(ChartArea);
-ChartAreaGroup.prototype.__construct = function (name) {
+ChartAreaGroup.prototype.__construct = function(name) {
     ChartAreaGroup.__super.__construct.call(this, name);
     this._areas = [];
     this._highlightedArea = null;
     this._selectedArea = null;
 };
-ChartAreaGroup.prototype.contains = function (x, y) {
+ChartAreaGroup.prototype.contains = function(x, y) {
     var areas;
     var a, i, cnt = this._areas.length;
     for (i = 0; i < cnt; i++) {
@@ -2681,18 +2615,18 @@ ChartAreaGroup.prototype.contains = function (x, y) {
     }
     return ChartAreaGroup.__super.contains(x, y);
 };
-ChartAreaGroup.prototype.getAreaCount = function () {
+ChartAreaGroup.prototype.getAreaCount = function() {
     return this._areas.length;
 };
-ChartAreaGroup.prototype.getAreaAt = function (index) {
+ChartAreaGroup.prototype.getAreaAt = function(index) {
     if (index < 0 || index >= this._areas.length)
         return null;
     return this._areas[index];
 };
-ChartAreaGroup.prototype.addArea = function (area) {
+ChartAreaGroup.prototype.addArea = function(area) {
     this._areas.push(area);
 };
-ChartAreaGroup.prototype.removeArea = function (area) {
+ChartAreaGroup.prototype.removeArea = function(area) {
     var i, cnt = this._areas.length;
     for (i = 0; i < cnt; i++) {
         if (area == this._areas[i]) {
@@ -2757,15 +2691,15 @@ ChartAreaGroup.prototype.onMouseUp = function (x, y) {
     return null;
 };
 var TableLayout = create_class(ChartAreaGroup);
-TableLayout.prototype.__construct = function (name) {
+TableLayout.prototype.__construct = function(name){
     TableLayout.__super.__construct.call(this, name);
     this._nextRowId = 0;
     this._focusedRowIndex = -1;
 };
-TableLayout.prototype.getNextRowId = function () {
+TableLayout.prototype.getNextRowId = function() {
     return this._nextRowId++;
 };
-TableLayout.prototype.measure = function (context, width, height) {
+TableLayout.prototype.measure = function(context, width, height) {
     this.setMeasuredDimension(width, height);
     var rowH, prevH = 0, totalH = 0;
     var h, rows;
@@ -2824,7 +2758,8 @@ TableLayout.prototype.measure = function (context, width, height) {
         var iArea, iIndex;
         for (iArea = 0, iIndex = 0, rw = minRW;
              iArea < this._areas.length && iIndex < firstIndexes.length;
-             iArea += 2) {
+             iArea += 2)
+        {
             var area = this._areas[iArea];
             var plotter = mgr.getPlotter(area.getName() + "Range.main");
             for (var iDp in dpNames) {
@@ -2851,7 +2786,7 @@ TableLayout.prototype.measure = function (context, width, height) {
         this._areas[i].measure(context, lw, rh[i >> 1]);
     }
 };
-TableLayout.prototype.layout = function (left, top, right, bottom, forceChange) {
+TableLayout.prototype.layout = function(left, top, right, bottom, forceChange) {
     TableLayout.__super.layout.call(this, left, top, right, bottom, forceChange);
     if (this._areas.length < 1)
         return;
@@ -2872,7 +2807,7 @@ TableLayout.prototype.layout = function (left, top, right, bottom, forceChange) 
     }
     this.setChanged(false);
 };
-TableLayout.prototype.drawGrid = function (context) {
+TableLayout.prototype.drawGrid = function(context) {
     if (this._areas.length < 1)
         return;
     var mgr = ChartManager.getInstance();
@@ -2989,10 +2924,10 @@ TableLayout.prototype.onMouseUp = function (x, y) {
     return this;
 };
 var DockableLayout = create_class(ChartAreaGroup);
-DockableLayout.prototype.__construct = function (name) {
+DockableLayout.prototype.__construct=function(name){
     DockableLayout.__super.__construct.call(this, name);
 };
-DockableLayout.prototype.measure = function (context, width, height) {
+DockableLayout.prototype.measure = function(context, width, height) {
     DockableLayout.__super.measure.call(this, context, width, height);
     width = this.getMeasuredWidth();
     height = this.getMeasuredHeight();
@@ -3015,7 +2950,7 @@ DockableLayout.prototype.measure = function (context, width, height) {
         }
     }
 };
-DockableLayout.prototype.layout = function (left, top, right, bottom, forceChange) {
+DockableLayout.prototype.layout = function(left, top, right, bottom, forceChange) {
     DockableLayout.__super.layout.call(this, left, top, right, bottom, forceChange);
     left = this.getLeft();
     top = this.getTop();
@@ -3024,7 +2959,7 @@ DockableLayout.prototype.layout = function (left, top, right, bottom, forceChang
     var w, h;
     if (!forceChange)
         forceChange = this.isChanged();
-    for (var i in this._areas) {
+    for (var i in this._areas){
         var area = this._areas[i];
         switch (area.getDockStyle()) {
             case ChartArea.DockStyle.left:
@@ -3056,7 +2991,7 @@ DockableLayout.prototype.layout = function (left, top, right, bottom, forceChang
     }
     this.setChanged(false);
 };
-DockableLayout.prototype.drawGrid = function (context) {
+DockableLayout.prototype.drawGrid = function(context) {
     var mgr = ChartManager.getInstance();
     var theme = mgr.getTheme(this.getFrameName());
     var left = this.getLeft();
@@ -3088,12 +3023,12 @@ DockableLayout.prototype.drawGrid = function (context) {
 };
 var ChartManager = create_class();
 ChartManager.DrawingTool = {
-    Cursor: 0, CrossCursor: 1, DrawLines: 2, DrawFibRetrace: 3, DrawFibFans: 4,
-    SegLine: 5, StraightLine: 6, ArrowLine: 7, RayLine: 8,
-    HoriStraightLine: 9, HoriRayLine: 10, HoriSegLine: 11, VertiStraightLine: 12,
-    PriceLine: 13,
-    BiParallelLine: 14, BiParallelRayLine: 15, TriParallelLine: 16,
-    BandLine: 17
+    Cursor : 0, CrossCursor : 1, DrawLines : 2, DrawFibRetrace : 3, DrawFibFans : 4,
+    SegLine : 5, StraightLine : 6, ArrowLine : 7, RayLine : 8,
+    HoriStraightLine : 9, HoriRayLine : 10, HoriSegLine : 11, VertiStraightLine : 12,
+    PriceLine : 13,
+    BiParallelLine : 14, BiParallelRayLine : 15, TriParallelLine : 16,
+    BandLine : 17
 };
 ChartManager._instance = null;
 ChartManager.getInstance = function () {
@@ -3137,7 +3072,7 @@ ChartManager.prototype.redraw = function (layer, refresh) {
     if (layer == undefined || refresh)
         layer = "All";
     if (layer == "All" || layer == "MainCanvas") {
-        if (refresh) {
+        if (refresh){
             this.getFrame("frame0").setChanged(true);
             this._mainContext.clearRect(
                 0, 0, this._mainCanvas.width, this._mainCanvas.height);
@@ -3157,7 +3092,7 @@ ChartManager.prototype.redraw = function (layer, refresh) {
  * @param layer
  *   "main", "overlay"
  */
-ChartManager.prototype.bindCanvas = function (layer, canvas) {
+ChartManager.prototype.bindCanvas = function(layer, canvas) {
     if (layer == "main") {
         this._mainCanvas = canvas;
         this._mainContext = canvas.getContext("2d");
@@ -3179,18 +3114,18 @@ ChartManager.prototype.setCaptureMouseWheelDirectly = function (v) {
     else
         $(this._overlayCanvas).unbind('mousewheel');
 };
-ChartManager.prototype.getChart = function (nouseParam) {
+ChartManager.prototype.getChart = function(nouseParam) {
     return this._chart["defaultFrame"];
 };
-ChartManager.prototype.init = function () {
+ChartManager.prototype.init = function() {
     delete this._ranges['frame0.k0.indic1'];
     delete this._ranges['frame0.k0.indic1Range'];
     delete this._areas['frame0.k0.indic1'];
     delete this._areas['frame0.k0.indic1Range'];
-    DefaultTemplate.loadTemplate("frame0.k0", "OKCoin", "frame0.order", "0.order", "frame0.trade", "0.trade");
+    DefaultTemplate.loadTemplate("frame0.k0","OKCoin","frame0.order","0.order","frame0.trade","0.trade");
     this.redraw('All', true);
 };
-ChartManager.prototype.setCurrentDrawingTool = function (paramTool) {
+ChartManager.prototype.setCurrentDrawingTool = function(paramTool) {
     // "Cursor" // "CrossCursor" // "DrawFibRetrace" // "DrawFibFans"
     // "SegLine" // "StraightLine" // "ArrowLine" // "RayLine"
     // "HoriStraightLine" // "HoriRayLine" // "HoriSegLine" // "VertiStraightLine"
@@ -3288,7 +3223,7 @@ ChartManager.prototype.setChartStyle = function (dsName, style) {
     this.getArea(plotter.getAreaName()).setChanged(true);
     this._dsChartStyle[dsName] = style;
 };
-ChartManager.prototype.setNormalMode = function () {
+ChartManager.prototype.setNormalMode = function() {
     this._drawingTool = this._beforeDrawingTool;
     $(".chart_dropdown_data").removeClass("chart_dropdown-hover");
     $("#chart_toolpanel .chart_toolpanel_button").removeClass("selected");
@@ -3302,7 +3237,7 @@ ChartManager.prototype.setNormalMode = function () {
         this.hideCursor();
     }
 };
-ChartManager.prototype.setRunningMode = function (mode) {
+ChartManager.prototype.setRunningMode = function(mode) {
     var pds = this.getDataSource("frame0.k0");
     var curr_o = pds.getCurrentToolObject();
     if (curr_o != null && curr_o.state != CToolObject.state.AfterDraw) {
@@ -3318,75 +3253,93 @@ ChartManager.prototype.setRunningMode = function (mode) {
     } else {
     }
     switch (mode) {
-        case ChartManager.DrawingTool.Cursor: {
+        case ChartManager.DrawingTool.Cursor:
+        {
             this._beforeDrawingTool = mode;
             break;
         }
-        case ChartManager.DrawingTool.ArrowLine: {
+        case ChartManager.DrawingTool.ArrowLine:
+        {
             pds.addToolObject(new CArrowLineObject("frame0.k0"));
             break;
         }
-        case ChartManager.DrawingTool.BandLine: {
+        case ChartManager.DrawingTool.BandLine:
+        {
             pds.addToolObject(new CBandLineObject("frame0.k0"));
             break;
         }
-        case ChartManager.DrawingTool.BiParallelLine: {
+        case ChartManager.DrawingTool.BiParallelLine:
+        {
             pds.addToolObject(new CBiParallelLineObject("frame0.k0"));
             break;
         }
-        case ChartManager.DrawingTool.BiParallelRayLine: {
+        case ChartManager.DrawingTool.BiParallelRayLine:
+        {
             pds.addToolObject(new CBiParallelRayLineObject("frame0.k0"));
             break;
         }
-        case ChartManager.DrawingTool.CrossCursor: {
+        case ChartManager.DrawingTool.CrossCursor:
+        {
             this._beforeDrawingTool = mode;
             break;
         }
-        case ChartManager.DrawingTool.DrawFibFans: {
+        case ChartManager.DrawingTool.DrawFibFans:
+        {
             pds.addToolObject(new CFibFansObject("frame0.k0"));
             break;
         }
-        case ChartManager.DrawingTool.DrawFibRetrace: {
+        case ChartManager.DrawingTool.DrawFibRetrace:
+        {
             pds.addToolObject(new CFibRetraceObject("frame0.k0"));
             break;
         }
-        case ChartManager.DrawingTool.DrawLines: {
+        case ChartManager.DrawingTool.DrawLines:
+        {
             pds.addToolObject(new CStraightLineObject("frame0.k0"));
             break;
         }
-        case ChartManager.DrawingTool.HoriRayLine: {
+        case ChartManager.DrawingTool.HoriRayLine:
+        {
             pds.addToolObject(new CHoriRayLineObject("frame0.k0"));
             break;
         }
-        case ChartManager.DrawingTool.HoriSegLine: {
+        case ChartManager.DrawingTool.HoriSegLine:
+        {
             pds.addToolObject(new CHoriSegLineObject("frame0.k0"));
             break;
         }
-        case ChartManager.DrawingTool.HoriStraightLine: {
+        case ChartManager.DrawingTool.HoriStraightLine:
+        {
             pds.addToolObject(new CHoriStraightLineObject("frame0.k0"));
             break;
         }
-        case ChartManager.DrawingTool.PriceLine: {
+        case ChartManager.DrawingTool.PriceLine:
+        {
             pds.addToolObject(new CPriceLineObject("frame0.k0"));
             break;
         }
-        case ChartManager.DrawingTool.RayLine: {
+        case ChartManager.DrawingTool.RayLine:
+        {
             pds.addToolObject(new CRayLineObject("frame0.k0"));
             break;
         }
-        case ChartManager.DrawingTool.SegLine: {
+        case ChartManager.DrawingTool.SegLine:
+        {
             pds.addToolObject(new CSegLineObject("frame0.k0"));
             break;
         }
-        case ChartManager.DrawingTool.StraightLine: {
+        case ChartManager.DrawingTool.StraightLine:
+        {
             pds.addToolObject(new CStraightLineObject("frame0.k0"));
             break;
         }
-        case ChartManager.DrawingTool.TriParallelLine: {
+        case ChartManager.DrawingTool.TriParallelLine:
+        {
             pds.addToolObject(new CTriParallelLineObject("frame0.k0"));
             break;
         }
-        case ChartManager.DrawingTool.VertiStraightLine: {
+        case ChartManager.DrawingTool.VertiStraightLine:
+        {
             pds.addToolObject(new CVertiStraightLineObject("frame0.k0"));
             break;
         }
@@ -3398,7 +3351,7 @@ ChartManager.prototype.getTitle = function (dsName) {
 ChartManager.prototype.setTitle = function (dsName, title) {
     this._titles[dsName] = title;
 };
-ChartManager.prototype.setCurrentDataSource = function (dsName, dsAlias) {
+ChartManager.prototype.setCurrentDataSource = function(dsName, dsAlias) {
     var cached = this.getCachedDataSource(dsAlias);
     if (cached != null) {
         this.setDataSource(dsName, cached, true);
@@ -3446,10 +3399,10 @@ ChartManager.prototype.removeDataProvider = function (name) {
 ChartManager.prototype.getFrame = function (name) {
     return this._frames[name];
 };
-ChartManager.prototype.setFrame = function (name, frame) {
+ChartManager.prototype.setFrame = function(name, frame) {
     this._frames[name] = frame;
 };
-ChartManager.prototype.removeFrame = function (name) {
+ChartManager.prototype.removeFrame = function(name) {
     delete this._frames[name];
 };
 ChartManager.prototype.getArea = function (name) {
@@ -3482,10 +3435,10 @@ ChartManager.prototype.removeRange = function (name) {
 ChartManager.prototype.getPlotter = function (name) {
     return this._plotters[name];
 };
-ChartManager.prototype.setPlotter = function (name, plotter) {
+ChartManager.prototype.setPlotter = function(name, plotter) {
     this._plotters[name] = plotter;
 };
-ChartManager.prototype.removePlotter = function (name) {
+ChartManager.prototype.removePlotter = function(name) {
     delete this._plotters[name];
 };
 ChartManager.prototype.getTheme = function (name) {
@@ -3494,8 +3447,9 @@ ChartManager.prototype.getTheme = function (name) {
 ChartManager.prototype.setTheme = function (name, theme) {
     this._themes[name] = theme;
 };
-ChartManager.prototype.getFrameMousePos = function (name, point) {
-    if (this._frameMousePos[name] != undefined) {
+ChartManager.prototype.getFrameMousePos = function(name, point)
+{
+    if (this._frameMousePos[name] != undefined){
         point.x = this._frameMousePos[name].x;
         point.y = this._frameMousePos[name].y;
     } else {
@@ -3503,10 +3457,11 @@ ChartManager.prototype.getFrameMousePos = function (name, point) {
         point.y = -1;
     }
 };
-ChartManager.prototype.setFrameMousePos = function (name, px, py) {
-    this._frameMousePos[name] = {x: px, y: py};
+ChartManager.prototype.setFrameMousePos = function(name, px, py)
+{
+    this._frameMousePos[name] = { x:px, y:py };
 };
-ChartManager.prototype.drawArea = function (context, area, plotterNames) {
+ChartManager.prototype.drawArea = function(context, area, plotterNames) {
     var areaName = area.getNameObject().getCompAt(2);
     if (areaName == "timeline") {
         if (area.getHeight() < 20)
@@ -3526,17 +3481,17 @@ ChartManager.prototype.drawArea = function (context, area, plotterNames) {
             plotter.Draw(context);
     }
 };
-ChartManager.prototype.drawAreaMain = function (context, area) {
+ChartManager.prototype.drawAreaMain = function(context, area) {
     var ds = this._dataSources[area.getDataSourceName()];
     var plotterNames;
     if (ds.getDataCount() < 1)
         plotterNames = [".background"];
     else
-        plotterNames = [".background", ".grid", ".main", ".secondary"];
+        plotterNames = [".background", ".grid" , ".main" , ".secondary"];
     this.drawArea(context, area, plotterNames);
     area.setChanged(false);
 };
-ChartManager.prototype.drawAreaOverlay = function (context, area) {
+ChartManager.prototype.drawAreaOverlay = function(context, area) {
     var ds = this._dataSources[area.getDataSourceName()];
     var plotterNames;
     if (ds.getDataCount() < 1)
@@ -3545,7 +3500,8 @@ ChartManager.prototype.drawAreaOverlay = function (context, area) {
         plotterNames = [".decoration", ".selection", ".info", ".tool"];
     this.drawArea(context, area, plotterNames);
 };
-ChartManager.prototype.drawMain = function (frameName, context) {
+ChartManager.prototype.drawMain=function(frameName, context)
+{
     drawn = false;
     /*
      it = m_drawAreas.begin();
@@ -3577,7 +3533,7 @@ ChartManager.prototype.drawMain = function (frameName, context) {
      }
      */
     if (!drawn) {
-        for (var it in this._areas) {
+        for(var it in this._areas){
             if (this._areas[it].getFrameName() == frameName && !is_instance(this._areas[it], ChartAreaGroup))
                 this.drawAreaMain(context, this._areas[it]);
         }
@@ -3599,7 +3555,8 @@ ChartManager.prototype.drawMain = function (frameName, context) {
             e.setChanged(false);
     }
 };
-ChartManager.prototype.drawOverlay = function (frameName, context) {
+ChartManager.prototype.drawOverlay = function(frameName, context)
+{
     for (var n in this._areas) {
         var area = this._areas[n];
         if (is_instance(area, ChartAreaGroup))
@@ -3673,7 +3630,8 @@ ChartManager.prototype.updateRange = function (dsName) {
         }
     }
 };
-ChartManager.prototype.layout = function (context, frameName, left, top, right, bottom) {
+ChartManager.prototype.layout = function(context, frameName, left, top, right, bottom)
+{
     var frame = this.getFrame(frameName);
     frame.measure(context, right - left, bottom - top);
     frame.layout(left, top, right, bottom);
@@ -3687,7 +3645,7 @@ ChartManager.prototype.layout = function (context, frameName, left, top, right, 
             this.updateRange(n);
     }
 };
-ChartManager.prototype.SelectRange = function (pArea, y) {
+ChartManager.prototype.SelectRange = function(pArea, y) {
     var it;
     for (var ee in this._ranges) {
         var _1 = this._ranges[ee].getAreaName();
@@ -3752,7 +3710,7 @@ ChartManager.prototype.clearHighlight = function () {
         this._highlightedFrame = null;
     }
 };
-ChartManager.prototype.onToolMouseMove = function (frameName, x, y) {
+ChartManager.prototype.onToolMouseMove = function(frameName, x, y) {
     var ret = false;
     frameName += ".";
     for (var n in this._dataSources) {
@@ -3765,7 +3723,7 @@ ChartManager.prototype.onToolMouseMove = function (frameName, x, y) {
     }
     return ret;
 };
-ChartManager.prototype.onToolMouseDown = function (frameName, x, y) {
+ChartManager.prototype.onToolMouseDown = function(frameName, x, y) {
     var ret = false;
     frameName += ".";
     for (var n in this._dataSources) {
@@ -3778,7 +3736,7 @@ ChartManager.prototype.onToolMouseDown = function (frameName, x, y) {
     }
     return ret;
 };
-ChartManager.prototype.onToolMouseUp = function (frameName, x, y) {
+ChartManager.prototype.onToolMouseUp = function(frameName, x, y) {
     var ret = false;
     frameName += ".";
     for (var n in this._dataSources) {
@@ -3791,7 +3749,7 @@ ChartManager.prototype.onToolMouseUp = function (frameName, x, y) {
     }
     return ret;
 };
-ChartManager.prototype.onToolMouseDrag = function (frameName, x, y) {
+ChartManager.prototype.onToolMouseDrag = function(frameName, x, y) {
     var ret = false;
     frameName += ".";
     for (var n in this._dataSources) {
@@ -3804,7 +3762,7 @@ ChartManager.prototype.onToolMouseDrag = function (frameName, x, y) {
     }
     return ret;
 };
-ChartManager.prototype.onMouseMove = function (frameName, x, y, drag) {
+ChartManager.prototype.onMouseMove = function(frameName, x, y, drag) {
     var frame = this.getFrame(frameName);
     if (frame === undefined)
         return;
@@ -3832,7 +3790,7 @@ ChartManager.prototype.onMouseMove = function (frameName, x, y, drag) {
         }
     }
 };
-ChartManager.prototype.onMouseLeave = function (frameName, x, y, move) {
+ChartManager.prototype.onMouseLeave = function(frameName, x, y, move) {
     var frame = this.getFrame(frameName);
     if (frame == undefined)
         return;
@@ -3845,7 +3803,7 @@ ChartManager.prototype.onMouseLeave = function (frameName, x, y, move) {
     }
     this._dragStarted = false;
 };
-ChartManager.prototype.onMouseDown = function (frameName, x, y) {
+ChartManager.prototype.onMouseDown = function(frameName, x, y) {
     var frame = this.getFrame(frameName);
     if (frame == undefined)
         return;
@@ -3862,7 +3820,7 @@ ChartManager.prototype.onMouseDown = function (frameName, x, y) {
         }
     }
 };
-ChartManager.prototype.onMouseUp = function (frameName, x, y) {
+ChartManager.prototype.onMouseUp = function(frameName, x, y) {
     var frame = this.getFrame(frameName);
     if (frame == undefined)
         return;
@@ -3887,7 +3845,7 @@ ChartManager.prototype.onMouseUp = function (frameName, x, y) {
         this._dragStarted = false;
     }
 };
-ChartManager.prototype.deleteToolObject = function () {
+ChartManager.prototype.deleteToolObject = function() {
     var pDPTool = this.getDataSource("frame0.k0");
     var selectObject = pDPTool.getSelectToolObjcet();
     if (selectObject != null)
@@ -3898,7 +3856,7 @@ ChartManager.prototype.deleteToolObject = function () {
     }
     this.setNormalMode();
 };
-ChartManager.prototype.unloadTemplate = function (frameName) {
+ChartManager.prototype.unloadTemplate = function(frameName) {
     var frame = this.getFrame(frameName);
     if (frame == undefined)
         return;
@@ -4018,7 +3976,7 @@ ChartManager.prototype.createIndicatorAndRange = function (areaName, indicName, 
     }
     if (!notLoadSettings)
         indic.setParameters(ChartSettings.get().indics[indicName]);
-    return {"indic": indic, "range": range};
+    return {"indic":indic, "range":range};
 };
 ChartManager.prototype.setMainIndicator = function (dsName, indicName) {
     var areaName = dsName + ".main";
@@ -4187,11 +4145,11 @@ ChartManager.prototype.getIndicatorAreaName = function (dsName, index) {
     return tableLayout.getAreaAt(index << 1).getName();
 };
 var Timeline = create_class(NamedObject);
-Timeline._ItemWidth = [1, 3, 3, 5, 5, 7, 9, 11, 13, 15, 17, 19, 21, 23, 25, 27, 29];
-Timeline._SpaceWidth = [1, 1, 2, 2, 3, 3, 3, 3, 3, 3, 5, 5, 5, 5, 7, 7, 7];
+Timeline._ItemWidth = [1,3,3,5,5,7,9,11,13,15,17,19,21,23,25,27,29];
+Timeline._SpaceWidth = [1,1,2,2,3,3,3,3,3,3,5,5,5,5,7,7,7];
 Timeline.PADDING_LEFT = 4;
 Timeline.PADDING_RIGHT = 8;
-Timeline.prototype.__construct = function (name) {
+Timeline.prototype.__construct = function(name) {
     Timeline.__super.__construct.call(this, name);
     this._updated = false;
     this._innerLeft = 0;
@@ -4205,58 +4163,58 @@ Timeline.prototype.__construct = function (name) {
     this._selectedIndex = -1;
     this._savedFirstIndex = -1;
 };
-Timeline.prototype.isLatestShown = function () {
+Timeline.prototype.isLatestShown = function() {
     return this.getLastIndex() == this._maxIndex;
 };
-Timeline.prototype.isUpdated = function () {
+Timeline.prototype.isUpdated = function() {
     return this._updated;
 };
-Timeline.prototype.setUpdated = function (v) {
+Timeline.prototype.setUpdated = function(v) {
     this._updated = v;
 };
-Timeline.prototype.getItemWidth = function () {
+Timeline.prototype.getItemWidth = function() {
     return Timeline._ItemWidth[this._scale];
 };
-Timeline.prototype.getSpaceWidth = function () {
+Timeline.prototype.getSpaceWidth = function() {
     return Timeline._SpaceWidth[this._scale];
 };
-Timeline.prototype.getColumnWidth = function () {
+Timeline.prototype.getColumnWidth = function() {
     return this.getSpaceWidth() + this.getItemWidth();
 };
-Timeline.prototype.getInnerWidth = function () {
+Timeline.prototype.getInnerWidth = function() {
     return this._innerWidth;
 };
-Timeline.prototype.getItemLeftOffset = function () {
+Timeline.prototype.getItemLeftOffset = function() {
     return this.getSpaceWidth();
 };
-Timeline.prototype.getItemCenterOffset = function () {
+Timeline.prototype.getItemCenterOffset = function() {
     return this.getSpaceWidth() + (this.getItemWidth() >> 1);
 };
-Timeline.prototype.getFirstColumnLeft = function () {
+Timeline.prototype.getFirstColumnLeft = function() {
     return this._firstColumnLeft;
 };
-Timeline.prototype.getMaxItemCount = function () {
+Timeline.prototype.getMaxItemCount = function() {
     return this._maxItemCount;
 };
-Timeline.prototype.getFirstIndex = function () {
+Timeline.prototype.getFirstIndex = function() {
     return this._firstIndex;
 };
-Timeline.prototype.getLastIndex = function () {
+Timeline.prototype.getLastIndex = function() {
     return Math.min(this._firstIndex + this._maxItemCount, this._maxIndex);
 };
-Timeline.prototype.getSelectedIndex = function () {
+Timeline.prototype.getSelectedIndex = function() {
     return this._selectedIndex;
 };
-Timeline.prototype.getMaxIndex = function () {
+Timeline.prototype.getMaxIndex = function() {
     return this._maxIndex;
 };
-Timeline.prototype.calcColumnCount = function (w) {
+Timeline.prototype.calcColumnCount = function(w) {
     return Math.floor(w / this.getColumnWidth()) << 0;
 };
-Timeline.prototype.calcFirstColumnLeft = function (maxItemCount) {
+Timeline.prototype.calcFirstColumnLeft = function(maxItemCount) {
     return this._innerLeft + this._innerWidth - (this.getColumnWidth() * maxItemCount);
 };
-Timeline.prototype.calcFirstIndexAlignRight = function (oldFirstIndex, oldMaxItemCount, newMaxItemCount) {
+Timeline.prototype.calcFirstIndexAlignRight = function(oldFirstIndex, oldMaxItemCount, newMaxItemCount) {
     return Math.max(0, oldFirstIndex + Math.max(oldMaxItemCount, 1) - Math.max(newMaxItemCount, 1));
 };
 Timeline.prototype.calcFirstIndex = function (newMaxItemCount) {
@@ -4264,7 +4222,7 @@ Timeline.prototype.calcFirstIndex = function (newMaxItemCount) {
         this.calcFirstIndexAlignRight(this._firstIndex, this._maxItemCount,
             newMaxItemCount), newMaxItemCount);
 };
-Timeline.prototype.updateMaxItemCount = function () {
+Timeline.prototype.updateMaxItemCount = function() {
     var newMaxItemCount = this.calcColumnCount(this._innerWidth);
     var newFirstIndex;
     if (this._maxItemCount < 1) {
@@ -4289,7 +4247,7 @@ Timeline.prototype.updateMaxItemCount = function () {
     }
     this._firstColumnLeft = this.calcFirstColumnLeft(newMaxItemCount);
 };
-Timeline.prototype.validateFirstIndex = function (firstIndex, maxItemCount) {
+Timeline.prototype.validateFirstIndex = function(firstIndex, maxItemCount) {
     if (this._maxIndex < 1)
         return -1;
     if (firstIndex < 0)
@@ -4299,13 +4257,13 @@ Timeline.prototype.validateFirstIndex = function (firstIndex, maxItemCount) {
         return lastFirst;
     return firstIndex;
 };
-Timeline.prototype.validateSelectedIndex = function () {
+Timeline.prototype.validateSelectedIndex = function() {
     if (this._selectedIndex < this._firstIndex)
         this._selectedIndex = -1;
     else if (this._selectedIndex >= this.getLastIndex())
         this._selectedIndex = -1;
 };
-Timeline.prototype.onLayout = function () {
+Timeline.prototype.onLayout = function() {
     var mgr = ChartManager.getInstance();
     var area = mgr.getArea(this.getDataSourceName() + ".main");
     if (area != null) {
@@ -4317,27 +4275,27 @@ Timeline.prototype.onLayout = function () {
         }
     }
 };
-Timeline.prototype.toIndex = function (x) {
+Timeline.prototype.toIndex = function(x) {
     return this._firstIndex + this.calcColumnCount(x - this._firstColumnLeft);
 };
-Timeline.prototype.toColumnLeft = function (index) {
+Timeline.prototype.toColumnLeft = function(index) {
     return this._firstColumnLeft + (this.getColumnWidth() * (index - this._firstIndex));
 };
-Timeline.prototype.toItemLeft = function (index) {
+Timeline.prototype.toItemLeft = function(index) {
     return this.toColumnLeft(index) + this.getItemLeftOffset();
 };
-Timeline.prototype.toItemCenter = function (index) {
+Timeline.prototype.toItemCenter = function(index) {
     return this.toColumnLeft(index) + this.getItemCenterOffset();
 };
-Timeline.prototype.selectAt = function (x) {
+Timeline.prototype.selectAt = function(x) {
     this._selectedIndex = this.toIndex(x);
     this.validateSelectedIndex();
     return (this._selectedIndex >= 0);
 };
-Timeline.prototype.unselect = function () {
+Timeline.prototype.unselect = function() {
     this._selectedIndex = -1;
 };
-Timeline.prototype.update = function () {
+Timeline.prototype.update = function() {
     var mgr = ChartManager.getInstance();
     var ds = mgr.getDataSource(this.getDataSourceName());
     var oldMaxIndex = this._maxIndex;
@@ -4375,7 +4333,7 @@ Timeline.prototype.update = function () {
             break;
     }
 };
-Timeline.prototype.move = function (x) {
+Timeline.prototype.move = function(x) {
     if (this.isLatestShown())
         ChartManager.getInstance().getArea(
             this.getDataSourceName() + ".mainRange").setChanged(true);
@@ -4385,10 +4343,10 @@ Timeline.prototype.move = function (x) {
     if (this._selectedIndex >= 0)
         this.validateSelectedIndex();
 };
-Timeline.prototype.startMove = function () {
+Timeline.prototype.startMove = function() {
     this._savedFirstIndex = this._firstIndex;
 };
-Timeline.prototype.scale = function (s) {
+Timeline.prototype.scale = function(s) {
     this._scale += s;
     if (this._scale < 0)
         this._scale = 0;
@@ -4399,7 +4357,7 @@ Timeline.prototype.scale = function (s) {
         this.validateSelectedIndex();
 };
 var Range = create_class(NamedObject);
-Range.prototype.__construct = function (name) {
+Range.prototype.__construct = function(name) {
     Range.__super.__construct.call(this, name);
     this._updated = true;
     this._minValue = Number.MAX_VALUE;
@@ -4416,50 +4374,50 @@ Range.prototype.__construct = function (name) {
     this._selectedValue = -Number.MAX_VALUE;
     this._gradations = [];
 };
-Range.prototype.isUpdated = function () {
+Range.prototype.isUpdated = function() {
     return this._updated;
 };
-Range.prototype.setUpdated = function (v) {
+Range.prototype.setUpdated = function(v) {
     this._updated = v;
 };
-Range.prototype.getMinValue = function () {
+Range.prototype.getMinValue = function() {
     return this._minValue;
 };
-Range.prototype.getMaxValue = function () {
+Range.prototype.getMaxValue = function() {
     return this._maxValue;
 };
-Range.prototype.getRange = function () {
+Range.prototype.getRange = function() {
     return this._maxValue - this._minValue;
 };
-Range.prototype.getOuterMinValue = function () {
+Range.prototype.getOuterMinValue = function() {
     return this._outerMinValue;
 };
-Range.prototype.getOuterMaxValue = function () {
+Range.prototype.getOuterMaxValue = function() {
     return this._outerMaxValue;
 };
-Range.prototype.getOuterRange = function () {
+Range.prototype.getOuterRange = function() {
     return this._outerMaxValue - this._outerMinValue;
 };
-Range.prototype.getHeight = function () {
+Range.prototype.getHeight = function() {
     return Math.max(0, this._bottom - this._top);
 };
-Range.prototype.getGradations = function () {
+Range.prototype.getGradations = function() {
     return this._gradations;
 };
-Range.prototype.getMinInterval = function () {
+Range.prototype.getMinInterval = function() {
     return this._minInterval;
 };
-Range.prototype.setMinInterval = function (v) {
+Range.prototype.setMinInterval = function(v) {
     this._minInterval = v;
 };
-Range.prototype.getSelectedPosition = function () {
+Range.prototype.getSelectedPosition = function() {
     if (this._selectedPosition >= 0)
         return this._selectedPosition;
     if (this._selectedValue > -Number.MAX_VALUE)
         return this.toY(this._selectedValue);
     return -1;
 };
-Range.prototype.getSelectedValue = function () {
+Range.prototype.getSelectedValue = function() {
     if (this._selectedValue > -Number.MAX_VALUE)
         return this._selectedValue;
     var mgr = ChartManager.getInstance();
@@ -4470,28 +4428,28 @@ Range.prototype.getSelectedValue = function () {
         return -Number.MAX_VALUE;
     return this.toValue(this._selectedPosition);
 };
-Range.prototype.setPaddingTop = function (p) {
+Range.prototype.setPaddingTop = function(p) {
     this._paddingTop = p;
 };
-Range.prototype.setPaddingBottom = function (p) {
+Range.prototype.setPaddingBottom = function(p) {
     this._paddingBottom = p;
 };
-Range.prototype.toValue = function (y) {
+Range.prototype.toValue = function(y) {
     return this._maxValue - (y - this._top) / this._ratio;
 };
-Range.prototype.toY = function (value) {
+Range.prototype.toY = function(value) {
     if (this._ratio > 0)
         return this._top + Math.floor((this._maxValue - value) * this._ratio + 0.5);
     return this._top;
 };
-Range.prototype.toHeight = function (value) {
+Range.prototype.toHeight = function(value) {
     return Math.floor(value * this._ratio + 1.5);
 };
-Range.prototype.update = function () {
+Range.prototype.update = function() {
     var min = Number.MAX_VALUE;
     var max = -Number.MAX_VALUE;
     var mgr = ChartManager.getInstance();
-    var dp, dpNames = [".main", ".secondary"];
+    var dp, dpNames=[".main", ".secondary"];
     for (var i = 0; i < dpNames.length; i++) {
         dp = mgr.getDataProvider(this.getName() + dpNames[i]);
         if (dp != null) {
@@ -4503,25 +4461,25 @@ Range.prototype.update = function () {
     this.preSetRange(r);
     this.setRange(r.min, r.max);
 };
-Range.prototype.select = function (v) {
+Range.prototype.select = function(v) {
     this._selectedValue = v;
     this._selectedPosition = -1;
 };
-Range.prototype.selectAt = function (y) {
+Range.prototype.selectAt = function(y) {
     this._selectedPosition = y;
     this._selectedValue = -Number.MAX_VALUE;
 };
-Range.prototype.unselect = function () {
+Range.prototype.unselect = function() {
     this._selectedPosition = -1;
     this._selectedValue = -Number.MAX_VALUE;
 };
-Range.prototype.preSetRange = function (r) {
+Range.prototype.preSetRange = function(r) {
     if (r.min == r.max) {
         r.min = -1.0;
         r.max = 1.0;
     }
 };
-Range.prototype.setRange = function (minValue, maxValue) {
+Range.prototype.setRange = function(minValue, maxValue) {
     var mgr = ChartManager.getInstance();
     var area = mgr.getArea(this.getAreaName());
     if (this._minValue == minValue && this._maxValue == maxValue && !area.isChanged())
@@ -4548,7 +4506,7 @@ Range.prototype.setRange = function (minValue, maxValue) {
     this._outerMaxValue = this.toValue(area.getTop());
     this.updateGradations();
 };
-Range.prototype.calcInterval = function () {
+Range.prototype.calcInterval = function() {
     var H = this.getHeight();
     var h = this.getMinInterval();
     if ((H / h) <= 1)
@@ -4560,7 +4518,7 @@ Range.prototype.calcInterval = function () {
         i--;
     }
     var m, c;
-    for (; ; i++) {
+    for (;; i++) {
         c = Math.pow(10.0, i);
         m = c;
         if (this.toHeight(m) > h)
@@ -4574,7 +4532,8 @@ Range.prototype.calcInterval = function () {
     }
     return m;
 };
-Range.prototype.updateGradations = function () {
+Range.prototype.updateGradations=function()
+{
     this._gradations = [];
     var interval = this.calcInterval();
     if (interval <= 0.0)
@@ -4586,26 +4545,26 @@ Range.prototype.updateGradations = function () {
     } while (v > this.getMinValue());
 };
 var PositiveRange = create_class(Range);
-PositiveRange.prototype.__construct = function (name) {
+PositiveRange.prototype.__construct = function(name) {
     PositiveRange.__super.__construct.call(this, name);
 };
-PositiveRange.prototype.preSetRange = function (r) {
+PositiveRange.prototype.preSetRange = function(r) {
     if (r.min < 0) r.min = 0;
     if (r.max < 0) r.max = 0;
 };
 var ZeroBasedPositiveRange = create_class(Range);
-ZeroBasedPositiveRange.prototype.__construct = function (name) {
+ZeroBasedPositiveRange.prototype.__construct = function(name) {
     ZeroBasedPositiveRange.__super.__construct.call(this, name);
 };
-ZeroBasedPositiveRange.prototype.preSetRange = function (r) {
+ZeroBasedPositiveRange.prototype.preSetRange = function(r) {
     r.min = 0;
     if (r.max < 0) r.max = 0;
 };
 var MainRange = create_class(Range);
-MainRange.prototype.__construct = function (name) {
+MainRange.prototype.__construct = function(name) {
     MainRange.__super.__construct.call(this, name);
 };
-MainRange.prototype.preSetRange = function (r) {
+MainRange.prototype.preSetRange = function(r) {
     var mgr = ChartManager.getInstance();
     var timeline = mgr.getTimeline(this.getDataSourceName());
     var dIndex = timeline.getMaxIndex() - timeline.getLastIndex();
@@ -4639,23 +4598,23 @@ MainRange.prototype.preSetRange = function (r) {
     if (r.max < 0) r.max = 0;
 };
 var ZeroCenteredRange = create_class(Range);
-ZeroCenteredRange.prototype.__construct = function (name) {
+ZeroCenteredRange.prototype.__construct = function(name) {
     ZeroCenteredRange.__super.__construct.call(this, name);
 };
-ZeroCenteredRange.prototype.calcInterval = function (area) {
+ZeroCenteredRange.prototype.calcInterval = function(area) {
     var h = this.getMinInterval();
     if (area.getHeight() / h < 2)
         return 0.0;
     var r = this.getRange();
     var i;
-    for (i = 3; ; i += 2) {
+    for (i = 3; ; i+= 2) {
         if (this.toHeight(r / i) <= h)
             break;
     }
     i -= 2;
     return r / i;
 };
-ZeroCenteredRange.prototype.updateGradations = function () {
+ZeroCenteredRange.prototype.updateGradations = function() {
     this._gradations = [];
     var mgr = ChartManager.getInstance();
     var area = mgr.getArea(this.getAreaName());
@@ -4669,16 +4628,17 @@ ZeroCenteredRange.prototype.updateGradations = function () {
         v += interval;
     } while (v <= this.getMaxValue());
 };
-ZeroCenteredRange.prototype.preSetRange = function (r) {
+ZeroCenteredRange.prototype.preSetRange = function(r) {
     var abs = Math.max(Math.abs(r.min), Math.abs(r.max));
     r.min = -abs;
     r.max = abs;
 };
 var PercentageRange = create_class(Range);
-PercentageRange.prototype.__construct = function (name) {
+PercentageRange.prototype.__construct = function(name){
     PercentageRange.__super.__construct.call(this, name);
 };
-PercentageRange.prototype.updateGradations = function () {
+PercentageRange.prototype.updateGradations = function()
+{
     this._gradations = [];
     var mgr = ChartManager.getInstance();
     var area = mgr.getArea(this.getAreaName());
@@ -4711,22 +4671,22 @@ PercentageRange.prototype.updateGradations = function () {
     }
 };
 var DataSource = create_class(NamedObject);
-DataSource.prototype.__construct = function (name) {
+DataSource.prototype.__construct = function(name) {
     DataSource.__super.__construct.call(this, name);
 };
 DataSource.UpdateMode = {
     DoNothing: 0, Refresh: 1, Update: 2, Append: 3
 };
-DataSource.prototype.getUpdateMode = function () {
+DataSource.prototype.getUpdateMode = function() {
     return this._updateMode;
 };
-DataSource.prototype.setUpdateMode = function (mode) {
+DataSource.prototype.setUpdateMode = function(mode) {
     this._updateMode = mode;
 };
-DataSource.prototype.getCacheSize = function () {
+DataSource.prototype.getCacheSize = function() {
     return 0;
 };
-DataSource.prototype.getDataCount = function () {
+DataSource.prototype.getDataCount = function() {
     return 0;
 };
 var MainDataSource = create_class(DataSource);
@@ -4792,7 +4752,7 @@ MainDataSource.prototype.update = function (data) {
                 } else {
                     this.setUpdateMode(DataSource.UpdateMode.Update);
                     this._dataItems[lastIndex] = {
-                        date: e[0], open: e[1], high: e[2], low: e[3], close: e[4], volume: e[5]
+                        date:e[0], open:e[1], high:e[2], low:e[3], close:e[4], volume:e[5]
                     };
                     this._updatedCount++;
                 }
@@ -4802,7 +4762,7 @@ MainDataSource.prototype.update = function (data) {
                     for (; i < cnt; i++, this._appendedCount++) {
                         e = data[i];
                         this._dataItems.push({
-                            date: e[0], open: e[1], high: e[2], low: e[3], close: e[4], volume: e[5]
+                            date:e[0], open:e[1], high:e[2], low:e[3], close:e[4], volume:e[5]
                         });
                     }
                 }
@@ -4825,59 +4785,59 @@ MainDataSource.prototype.update = function (data) {
                 this._decimalDigits = d;
         }
         this._dataItems.push({
-            date: e[0], open: e[1], high: e[2], low: e[3], close: e[4], volume: e[5]
+            date:e[0], open:e[1], high:e[2], low:e[3], close:e[4], volume:e[5]
         });
     }
     return true;
 };
-MainDataSource.prototype.select = function (id) {
+MainDataSource.prototype.select = function(id) {
     this.toolManager.selecedObject = id;
 };
-MainDataSource.prototype.unselect = function () {
+MainDataSource.prototype.unselect = function() {
     this.toolManager.selecedObject = -1;
 };
-MainDataSource.prototype.addToolObject = function (toolObject) {
+MainDataSource.prototype.addToolObject = function(toolObject) {
     this.toolManager.addToolObject(toolObject);
 };
-MainDataSource.prototype.delToolObject = function () {
+MainDataSource.prototype.delToolObject = function() {
     this.toolManager.delCurrentObject();
 };
-MainDataSource.prototype.getToolObject = function (index) {
+MainDataSource.prototype.getToolObject = function(index) {
     return this.toolManager.getToolObject(index);
 };
-MainDataSource.prototype.getToolObjectCount = function () {
+MainDataSource.prototype.getToolObjectCount = function() {
     return this.toolManager.toolObjects.length;
 };
-MainDataSource.prototype.getCurrentToolObject = function () {
+MainDataSource.prototype.getCurrentToolObject = function() {
     return this.toolManager.getCurrentObject();
 };
-MainDataSource.prototype.getSelectToolObjcet = function () {
+MainDataSource.prototype.getSelectToolObjcet = function() {
     return this.toolManager.getSelectedObject();
 };
-MainDataSource.prototype.delSelectToolObject = function () {
+MainDataSource.prototype.delSelectToolObject = function() {
     this.toolManager.delSelectedObject();
 };
 var DataProvider = create_class(NamedObject);
-DataProvider.prototype.__construct = function (name) {
+DataProvider.prototype.__construct = function(name) {
     DataProvider.__super.__construct.call(this, name);
     this._minValue = 0;
     this._maxValue = 0;
     this._minValueIndex = -1;
     this._maxValueIndex = -1;
 };
-DataProvider.prototype.getMinValue = function () {
+DataProvider.prototype.getMinValue = function() {
     return this._minValue;
 };
-DataProvider.prototype.getMaxValue = function () {
+DataProvider.prototype.getMaxValue = function() {
     return this._maxValue;
 };
-DataProvider.prototype.getMinValueIndex = function () {
+DataProvider.prototype.getMinValueIndex = function() {
     return this._minValueIndex;
 };
-DataProvider.prototype.getMaxValueIndex = function () {
+DataProvider.prototype.getMaxValueIndex = function() {
     return this._maxValueIndex;
 };
-DataProvider.prototype.calcRange = function (firstIndexes, lastIndex, minmaxes, indexes) {
+DataProvider.prototype.calcRange = function(firstIndexes, lastIndex, minmaxes, indexes) {
     var min = Number.MAX_VALUE;
     var max = -Number.MAX_VALUE;
     var minIndex = -1;
@@ -4888,7 +4848,7 @@ DataProvider.prototype.calcRange = function (firstIndexes, lastIndex, minmaxes, 
     for (; n >= 0; n--) {
         var first = firstIndexes[n];
         if (i < first) {
-            minmaxes[n] = {"min": min, "max": max};
+            minmaxes[n] = {"min":min, "max":max};
         } else {
             for (; i >= first; i--) {
                 if (this.getMinMaxAt(i, minmax) == false)
@@ -4902,10 +4862,10 @@ DataProvider.prototype.calcRange = function (firstIndexes, lastIndex, minmaxes, 
                     maxIndex = i;
                 }
             }
-            minmaxes[n] = {"min": min, "max": max};
+            minmaxes[n] = {"min":min, "max":max};
         }
         if (indexes != null) {
-            indexes[n] = {"minIndex": minIndex, "maxIndex": maxIndex};
+            indexes[n] = {"minIndex":minIndex, "maxIndex":maxIndex};
         }
     }
 };
@@ -4922,18 +4882,18 @@ DataProvider.prototype.updateRange = function () {
     this._maxValueIndex = indexes[0].maxIndex;
 };
 var MainDataProvider = create_class(DataProvider);
-MainDataProvider.prototype.__construct = function (name) {
+MainDataProvider.prototype.__construct = function(name) {
     MainDataProvider.__super.__construct.call(this, name);
     this._candlestickDS = null;
 };
-MainDataProvider.prototype.updateData = function () {
+MainDataProvider.prototype.updateData = function() {
     var mgr = ChartManager.getInstance();
     var ds = mgr.getDataSource(this.getDataSourceName());
     if (!is_instance(ds, MainDataSource))
         return;
     this._candlestickDS = ds;
 };
-MainDataProvider.prototype.getMinMaxAt = function (index, minmax) {
+MainDataProvider.prototype.getMinMaxAt = function(index, minmax) {
     var data = this._candlestickDS.getDataAt(index);
     minmax.min = data.low;
     minmax.max = data.high;
@@ -4983,7 +4943,7 @@ IndicatorDataProvider.prototype.updateData = function () {
         }
     }
 };
-IndicatorDataProvider.prototype.getMinMaxAt = function (index, minmax) {
+IndicatorDataProvider.prototype.getMinMaxAt = function(index, minmax) {
     minmax.min = Number.MAX_VALUE;
     minmax.max = -Number.MAX_VALUE;
     var result, valid = false;
@@ -5003,10 +4963,10 @@ IndicatorDataProvider.prototype.getMinMaxAt = function (index, minmax) {
 var theme_color_id = 0;
 var theme_font_id = 0;
 var Theme = create_class();
-Theme.prototype.getColor = function (which) {
+Theme.prototype.getColor = function(which) {
     return this._colors[which];
 };
-Theme.prototype.getFont = function (which) {
+Theme.prototype.getFont = function(which) {
     return this._fonts[which];
 };
 Theme.Color = {
@@ -5034,16 +4994,16 @@ Theme.Color = {
     Text2: theme_color_id++,
     Text3: theme_color_id++,
     Text4: theme_color_id++,
-    LineColorNormal: theme_color_id++,
-    LineColorSelected: theme_color_id++,
-    CircleColorFill: theme_color_id++,
-    CircleColorStroke: theme_color_id++
+    LineColorNormal		: theme_color_id++,
+    LineColorSelected	: theme_color_id++,
+    CircleColorFill		: theme_color_id++,
+    CircleColorStroke	: theme_color_id++
 };
 Theme.Font = {
     Default: theme_font_id++
 };
 var DarkTheme = create_class(Theme);
-DarkTheme.prototype.__construct = function () {
+DarkTheme.prototype.__construct = function() {
     this._colors = [];
     this._colors[Theme.Color.Positive] = "#19b34c";
     this._colors[Theme.Color.Negative] = "#b33120";
@@ -5069,15 +5029,15 @@ DarkTheme.prototype.__construct = function () {
     this._colors[Theme.Color.Text2] = "#888";
     this._colors[Theme.Color.Text3] = "#aaa";
     this._colors[Theme.Color.Text4] = "#ccc";
-    this._colors[Theme.Color.LineColorNormal] = "#a6a6a6";
-    this._colors[Theme.Color.LineColorSelected] = "#ffffff";
-    this._colors[Theme.Color.CircleColorFill] = "#000000";
-    this._colors[Theme.Color.CircleColorStroke] = "#ffffff";
+    this._colors[Theme.Color.LineColorNormal] 		= "#a6a6a6";
+    this._colors[Theme.Color.LineColorSelected] 	= "#ffffff";
+    this._colors[Theme.Color.CircleColorFill] 		= "#000000";
+    this._colors[Theme.Color.CircleColorStroke] 	= "#ffffff";
     this._fonts = [];
     this._fonts[Theme.Font.Default] = "12px Tahoma";
 };
 var LightTheme = create_class(Theme);
-LightTheme.prototype.__construct = function () {
+LightTheme.prototype.__construct = function() {
     this._colors = [];
     this._colors[Theme.Color.Positive] = "#53b37b";
     this._colors[Theme.Color.Negative] = "#db5542";
@@ -5103,15 +5063,15 @@ LightTheme.prototype.__construct = function () {
     this._colors[Theme.Color.Text2] = "#888";
     this._colors[Theme.Color.Text3] = "#666";
     this._colors[Theme.Color.Text4] = "#444";
-    this._colors[Theme.Color.LineColorNormal] = "#8c8c8c";
-    this._colors[Theme.Color.LineColorSelected] = "#393c40";
-    this._colors[Theme.Color.CircleColorFill] = "#ffffff";
-    this._colors[Theme.Color.CircleColorStroke] = "#393c40";
+    this._colors[Theme.Color.LineColorNormal] 		= "#8c8c8c";
+    this._colors[Theme.Color.LineColorSelected] 	= "#393c40";
+    this._colors[Theme.Color.CircleColorFill] 		= "#ffffff";
+    this._colors[Theme.Color.CircleColorStroke] 	= "#393c40";
     this._fonts = [];
     this._fonts[Theme.Font.Default] = "12px Tahoma";
 };
 var TemplateMeasuringHandler = create_class();
-TemplateMeasuringHandler.onMeasuring = function (sender, args) {
+TemplateMeasuringHandler.onMeasuring = function(sender, args) {
     var width = args.Width;
     var height = args.Height;
     var areaName = sender.getNameObject().getCompAt(2);
@@ -5120,23 +5080,23 @@ TemplateMeasuringHandler.onMeasuring = function (sender, args) {
 };
 var Template = create_class();
 Template.displayVolume = true;
-Template.createCandlestickDataSource = function (dsAlias) {
+Template.createCandlestickDataSource = function(dsAlias) {
     return new MainDataSource(dsAlias);
 };
-Template.createLiveOrderDataSource = function (dsAlias) {
+Template.createLiveOrderDataSource = function(dsAlias) {
     return new CLiveOrderDataSource(dsAlias);
 };
-Template.createLiveTradeDataSource = function (dsAlias) {
+Template.createLiveTradeDataSource = function(dsAlias) {
     return new CLiveTradeDataSource(dsAlias);
 };
-Template.createDataSource = function (dsName, dsAlias, createFunc) {
+Template.createDataSource = function(dsName, dsAlias, createFunc) {
     var mgr = ChartManager.getInstance();
     if (mgr.getCachedDataSource(dsAlias) == null)
         mgr.setCachedDataSource(dsAlias, createFunc(dsAlias));
     mgr.setCurrentDataSource(dsName, dsAlias);
     mgr.updateData(dsName, null);
 };
-Template.createTableComps = function (dsName) {
+Template.createTableComps = function(dsName) {
     Template.createMainChartComps(dsName);
     if (Template.displayVolume)
         Template.createIndicatorChartComps(dsName, "VOLUME");
@@ -5243,7 +5203,7 @@ Template.createTimelineComps = function (dsName) {
     plotter = new TimelineSelectionPlotter(dsName + ".timeline.selection");
     mgr.setPlotter(plotter.getName(), plotter);
 };
-Template.createLiveOrderComps = function (dsName) {
+Template.createLiveOrderComps = function(dsName) {
     var mgr = ChartManager.getInstance();
     var plotter;
     plotter = new BackgroundPlotter(dsName + ".main.background");
@@ -5251,7 +5211,7 @@ Template.createLiveOrderComps = function (dsName) {
     plotter = new CLiveOrderPlotter(dsName + ".main.main");
     mgr.setPlotter(plotter.getName(), plotter);
 };
-Template.createLiveTradeComps = function (dsName) {
+Template.createLiveTradeComps = function(dsName) {
     var mgr = ChartManager.getInstance();
     var plotter;
     plotter = new BackgroundPlotter(dsName + ".main.background");
@@ -5260,7 +5220,9 @@ Template.createLiveTradeComps = function (dsName) {
     mgr.setPlotter(plotter.getName(), plotter);
 };
 var DefaultTemplate = create_class(Template);
-DefaultTemplate.loadTemplate = function (dsName, dsAlias, dsNameOrder, dsAliasOrder, dsNameTrade, dsAliasTrade) {
+DefaultTemplate.loadTemplate = function (
+    dsName, dsAlias, dsNameOrder, dsAliasOrder, dsNameTrade, dsAliasTrade)
+{
     var mgr = ChartManager.getInstance();
     var settings = ChartSettings.get();
     var frameName = (new CName(dsName)).getCompAt(0);
@@ -5284,17 +5246,17 @@ DefaultTemplate.loadTemplate = function (dsName, dsAlias, dsNameOrder, dsAliasOr
     return mgr;
 };
 var Plotter = create_class(NamedObject);
-Plotter.prototype.__construct = function (name) {
+Plotter.prototype.__construct = function(name){
     Plotter.__super.__construct.call(this, name);
 };
 Plotter.isChrome = (navigator.userAgent.toLowerCase().match(/chrome/) != null);
-Plotter.drawLine = function (context, x1, y1, x2, y2) {
+Plotter.drawLine = function(context, x1, y1, x2, y2) {
     context.beginPath();
     context.moveTo((x1 << 0) + 0.5, (y1 << 0) + 0.5);
     context.lineTo((x2 << 0) + 0.5, (y2 << 0) + 0.5);
     context.stroke();
 };
-Plotter.drawLines = function (context, points) {
+Plotter.drawLines = function(context, points) {
     var i, cnt = points.length;
     context.beginPath();
     context.moveTo(points[0].x, points[0].y);
@@ -5307,7 +5269,7 @@ Plotter.drawLines = function (context, points) {
     }
     context.stroke();
 };
-Plotter.drawDashedLine = function (context, x1, y1, x2, y2, dashLen, dashSolid) {
+Plotter.drawDashedLine = function(context, x1, y1, x2, y2, dashLen, dashSolid) {
     if (dashLen < 2)
         dashLen = 2;
     var dX = x2 - x1;
@@ -5335,7 +5297,7 @@ Plotter.drawDashedLine = function (context, x1, y1, x2, y2, dashLen, dashSolid) 
         context.stroke();
     }
 };
-Plotter.createHorzDashedLine = function (context, x1, x2, y, dashLen, dashSolid) {
+Plotter.createHorzDashedLine = function(context, x1, x2, y, dashLen, dashSolid) {
     if (dashLen < 2)
         dashLen = 2;
     var dX = x2 - x1;
@@ -5345,7 +5307,7 @@ Plotter.createHorzDashedLine = function (context, x1, x2, y, dashLen, dashSolid)
         x1 += dashLen;
     }
 };
-Plotter.createRectangles = function (context, rects) {
+Plotter.createRectangles = function(context, rects) {
     context.beginPath();
     var e, i, cnt = rects.length;
     for (i = 0; i < cnt; i++) {
@@ -5353,7 +5315,7 @@ Plotter.createRectangles = function (context, rects) {
         context.rect(e.x, e.y, e.w, e.h);
     }
 };
-Plotter.createPolygon = function (context, points) {
+Plotter.createPolygon = function(context, points) {
     context.beginPath();
     context.moveTo(points[0].x + 0.5, points[0].y + 0.5);
     var i, cnt = points.length;
@@ -5371,17 +5333,17 @@ Plotter.drawString = function (context, str, rect) {
     return true;
 };
 var BackgroundPlotter = create_class(Plotter);
-BackgroundPlotter.prototype.__construct = function (name) {
+BackgroundPlotter.prototype.__construct = function(name) {
     BackgroundPlotter.__super.__construct.call(this, name);
     this._color = Theme.Color.Background;
 };
-BackgroundPlotter.prototype.getColor = function () {
+BackgroundPlotter.prototype.getColor = function() {
     return this._color;
 };
-BackgroundPlotter.prototype.setColor = function (c) {
+BackgroundPlotter.prototype.setColor = function(c) {
     this._color = c;
 };
-BackgroundPlotter.prototype.Draw = function (context) {
+BackgroundPlotter.prototype.Draw = function(context) {
     var mgr = ChartManager.getInstance();
     var area = mgr.getArea(this.getAreaName());
     var theme = mgr.getTheme(this.getFrameName());
@@ -5390,10 +5352,10 @@ BackgroundPlotter.prototype.Draw = function (context) {
     context.fillRect(area.getLeft(), area.getTop(), area.getWidth(), area.getHeight());
 };
 var MainAreaBackgroundPlotter = create_class(BackgroundPlotter);
-MainAreaBackgroundPlotter.prototype.__construct = function (name) {
+MainAreaBackgroundPlotter.prototype.__construct = function(name) {
     MainAreaBackgroundPlotter.__super.__construct.call(this, name);
 };
-MainAreaBackgroundPlotter.prototype.Draw = function (context) {
+MainAreaBackgroundPlotter.prototype.Draw = function(context) {
     var mgr = ChartManager.getInstance();
     var area = mgr.getArea(this.getAreaName());
     var timeline = mgr.getTimeline(this.getDataSourceName());
@@ -5409,13 +5371,13 @@ MainAreaBackgroundPlotter.prototype.Draw = function (context) {
     }
     //context.fillStyle = theme.getColor(this._color);
     context.fillStyle = "transparent";
-    context.fillRect(rect.X, rect.Y, rect.Width, rect.Height);
+    context.fillRect(rect.X, rect.Y , rect.Width, rect.Height);
 };
 var RangeAreaBackgroundPlotter = create_class(BackgroundPlotter);
-RangeAreaBackgroundPlotter.prototype.__construct = function (name) {
+RangeAreaBackgroundPlotter.prototype.__construct = function(name) {
     RangeAreaBackgroundPlotter.__super.__construct.call(this, name);
 };
-RangeAreaBackgroundPlotter.prototype.Draw = function (context) {
+RangeAreaBackgroundPlotter.prototype.Draw = function(context) {
     var mgr = ChartManager.getInstance();
     var areaName = this.getAreaName();
     var area = mgr.getArea(areaName);
@@ -5431,10 +5393,10 @@ RangeAreaBackgroundPlotter.prototype.Draw = function (context) {
     context.fillRect(area.getLeft(), area.getTop(), area.getWidth(), area.getHeight());
 };
 var TimelineAreaBackgroundPlotter = create_class(BackgroundPlotter);
-TimelineAreaBackgroundPlotter.prototype.__construct = function (name) {
+TimelineAreaBackgroundPlotter.prototype.__construct = function(name) {
     TimelineAreaBackgroundPlotter.__super.__construct.call(this, name);
 };
-TimelineAreaBackgroundPlotter.prototype.Draw = function (context) {
+TimelineAreaBackgroundPlotter.prototype.Draw = function(context) {
     var mgr = ChartManager.getInstance();
     var area = mgr.getArea(this.getAreaName());
     var timeline = mgr.getTimeline(this.getDataSourceName());
@@ -5445,10 +5407,10 @@ TimelineAreaBackgroundPlotter.prototype.Draw = function (context) {
     context.fillRect(area.getLeft(), area.getTop(), area.getWidth(), area.getHeight());
 };
 var CGridPlotter = create_class(NamedObject);
-CGridPlotter.prototype.__construct = function (name) {
+CGridPlotter.prototype.__construct = function(name) {
     CGridPlotter.__super.__construct.call(this, name);
 };
-CGridPlotter.prototype.Draw = function (context) {
+CGridPlotter.prototype.Draw = function(context) {
     var mgr = ChartManager.getInstance();
     var area = mgr.getArea(this.getAreaName());
     var timeline = mgr.getTimeline(this.getDataSourceName());
@@ -5468,10 +5430,8 @@ CGridPlotter.prototype.Draw = function (context) {
     context.fillStyle = theme.getColor(Theme.Color.Grid0);
     context.beginPath();
     var dashLen = 12, dashSolid = 3;
-    if (Plotter.isChrome) {
-        dashLen = 4;
-        dashSolid = 1;
-    }
+    if (Plotter.isChrome)
+    { dashLen = 4; dashSolid = 1; }
     var gradations = range.getGradations();
     for (var n in gradations)
         Plotter.createHorzDashedLine(context,
@@ -5481,10 +5441,10 @@ CGridPlotter.prototype.Draw = function (context) {
         context.restore();
 };
 var CandlestickPlotter = create_class(NamedObject);
-CandlestickPlotter.prototype.__construct = function (name) {
+CandlestickPlotter.prototype.__construct = function(name) {
     CandlestickPlotter.__super.__construct.call(this, name);
 };
-CandlestickPlotter.prototype.Draw = function (context) {
+CandlestickPlotter.prototype.Draw = function(context) {
     var mgr = ChartManager.getInstance();
     var ds = mgr.getDataSource(this.getDataSourceName());
     if (ds.getDataCount() < 1)
@@ -5522,39 +5482,39 @@ CandlestickPlotter.prototype.Draw = function (context) {
             var bottom = range.toY(open);
             var iH = Math.max(bottom - top, 1);
             if (iH > 1 && iW > 1 && dark)
-                strokePosRects.push({x: left + 0.5, y: top + 0.5, w: iW - 1, h: iH - 1});
+                strokePosRects.push({x:left + 0.5, y:top + 0.5, w:iW - 1, h:iH - 1});
             else
-                fillPosRects.push({x: left, y: top, w: Math.max(iW, 1), h: Math.max(iH, 1)});
+                fillPosRects.push({x:left, y:top, w:Math.max(iW, 1), h:Math.max(iH, 1)});
             if (data.high > close) {
                 high = Math.min(high, top - 1);
-                fillPosRects.push({x: center, y: high, w: 1, h: top - high});
+                fillPosRects.push({x:center, y:high, w:1, h:top - high});
             }
             if (open > data.low) {
                 low = Math.max(low, bottom + 1);
-                fillPosRects.push({x: center, y: bottom, w: 1, h: low - bottom});
+                fillPosRects.push({x:center, y:bottom, w:1, h:low - bottom});
             }
         }
         else if (close == open) {
             var top = range.toY(close);
-            fillUchRects.push({x: left, y: top, w: Math.max(iW, 1), h: 1});
+            fillUchRects.push({x:left, y:top, w:Math.max(iW, 1), h:1});
             if (data.high > close)
                 high = Math.min(high, top - 1);
             if (open > data.low)
                 low = Math.max(low, top + 1);
             if (high < low)
-                fillUchRects.push({x: center, y: high, w: 1, h: low - high});
+                fillUchRects.push({x:center, y:high, w:1, h:low - high});
         }
         else {
             var top = range.toY(open);
             var bottom = range.toY(close);
             var iH = Math.max(bottom - top, 1);
-            fillNegRects.push({x: left, y: top, w: Math.max(iW, 1), h: Math.max(iH, 1)});
+            fillNegRects.push({x:left, y:top, w:Math.max(iW, 1), h:Math.max(iH, 1)});
             if (data.high > open)
                 high = Math.min(high, top - 1);
             if (close > data.low)
                 low = Math.max(low, bottom + 1);
             if (high < low)
-                fillNegRects.push({x: center, y: high, w: 1, h: low - high});
+                fillNegRects.push({x:center, y:high, w:1, h:low - high});
         }
         left += cW;
         center += cW;
@@ -5581,10 +5541,10 @@ CandlestickPlotter.prototype.Draw = function (context) {
     }
 };
 var CandlestickHLCPlotter = create_class(Plotter);
-CandlestickHLCPlotter.prototype.__construct = function (name) {
+CandlestickHLCPlotter.prototype.__construct = function(name) {
     CandlestickHLCPlotter.__super.__construct.call(this, name);
 };
-CandlestickHLCPlotter.prototype.Draw = function (context) {
+CandlestickHLCPlotter.prototype.Draw = function(context) {
     var mgr = ChartManager.getInstance();
     var ds = mgr.getDataSource(this.getDataSourceName());
     if (!is_instance(ds, MainDataSource) || ds.getDataCount() < 1)
@@ -5624,39 +5584,39 @@ CandlestickHLCPlotter.prototype.Draw = function (context) {
             var bottom = range.toY(open);
             var iH = Math.max(bottom - top, 1);
             if (iH > 1 && iW > 1 && dark)
-                strokePosRects.push({x: left + 0.5, y: top + 0.5, w: iW - 1, h: iH - 1});
+                strokePosRects.push({x:left + 0.5, y:top + 0.5, w:iW - 1, h:iH - 1});
             else
-                fillPosRects.push({x: left, y: top, w: Math.max(iW, 1), h: Math.max(iH, 1)});
+                fillPosRects.push({x:left, y:top, w:Math.max(iW, 1), h:Math.max(iH, 1)});
             if (data.high > close) {
                 high = Math.min(high, top - 1);
-                fillPosRects.push({x: center, y: high, w: 1, h: top - high});
+                fillPosRects.push({x:center, y:high, w:1, h:top - high});
             }
             if (open > data.low) {
                 low = Math.max(low, bottom + 1);
-                fillPosRects.push({x: center, y: bottom, w: 1, h: low - bottom});
+                fillPosRects.push({x:center, y:bottom, w:1, h:low - bottom});
             }
         }
         else if (close == open) {
             var top = range.toY(close);
-            fillUchRects.push({x: left, y: top, w: Math.max(iW, 1), h: 1});
+            fillUchRects.push({x:left, y:top, w:Math.max(iW, 1), h:1});
             if (data.high > close)
                 high = Math.min(high, top - 1);
             if (open > data.low)
                 low = Math.max(low, top + 1);
             if (high < low)
-                fillUchRects.push({x: center, y: high, w: 1, h: low - high});
+                fillUchRects.push({x:center, y:high, w:1, h:low - high});
         }
         else {
             var top = range.toY(open);
             var bottom = range.toY(close);
             var iH = Math.max(bottom - top, 1);
-            fillNegRects.push({x: left, y: top, w: Math.max(iW, 1), h: Math.max(iH, 1)});
+            fillNegRects.push({x:left, y:top, w:Math.max(iW, 1), h:Math.max(iH, 1)});
             if (data.high > open)
                 high = Math.min(high, top - 1);
             if (close > data.low)
                 low = Math.max(low, bottom + 1);
             if (high < low)
-                fillNegRects.push({x: center, y: high, w: 1, h: low - high});
+                fillNegRects.push({x:center, y:high, w:1, h:low - high});
         }
         left += cW;
         center += cW;
@@ -5683,10 +5643,10 @@ CandlestickHLCPlotter.prototype.Draw = function (context) {
     }
 };
 var OHLCPlotter = create_class(Plotter);
-OHLCPlotter.prototype.__construct = function (name) {
+OHLCPlotter.prototype.__construct = function(name) {
     OHLCPlotter.__super.__construct.call(this, name);
 };
-OHLCPlotter.prototype.Draw = function (context) {
+OHLCPlotter.prototype.Draw = function(context) {
     var mgr = ChartManager.getInstance();
     var ds = mgr.getDataSource(this.getDataSourceName());
     if (!is_instance(ds, MainDataSource) || ds.getDataCount() < 1)
@@ -5720,22 +5680,22 @@ OHLCPlotter.prototype.Draw = function (context) {
         if (data.close > data.open) {
             var top = range.toY(data.close);
             var bottom = range.toY(data.open);
-            fillPosRects.push({x: center, y: high, w: 1, h: iH});
-            fillPosRects.push({x: left, y: bottom, w: iW, h: 1});
-            fillPosRects.push({x: right, y: top, w: iW, h: 1});
+            fillPosRects.push({x:center, y:high, w:1, h:iH});
+            fillPosRects.push({x:left, y:bottom, w:iW, h:1});
+            fillPosRects.push({x:right, y:top, w:iW, h:1});
         }
         else if (data.close == data.open) {
             var y = range.toY(data.close);
-            fillUchRects.push({x: center, y: high, w: 1, h: iH});
-            fillUchRects.push({x: left, y: y, w: iW, h: 1});
-            fillUchRects.push({x: right, y: y, w: iW, h: 1});
+            fillUchRects.push({x:center, y:high, w:1, h:iH});
+            fillUchRects.push({x:left, y:y, w:iW, h:1});
+            fillUchRects.push({x:right, y:y, w:iW, h:1});
         }
         else {
             var top = range.toY(data.open);
             var bottom = range.toY(data.close);
-            fillNegRects.push({x: center, y: high, w: 1, h: iH});
-            fillNegRects.push({x: left, y: top, w: iW, h: 1});
-            fillNegRects.push({x: right, y: bottom, w: iW, h: 1});
+            fillNegRects.push({x:center, y:high, w:1, h:iH});
+            fillNegRects.push({x:left, y:top, w:iW, h:1});
+            fillNegRects.push({x:right, y:bottom, w:iW, h:1});
         }
         left += cW;
         center += cW;
@@ -5759,32 +5719,30 @@ OHLCPlotter.prototype.Draw = function (context) {
 };
 var MainInfoPlotter = create_class(Plotter);
 MainInfoPlotter._dsAliasToString = {
-    "01w": "周线", "03d": "3天线", "01d": "日线", "12h": "12小时",
-    "06h": "6小时", "04h": "4小时", "02h": "2小时", "01h": "1小时",
-    "30m": "30分钟", "15m": "15分钟", "05m": "5分钟", "03m": "3分钟",
-    "01m": "1分钟"
+    "01w" : "周线", "03d" : "3天线", "01d" : "日线", "12h" : "12小时",
+    "06h" : "6小时", "04h" : "4小时", "02h" : "2小时", "01h" : "1小时",
+    "30m" : "30分钟", "15m" : "15分钟", "05m" : "5分钟", "03m" : "3分钟",
+    "01m" : "1分钟"
 };
 MainInfoPlotter._dsAliasToString2 = {
-    "01w": "1w", "03d": "3d", "01d": "1d", "12h": "12h",
-    "06h": "6h", "04h": "4h", "02h": "2h", "01h": "1h",
-    "30m": "30m", "15m": "15m", "05m": "5m", "03m": "3m",
-    "01m": "1m"
+    "01w" : "1w", "03d" : "3d", "01d" : "1d", "12h" : "12h",
+    "06h" : "6h", "04h" : "4h", "02h" : "2h", "01h" : "1h",
+    "30m" : "30m", "15m" : "15m", "05m" : "5m", "03m" : "3m",
+    "01m" : "1m"
 };
 MainInfoPlotter._dsAliasToString_zh_tw = {
-    "01w": "周線", "03d": "3天線", "01d": "日線", "12h": "12小時",
-    "06h": "6小時", "04h": "4小時", "02h": "2小時", "01h": "1小時",
-    "30m": "30分鐘", "15m": "15分鐘", "05m": "5分鐘", "03m": "3分鐘",
-    "01m": "1分鐘"
+    "01w" : "周線", "03d" : "3天線", "01d" : "日線", "12h" : "12小時",
+    "06h" : "6小時", "04h" : "4小時", "02h" : "2小時", "01h" : "1小時",
+    "30m" : "30分鐘", "15m" : "15分鐘", "05m" : "5分鐘", "03m" : "3分鐘",
+    "01m" : "1分鐘"
 };
-MainInfoPlotter.prototype.__construct = function (name) {
+MainInfoPlotter.prototype.__construct = function(name) {
     MainInfoPlotter.__super.__construct.call(this, name);
 };
-
 function format_time(v) {
     return (v < 10) ? "0" + v.toString() : v.toString();
 }
-
-MainInfoPlotter.prototype.Draw = function (context) {
+MainInfoPlotter.prototype.Draw = function(context) {
     var mgr = ChartManager.getInstance();
     var area = mgr.getArea(this.getAreaName());
     var timeline = mgr.getTimeline(this.getDataSourceName());
@@ -6007,24 +5965,24 @@ IndicatorPlotter.prototype.drawVolumeStick =
             var iH = range.toHeight(data.volume);
             if (data.close > data.open) {
                 if (iH > 1 && iW > 1 && dark) {
-                    strokePosRects.push({x: left + 0.5, y: top + 0.5, w: iW - 1, h: iH - 1});
+                    strokePosRects.push({x:left + 0.5, y:top + 0.5, w:iW - 1, h:iH - 1});
                 } else {
-                    fillPosRects.push({x: left, y: top, w: Math.max(iW, 1), h: Math.max(iH, 1)});
+                    fillPosRects.push({x:left, y:top, w:Math.max(iW, 1), h:Math.max(iH, 1)});
                 }
             }
             else if (data.close == data.open) {
                 if (i > 0 && data.close >= ds.getDataAt(i - 1).close) {
                     if (iH > 1 && iW > 1 && dark) {
-                        strokePosRects.push({x: left + 0.5, y: top + 0.5, w: iW - 1, h: iH - 1});
+                        strokePosRects.push({x:left + 0.5, y:top + 0.5, w:iW - 1, h:iH - 1});
                     } else {
-                        fillPosRects.push({x: left, y: top, w: Math.max(iW, 1), h: Math.max(iH, 1)});
+                        fillPosRects.push({x:left, y:top, w:Math.max(iW, 1), h:Math.max(iH, 1)});
                     }
                 } else {
-                    fillNegRects.push({x: left, y: top, w: Math.max(iW, 1), h: Math.max(iH, 1)});
+                    fillNegRects.push({x:left, y:top, w:Math.max(iW, 1), h:Math.max(iH, 1)});
                 }
             }
             else {
-                fillNegRects.push({x: left, y: top, w: Math.max(iW, 1), h: Math.max(iH, 1)});
+                fillNegRects.push({x:left, y:top, w:Math.max(iW, 1), h:Math.max(iH, 1)});
             }
             left += cW;
         }
@@ -6058,15 +6016,15 @@ IndicatorPlotter.prototype.drawMACDStick =
             if (MACD >= 0) {
                 var iH = range.toHeight(MACD);
                 if ((i == 0 || MACD >= prevMACD) && iH > 1 && iW > 1)
-                    strokePosRects.push({x: left + 0.5, y: middle - iH + 0.5, w: iW - 1, h: iH - 1});
+                    strokePosRects.push({x:left + 0.5, y:middle - iH + 0.5, w:iW - 1, h:iH - 1});
                 else
-                    fillPosRects.push({x: left, y: middle - iH, w: Math.max(iW, 1), h: Math.max(iH, 1)});
+                    fillPosRects.push({x:left, y:middle - iH, w:Math.max(iW, 1), h:Math.max(iH, 1)});
             } else {
                 var iH = range.toHeight(-MACD);
                 if ((i == 0 || MACD >= prevMACD) && iH > 1 && iW > 1)
-                    strokeNegRects.push({x: left + 0.5, y: middle + 0.5, w: iW - 1, h: iH - 1});
+                    strokeNegRects.push({x:left + 0.5, y:middle + 0.5, w:iW - 1, h:iH - 1});
                 else
-                    fillNegRects.push({x: left, y: middle, w: Math.max(iW, 1), h: Math.max(iH, 1)});
+                    fillNegRects.push({x:left, y:middle, w:Math.max(iW, 1), h:Math.max(iH, 1)});
             }
             prevMACD = MACD;
             left += cW;
@@ -6191,10 +6149,10 @@ IndicatorInfoPlotter.prototype.Draw = function (context) {
     }
 };
 var MinMaxPlotter = create_class(NamedObject);
-MinMaxPlotter.prototype.__construct = function (name) {
+MinMaxPlotter.prototype.__construct = function(name) {
     MinMaxPlotter.__super.__construct.call(this, name);
 };
-MinMaxPlotter.prototype.Draw = function (context) {
+MinMaxPlotter.prototype.Draw = function(context) {
     var mgr = ChartManager.getInstance();
     var ds = mgr.getDataSource(this.getDataSourceName());
     if (ds.getDataCount() < 1)
@@ -6219,7 +6177,8 @@ MinMaxPlotter.prototype.Draw = function (context) {
     this.drawMark(context, dp.getMaxValue(), digits, range.toY(dp.getMaxValue()),
         first, center, dp.getMaxValueIndex(), timeline);
 };
-MinMaxPlotter.prototype.drawMark = function (context, v, digits, y, first, center, index, timeline) {
+MinMaxPlotter.prototype.drawMark = function(context, v, digits, y, first, center, index, timeline)
+{
     var arrowStart, arrowStop, _arrowStop;
     var textStart;
     if (index > center) {
@@ -6241,30 +6200,30 @@ MinMaxPlotter.prototype.drawMark = function (context, v, digits, y, first, cente
     context.fillText(String.fromFloat(v, digits), textStart, y);
 };
 var TimelinePlotter = create_class(Plotter);
-TimelinePlotter.prototype.__construct = function (name) {
+TimelinePlotter.prototype.__construct = function(name) {
     TimelinePlotter.__super.__construct.call(this, name);
 };
 TimelinePlotter.TP_MINUTE = 60 * 1000;
-TimelinePlotter.TP_HOUR = 60 * TimelinePlotter.TP_MINUTE;
-TimelinePlotter.TP_DAY = 24 * TimelinePlotter.TP_HOUR;
+TimelinePlotter.TP_HOUR   = 60 * TimelinePlotter.TP_MINUTE;
+TimelinePlotter.TP_DAY    = 24 * TimelinePlotter.TP_HOUR;
 TimelinePlotter.TIME_INTERVAL = [
-    5 * TimelinePlotter.TP_MINUTE,
+    5  * TimelinePlotter.TP_MINUTE,
     10 * TimelinePlotter.TP_MINUTE,
     15 * TimelinePlotter.TP_MINUTE,
     30 * TimelinePlotter.TP_MINUTE,
     TimelinePlotter.TP_HOUR,
-    2 * TimelinePlotter.TP_HOUR,
-    3 * TimelinePlotter.TP_HOUR,
-    6 * TimelinePlotter.TP_HOUR,
+    2  * TimelinePlotter.TP_HOUR,
+    3  * TimelinePlotter.TP_HOUR,
+    6  * TimelinePlotter.TP_HOUR,
     12 * TimelinePlotter.TP_HOUR,
     TimelinePlotter.TP_DAY,
-    2 * TimelinePlotter.TP_DAY
+    2  * TimelinePlotter.TP_DAY
 ];
 TimelinePlotter.MonthConvert = {
-    1: "Jan.", 2: "Feb.", 3: "Mar.", 4: "Apr.", 5: "May.", 6: "Jun.",
+    1: "Jan.", 2: "Feb.", 3: "Mar.", 4 : "Apr.", 5 : "May.", 6 : "Jun.",
     7: "Jul.", 8: "Aug.", 9: "Sep.", 10: "Oct.", 11: "Nov.", 12: "Dec."
 };
-TimelinePlotter.prototype.Draw = function (context) {
+TimelinePlotter.prototype.Draw = function(context) {
     var mgr = ChartManager.getInstance();
     var area = mgr.getArea(this.getAreaName());
     var timeline = mgr.getTimeline(this.getDataSourceName());
@@ -6327,7 +6286,8 @@ TimelinePlotter.prototype.Draw = function (context) {
                 context.fillStyle = theme.getColor(Theme.Color.Text2);
             }
         }
-        else if (date == 1 && (hour < (timeInterval / TimelinePlotter.TP_HOUR))) {
+        else if (date == 1 && (hour < (timeInterval / TimelinePlotter.TP_HOUR)))
+        {
             if (month == 1) {
                 text = year.toString();
                 if (lang == "zh-cn")
@@ -6347,7 +6307,7 @@ TimelinePlotter.prototype.Draw = function (context) {
         }
         if (text.length > 0) {
             var x = timeline.toItemCenter(i);
-            gridRects.push({x: x, y: top, w: 1, h: 4});
+            gridRects.push({x:x, y:top, w:1, h:4});
             context.fillText(text, x, middle);
         }
     }
@@ -6358,16 +6318,16 @@ TimelinePlotter.prototype.Draw = function (context) {
     }
 };
 var RangePlotter = create_class(NamedObject);
-RangePlotter.prototype.__construct = function (name) {
+RangePlotter.prototype.__construct = function(name) {
     RangePlotter.__super.__construct.call(this, name);
 };
-RangePlotter.prototype.getRequiredWidth = function (context, v) {
+RangePlotter.prototype.getRequiredWidth = function(context, v) {
     var mgr = ChartManager.getInstance();
     var theme = mgr.getTheme(this.getFrameName());
     context.font = theme.getFont(Theme.Font.Default);
     return context.measureText((Math.floor(v) + 0.88).toString()).width + 16;
 };
-RangePlotter.prototype.Draw = function (context) {
+RangePlotter.prototype.Draw = function(context) {
     var mgr = ChartManager.getInstance();
     var areaName = this.getAreaName();
     var area = mgr.getArea(areaName);
@@ -6395,8 +6355,8 @@ RangePlotter.prototype.Draw = function (context) {
     var gridRects = [];
     for (var n in gradations) {
         var y = range.toY(gradations[n]);
-        gridRects.push({x: left, y: y, w: 6, h: 1});
-        gridRects.push({x: right - 6, y: y, w: 6, h: 1});
+        gridRects.push({x:left, y:y, w:6, h:1});
+        gridRects.push({x:right - 6, y:y, w:6, h:1});
         context.fillText(String.fromFloat(gradations[n], 2), center, y);
     }
     if (gridRects.length > 0) {
@@ -6409,19 +6369,19 @@ RangePlotter.prototype.Draw = function (context) {
  * Created by Administrator on 2014/10/11.
  */
 var COrderGraphPlotter = create_class(NamedObject);
-COrderGraphPlotter.prototype.__construct = function (name) {
+COrderGraphPlotter.prototype.__construct = function(name){
     COrderGraphPlotter.__super.__construct.call(this, name);
 };
-COrderGraphPlotter.prototype.Draw = function (context) {
+COrderGraphPlotter.prototype.Draw = function(context) {
     return this._Draw_(context);
 };
-COrderGraphPlotter.prototype._Draw_ = function (context) {
+COrderGraphPlotter.prototype._Draw_ = function(context) {
     if (this.Update() == false) return;
     if (this.updateData() == false) return;
-    this.m_top = this.m_pArea.getTop();
-    this.m_bottom = this.m_pArea.getBottom();
-    this.m_left = this.m_pArea.getLeft();
-    this.m_right = this.m_pArea.getRight();
+    this.m_top      = this.m_pArea.getTop();
+    this.m_bottom   = this.m_pArea.getBottom();
+    this.m_left     = this.m_pArea.getLeft();
+    this.m_right    = this.m_pArea.getRight();
     context.save();
     context.rect(this.m_left, this.m_top, this.m_right - this.m_left, this.m_bottom - this.m_top);
     context.clip();
@@ -6445,58 +6405,58 @@ COrderGraphPlotter.prototype._Draw_ = function (context) {
     this.DrawLine(context);
     context.restore();
 };
-COrderGraphPlotter.prototype.DrawBackground = function (context) {
+COrderGraphPlotter.prototype.DrawBackground = function(context) {
     context.fillStyle = this.m_pTheme.getColor(Theme.Color.Background);
-    context.fillRect(this.m_left, this.m_top, this.m_right - this.m_left, this.m_bottom - this.m_top);
+    context.fillRect(this.m_left, this.m_top, this.m_right-this.m_left, this.m_bottom-this.m_top);
     var all = ChartManager.getInstance().getChart()._depthData;
     if (this.m_mode == 0) {
         var ask_bottom = this.m_pRange.toY(all.array[this.m_ask_si].rate) - this.y_offset;
         var bid_top = this.m_pRange.toY(all.array[this.m_bid_si].rate) + this.y_offset;
-        var ask_gradient = context.createLinearGradient(this.m_left, 0, this.m_right, 0);
-        ask_gradient.addColorStop(0, this.m_pTheme.getColor(Theme.Color.Background));
-        ask_gradient.addColorStop(1, this.m_pTheme.getColor(Theme.Color.PositiveDark));
+        var ask_gradient = context.createLinearGradient(this.m_left,0,this.m_right,0);
+        ask_gradient.addColorStop(0,this.m_pTheme.getColor(Theme.Color.Background));
+        ask_gradient.addColorStop(1,this.m_pTheme.getColor(Theme.Color.PositiveDark));
         context.fillStyle = ask_gradient;
-        context.fillRect(this.m_left, this.m_top, this.m_right - this.m_left, ask_bottom - this.m_top);
-        var bid_gradient = context.createLinearGradient(this.m_left, 0, this.m_right, 0);
-        bid_gradient.addColorStop(0, this.m_pTheme.getColor(Theme.Color.Background));
-        bid_gradient.addColorStop(1, this.m_pTheme.getColor(Theme.Color.NegativeDark));
+        context.fillRect(this.m_left,this.m_top,this.m_right-this.m_left,ask_bottom-this.m_top);
+        var bid_gradient = context.createLinearGradient(this.m_left,0,this.m_right,0);
+        bid_gradient.addColorStop(0,this.m_pTheme.getColor(Theme.Color.Background));
+        bid_gradient.addColorStop(1,this.m_pTheme.getColor(Theme.Color.NegativeDark));
         context.fillStyle = bid_gradient;
-        context.fillRect(this.m_left, bid_top, this.m_right - this.m_left, this.m_bottom - bid_top);
+        context.fillRect(this.m_left,bid_top,this.m_right-this.m_left,this.m_bottom-bid_top);
     } else if (this.m_mode == 1) {
-        var ask_gradient = context.createLinearGradient(this.m_left, 0, this.m_right, 0);
-        ask_gradient.addColorStop(0, this.m_pTheme.getColor(Theme.Color.Background));
-        ask_gradient.addColorStop(1, this.m_pTheme.getColor(Theme.Color.PositiveDark));
+        var ask_gradient = context.createLinearGradient(this.m_left,0,this.m_right,0);
+        ask_gradient.addColorStop(0,this.m_pTheme.getColor(Theme.Color.Background));
+        ask_gradient.addColorStop(1,this.m_pTheme.getColor(Theme.Color.PositiveDark));
         context.fillStyle = ask_gradient;
-        context.fillRect(this.m_left, this.m_top, this.m_right - this.m_left, this.m_bottom - this.m_top);
+        context.fillRect(this.m_left,this.m_top,this.m_right-this.m_left,this.m_bottom-this.m_top);
     } else if (this.m_mode == 2) {
-        var bid_gradient = context.createLinearGradient(this.m_left, 0, this.m_right, 0);
-        bid_gradient.addColorStop(0, this.m_pTheme.getColor(Theme.Color.Background));
-        bid_gradient.addColorStop(1, this.m_pTheme.getColor(Theme.Color.NegativeDark));
+        var bid_gradient = context.createLinearGradient(this.m_left,0,this.m_right,0);
+        bid_gradient.addColorStop(0,this.m_pTheme.getColor(Theme.Color.Background));
+        bid_gradient.addColorStop(1,this.m_pTheme.getColor(Theme.Color.NegativeDark));
         context.fillStyle = bid_gradient;
-        context.fillRect(this.m_left, this.m_top, this.m_right - this.m_left, this.m_bottom - this.m_top);
+        context.fillRect(this.m_left,this.m_top,this.m_right-this.m_left,this.m_bottom-this.m_top);
     }
 };
-COrderGraphPlotter.prototype.DrawLine = function (context) {
+COrderGraphPlotter.prototype.DrawLine = function(context) {
     if (this.m_mode == 0 || this.m_mode == 1) {
         context.strokeStyle = this.m_pTheme.getColor(Theme.Color.Positive);
         context.beginPath();
-        context.moveTo(Math.floor(this.m_ask_points[0].x) + 0.5, Math.floor(this.m_ask_points[0].y) + 0.5);
+        context.moveTo(Math.floor(this.m_ask_points[0].x)+0.5, Math.floor(this.m_ask_points[0].y)+0.5);
         for (var i = 1; i < this.m_ask_points.length; i++) {
-            context.lineTo(Math.floor(this.m_ask_points[i].x) + 0.5, Math.floor(this.m_ask_points[i].y) + 0.5);
+            context.lineTo(Math.floor(this.m_ask_points[i].x)+0.5, Math.floor(this.m_ask_points[i].y)+0.5);
         }
         context.stroke();
     }
     if (this.m_mode == 0 || this.m_mode == 2) {
         context.strokeStyle = this.m_pTheme.getColor(Theme.Color.Negative);
         context.beginPath();
-        context.moveTo(this.m_bid_points[0].x + 0.5, this.m_bid_points[0].y + 0.5);
+        context.moveTo(this.m_bid_points[0].x+0.5, this.m_bid_points[0].y+0.5);
         for (var i = 1; i < this.m_bid_points.length; i++) {
-            context.lineTo(this.m_bid_points[i].x + 0.5, this.m_bid_points[i].y + 0.5);
+            context.lineTo(this.m_bid_points[i].x+0.5, this.m_bid_points[i].y+0.5);
         }
         context.stroke();
     }
 };
-COrderGraphPlotter.prototype.UpdatePoints = function () {
+COrderGraphPlotter.prototype.UpdatePoints = function() {
     var all = ChartManager.getInstance().getChart()._depthData;
     this.m_ask_points = [];
     var index_ask = {};
@@ -6549,7 +6509,7 @@ COrderGraphPlotter.prototype.UpdatePoints = function () {
         }
     }
 };
-COrderGraphPlotter.prototype.updateData = function () {
+COrderGraphPlotter.prototype.updateData = function() {
     var all = ChartManager.getInstance().getChart()._depthData;
     if (all.array == null) return false;
     if (all.array.length <= 100) return false;
@@ -6618,7 +6578,7 @@ COrderGraphPlotter.prototype.updateData = function () {
     }
     return true;
 };
-COrderGraphPlotter.prototype.Update = function () {
+COrderGraphPlotter.prototype.Update = function() {
     this.m_pMgr = ChartManager.getInstance();
     var areaName = this.getAreaName();
     this.m_pArea = this.m_pMgr.getArea(areaName);
@@ -6633,7 +6593,7 @@ COrderGraphPlotter.prototype.Update = function () {
         return false;
     return true;
 };
-COrderGraphPlotter.prototype.DrawGradations = function (context) {
+COrderGraphPlotter.prototype.DrawGradations = function(context) {
     var mgr = ChartManager.getInstance();
     var areaName = this.getAreaName();
     var area = mgr.getArea(areaName);
@@ -6649,8 +6609,8 @@ COrderGraphPlotter.prototype.DrawGradations = function (context) {
     var gridRects = [];
     for (var n in gradations) {
         var y = range.toY(gradations[n]);
-        gridRects.push({x: left, y: y, w: 6, h: 1});
-        gridRects.push({x: right - 6, y: y, w: 6, h: 1});
+        gridRects.push({x:left, y:y, w:6, h:1});
+        gridRects.push({x:right - 6, y:y, w:6, h:1});
     }
     if (gridRects.length > 0) {
         var theme = mgr.getTheme(this.getFrameName());
@@ -6659,7 +6619,7 @@ COrderGraphPlotter.prototype.DrawGradations = function (context) {
         context.fill();
     }
 };
-COrderGraphPlotter.prototype.FillBlack = function (context) {
+COrderGraphPlotter.prototype.FillBlack = function(context) {
     var ask_point = this.m_ask_points;
     var bid_point = this.m_bid_points;
     var ask_first_add = {};
@@ -6667,28 +6627,28 @@ COrderGraphPlotter.prototype.FillBlack = function (context) {
     ask_first_add.x = this.m_right;
     ask_first_add.y = ask_point[0].y;
     ask_last_add.x = this.m_right;
-    ask_last_add.y = ask_point[ask_point.length - 1].y;
+    ask_last_add.y = ask_point[ask_point.length-1].y;
     var bid_first_add = {};
     var bid_last_add = {};
     bid_first_add.x = this.m_right;
-    bid_first_add.y = bid_point[0].y - 1;
+    bid_first_add.y = bid_point[0].y-1;
     bid_last_add.x = this.m_right;
-    bid_last_add.y = bid_point[bid_point.length - 1].y;
+    bid_last_add.y = bid_point[bid_point.length-1].y;
     ask_point.unshift(ask_first_add);
     ask_point.push(ask_last_add);
     bid_point.unshift(bid_first_add);
     bid_point.push(bid_last_add);
     context.fillStyle = this.m_pTheme.getColor(Theme.Color.Background);
     context.beginPath();
-    context.moveTo(Math.floor(ask_point[0].x) + 0.5, Math.floor(ask_point[0].y) + 0.5);
+    context.moveTo(Math.floor(ask_point[0].x)+0.5, Math.floor(ask_point[0].y)+0.5);
     for (var i = 1; i < ask_point.length; i++) {
-        context.lineTo(Math.floor(ask_point[i].x) + 0.5, Math.floor(ask_point[i].y) + 0.5);
+        context.lineTo(Math.floor(ask_point[i].x)+0.5, Math.floor(ask_point[i].y)+0.5);
     }
     context.fill();
     context.beginPath();
-    context.moveTo(Math.floor(bid_point[0].x) + 0.5, Math.floor(bid_point[0].y) + 0.5);
+    context.moveTo(Math.floor(bid_point[0].x)+0.5, Math.floor(bid_point[0].y)+0.5);
     for (var i = 1; i < bid_point.length; i++) {
-        context.lineTo(Math.floor(bid_point[i].x) + 0.5, Math.floor(bid_point[i].y) + 0.5);
+        context.lineTo(Math.floor(bid_point[i].x)+0.5, Math.floor(bid_point[i].y)+0.5);
     }
     context.fill();
     ask_point.shift();
@@ -6696,12 +6656,12 @@ COrderGraphPlotter.prototype.FillBlack = function (context) {
     bid_point.shift();
     bid_point.pop();
 };
-COrderGraphPlotter.prototype.DrawTickerGraph = function (context) {
+COrderGraphPlotter.prototype.DrawTickerGraph = function(context) {
     return;
     var mgr = ChartManager.getInstance();
     var ds = mgr.getDataSource(this.getDataSourceName());
-    var ticker = ds._dataItems[ds._dataItems.length - 1].close;
-    var p1x = this.m_left + 1;
+    var ticker = ds._dataItems[ds._dataItems.length-1].close;
+    var p1x = this.m_left+1;
     var p1y = this.m_pRange.toY(ticker);
     var p2x = p1x + 5;
     var p2y = p1y + 2.5;
@@ -6759,7 +6719,7 @@ LastClosePlotter.prototype.Draw = function (context) {
     var ds = mgr.getDataSource(this.getDataSourceName());
     if (ds.getDataCount() < 1)
         return;
-    var v = ds._dataItems[ds._dataItems.length - 1].close;
+    var v = ds._dataItems[ds._dataItems.length-1].close;
     if (v <= range.getMinValue() || v >= range.getMaxValue())
         return;
     var theme = mgr.getTheme(this.getFrameName());
@@ -6776,10 +6736,10 @@ LastClosePlotter.prototype.Draw = function (context) {
     context.fillText(String.fromFloat(v, ds.getDecimalDigits()), left + 10, y);
 };
 var SelectionPlotter = create_class(Plotter);
-SelectionPlotter.prototype.__construct = function (name) {
+SelectionPlotter.prototype.__construct = function(name) {
     SelectionPlotter.__super.__construct.call(this, name);
 };
-SelectionPlotter.prototype.Draw = function (context) {
+SelectionPlotter.prototype.Draw = function(context) {
     var mgr = ChartManager.getInstance();
     if (mgr._drawingTool != ChartManager.DrawingTool.CrossCursor)
         return;
@@ -6799,13 +6759,13 @@ SelectionPlotter.prototype.Draw = function (context) {
 };
 var TimelineSelectionPlotter = create_class(NamedObject);
 TimelineSelectionPlotter.MonthConvert = {
-    1: "Jan.", 2: "Feb.", 3: "Mar.", 4: "Apr.", 5: "May.", 6: "Jun.",
-    7: "Jul.", 8: "Aug.", 9: "Sep.", 10: "Oct.", 11: "Nov.", 12: "Dec."
+    1 : "Jan.", 2 : "Feb.", 3 : "Mar.", 4  : "Apr.", 5  : "May.", 6  : "Jun.",
+    7 : "Jul.", 8 : "Aug.", 9 : "Sep.", 10 : "Oct.", 11 : "Nov.", 12 : "Dec."
 };
-TimelineSelectionPlotter.prototype.__construct = function (name) {
+TimelineSelectionPlotter.prototype.__construct = function(name) {
     TimelineSelectionPlotter.__super.__construct.call(this, name);
 };
-TimelineSelectionPlotter.prototype.Draw = function (context) {
+TimelineSelectionPlotter.prototype.Draw = function(context) {
     var mgr = ChartManager.getInstance();
     var area = mgr.getArea(this.getAreaName());
     var timeline = mgr.getTimeline(this.getDataSourceName());
@@ -6852,10 +6812,10 @@ TimelineSelectionPlotter.prototype.Draw = function (context) {
     context.fillText(text, x, area.getMiddle());
 };
 var RangeSelectionPlotter = create_class(NamedObject);
-RangeSelectionPlotter.prototype.__construct = function (name) {
+RangeSelectionPlotter.prototype.__construct = function(name) {
     RangeSelectionPlotter.__super.__construct.call(this, name);
 };
-RangeSelectionPlotter.prototype.Draw = function (context) {
+RangeSelectionPlotter.prototype.Draw = function(context) {
     var mgr = ChartManager.getInstance();
     var areaName = this.getAreaName();
     var area = mgr.getArea(areaName);
@@ -6871,11 +6831,11 @@ RangeSelectionPlotter.prototype.Draw = function (context) {
         return;
     var y = range.getSelectedPosition();
     Plotter.createPolygon(context, [
-        {"x": area.getLeft(), "y": y},
-        {"x": area.getLeft() + 5, "y": y + 10},
+        {"x": area.getLeft(),      "y": y},
+        {"x": area.getLeft() + 5,  "y": y + 10},
         {"x": area.getRight() - 3, "y": y + 10},
         {"x": area.getRight() - 3, "y": y - 10},
-        {"x": area.getLeft() + 5, "y": y - 10}
+        {"x": area.getLeft() + 5,  "y": y - 10}
     ]);
     var theme = mgr.getTheme(this.getFrameName());
     context.fillStyle = theme.getColor(Theme.Color.Background);
@@ -6883,8 +6843,8 @@ RangeSelectionPlotter.prototype.Draw = function (context) {
     context.strokeStyle = theme.getColor(Theme.Color.Grid4);
     context.stroke();
     context.font = theme.getFont(Theme.Font.Default);
-    context.textAlign = "center";
-    context.textBaseline = "middle";
+    context.textAlign="center";
+    context.textBaseline="middle";
     context.fillStyle = theme.getColor(Theme.Color.Text3);
     var digits = 2;
     if (range.getNameObject().getCompAt(2) == "main")
@@ -6892,7 +6852,7 @@ RangeSelectionPlotter.prototype.Draw = function (context) {
     context.fillText(String.fromFloat(v, digits), area.getCenter(), y);
 };
 var ChartSettings = {};
-ChartSettings.checkVersion = function () {
+ChartSettings.checkVersion = function() {
     var currentVersion = 1;
     currentVersion = 2;
     if (ChartSettings._data.ver < currentVersion) {
@@ -6900,19 +6860,19 @@ ChartSettings.checkVersion = function () {
         var charts = ChartSettings._data.charts;
         charts.period_weight = {};
         charts.period_weight['line'] = 8;
-        charts.period_weight['0'] = 7;
-        charts.period_weight['1'] = 6;
-        charts.period_weight['2'] = 5;
-        charts.period_weight['9'] = 4;
-        charts.period_weight['10'] = 3;
-        charts.period_weight['3'] = 2;
-        charts.period_weight['4'] = 1;
-        charts.period_weight['7'] = 0;
-        charts.period_weight['11'] = 0;
-        charts.period_weight['12'] = 0;
-        charts.period_weight['13'] = 0;
-        charts.period_weight['14'] = 0;
-        charts.period_weight['15'] = 0;
+        charts.period_weight['0'] 	= 7;
+        charts.period_weight['1'] 	= 6;
+        charts.period_weight['2'] 	= 5;
+        charts.period_weight['9'] 	= 4;
+        charts.period_weight['10'] 	= 3;
+        charts.period_weight['3'] 	= 2;
+        charts.period_weight['4'] 	= 1;
+        charts.period_weight['7']  	= 0;
+        charts.period_weight['11'] 	= 0;
+        charts.period_weight['12'] 	= 0;
+        charts.period_weight['13'] 	= 0;
+        charts.period_weight['14'] 	= 0;
+        charts.period_weight['15'] 	= 0;
     }
     currentVersion = 3;
     if (ChartSettings._data.ver < currentVersion) {
@@ -6929,9 +6889,9 @@ ChartSettings.get = function () {
     }
     return ChartSettings._data;
 }
-ChartSettings.init = function () {
+ChartSettings.init = function() {
     var _indic_param = {};
-    var _name = new Array('MA', 'EMA', 'VOLUME', 'MACD', 'KDJ', 'StochRSI', 'RSI', 'DMI', 'OBV', 'BOLL', 'DMA', 'TRIX', 'BRAR', 'VR', 'EMV', 'WR', 'ROC', 'MTM', 'PSY');
+    var _name = new Array('MA','EMA','VOLUME','MACD','KDJ','StochRSI','RSI','DMI','OBV','BOLL','DMA','TRIX','BRAR','VR','EMV','WR','ROC','MTM','PSY');
     for (var i = 0; i < _name.length; i++) {
         var _value = ChartManager.getInstance().createIndicatorAndRange('', _name[i], true);
         if (_value == null) continue;
@@ -6943,7 +6903,7 @@ ChartSettings.init = function () {
     }
     var _chart_style = 'CandleStick';
     var _m_indic = 'MA';
-    var _indic = new Array('VOLUME', 'MACD');
+    var _indic = new Array('VOLUME','MACD');
     var _time = '15m';
     var _frame = {};
     _frame.chartStyle = _chart_style;
@@ -6980,14 +6940,14 @@ ChartSettings.save = function () {
 }
 var CPoint = create_class(NamedObject);
 CPoint.state = {
-    Hide: 0, Show: 1, Highlight: 2
+    Hide : 0, Show : 1, Highlight : 2
 };
-CPoint.prototype.__construct = function (name) {
+CPoint.prototype.__construct = function(name) {
     CPoint.__super.__construct.call(this, name);
-    this.pos = {index: -1, value: -1};
+    this.pos = { index: -1, value: -1 };
     this.state = CPoint.state.Hide;
 };
-CPoint.prototype.getChartObjects = function () {
+CPoint.prototype.getChartObjects = function() {
     var ppMgr = ChartManager.getInstance();
     var ppCDS = ppMgr.getDataSource("frame0.k0");
     if (ppCDS == null || !is_instance(ppCDS, MainDataSource))
@@ -6998,9 +6958,9 @@ CPoint.prototype.getChartObjects = function () {
     var ppRange = ppMgr.getRange("frame0.k0.main");
     if (ppRange == null)
         return null;
-    return {pMgr: ppMgr, pCDS: ppCDS, pTimeline: ppTimeline, pRange: ppRange};
+    return { pMgr: ppMgr, pCDS: ppCDS, pTimeline: ppTimeline, pRange: ppRange };
 };
-CPoint.prototype.setPosXY = function (x, y) {
+CPoint.prototype.setPosXY = function(x, y) {
     var pObj = this.getChartObjects();
     var i = pObj.pTimeline.toIndex(x);
     var v = pObj.pRange.toValue(y);
@@ -7009,38 +6969,38 @@ CPoint.prototype.setPosXY = function (x, y) {
         v = result;
     this.setPosIV(i, v);
 };
-CPoint.prototype.setPosXYNoSnap = function (x, y) {
+CPoint.prototype.setPosXYNoSnap = function(x, y) {
     var pObj = this.getChartObjects();
     var i = pObj.pTimeline.toIndex(x);
     var v = pObj.pRange.toValue(y);
     this.setPosIV(i, v);
 };
-CPoint.prototype.setPosIV = function (i, v) {
-    this.pos = {index: i, value: v};
+CPoint.prototype.setPosIV = function(i, v) {
+    this.pos = { index: i, value: v };
 };
-CPoint.prototype.getPosXY = function () {
+CPoint.prototype.getPosXY = function() {
     var pObj = this.getChartObjects();
     var _x = pObj.pTimeline.toItemCenter(this.pos.index);
     var _y = pObj.pRange.toY(this.pos.value);
-    return {x: _x, y: _y};
+    return { x: _x, y: _y };
 };
-CPoint.prototype.getPosIV = function () {
-    return {i: this.pos.index, v: this.pos.value};
+CPoint.prototype.getPosIV = function() {
+    return { i: this.pos.index, v: this.pos.value };
 };
-CPoint.prototype.setState = function (s) {
+CPoint.prototype.setState = function(s) {
     this.state = s;
 };
-CPoint.prototype.getState = function () {
+CPoint.prototype.getState = function() {
     return this.state;
 };
-CPoint.prototype.isSelected = function (x, y) {
+CPoint.prototype.isSelected = function(x, y) {
     var xy = this.getPosXY();
     if (x < xy.x - 4 || x > xy.x + 4 || y < xy.y - 4 || y > xy.y + 4)
         return false;
     this.setState(CPoint.state.Highlight);
     return true;
 };
-CPoint.prototype.snapValue = function (i, v) {
+CPoint.prototype.snapValue = function(i, v) {
     var pObj = this.getChartObjects();
     var result = null;
     var first = Math.floor(pObj.pTimeline.getFirstIndex());
@@ -7090,14 +7050,14 @@ var CToolObject = create_class(NamedObject);
 CToolObject.state = {
     BeforeDraw: 0, Draw: 1, AfterDraw: 2
 };
-CToolObject.prototype.__construct = function (name) {
+CToolObject.prototype.__construct = function(name) {
     CToolObject.__super.__construct.call(this, name);
     this.drawer = null;
     this.state = CToolObject.state.BeforeDraw;
     this.points = [];
     this.step = 0;
 };
-CToolObject.prototype.getChartObjects = function () {
+CToolObject.prototype.getChartObjects = function() {
     var ppMgr = ChartManager.getInstance();
     var ppCDS = ppMgr.getDataSource("frame0.k0");
     if (ppCDS == null || !is_instance(ppCDS, MainDataSource))
@@ -7111,37 +7071,37 @@ CToolObject.prototype.getChartObjects = function () {
     var ppRange = ppMgr.getRange("frame0.k0.main");
     if (ppRange == null)
         return null;
-    return {pMgr: ppMgr, pCDS: ppCDS, pTimeline: ppTimeline, pArea: ppArea, pRange: ppRange};
+    return { pMgr: ppMgr, pCDS: ppCDS, pTimeline: ppTimeline, pArea: ppArea, pRange: ppRange };
 };
-CToolObject.prototype.isValidMouseXY = function (x, y) {
+CToolObject.prototype.isValidMouseXY = function(x, y) {
     var pObj = this.getChartObjects();
     var areaPos = {
-        left: pObj.pArea.getLeft(),
-        top: pObj.pArea.getTop(),
-        right: pObj.pArea.getRight(),
-        bottom: pObj.pArea.getBottom()
+        left   : pObj.pArea.getLeft(),
+        top    : pObj.pArea.getTop(),
+        right  : pObj.pArea.getRight(),
+        bottom : pObj.pArea.getBottom()
     };
     if (x < areaPos.left || x > areaPos.right ||
         y < areaPos.top || y > areaPos.bottom)
         return false;
     return true;
 };
-CToolObject.prototype.getPlotter = function () {
+CToolObject.prototype.getPlotter = function() {
     return this.drawer;
 };
-CToolObject.prototype.setState = function (s) {
+CToolObject.prototype.setState = function(s) {
     this.state = s;
 };
-CToolObject.prototype.getState = function () {
+CToolObject.prototype.getState = function() {
     return this.state;
 };
-CToolObject.prototype.addPoint = function (point) {
+CToolObject.prototype.addPoint = function(point) {
     this.points.push(point);
 };
-CToolObject.prototype.getPoint = function (i) {
+CToolObject.prototype.getPoint = function(i) {
     return this.points[i];
 };
-CToolObject.prototype.acceptMouseMoveEvent = function (x, y) {
+CToolObject.prototype.acceptMouseMoveEvent = function(x, y) {
     if (this.isValidMouseXY(x, y) == false)
         return false;
     if (this.state == CToolObject.state.BeforeDraw) {
@@ -7153,7 +7113,7 @@ CToolObject.prototype.acceptMouseMoveEvent = function (x, y) {
     }
     return true;
 };
-CToolObject.prototype.acceptMouseDownEvent = function (x, y) {
+CToolObject.prototype.acceptMouseDownEvent = function(x, y) {
     if (this.isValidMouseXY(x, y) == false)
         return false;
     if (this.state == CToolObject.state.BeforeDraw) {
@@ -7174,7 +7134,7 @@ CToolObject.prototype.acceptMouseDownEvent = function (x, y) {
     }
     return true;
 };
-CToolObject.prototype.acceptMouseDownMoveEvent = function (x, y) {
+CToolObject.prototype.acceptMouseDownMoveEvent = function(x, y) {
     if (this.isValidMouseXY(x, y) == false)
         return false;
     if (this.state == CToolObject.state.Draw) {
@@ -7200,7 +7160,7 @@ CToolObject.prototype.acceptMouseDownMoveEvent = function (x, y) {
     }
     return true;
 };
-CToolObject.prototype.acceptMouseUpEvent = function (x, y) {
+CToolObject.prototype.acceptMouseUpEvent = function(x, y) {
     if (this.isValidMouseXY(x, y) == false)
         return false;
     if (this.state == CToolObject.state.Draw) {
@@ -7211,20 +7171,20 @@ CToolObject.prototype.acceptMouseUpEvent = function (x, y) {
     }
     return false;
 };
-CToolObject.prototype.setBeforeDrawPos = function (x, y) {
+CToolObject.prototype.setBeforeDrawPos = function(x, y) {
     for (var index in this.points) {
         this.points[index].setPosXY(x, y);
         this.points[index].setState(CPoint.state.Show);
     }
 };
-CToolObject.prototype.setDrawPos = function (x, y) {
+CToolObject.prototype.setDrawPos = function(x, y) {
     for (var index in this.points) {
         if (this.points[index].getState() == CPoint.state.Highlight) {
             this.points[index].setPosXY(x, y);
         }
     }
 };
-CToolObject.prototype.setAfterDrawPos = function (x, y) {
+CToolObject.prototype.setAfterDrawPos = function(x, y) {
     if (this.step != 0)
         this.step -= 1;
     for (var index in this.points) {
@@ -7235,7 +7195,7 @@ CToolObject.prototype.setAfterDrawPos = function (x, y) {
         pObj.pMgr.setNormalMode();
     }
 };
-CToolObject.prototype.isSelected = function (x, y) {
+CToolObject.prototype.isSelected = function(x, y) {
     var isFind = false;
     for (var index in this.points) {
         if (this.points[index].isSelected(x, y)) {
@@ -7250,21 +7210,21 @@ CToolObject.prototype.isSelected = function (x, y) {
     }
     return false;
 };
-CToolObject.prototype.select = function () {
+CToolObject.prototype.select = function() {
     for (var index in this.points) {
         if (this.points[index].getState() == CPoint.state.Hide) {
             this.points[index].setState(CPoint.state.Show);
         }
     }
 };
-CToolObject.prototype.unselect = function () {
+CToolObject.prototype.unselect = function() {
     for (var index in this.points) {
         if (this.points[index].getState() != CPoint.state.Hide) {
             this.points[index].setState(CPoint.state.Hide);
         }
     }
 };
-CToolObject.prototype.calcDistance = function (point1, point2, point3) {
+CToolObject.prototype.calcDistance = function(point1, point2, point3) {
     var xa = point1.getPosXY().x;
     var ya = point1.getPosXY().y;
     var xb = point2.getPosXY().x;
@@ -7279,7 +7239,7 @@ CToolObject.prototype.calcDistance = function (point1, point2, point3) {
     var len = Math.sqrt(Math.pow((xb - xa), 2) + Math.pow((yb - ya), 2));
     return area / len;
 };
-CToolObject.prototype.calcGap = function (r, x, y) {
+CToolObject.prototype.calcGap = function(r, x, y) {
     var xa = r.sx;
     var ya = r.sy;
     var xb = r.ex;
@@ -7294,7 +7254,7 @@ CToolObject.prototype.calcGap = function (r, x, y) {
     var len = Math.sqrt(Math.pow((xb - xa), 2) + Math.pow((yb - ya), 2));
     return area / len;
 };
-CToolObject.prototype.isWithRect = function (point1, point2, point3) {
+CToolObject.prototype.isWithRect = function(point1, point2, point3) {
     var sx = point1.getPosXY().x;
     var sy = point1.getPosXY().y;
     var ex = point2.getPosXY().x;
@@ -7326,32 +7286,32 @@ CToolObject.prototype.isWithRect = function (point1, point2, point3) {
     return false;
 };
 CBiToolObject = create_class(CToolObject);
-CBiToolObject.prototype.__construct = function (name) {
+CBiToolObject.prototype.__construct = function(name) {
     CBiToolObject.__super.__construct.call(this, name);
     this.addPoint(new CPoint(name));
     this.addPoint(new CPoint(name));
 };
-CBiToolObject.prototype.setBeforeDrawPos = function (x, y) {
+CBiToolObject.prototype.setBeforeDrawPos = function(x, y) {
     this.step = 1;
     CBiToolObject.__super.setBeforeDrawPos.call(this, x, y);
     this.getPoint(0).setState(CPoint.state.Show);
     this.getPoint(1).setState(CPoint.state.Highlight);
 };
 CTriToolObject = create_class(CToolObject);
-CTriToolObject.prototype.__construct = function (name) {
+CTriToolObject.prototype.__construct = function(name) {
     CTriToolObject.__super.__construct.call(this, name);
     this.addPoint(new CPoint(name));
     this.addPoint(new CPoint(name));
     this.addPoint(new CPoint(name));
 };
-CTriToolObject.prototype.setBeforeDrawPos = function (x, y) {
+CTriToolObject.prototype.setBeforeDrawPos = function(x, y) {
     this.step = 2;
     CBiToolObject.__super.setBeforeDrawPos.call(this, x, y);
     this.getPoint(0).setState(CPoint.state.Show);
     this.getPoint(1).setState(CPoint.state.Show);
     this.getPoint(2).setState(CPoint.state.Highlight);
 };
-CTriToolObject.prototype.setAfterDrawPos = function (x, y) {
+CTriToolObject.prototype.setAfterDrawPos = function(x, y) {
     if (this.step != 0)
         this.step -= 1;
     if (this.step == 0) {
@@ -7369,11 +7329,11 @@ CTriToolObject.prototype.setAfterDrawPos = function (x, y) {
     }
 };
 var CBandLineObject = create_class(CBiToolObject);
-CBandLineObject.prototype.__construct = function (name) {
+CBandLineObject.prototype.__construct = function(name) {
     CBandLineObject.__super.__construct.call(this, name);
     this.drawer = new DrawBandLinesPlotter(name, this);
 };
-CBandLineObject.prototype.isSelected = function (x, y) {
+CBandLineObject.prototype.isSelected = function(x, y) {
     if (CBandLineObject.__super.isSelected.call(this, x, y) == true)
         return true;
     var c = new CPoint("frame0.k0");
@@ -7385,7 +7345,7 @@ CBandLineObject.prototype.isSelected = function (x, y) {
     var fibSequence = [100.0, 87.5, 75.0, 62.5, 50.0, 37.5, 25.0, 12.5, 0.0];
     for (var i = 0; i < fibSequence.length; i++) {
         var stage_y = sy + (100 - fibSequence[i]) / 100 * (ey - sy);
-        if (stage_y < y + 4 && stage_y > y - 4) {
+        if (stage_y < y + 4  && stage_y > y - 4) {
             this.select();
             return true;
         }
@@ -7393,11 +7353,11 @@ CBandLineObject.prototype.isSelected = function (x, y) {
     return false;
 };
 var CBiParallelLineObject = create_class(CTriToolObject);
-CBiParallelLineObject.prototype.__construct = function (name) {
+CBiParallelLineObject.prototype.__construct = function(name) {
     CBiParallelLineObject.__super.__construct.call(this, name);
     this.drawer = new DrawBiParallelLinesPlotter(name, this);
 };
-CBiParallelLineObject.prototype.isSelected = function (x, y) {
+CBiParallelLineObject.prototype.isSelected = function(x, y) {
     if (CTriParallelLineObject.__super.isSelected.call(this, x, y) == true)
         return true;
     var _0x = this.getPoint(0).getPosXY().x;
@@ -7406,23 +7366,23 @@ CBiParallelLineObject.prototype.isSelected = function (x, y) {
     var _1y = this.getPoint(1).getPosXY().y;
     var _2x = this.getPoint(2).getPosXY().x;
     var _2y = this.getPoint(2).getPosXY().y;
-    var _a = {x: _0x - _1x, y: _0y - _1y};
-    var _b = {x: _0x - _2x, y: _0y - _2y};
-    var _c = {x: _a.x + _b.x, y: _a.y + _b.y};
-    var _3x = _0x - _c.x;
-    var _3y = _0y - _c.y;
-    var r1 = {sx: _0x, sy: _0y, ex: _2x, ey: _2y};
-    var r2 = {sx: _1x, sy: _1y, ex: _3x, ey: _3y};
+    var _a = { x : _0x-_1x, y : _0y-_1y };
+    var _b = { x : _0x-_2x, y : _0y-_2y };
+    var _c = { x : _a.x+_b.x, y : _a.y+_b.y };
+    var _3x = _0x-_c.x;
+    var _3y = _0y-_c.y;
+    var r1 = {sx:_0x, sy:_0y, ex:_2x, ey:_2y };
+    var r2 = {sx:_1x, sy:_1y, ex:_3x, ey:_3y };
     if (this.calcGap(r1, x, y) > 4 && this.calcGap(r2, x, y) > 4)
         return false;
     return true;
 };
 var CBiParallelRayLineObject = create_class(CTriToolObject);
-CBiParallelRayLineObject.prototype.__construct = function (name) {
+CBiParallelRayLineObject.prototype.__construct = function(name) {
     CBiParallelRayLineObject.__super.__construct.call(this, name);
     this.drawer = new DrawBiParallelRayLinesPlotter(name, this);
 };
-CBiParallelRayLineObject.prototype.isSelected = function (x, y) {
+CBiParallelRayLineObject.prototype.isSelected = function(x, y) {
     if (CTriParallelLineObject.__super.isSelected.call(this, x, y) == true)
         return true;
     var _0x = this.getPoint(0).getPosXY().x;
@@ -7431,15 +7391,15 @@ CBiParallelRayLineObject.prototype.isSelected = function (x, y) {
     var _1y = this.getPoint(1).getPosXY().y;
     var _2x = this.getPoint(2).getPosXY().x;
     var _2y = this.getPoint(2).getPosXY().y;
-    var _a = {x: _0x - _1x, y: _0y - _1y};
-    var _b = {x: _0x - _2x, y: _0y - _2y};
-    var _c = {x: _a.x + _b.x, y: _a.y + _b.y};
-    var _3x = _0x - _c.x;
-    var _3y = _0y - _c.y;
-    var r1 = {sx: _0x, sy: _0y, ex: _2x, ey: _2y};
-    var r2 = {sx: _1x, sy: _1y, ex: _3x, ey: _3y};
-    if ((r1.ex > r1.sx && x > r1.sx - 4) || (r1.ex < r1.sx && x < r1.sx + 4) ||
-        (r2.ex > r2.sx && x > r2.sx - 4) || (r2.ex < r2.sx && x < r2.sx + 4)) {
+    var _a = { x : _0x-_1x, y : _0y-_1y };
+    var _b = { x : _0x-_2x, y : _0y-_2y };
+    var _c = { x : _a.x+_b.x, y : _a.y+_b.y };
+    var _3x = _0x-_c.x;
+    var _3y = _0y-_c.y;
+    var r1 = {sx:_0x, sy:_0y, ex:_2x, ey:_2y };
+    var r2 = {sx:_1x, sy:_1y, ex:_3x, ey:_3y };
+    if ((r1.ex > r1.sx && x > r1.sx-4) || (r1.ex < r1.sx && x < r1.sx+4) ||
+        (r2.ex > r2.sx && x > r2.sx-4) || (r2.ex < r2.sx && x < r2.sx+4)) {
         if (this.calcGap(r1, x, y) > 4 && this.calcGap(r2, x, y) > 4) {
             return false;
         }
@@ -7450,11 +7410,11 @@ CBiParallelRayLineObject.prototype.isSelected = function (x, y) {
     return true;
 };
 var CFibFansObject = create_class(CBiToolObject);
-CFibFansObject.prototype.__construct = function (name) {
+CFibFansObject.prototype.__construct = function(name) {
     CFibFansObject.__super.__construct.call(this, name);
     this.drawer = new DrawFibFansPlotter(name, this);
 };
-CFibFansObject.prototype.isSelected = function (x, y) {
+CFibFansObject.prototype.isSelected = function(x, y) {
     if (CFibFansObject.__super.isSelected.call(this, x, y) == true)
         return true;
     var c = new CPoint("frame0.k0");
@@ -7465,10 +7425,10 @@ CFibFansObject.prototype.isSelected = function (x, y) {
     var ey = this.getPoint(1).getPosXY().y;
     var pObj = this.getChartObjects();
     var areaPos = {
-        left: pObj.pArea.getLeft(),
-        top: pObj.pArea.getTop(),
-        right: pObj.pArea.getRight(),
-        bottom: pObj.pArea.getBottom()
+        left   : pObj.pArea.getLeft(),
+        top    : pObj.pArea.getTop(),
+        right  : pObj.pArea.getRight(),
+        bottom : pObj.pArea.getBottom()
     };
     var fibFansSequence = [0, 38.2, 50, 61.8];
     for (var i = 0; i < fibFansSequence.length; i++) {
@@ -7478,10 +7438,7 @@ CFibFansObject.prototype.isSelected = function (x, y) {
         var crossPt = getRectCrossPt(areaPos, tempStartPt, tempEndPt);
         var lenToStartPt = Math.pow((crossPt[0].x - sx), 2) + Math.pow((crossPt[0].y - sy), 2);
         var lenToEndPt = Math.pow((crossPt[0].x - ex), 2) + Math.pow((crossPt[0].y - ey), 2);
-        var tempCrossPt = lenToStartPt > lenToEndPt ? {x: crossPt[0].x, y: crossPt[0].y} : {
-            x: crossPt[1].x,
-            y: crossPt[1].y
-        };
+        var tempCrossPt = lenToStartPt > lenToEndPt ? {x: crossPt[0].x, y: crossPt[0].y} : {x: crossPt[1].x, y: crossPt[1].y};
         if (tempCrossPt.x > sx && x < sx)
             continue;
         if (tempCrossPt.x < sx && x > sx)
@@ -7498,11 +7455,11 @@ CFibFansObject.prototype.isSelected = function (x, y) {
     return false;
 };
 var CFibRetraceObject = create_class(CBiToolObject);
-CFibRetraceObject.prototype.__construct = function (name) {
+CFibRetraceObject.prototype.__construct = function(name) {
     CFibRetraceObject.__super.__construct.call(this, name);
     this.drawer = new DrawFibRetracePlotter(name, this);
 };
-CFibRetraceObject.prototype.isSelected = function (x, y) {
+CFibRetraceObject.prototype.isSelected = function(x, y) {
     if (CFibRetraceObject.__super.isSelected.call(this, x, y) == true)
         return true;
     var c = new CPoint("frame0.k0");
@@ -7522,11 +7479,11 @@ CFibRetraceObject.prototype.isSelected = function (x, y) {
     return false;
 };
 var CHoriRayLineObject = create_class(CBiToolObject);
-CHoriRayLineObject.prototype.__construct = function (name) {
+CHoriRayLineObject.prototype.__construct = function(name) {
     CHoriRayLineObject.__super.__construct.call(this, name);
     this.drawer = new DrawHoriRayLinesPlotter(name, this);
 };
-CHoriRayLineObject.prototype.setDrawPos = function (x, y) {
+CHoriRayLineObject.prototype.setDrawPos = function(x, y) {
     if (this.points[0].getState() == CPoint.state.Highlight) {
         this.points[0].setPosXY(x, y);
         this.points[1].setPosXYNoSnap(this.points[1].getPosXY().x, this.points[0].getPosXY().y);
@@ -7537,7 +7494,7 @@ CHoriRayLineObject.prototype.setDrawPos = function (x, y) {
         this.points[0].setPosXYNoSnap(this.points[0].getPosXY().x, this.points[1].getPosXY().y);
     }
 };
-CHoriRayLineObject.prototype.isSelected = function (x, y) {
+CHoriRayLineObject.prototype.isSelected = function(x, y) {
     if (CHoriRayLineObject.__super.isSelected.call(this, x, y) == true)
         return true;
     var c = new CPoint("frame0.k0");
@@ -7555,11 +7512,11 @@ CHoriRayLineObject.prototype.isSelected = function (x, y) {
     return true;
 };
 var CHoriSegLineObject = create_class(CBiToolObject);
-CHoriSegLineObject.prototype.__construct = function (name) {
+CHoriSegLineObject.prototype.__construct = function(name) {
     CHoriSegLineObject.__super.__construct.call(this, name);
     this.drawer = new DrawHoriSegLinesPlotter(name, this);
 };
-CHoriSegLineObject.prototype.setDrawPos = function (x, y) {
+CHoriSegLineObject.prototype.setDrawPos = function(x, y) {
     if (this.points[0].getState() == CPoint.state.Highlight) {
         this.points[0].setPosXY(x, y);
         this.points[1].setPosXYNoSnap(this.points[1].getPosXY().x, this.points[0].getPosXY().y);
@@ -7570,7 +7527,7 @@ CHoriSegLineObject.prototype.setDrawPos = function (x, y) {
         this.points[0].setPosXYNoSnap(this.points[0].getPosXY().x, this.points[1].getPosXY().y);
     }
 };
-CHoriSegLineObject.prototype.isSelected = function (x, y) {
+CHoriSegLineObject.prototype.isSelected = function(x, y) {
     if (CHoriSegLineObject.__super.isSelected.call(this, x, y) == true)
         return true;
     var c = new CPoint("frame0.k0");
@@ -7588,16 +7545,16 @@ CHoriSegLineObject.prototype.isSelected = function (x, y) {
     return true;
 };
 var CHoriStraightLineObject = create_class(CBiToolObject);
-CHoriStraightLineObject.prototype.__construct = function (name) {
+CHoriStraightLineObject.prototype.__construct = function(name) {
     CHoriStraightLineObject.__super.__construct.call(this, name);
     this.drawer = new DrawHoriStraightLinesPlotter(name, this);
 };
-CHoriStraightLineObject.prototype.setDrawPos = function (x, y) {
+CHoriStraightLineObject.prototype.setDrawPos = function(x, y) {
     for (var index in this.points) {
         this.points[index].setPosXY(x, y);
     }
 };
-CHoriStraightLineObject.prototype.isSelected = function (x, y) {
+CHoriStraightLineObject.prototype.isSelected = function(x, y) {
     if (CHoriStraightLineObject.__super.isSelected.call(this, x, y) == true)
         return true;
     var c = new CPoint("frame0.k0");
@@ -7609,11 +7566,11 @@ CHoriStraightLineObject.prototype.isSelected = function (x, y) {
     return true;
 };
 var CRayLineObject = create_class(CBiToolObject);
-CRayLineObject.prototype.__construct = function (name) {
+CRayLineObject.prototype.__construct = function(name) {
     CRayLineObject.__super.__construct.call(this, name);
     this.drawer = new DrawRayLinesPlotter(name, this);
 };
-CRayLineObject.prototype.isSelected = function (x, y) {
+CRayLineObject.prototype.isSelected = function(x, y) {
     if (CRayLineObject.__super.isSelected.call(this, x, y) == true)
         return true;
     var c = new CPoint("frame0.k0");
@@ -7631,11 +7588,11 @@ CRayLineObject.prototype.isSelected = function (x, y) {
     return false;
 };
 var CSegLineObject = create_class(CBiToolObject);
-CSegLineObject.prototype.__construct = function (name) {
+CSegLineObject.prototype.__construct = function(name) {
     CSegLineObject.__super.__construct.call(this, name);
     this.drawer = new DrawSegLinesPlotter(name, this);
 };
-CSegLineObject.prototype.isSelected = function (x, y) {
+CSegLineObject.prototype.isSelected = function(x, y) {
     if (CSegLineObject.__super.isSelected.call(this, x, y) == true)
         return true;
     var c = new CPoint("frame0.k0");
@@ -7649,11 +7606,11 @@ CSegLineObject.prototype.isSelected = function (x, y) {
     return false;
 };
 var CStraightLineObject = create_class(CBiToolObject);
-CStraightLineObject.prototype.__construct = function (name) {
+CStraightLineObject.prototype.__construct = function(name) {
     CStraightLineObject.__super.__construct.call(this, name);
     this.drawer = new DrawStraightLinesPlotter(name, this);
 };
-CStraightLineObject.prototype.isSelected = function (x, y) {
+CStraightLineObject.prototype.isSelected = function(x, y) {
     if (CStraightLineObject.__super.isSelected.call(this, x, y) == true)
         return true;
     var c = new CPoint("frame0.k0");
@@ -7665,11 +7622,11 @@ CStraightLineObject.prototype.isSelected = function (x, y) {
     return false;
 };
 var CTriParallelLineObject = create_class(CTriToolObject);
-CTriParallelLineObject.prototype.__construct = function (name) {
+CTriParallelLineObject.prototype.__construct = function(name) {
     CTriParallelLineObject.__super.__construct.call(this, name);
     this.drawer = new DrawTriParallelLinesPlotter(name, this);
 };
-CTriParallelLineObject.prototype.isSelected = function (x, y) {
+CTriParallelLineObject.prototype.isSelected = function(x, y) {
     if (CTriParallelLineObject.__super.isSelected.call(this, x, y) == true)
         return true;
     var pObj = this.getChartObjects();
@@ -7679,22 +7636,22 @@ CTriParallelLineObject.prototype.isSelected = function (x, y) {
     var _1y = this.getPoint(1).getPosXY().y;
     var _2x = this.getPoint(2).getPosXY().x;
     var _2y = this.getPoint(2).getPosXY().y;
-    var _a = {x: _0x - _1x, y: _0y - _1y};
-    var _b = {x: _0x - _2x, y: _0y - _2y};
-    var _c = {x: _a.x + _b.x, y: _a.y + _b.y};
-    var _3x = _0x - _c.x;
-    var _3y = _0y - _c.y;
-    var r1 = {sx: _0x, sy: _0y, ex: _2x, ey: _2y};
-    var r2 = {sx: _1x, sy: _1y, ex: _3x, ey: _3y};
-    var _i = {x: _0x - _1x, y: _0y - _1y};
-    var _j = {x: _2x - _3x, y: _2y - _3y};
-    var _ri = {x: _1x - _0x, y: _1y - _0y};
-    var _rj = {x: _3x - _2x, y: _3y - _2y};
+    var _a = { x : _0x-_1x, y : _0y-_1y };
+    var _b = { x : _0x-_2x, y : _0y-_2y };
+    var _c = { x : _a.x+_b.x, y : _a.y+_b.y };
+    var _3x = _0x-_c.x;
+    var _3y = _0y-_c.y;
+    var r1 = { sx:_0x, sy:_0y, ex:_2x, ey:_2y };
+    var r2 = { sx:_1x, sy:_1y, ex:_3x, ey:_3y };
+    var _i = { x : _0x-_1x, y : _0y-_1y };
+    var _j = { x : _2x-_3x, y : _2y-_3y };
+    var _ri = { x : _1x -_0x, y : _1y-_0y };
+    var _rj = { x : _3x -_2x, y : _3y-_2y };
     var _4x = Math.abs(_ri.x - _0x);
     var _4y = Math.abs(_ri.y - _0y);
     var _5x = Math.abs(_rj.x - _2x);
     var _5y = Math.abs(_rj.y - _2y);
-    var r3 = {sx: _4x, sy: _4y, ex: _5x, ey: _5y};
+    var r3 = { sx:_4x, sy:_4y, ex:_5x, ey:_5y };
     if (this.calcGap(r1, x, y) > 4 &&
         this.calcGap(r2, x, y) > 4 &&
         this.calcGap(r3, x, y) > 4)
@@ -7703,16 +7660,16 @@ CTriParallelLineObject.prototype.isSelected = function (x, y) {
     return true;
 };
 var CVertiStraightLineObject = create_class(CBiToolObject);
-CVertiStraightLineObject.prototype.__construct = function (name) {
+CVertiStraightLineObject.prototype.__construct = function(name) {
     CVertiStraightLineObject.__super.__construct.call(this, name);
     this.drawer = new DrawVertiStraightLinesPlotter(name, this);
 };
-CVertiStraightLineObject.prototype.setDrawPos = function (x, y) {
+CVertiStraightLineObject.prototype.setDrawPos = function(x, y) {
     for (var index in this.points) {
         this.points[index].setPosXY(x, y);
     }
 };
-CVertiStraightLineObject.prototype.isSelected = function (x, y) {
+CVertiStraightLineObject.prototype.isSelected = function(x, y) {
     if (CVertiStraightLineObject.__super.isSelected.call(this, x, y) == true)
         return true;
     var c = new CPoint("frame0.k0");
@@ -7724,16 +7681,16 @@ CVertiStraightLineObject.prototype.isSelected = function (x, y) {
     return true;
 };
 var CPriceLineObject = create_class(CSegLineObject);
-CPriceLineObject.prototype.__construct = function (name) {
+CPriceLineObject.prototype.__construct = function(name) {
     CPriceLineObject.__super.__construct.call(this, name);
     this.drawer = new DrawPriceLinesPlotter(name, this);
 };
-CPriceLineObject.prototype.setDrawPos = function (x, y) {
+CPriceLineObject.prototype.setDrawPos = function(x, y) {
     for (var index in this.points) {
         this.points[index].setPosXY(x, y);
     }
 };
-CPriceLineObject.prototype.isSelected = function (x, y) {
+CPriceLineObject.prototype.isSelected = function(x, y) {
     if (CFibRetraceObject.__super.isSelected.call(this, x, y) == true)
         return true;
     var c = new CPoint("frame0.k0");
@@ -7750,41 +7707,41 @@ CPriceLineObject.prototype.isSelected = function (x, y) {
     return true;
 };
 var CArrowLineObject = create_class(CSegLineObject);
-CArrowLineObject.prototype.__construct = function (name) {
+CArrowLineObject.prototype.__construct = function(name) {
     CArrowLineObject.__super.__construct.call(this, name);
     this.drawer = new DrawArrowLinesPlotter(name, this);
 };
 var CToolManager = create_class(NamedObject);
-CToolManager.prototype.__construct = function (name) {
+CToolManager.prototype.__construct = function(name) {
     CToolManager.__super.__construct.call(this, name);
     this.selectedObject = -1;
     this.toolObjects = [];
 };
-CToolManager.prototype.getToolObjectCount = function () {
+CToolManager.prototype.getToolObjectCount = function() {
     return this.toolObjects.length;
 };
-CToolManager.prototype.addToolObject = function (o) {
+CToolManager.prototype.addToolObject = function(o) {
     this.toolObjects.push(o);
 };
-CToolManager.prototype.getToolObject = function (i) {
+CToolManager.prototype.getToolObject = function(i) {
     if (i < this.toolObjects.length && i >= 0)
         return this.toolObjects[i];
     return null;
 };
-CToolManager.prototype.getCurrentObject = function () {
+CToolManager.prototype.getCurrentObject = function() {
     return this.getToolObject(this.getToolObjectCount() - 1);
 };
-CToolManager.prototype.getSelectedObject = function () {
+CToolManager.prototype.getSelectedObject = function() {
     return this.getToolObject(this.selectedObject);
 };
-CToolManager.prototype.delCurrentObject = function () {
+CToolManager.prototype.delCurrentObject = function() {
     this.toolObjects.splice(this.getToolObjectCount() - 1, 1);
 };
-CToolManager.prototype.delSelectedObject = function () {
+CToolManager.prototype.delSelectedObject = function() {
     this.toolObjects.splice(this.selectedObject, 1);
     this.selectedObject = -1;
 };
-CToolManager.prototype.acceptMouseMoveEvent = function (x, y) {
+CToolManager.prototype.acceptMouseMoveEvent = function(x, y) {
     if (this.selectedObject == -1) {
         var curr = this.toolObjects[this.getToolObjectCount() - 1];
         if (curr != null && curr.getState() != CToolObject.state.AfterDraw)
@@ -7804,7 +7761,7 @@ CToolManager.prototype.acceptMouseMoveEvent = function (x, y) {
     }
     return false;
 };
-CToolManager.prototype.acceptMouseDownEvent = function (x, y) {
+CToolManager.prototype.acceptMouseDownEvent = function(x, y) {
     this.mouseDownMove = false;
     if (this.selectedObject == -1) {
         var curr = this.toolObjects[this.getToolObjectCount() - 1];
@@ -7817,7 +7774,7 @@ CToolManager.prototype.acceptMouseDownEvent = function (x, y) {
     }
     return false;
 };
-CToolManager.prototype.acceptMouseDownMoveEvent = function (x, y) {
+CToolManager.prototype.acceptMouseDownMoveEvent = function(x, y) {
     this.mouseDownMove = true;
     if (this.selectedObject == -1) {
         var curr = this.toolObjects[this.getToolObjectCount() - 1];
@@ -7839,7 +7796,7 @@ CToolManager.prototype.acceptMouseDownMoveEvent = function (x, y) {
         }
     }
 };
-CToolManager.prototype.acceptMouseUpEvent = function (x, y) {
+CToolManager.prototype.acceptMouseUpEvent = function(x, y) {
     if (this.mouseDownMove == true) {
         if (this.selectedObject == -1) {
             var curr = this.toolObjects[this.getToolObjectCount() - 1];
@@ -7869,25 +7826,25 @@ CToolManager.prototype.acceptMouseUpEvent = function (x, y) {
     return false;
 };
 var CToolPlotter = create_class(NamedObject);
-CToolPlotter.prototype.__construct = function (name, toolObject) {
+CToolPlotter.prototype.__construct = function(name, toolObject) {
     CToolPlotter.__super.__construct.call(this, name);
     this.toolObject = toolObject;
     var pMgr = ChartManager.getInstance();
     var pArea = pMgr.getArea('frame0.k0.main');
     if (pArea == null) {
         this.areaPos = {
-            left: 0,
-            top: 0,
-            right: 0,
-            bottom: 0
+            left : 0,
+            top : 0,
+            right : 0,
+            bottom : 0
         };
         return;
     }
     this.areaPos = {
-        left: pArea.getLeft(),
-        top: pArea.getTop(),
-        right: pArea.getRight(),
-        bottom: pArea.getBottom()
+        left : pArea.getLeft(),
+        top : pArea.getTop(),
+        right : pArea.getRight(),
+        bottom : pArea.getBottom()
     };
     this.crossPt = {};
     this.normalSize = 4;
@@ -7896,27 +7853,27 @@ CToolPlotter.prototype.__construct = function (name, toolObject) {
     this.cursorGapLen = 3;
     this.theme = ChartManager.getInstance().getTheme(this.getFrameName());
 };
-CToolPlotter.prototype.drawCursor = function (context) {
+CToolPlotter.prototype.drawCursor = function(context){
     this.drawCrossCursor(context);
 };
-CToolPlotter.prototype.drawCrossCursor = function (context) {
+CToolPlotter.prototype.drawCrossCursor = function(context){
     context.strokeStyle = this.theme.getColor(Theme.Color.LineColorNormal);
-    context.fillStyle = this.theme.getColor(Theme.Color.LineColorNormal);
+    context.fillStyle   = this.theme.getColor(Theme.Color.LineColorNormal);
     var tempPt = this.toolObject.getPoint(0).getPosXY();
-    if (tempPt == null) {
+    if (tempPt == null){
         return;
     }
     var x = tempPt.x;
     var y = tempPt.y;
     var cursorLen = this.cursorLen;
     var cursorGapLen = this.cursorGapLen;
-    context.fillRect(x, y, 1, 1);
-    Plotter.drawLine(context, x - cursorLen - cursorGapLen, y, x - cursorGapLen, y);
-    Plotter.drawLine(context, x + cursorLen + cursorGapLen, y, x + cursorGapLen, y);
-    Plotter.drawLine(context, x, y - cursorLen - cursorGapLen, x, y - cursorGapLen);
-    Plotter.drawLine(context, x, y + cursorLen + cursorGapLen, x, y + cursorGapLen);
+    context.fillRect( x, y, 1, 1);
+    Plotter.drawLine(context, x - cursorLen - cursorGapLen , y, x - cursorGapLen, y);
+    Plotter.drawLine(context, x + cursorLen + cursorGapLen , y, x + cursorGapLen, y);
+    Plotter.drawLine(context, x , y - cursorLen - cursorGapLen, x , y- cursorGapLen);
+    Plotter.drawLine(context, x , y + cursorLen + cursorGapLen, x, y + cursorGapLen);
 };
-CToolPlotter.prototype.drawCircle = function (context, center, radius) {
+CToolPlotter.prototype.drawCircle = function(context, center, radius){
     var centerX = center.x;
     var centerY = center.y;
     context.beginPath();
@@ -7925,143 +7882,137 @@ CToolPlotter.prototype.drawCircle = function (context, center, radius) {
     context.fill();
     context.stroke();
 };
-CToolPlotter.prototype.drawCtrlPt = function (context) {
+CToolPlotter.prototype.drawCtrlPt = function(context){
     context.strokeStyle = this.theme.getColor(Theme.Color.CircleColorStroke);
-    for (var i = 0; i < this.ctrlPtsNum; i++) {
+    for(var i=0; i<this.ctrlPtsNum; i++){
         this.drawCircle(context, this.ctrlPts[1][i], this.normalSize);
     }
 }
-CToolPlotter.prototype.highlightCtrlPt = function (context) {
+CToolPlotter.prototype.highlightCtrlPt = function(context){
     context.strokeStyle = this.theme.getColor(Theme.Color.CircleColorStroke);
-    for (var i = 0; i < this.ctrlPtsNum; i++) {
+    for(var i=0; i<this.ctrlPtsNum; i++){
         if (this.toolObject.getPoint(i).getState() == CPoint.state.Highlight)
             this.drawCircle(context, this.ctrlPts[1][i], this.selectedSize);
     }
 }
-CToolPlotter.prototype.drawFibRayLines = function (context, startPoint, endPoint) {
-    for (var i = 0; i < this.fiboFansSequence.length; i++) {
+CToolPlotter.prototype.drawFibRayLines = function(context, startPoint, endPoint) {
+    for (var i=0; i < this.fiboFansSequence.length; i++){
         var stageY = startPoint.y + (100 - this.fiboFansSequence[i]) / 100 * (endPoint.y - startPoint.y);
-        var tempStartPt = {x: startPoint.x, y: startPoint.y};
-        var tempEndPt = {x: endPoint.x, y: stageY};
+        var tempStartPt = {x : startPoint.x, y : startPoint.y};
+        var tempEndPt = {x : endPoint.x, y : stageY};
         this.drawRayLines(context, tempStartPt, tempEndPt);
     }
 }
-CToolPlotter.prototype.drawRayLines = function (context, startPoint, endPoint) {
+CToolPlotter.prototype.drawRayLines = function(context, startPoint, endPoint){
     this.getAreaPos();
-    var tempStartPt = {x: startPoint.x, y: startPoint.y};
-    var tempEndPt = {x: endPoint.x, y: endPoint.y};
-    var crossPt = getRectCrossPt(this.areaPos, tempStartPt, tempEndPt);
+    var tempStartPt = {x : startPoint.x, y : startPoint.y};
+    var tempEndPt = {x : endPoint.x, y : endPoint.y};
+    var crossPt = getRectCrossPt (this.areaPos, tempStartPt, tempEndPt);
     var tempCrossPt;
-    if (endPoint.x == startPoint.x) {
-        if (endPoint.y == startPoint.y) {
+    if(endPoint.x == startPoint.x){
+        if(endPoint.y == startPoint.y){
             tempCrossPt = endPoint;
-        } else {
-            tempCrossPt = endPoint.y > startPoint.y ? {x: crossPt[1].x, y: crossPt[1].y} : {
-                x: crossPt[0].x,
-                y: crossPt[0].y
-            }
+        }else{
+            tempCrossPt = endPoint.y > startPoint.y ? {x : crossPt[1].x, y : crossPt[1].y} : {x : crossPt[0].x, y : crossPt[0].y}
         }
-    } else {
-        tempCrossPt = endPoint.x > startPoint.x ? {x: crossPt[1].x, y: crossPt[1].y} : {
-            x: crossPt[0].x,
-            y: crossPt[0].y
-        }
+    } else{
+        tempCrossPt = endPoint.x > startPoint.x ? {x : crossPt[1].x, y : crossPt[1].y} : {x : crossPt[0].x, y : crossPt[0].y}
     }
-    Plotter.drawLine(context, startPoint.x, startPoint.y, tempCrossPt.x, tempCrossPt.y);
+    Plotter.drawLine(context, startPoint.x , startPoint.y, tempCrossPt.x, tempCrossPt.y);
 }
-CToolPlotter.prototype.lenBetweenPts = function (pt1, pt2) {
-    return Math.sqrt(Math.pow((pt2.x - pt1.x), 2) + Math.pow((pt2.y - pt1.y), 2));
+CToolPlotter.prototype.lenBetweenPts = function(pt1, pt2){
+    return Math.sqrt(Math.pow((pt2.x - pt1.x),2)+Math.pow((pt2.y - pt1.y),2));
 }
-CToolPlotter.prototype.getCtrlPts = function () {
-    for (var i = 0; i < this.ctrlPtsNum; i++) {
+CToolPlotter.prototype.getCtrlPts = function(){
+    for(var i=0; i<this.ctrlPtsNum; i++){
         this.ctrlPts[0][i] = this.toolObject.getPoint(i);
     }
 }
-CToolPlotter.prototype.updateCtrlPtPos = function () {
-    for (var i = 0; i < this.ctrlPtsNum; i++) {
+CToolPlotter.prototype.updateCtrlPtPos = function(){
+    for(var i=0; i<this.ctrlPtsNum; i++){
         this.ctrlPts[1][i] = this.ctrlPts[0][i].getPosXY();
     }
 }
-CToolPlotter.prototype.getAreaPos = function () {
+CToolPlotter.prototype.getAreaPos = function(){
     var pMgr = ChartManager.getInstance();
     var pArea = pMgr.getArea('frame0.k0.main');
     if (pArea == null) {
         this.areaPos = {
-            left: 0,
-            top: 0,
-            right: 0,
-            bottom: 0
+            left : 0,
+            top : 0,
+            right : 0,
+            bottom : 0
         };
         return;
     }
     this.areaPos = {
-        left: Math.floor(pArea.getLeft()),
-        top: Math.floor(pArea.getTop()),
-        right: Math.floor(pArea.getRight()),
-        bottom: Math.floor(pArea.getBottom())
+        left : Math.floor(pArea.getLeft()),
+        top : Math.floor(pArea.getTop()),
+        right : Math.floor(pArea.getRight()),
+        bottom : Math.floor(pArea.getBottom())
     };
 }
-CToolPlotter.prototype.updateDraw = function (context) {
+CToolPlotter.prototype.updateDraw = function(context){
     context.strokeStyle = this.theme.getColor(Theme.Color.LineColorNormal);
     this.draw(context);
     this.drawCtrlPt(context);
 }
-CToolPlotter.prototype.finishDraw = function (context) {
+CToolPlotter.prototype.finishDraw = function(context) {
     context.strokeStyle = this.theme.getColor(Theme.Color.LineColorNormal);
     this.draw(context);
 }
-CToolPlotter.prototype.highlight = function (context) {
+CToolPlotter.prototype.highlight = function(context) {
     context.strokeStyle = this.theme.getColor(Theme.Color.LineColorSelected);
     this.draw(context);
     this.drawCtrlPt(context);
     this.highlightCtrlPt(context);
 }
 var DrawStraightLinesPlotter = create_class(CToolPlotter);
-DrawStraightLinesPlotter.prototype.__construct = function (name, toolObject) {
+DrawStraightLinesPlotter.prototype.__construct = function(name, toolObject) {
     DrawStraightLinesPlotter.__super.__construct.call(this, name, toolObject);
     this.toolObject = toolObject;
     this.ctrlPtsNum = 2;
-    this.ctrlPts = new Array(new Array(this.ctrlPtsNum), new Array(2));
+    this.ctrlPts = new Array(new Array(this.ctrlPtsNum),new Array(2));
     this.getCtrlPts();
 };
-DrawStraightLinesPlotter.prototype.draw = function (context) {
+DrawStraightLinesPlotter.prototype.draw = function(context) {
     this.updateCtrlPtPos();
     this.getAreaPos();
     this.startPoint = this.ctrlPts[1][0];
     this.endPoint = this.ctrlPts[1][1];
-    if (this.startPoint.x == this.endPoint.x && this.startPoint.y == this.endPoint.y) {
+    if (this.startPoint.x == this.endPoint.x && this.startPoint.y == this.endPoint.y){
         Plotter.drawLine(context, this.areaPos.left, this.startPoint.y, this.areaPos.right, this.startPoint.y);
-    } else {
-        this.crossPt = getRectCrossPt(this.areaPos, this.startPoint, this.endPoint);
-        Plotter.drawLine(context, this.crossPt[0].x, this.crossPt[0].y, this.crossPt[1].x, this.crossPt[1].y);
+    }else{
+        this.crossPt = getRectCrossPt (this.areaPos, this.startPoint, this.endPoint);
+        Plotter.drawLine(context, this.crossPt[0].x , this.crossPt[0].y, this.crossPt[1].x, this.crossPt[1].y);
     }
 };
 var DrawSegLinesPlotter = create_class(CToolPlotter);
-DrawSegLinesPlotter.prototype.__construct = function (name, toolObject) {
+DrawSegLinesPlotter.prototype.__construct = function(name, toolObject) {
     DrawSegLinesPlotter.__super.__construct.call(this, name, toolObject);
     this.toolObject = toolObject;
     this.ctrlPtsNum = 2;
-    this.ctrlPts = new Array(new Array(this.ctrlPtsNum), new Array(2));
+    this.ctrlPts = new Array(new Array(this.ctrlPtsNum),new Array(2));
     this.getCtrlPts();
 };
-DrawSegLinesPlotter.prototype.draw = function (context) {
+DrawSegLinesPlotter.prototype.draw = function(context){
     this.updateCtrlPtPos();
     this.startPoint = this.ctrlPts[1][0];
     this.endPoint = this.ctrlPts[1][1];
     if (this.startPoint.x == this.endPoint.x && this.startPoint.y == this.endPoint.y) {
         this.endPoint.x += 1;
     }
-    Plotter.drawLine(context, this.startPoint.x, this.startPoint.y, this.endPoint.x, this.endPoint.y);
+    Plotter.drawLine(context, this.startPoint.x , this.startPoint.y, this.endPoint.x, this.endPoint.y);
 }
 var DrawRayLinesPlotter = create_class(CToolPlotter);
-DrawRayLinesPlotter.prototype.__construct = function (name, toolObject) {
+DrawRayLinesPlotter.prototype.__construct = function(name, toolObject) {
     DrawRayLinesPlotter.__super.__construct.call(this, name);
     this.toolObject = toolObject;
     this.ctrlPtsNum = 2;
-    this.ctrlPts = new Array(new Array(this.ctrlPtsNum), new Array(2));
+    this.ctrlPts = new Array(new Array(this.ctrlPtsNum),new Array(2));
     this.getCtrlPts();
 };
-DrawRayLinesPlotter.prototype.draw = function (context) {
+DrawRayLinesPlotter.prototype.draw = function(context) {
     this.updateCtrlPtPos();
     this.getAreaPos();
     this.startPoint = this.ctrlPts[1][0];
@@ -8072,24 +8023,24 @@ DrawRayLinesPlotter.prototype.draw = function (context) {
     this.drawRayLines(context, this.startPoint, this.endPoint);
 }
 var DrawArrowLinesPlotter = create_class(CToolPlotter);
-DrawArrowLinesPlotter.prototype.__construct = function (name, toolObject) {
+DrawArrowLinesPlotter.prototype.__construct = function(name, toolObject) {
     DrawArrowLinesPlotter.__super.__construct.call(this, name, toolObject);
     this.toolObject = toolObject;
     this.arrowSizeRatio = 0.03;
     this.arrowSize = 4;
-    this.crossPt = {x: -1, y: -1};
+    this.crossPt = {x : -1, y : -1};
     this.ctrlPtsNum = 2;
-    this.ctrlPts = new Array(new Array(this.ctrlPtsNum), new Array(2));
+    this.ctrlPts = new Array(new Array(this.ctrlPtsNum),new Array(2));
     this.getCtrlPts();
 };
-DrawArrowLinesPlotter.prototype.drawArrow = function (context, startPoint, endPoint) {
-    var len = this.lenBetweenPts(startPoint, endPoint);
+DrawArrowLinesPlotter.prototype.drawArrow = function(context, startPoint, endPoint) {
+    var len = this.lenBetweenPts(startPoint,endPoint);
     var vectorA = [endPoint.x - startPoint.x, endPoint.y - startPoint.y];
-    this.crossPt.x = startPoint.x + (1 - this.arrowSize / len) * vectorA[0];
-    this.crossPt.y = startPoint.y + (1 - this.arrowSize / len) * vectorA[1];
+    this.crossPt.x = startPoint.x + (1 - this.arrowSize/len) * vectorA[0];
+    this.crossPt.y = startPoint.y + (1 - this.arrowSize/len) * vectorA[1];
     var vectorAautho = [-vectorA[1], vectorA[0]];
-    var Aautho = {x: vectorAautho[0], y: vectorAautho[1]};
-    var origin = {x: 0, y: 0};
+    var Aautho = {x : vectorAautho[0], y : vectorAautho[1]};
+    var origin = {x : 0, y : 0};
     vectorAautho[0] = this.arrowSize * Aautho.x / this.lenBetweenPts(Aautho, origin);
     vectorAautho[1] = this.arrowSize * Aautho.y / this.lenBetweenPts(Aautho, origin);
     var arrowEndPt = [this.crossPt.x + vectorAautho[0], this.crossPt.y + vectorAautho[1]];
@@ -8097,94 +8048,94 @@ DrawArrowLinesPlotter.prototype.drawArrow = function (context, startPoint, endPo
     arrowEndPt = [this.crossPt.x - vectorAautho[0], this.crossPt.y - vectorAautho[1]];
     Plotter.drawLine(context, endPoint.x, endPoint.y, arrowEndPt[0], arrowEndPt[1]);
 }
-DrawArrowLinesPlotter.prototype.draw = function (context) {
+DrawArrowLinesPlotter.prototype.draw = function(context){
     this.updateCtrlPtPos();
     this.startPoint = this.ctrlPts[1][0];
     this.endPoint = this.ctrlPts[1][1];
     if (this.startPoint.x == this.endPoint.x && this.startPoint.y == this.endPoint.y) {
         this.endPoint.x += 1;
     }
-    Plotter.drawLine(context, this.startPoint.x, this.startPoint.y, this.endPoint.x, this.endPoint.y);
+    Plotter.drawLine(context, this.startPoint.x , this.startPoint.y, this.endPoint.x, this.endPoint.y);
     this.drawArrow(context, this.startPoint, this.endPoint);
 }
 var DrawHoriStraightLinesPlotter = create_class(CToolPlotter);
-DrawHoriStraightLinesPlotter.prototype.__construct = function (name, toolObject) {
+DrawHoriStraightLinesPlotter.prototype.__construct = function(name, toolObject) {
     DrawHoriStraightLinesPlotter.__super.__construct.call(this, name);
     this.toolObject = toolObject;
     this.ctrlPtsNum = 1;
-    this.ctrlPts = new Array(new Array(this.ctrlPtsNum), new Array(2));
+    this.ctrlPts = new Array(new Array(this.ctrlPtsNum),new Array(2));
     this.getCtrlPts();
 };
-DrawHoriStraightLinesPlotter.prototype.draw = function (context) {
+DrawHoriStraightLinesPlotter.prototype.draw = function(context) {
     this.updateCtrlPtPos();
     this.getAreaPos();
     this.startPoint = this.ctrlPts[1][0];
     Plotter.drawLine(context, this.areaPos.left, this.startPoint.y, this.areaPos.right, this.startPoint.y);
 };
 var DrawHoriRayLinesPlotter = create_class(CToolPlotter);
-DrawHoriRayLinesPlotter.prototype.__construct = function (name, toolObject) {
+DrawHoriRayLinesPlotter.prototype.__construct = function(name, toolObject) {
     DrawHoriRayLinesPlotter.__super.__construct.call(this, name);
     this.toolObject = toolObject;
     this.ctrlPtsNum = 2;
-    this.ctrlPts = new Array(new Array(this.ctrlPtsNum), new Array(2));
+    this.ctrlPts = new Array(new Array(this.ctrlPtsNum),new Array(2));
     this.getCtrlPts();
 };
-DrawHoriRayLinesPlotter.prototype.draw = function (context) {
+DrawHoriRayLinesPlotter.prototype.draw = function(context) {
     this.updateCtrlPtPos();
     this.getAreaPos();
     this.startPoint = this.ctrlPts[1][0];
     this.endPoint = this.ctrlPts[1][1];
-    if (this.startPoint.x == this.endPoint.x) {
+    if (this.startPoint.x == this.endPoint.x ){
         Plotter.drawLine(context, this.startPoint.x, this.startPoint.y, this.areaPos.right, this.startPoint.y);
-    } else {
-        var tempEndPt = {x: this.endPoint.x, y: this.startPoint.y};
+    }else{
+        var tempEndPt = {x : this.endPoint.x, y : this.startPoint.y};
         this.drawRayLines(context, this.startPoint, tempEndPt);
     }
 };
 var DrawHoriSegLinesPlotter = create_class(CToolPlotter);
-DrawHoriSegLinesPlotter.prototype.__construct = function (name, toolObject) {
+DrawHoriSegLinesPlotter.prototype.__construct = function(name, toolObject) {
     DrawHoriSegLinesPlotter.__super.__construct.call(this, name, toolObject);
     this.toolObject = toolObject;
     this.ctrlPtsNum = 2;
-    this.ctrlPts = new Array(new Array(this.ctrlPtsNum), new Array(2));
+    this.ctrlPts = new Array(new Array(this.ctrlPtsNum),new Array(2));
     this.getCtrlPts();
 };
-DrawHoriSegLinesPlotter.prototype.draw = function (context) {
+DrawHoriSegLinesPlotter.prototype.draw = function(context) {
     this.updateCtrlPtPos();
     this.startPoint = this.ctrlPts[1][0];
     this.endPoint = this.ctrlPts[1][1];
     this.endPoint.y = this.startPoint.y;
     if (this.startPoint.x == this.endPoint.x && this.startPoint.y == this.endPoint.y) {
-        Plotter.drawLine(context, this.startPoint.x, this.startPoint.y, this.endPoint.x + 1, this.startPoint.y);
+        Plotter.drawLine(context, this.startPoint.x, this.startPoint.y, this.endPoint.x+1, this.startPoint.y);
     } else {
-        Plotter.drawLine(context, this.startPoint.x, this.startPoint.y, this.endPoint.x, this.startPoint.y);
+        Plotter.drawLine(context, this.startPoint.x , this.startPoint.y, this.endPoint.x, this.startPoint.y);
     }
 };
 var DrawVertiStraightLinesPlotter = create_class(CToolPlotter);
-DrawVertiStraightLinesPlotter.prototype.__construct = function (name, toolObject) {
+DrawVertiStraightLinesPlotter.prototype.__construct = function(name, toolObject) {
     DrawVertiStraightLinesPlotter.__super.__construct.call(this, name);
     this.toolObject = toolObject;
     this.ctrlPtsNum = 1;
-    this.ctrlPts = new Array(new Array(this.ctrlPtsNum), new Array(2));
+    this.ctrlPts = new Array(new Array(this.ctrlPtsNum),new Array(2));
     this.getCtrlPts();
 };
-DrawVertiStraightLinesPlotter.prototype.draw = function (context) {
+DrawVertiStraightLinesPlotter.prototype.draw = function(context) {
     this.updateCtrlPtPos();
     this.getAreaPos();
     this.startPoint = this.ctrlPts[1][0];
     Plotter.drawLine(context, this.startPoint.x, this.areaPos.top, this.startPoint.x, this.areaPos.bottom);
 };
 var DrawPriceLinesPlotter = create_class(CToolPlotter);
-DrawPriceLinesPlotter.prototype.__construct = function (name, toolObject) {
+DrawPriceLinesPlotter.prototype.__construct = function(name, toolObject) {
     DrawPriceLinesPlotter.__super.__construct.call(this, name);
     this.toolObject = toolObject;
     this.ctrlPtsNum = 1;
-    this.ctrlPts = new Array(new Array(this.ctrlPtsNum), new Array(2));
+    this.ctrlPts = new Array(new Array(this.ctrlPtsNum),new Array(2));
     this.getCtrlPts();
 };
-DrawPriceLinesPlotter.prototype.draw = function (context) {
-    context.font = "12px Tahoma";
-    context.textAlign = "left";
+DrawPriceLinesPlotter.prototype.draw = function(context) {
+    context.font="12px Tahoma";
+    context.textAlign="left";
     context.fillStyle = this.theme.getColor(Theme.Color.LineColorNormal);
     this.updateCtrlPtPos();
     this.getAreaPos();
@@ -8194,30 +8145,30 @@ DrawPriceLinesPlotter.prototype.draw = function (context) {
     context.fillText(text.toFixed(2), this.startPoint.x + 2, this.startPoint.y - 15);
 };
 var ParallelLinesPlotter = create_class(CToolPlotter);
-ParallelLinesPlotter.prototype.__construct = function (name, toolObject) {
+ParallelLinesPlotter.prototype.__construct = function(name, toolObject) {
     ParallelLinesPlotter.__super.__construct.call(this, name);
     this.toolObject = toolObject;
 };
-ParallelLinesPlotter.prototype.getParaPt = function () {
+ParallelLinesPlotter.prototype.getParaPt = function(){
     var vectorA = [];
     vectorA[0] = this.endPoint.x - this.startPoint.x;
     vectorA[1] = this.endPoint.y - this.startPoint.y;
     var vectorB = [];
     vectorB[0] = this.paraStartPoint.x - this.startPoint.x;
     vectorB[1] = this.paraStartPoint.y - this.startPoint.y;
-    this.paraEndPoint = {x: -1, y: -1};
-    this.paraEndPoint.x = vectorA[0] + vectorB[0] + this.startPoint.x;
-    this.paraEndPoint.y = vectorA[1] + vectorB[1] + this.startPoint.y;
+    this.paraEndPoint = {x : -1, y : -1};
+    this.paraEndPoint.x = vectorA[0] + vectorB[0] +this.startPoint.x;
+    this.paraEndPoint.y = vectorA[1] + vectorB[1] +this.startPoint.y;
 }
 var DrawBiParallelLinesPlotter = create_class(ParallelLinesPlotter);
-DrawBiParallelLinesPlotter.prototype.__construct = function (name, toolObject) {
+DrawBiParallelLinesPlotter.prototype.__construct = function(name, toolObject) {
     DrawBiParallelLinesPlotter.__super.__construct.call(this, name, toolObject);
     this.toolObject = toolObject;
     this.ctrlPtsNum = 3;
-    this.ctrlPts = new Array(new Array(this.ctrlPtsNum), new Array(2));
+    this.ctrlPts = new Array(new Array(this.ctrlPtsNum),new Array(2));
     this.getCtrlPts();
 };
-DrawBiParallelLinesPlotter.prototype.draw = function (context) {
+DrawBiParallelLinesPlotter.prototype.draw = function(context) {
     this.updateCtrlPtPos();
     this.getAreaPos();
     this.startPoint = this.ctrlPts[1][0];
@@ -8225,20 +8176,20 @@ DrawBiParallelLinesPlotter.prototype.draw = function (context) {
     this.endPoint = this.ctrlPts[1][2];
     this.getParaPt();
     this.getAreaPos();
-    this.crossPt0 = getRectCrossPt(this.areaPos, this.startPoint, this.endPoint);
-    Plotter.drawLine(context, this.crossPt0[0].x, this.crossPt0[0].y, this.crossPt0[1].x, this.crossPt0[1].y);
-    this.crossPt1 = getRectCrossPt(this.areaPos, this.paraStartPoint, this.paraEndPoint);
-    Plotter.drawLine(context, this.crossPt1[0].x, this.crossPt1[0].y, this.crossPt1[1].x, this.crossPt1[1].y);
+    this.crossPt0 = getRectCrossPt (this.areaPos, this.startPoint, this.endPoint);
+    Plotter.drawLine(context, this.crossPt0[0].x , this.crossPt0[0].y, this.crossPt0[1].x, this.crossPt0[1].y);
+    this.crossPt1 = getRectCrossPt (this.areaPos, this.paraStartPoint, this.paraEndPoint);
+    Plotter.drawLine(context, this.crossPt1[0].x , this.crossPt1[0].y, this.crossPt1[1].x, this.crossPt1[1].y);
 };
 var DrawBiParallelRayLinesPlotter = create_class(ParallelLinesPlotter);
-DrawBiParallelRayLinesPlotter.prototype.__construct = function (name, toolObject) {
+DrawBiParallelRayLinesPlotter.prototype.__construct = function(name, toolObject) {
     DrawBiParallelRayLinesPlotter.__super.__construct.call(this, name, toolObject);
     this.toolObject = toolObject;
     this.ctrlPtsNum = 3;
-    this.ctrlPts = new Array(new Array(this.ctrlPtsNum), new Array(2));
+    this.ctrlPts = new Array(new Array(this.ctrlPtsNum),new Array(2));
     this.getCtrlPts();
 };
-DrawBiParallelRayLinesPlotter.prototype.draw = function (context) {
+DrawBiParallelRayLinesPlotter.prototype.draw = function(context) {
     this.updateCtrlPtPos();
     this.getAreaPos();
     this.startPoint = this.ctrlPts[1][0];
@@ -8252,14 +8203,14 @@ DrawBiParallelRayLinesPlotter.prototype.draw = function (context) {
     this.drawRayLines(context, this.paraStartPoint, this.paraEndPoint);
 };
 var DrawTriParallelLinesPlotter = create_class(ParallelLinesPlotter);
-DrawTriParallelLinesPlotter.prototype.__construct = function (name, toolObject) {
+DrawTriParallelLinesPlotter.prototype.__construct = function(name, toolObject) {
     DrawTriParallelLinesPlotter.__super.__construct.call(this, name, toolObject);
     this.toolObject = toolObject;
     this.ctrlPtsNum = 3;
-    this.ctrlPts = new Array(new Array(this.ctrlPtsNum), new Array(2));
+    this.ctrlPts = new Array(new Array(this.ctrlPtsNum),new Array(2));
     this.getCtrlPts();
 };
-DrawTriParallelLinesPlotter.prototype.draw = function (context) {
+DrawTriParallelLinesPlotter.prototype.draw = function(context) {
     this.updateCtrlPtPos();
     this.getAreaPos();
     this.startPoint = this.ctrlPts[1][0];
@@ -8271,42 +8222,42 @@ DrawTriParallelLinesPlotter.prototype.draw = function (context) {
     var vectorB = [];
     vectorB[0] = this.paraStartPoint.x - this.startPoint.x;
     vectorB[1] = this.paraStartPoint.y - this.startPoint.y;
-    this.para1EndPoint = {x: -1, y: -1};
-    this.para2EndPoint = {x: -1, y: -1};
-    this.para2StartPoint = {x: -1, y: -1};
-    this.para1EndPoint.x = vectorA[0] + vectorB[0] + this.startPoint.x;
-    this.para1EndPoint.y = vectorA[1] + vectorB[1] + this.startPoint.y;
+    this.para1EndPoint = {x : -1, y : -1};
+    this.para2EndPoint = {x : -1, y : -1};
+    this.para2StartPoint = {x : -1, y : -1};
+    this.para1EndPoint.x = vectorA[0] + vectorB[0] +this.startPoint.x;
+    this.para1EndPoint.y = vectorA[1] + vectorB[1] +this.startPoint.y;
     this.para2StartPoint.x = this.startPoint.x - vectorB[0];
     this.para2StartPoint.y = this.startPoint.y - vectorB[1];
     this.para2EndPoint.x = this.endPoint.x - vectorB[0];
     this.para2EndPoint.y = this.endPoint.y - vectorB[1];
     this.getAreaPos();
-    this.crossPt0 = getRectCrossPt(this.areaPos, this.startPoint, this.endPoint);
-    Plotter.drawLine(context, this.crossPt0[0].x, this.crossPt0[0].y, this.crossPt0[1].x, this.crossPt0[1].y);
-    this.crossPt1 = getRectCrossPt(this.areaPos, this.paraStartPoint, this.para1EndPoint);
-    Plotter.drawLine(context, this.crossPt1[0].x, this.crossPt1[0].y, this.crossPt1[1].x, this.crossPt1[1].y);
-    this.crossPt2 = getRectCrossPt(this.areaPos, this.para2StartPoint, this.para2EndPoint);
-    Plotter.drawLine(context, this.crossPt2[0].x, this.crossPt2[0].y, this.crossPt2[1].x, this.crossPt2[1].y);
+    this.crossPt0 = getRectCrossPt (this.areaPos, this.startPoint, this.endPoint);
+    Plotter.drawLine(context, this.crossPt0[0].x , this.crossPt0[0].y, this.crossPt0[1].x, this.crossPt0[1].y);
+    this.crossPt1 = getRectCrossPt (this.areaPos, this.paraStartPoint, this.para1EndPoint);
+    Plotter.drawLine(context, this.crossPt1[0].x , this.crossPt1[0].y, this.crossPt1[1].x, this.crossPt1[1].y);
+    this.crossPt2 = getRectCrossPt (this.areaPos, this.para2StartPoint, this.para2EndPoint);
+    Plotter.drawLine(context, this.crossPt2[0].x , this.crossPt2[0].y, this.crossPt2[1].x, this.crossPt2[1].y);
 };
 var BandLinesPlotter = create_class(CToolPlotter);
-BandLinesPlotter.prototype.__construct = function (name, toolObject) {
+BandLinesPlotter.prototype.__construct = function(name, toolObject) {
     BandLinesPlotter.__super.__construct.call(this, name);
     this.toolObject = toolObject;
     this.ctrlPtsNum = 2;
-    this.ctrlPts = new Array(new Array(this.ctrlPtsNum), new Array(2));
+    this.ctrlPts = new Array(new Array(this.ctrlPtsNum),new Array(2));
     this.getCtrlPts();
 };
-BandLinesPlotter.prototype.drawLinesAndInfo = function (context, startPoint, endPoint) {
-    context.font = "12px Tahoma";
-    context.textAlign = "left";
+BandLinesPlotter.prototype.drawLinesAndInfo = function(context, startPoint, endPoint) {
+    context.font="12px Tahoma";
+    context.textAlign="left";
     context.fillStyle = this.theme.getColor(Theme.Color.LineColorNormal);
     var text;
-    if (this.toolObject.state == CToolObject.state.Draw) {
+    if ( this.toolObject.state == CToolObject.state.Draw) {
         this.startPtValue = this.toolObject.getPoint(0).getPosIV().v;
         this.endPtValue = this.toolObject.getPoint(1).getPosIV().v;
     }
     this.getAreaPos();
-    for (var i = 0; i < this.fiboSequence.length; i++) {
+    for (var i=0; i < this.fiboSequence.length; i++){
         var stageY = startPoint.y + (100 - this.fiboSequence[i]) / 100 * (endPoint.y - startPoint.y);
         if (stageY > this.areaPos.bottom)
             continue;
@@ -8316,7 +8267,7 @@ BandLinesPlotter.prototype.drawLinesAndInfo = function (context, startPoint, end
         context.fillText(text, this.areaPos.left + 2, stageY - 15);
     }
 }
-BandLinesPlotter.prototype.draw = function (context) {
+BandLinesPlotter.prototype.draw = function(context) {
     this.updateCtrlPtPos();
     this.getAreaPos();
     this.startPoint = this.ctrlPts[1][0];
@@ -8324,30 +8275,30 @@ BandLinesPlotter.prototype.draw = function (context) {
     this.drawLinesAndInfo(context, this.startPoint, this.endPoint);
 };
 var DrawFibRetracePlotter = create_class(BandLinesPlotter);
-DrawFibRetracePlotter.prototype.__construct = function (name, toolObject) {
+DrawFibRetracePlotter.prototype.__construct = function(name, toolObject) {
     DrawFibRetracePlotter.__super.__construct.call(this, name, toolObject);
     this.toolObject = toolObject;
     this.fiboSequence = [100.0, 78.6, 61.8, 50.0, 38.2, 23.6, 0.0];
 };
 var DrawBandLinesPlotter = create_class(BandLinesPlotter);
-DrawBandLinesPlotter.prototype.__construct = function (name, toolObject) {
+DrawBandLinesPlotter.prototype.__construct = function(name, toolObject) {
     DrawBandLinesPlotter.__super.__construct.call(this, name, toolObject);
     this.toolObject = toolObject;
     this.fiboSequence = [0, 12.5, 25, 37.5, 50, 62.5, 75, 87.5, 100];
 };
 var DrawFibFansPlotter = create_class(CToolPlotter);
-DrawFibFansPlotter.prototype.__construct = function (name, toolObject) {
+DrawFibFansPlotter.prototype.__construct = function(name, toolObject) {
     DrawFibFansPlotter.__super.__construct.call(this, name);
     this.toolObject = toolObject;
     this.fiboFansSequence = [0, 38.2, 50, 61.8];
     this.ctrlPtsNum = 2;
-    this.ctrlPts = new Array(new Array(this.ctrlPtsNum), new Array(2));
+    this.ctrlPts = new Array(new Array(this.ctrlPtsNum),new Array(2));
     this.getCtrlPts();
 };
-DrawFibFansPlotter.prototype.drawLinesAndInfo = function (context, startPoint, endPoint) {
+DrawFibFansPlotter.prototype.drawLinesAndInfo = function(context, startPoint, endPoint) {
     this.drawFibRayLines(context, startPoint, endPoint);
 }
-DrawFibFansPlotter.prototype.draw = function (context) {
+DrawFibFansPlotter.prototype.draw = function(context) {
     this.updateCtrlPtPos();
     this.getAreaPos();
     this.startPoint = this.ctrlPts[1][0];
@@ -8358,31 +8309,31 @@ DrawFibFansPlotter.prototype.draw = function (context) {
     this.drawLinesAndInfo(context, this.startPoint, this.endPoint);
 };
 var CDynamicLinePlotter = create_class(NamedObject);
-CDynamicLinePlotter.prototype.__construct = function (name) {
+CDynamicLinePlotter.prototype.__construct = function(name) {
     CDynamicLinePlotter.__super.__construct.call(this, name);
     this.flag = true;
     this.context = ChartManager.getInstance()._overlayContext;
 };
-CDynamicLinePlotter.prototype.getAreaPos = function () {
+CDynamicLinePlotter.prototype.getAreaPos = function(){
     var pMgr = ChartManager.getInstance();
     var pArea = pMgr.getArea('frame0.k0.main');
     if (pArea == null) {
         this.areaPos = {
-            left: 0,
-            top: 0,
-            right: 0,
-            bottom: 0
+            left : 0,
+            top : 0,
+            right : 0,
+            bottom : 0
         };
         return;
     }
     this.areaPos = {
-        left: Math.floor(pArea.getLeft()),
-        top: Math.floor(pArea.getTop()),
-        right: Math.floor(pArea.getRight()),
-        bottom: Math.floor(pArea.getBottom())
+        left : Math.floor(pArea.getLeft()),
+        top : Math.floor(pArea.getTop()),
+        right : Math.floor(pArea.getRight()),
+        bottom : Math.floor(pArea.getBottom())
     };
 };
-CDynamicLinePlotter.prototype.Draw = function (context) {
+CDynamicLinePlotter.prototype.Draw = function(context) {
     this.getAreaPos();
     var pMgr = ChartManager.getInstance();
     var pTDP = pMgr.getDataSource(this.getDataSourceName());
@@ -8418,9 +8369,8 @@ CDynamicLinePlotter.prototype.Draw = function (context) {
     this.context.restore();
     return;
 };
-
 function KLineMouseEvent() {
-    $(document).ready(function () {
+    $(document).ready(function(){
         function __resize() {
             if (navigator.userAgent.indexOf('Firefox') >= 0) {
                 setTimeout(on_size, 200);
@@ -8428,17 +8378,16 @@ function KLineMouseEvent() {
                 on_size();
             }
         }
-
         __resize();
         $(window).resize(__resize);
-        $('#chart_overlayCanvas').bind("contextmenu", function (e) {
-            e.cancelBubble = true;
-            e.returnValue = false;
+        $('#chart_overlayCanvas').bind("contextmenu",function(e){
+            e.cancelBubble=true;
+            e.returnValue=false;
             e.preventDefault();
             e.stopPropagation();
             return false;
         });
-        $('#chart_input_interface').submit(function (e) {
+        $('#chart_input_interface').submit(function(e) {
             e.preventDefault();
             var text = $('#chart_input_interface_text').val();
             var json_text = JSON.parse(text);
@@ -8462,7 +8411,7 @@ function KLineMouseEvent() {
                     break;
             }
         });
-        $('#chart_dropdown_symbols li').click(function () {
+        $('#chart_dropdown_symbols li').click(function(){
             $('#chart_dropdown_symbols li a').removeClass('selected');
             $(this).find('a').addClass('selected');
             $(".chart_dropdown_data").removeClass("chart_dropdown-hover");
@@ -8471,7 +8420,7 @@ function KLineMouseEvent() {
             ChartManager.getInstance().getChart().setCurrentFuture(content);
         });
         $("#chart_container .chart_dropdown .chart_dropdown_t")
-            .mouseover(function () {
+            .mouseover(function(){
                 var container = $("#chart_container");
                 var title = $(this);
                 var dropdown = title.next();
@@ -8490,32 +8439,32 @@ function KLineMouseEvent() {
                 else {
                     d += 4;
                 }
-                dropdown.css({"margin-left": -d});
+                dropdown.css({"margin-left":-d});
                 title.addClass("chart_dropdown-hover");
                 dropdown.addClass("chart_dropdown-hover");
             })
-            .mouseout(function () {
+            .mouseout(function(){
                 $(this).next().removeClass("chart_dropdown-hover");
                 $(this).removeClass("chart_dropdown-hover");
             });
         $(".chart_dropdown_data")
-            .mouseover(function () {
+            .mouseover(function(){
                 $(this).addClass("chart_dropdown-hover");
                 $(this).prev().addClass("chart_dropdown-hover");
             })
-            .mouseout(function () {
+            .mouseout(function(){
                 $(this).prev().removeClass("chart_dropdown-hover");
                 $(this).removeClass("chart_dropdown-hover");
             });
-        $("#chart_btn_parameter_settings").click(function () {
+        $("#chart_btn_parameter_settings").click(function() {
             $('#chart_parameter_settings').addClass("clicked");
             $(".chart_dropdown_data").removeClass("chart_dropdown-hover");
-            $("#chart_parameter_settings").find("th").each(function () {
+            $("#chart_parameter_settings").find("th").each(function(){
                 var name = $(this).html();
                 var index = 0;
                 var tmp = ChartSettings.get();
                 var value = tmp.indics[name];
-                $(this.nextElementSibling).find("input").each(function () {
+                $(this.nextElementSibling).find("input").each(function(){
                     if (value != null && index < value.length) {
                         $(this).val(value[index]);
                     }
@@ -8523,18 +8472,18 @@ function KLineMouseEvent() {
                 });
             });
         });
-        $("#close_settings").click(function () {
+        $("#close_settings").click(function(){
             $('#chart_parameter_settings').removeClass("clicked");
         });
         $("#chart_container .chart_toolbar_tabgroup a")
-            .click(function () {
+            .click(function() {
                 switch_period($(this).parent().attr('name'));
             });
-        $("#chart_toolbar_periods_vert ul a").click(function () {
+        $("#chart_toolbar_periods_vert ul a").click(function(){
             switch_period($(this).parent().attr('name'));
         });
         $('#chart_show_tools')
-            .click(function () {
+            .click(function() {
                 if ($(this).hasClass('selected')) {
                     switch_tools('off');
                 } else {
@@ -8542,7 +8491,7 @@ function KLineMouseEvent() {
                 }
             });
         $("#chart_toolpanel .chart_toolpanel_button")
-            .click(function () {
+            .click(function() {
                 $(".chart_dropdown_data").removeClass("chart_dropdown-hover");
                 $("#chart_toolpanel .chart_toolpanel_button").removeClass("selected");
                 $(this).addClass("selected");
@@ -8550,7 +8499,7 @@ function KLineMouseEvent() {
                 GLOBAL_VAR.chartMgr.setRunningMode(ChartManager.DrawingTool[name]);
             });
         $('#chart_show_indicator')
-            .click(function () {
+            .click(function(){
                 if ($(this).hasClass('selected')) {
                     switch_indic('off');
                 } else {
@@ -8558,7 +8507,7 @@ function KLineMouseEvent() {
                 }
             });
         $("#chart_tabbar li a")
-            .click(function () {
+            .click(function() {
                 $("#chart_tabbar li a").removeClass('selected');
                 $(this).addClass('selected');
                 var name = $(this).attr('name');
@@ -8571,7 +8520,7 @@ function KLineMouseEvent() {
                     ChartManager.getInstance().getChart().setIndicator(2, name);
             });
         $("#chart_select_chart_style a")
-            .click(function () {
+            .click(function() {
                 $("#chart_select_chart_style a").removeClass('selected');
                 $(this).addClass("selected");
                 var tmp = ChartSettings.get();
@@ -8579,9 +8528,9 @@ function KLineMouseEvent() {
                 ChartSettings.save();
                 var mgr = ChartManager.getInstance();
                 mgr.setChartStyle("frame0.k0", $(this).html());
-                mgr.redraw("All", true);
+                mgr.redraw("All",true);
             });
-        $('#chart_dropdown_themes li').click(function () {
+        $('#chart_dropdown_themes li').click(function(){
             $('#chart_dropdown_themes li a').removeClass('selected');
             var name = $(this).attr('name');
             if (name == 'chart_themes_dark') {
@@ -8591,7 +8540,7 @@ function KLineMouseEvent() {
             }
         });
         $("#chart_select_main_indicator a")
-            .click(function () {
+            .click(function(){
                 $("#chart_select_main_indicator a").removeClass('selected');
                 $(this).addClass("selected");
                 var name = $(this).attr('name');
@@ -8601,9 +8550,9 @@ function KLineMouseEvent() {
                 var mgr = ChartManager.getInstance();
                 if (!mgr.setMainIndicator("frame0.k0", name))
                     mgr.removeMainIndicator("frame0.k0");
-                mgr.redraw("All", true);
+                mgr.redraw("All",true);
             });
-        $('#chart_toolbar_theme a').click(function () {
+        $('#chart_toolbar_theme a').click(function(){
             $('#chart_toolbar_theme a').removeClass('selected');
             if ($(this).attr('name') == 'dark') {
                 switch_theme('dark');
@@ -8611,7 +8560,7 @@ function KLineMouseEvent() {
                 switch_theme('light');
             }
         });
-        $('#chart_select_theme li a').click(function () {
+        $('#chart_select_theme li a').click(function(){
             $('#chart_select_theme a').removeClass('selected');
             if ($(this).attr('name') == 'dark') {
                 switch_theme('dark');
@@ -8619,7 +8568,7 @@ function KLineMouseEvent() {
                 switch_theme('light');
             }
         });
-        $('#chart_enable_tools li a').click(function () {
+        $('#chart_enable_tools li a').click(function(){
             $('#chart_enable_tools a').removeClass('selected');
             if ($(this).attr('name') == 'on') {
                 switch_tools('on');
@@ -8627,7 +8576,7 @@ function KLineMouseEvent() {
                 switch_tools('off');
             }
         });
-        $('#chart_enable_indicator li a').click(function () {
+        $('#chart_enable_indicator li a').click(function(){
             $('#chart_enable_indicator a').removeClass('selected');
             if ($(this).attr('name') == 'on') {
                 switch_indic('on');
@@ -8635,14 +8584,14 @@ function KLineMouseEvent() {
                 switch_indic('off');
             }
         });
-        $(document).keyup(function (e) {
+        $(document).keyup(function(e) {
             if (e.keyCode == 46) {
                 ChartManager.getInstance().deleteToolObject();
                 ChartManager.getInstance().redraw('OverlayCanvas', false);
             }
         });
         $("#chart_overlayCanvas")
-            .mousemove(function (e) {
+            .mousemove(function(e){
                 var r = e.target.getBoundingClientRect();
                 var x = e.clientX - r.left;
                 var y = e.clientY - r.top;
@@ -8656,7 +8605,7 @@ function KLineMouseEvent() {
                     mgr.redraw("OverlayCanvas");
                 }
             })
-            .mouseleave(function (e) {
+            .mouseleave(function(e) {
                 var r = e.target.getBoundingClientRect();
                 var x = e.clientX - r.left;
                 var y = e.clientY - r.top;
@@ -8664,7 +8613,7 @@ function KLineMouseEvent() {
                 mgr.onMouseLeave("frame0", x, y, false);
                 mgr.redraw("OverlayCanvas");
             })
-            .mouseup(function (e) {
+            .mouseup(function(e){
                 if (e.which != 1) {
                     return;
                 }
@@ -8674,9 +8623,9 @@ function KLineMouseEvent() {
                 var y = e.clientY - r.top;
                 var mgr = ChartManager.getInstance();
                 mgr.onMouseUp("frame0", x, y);
-                mgr.redraw("All", true);
+                mgr.redraw("All",true);
             })
-            .mousedown(function (e) {
+            .mousedown(function(e){
                 if (e.which != 1) {
                     ChartManager.getInstance().deleteToolObject();
                     ChartManager.getInstance().redraw('OverlayCanvas', false);
@@ -8688,12 +8637,12 @@ function KLineMouseEvent() {
                 var y = e.clientY - r.top;
                 ChartManager.getInstance().onMouseDown("frame0", x, y);
             });
-        $("#chart_parameter_settings :input").change(function () {
+        $("#chart_parameter_settings :input").change(function(){
             var name = $(this).attr("name");
             var index = 0;
             var valueArray = [];
             var mgr = ChartManager.getInstance();
-            $("#chart_parameter_settings :input").each(function () {
+            $("#chart_parameter_settings :input").each(function(){
                 if ($(this).attr("name") == name) {
                     if ($(this).val() != "" && $(this).val() != null && $(this).val() != undefined) {
                         var i = parseInt($(this).val());
@@ -8707,7 +8656,7 @@ function KLineMouseEvent() {
                 var value = mgr.getIndicatorParameters(name);
                 var cookieArray = [];
                 index = 0;
-                $("#chart_parameter_settings :input").each(function () {
+                $("#chart_parameter_settings :input").each(function(){
                     if ($(this).attr("name") == name) {
                         if ($(this).val() != "" && $(this).val() != null && $(this).val() != undefined) {
                             $(this).val(value[index].getValue());
@@ -8722,12 +8671,12 @@ function KLineMouseEvent() {
                 mgr.redraw('All', true);
             }
         });
-        $("#chart_parameter_settings button").click(function () {
+        $("#chart_parameter_settings button").click(function(){
             var name = $(this).parents("tr").children("th").html();
             var index = 0;
             var value = ChartManager.getInstance().getIndicatorParameters(name);
             var valueArray = [];
-            $(this).parent().prev().children('input').each(function () {
+            $(this).parent().prev().children('input').each(function(){
                 if (value != null && index < value.length) {
                     $(this).val(value[index].getDefaultValue());
                     valueArray.push(value[index].getDefaultValue());
@@ -8742,67 +8691,63 @@ function KLineMouseEvent() {
         });
     });
 }
-
 var refresh_counter = 0;
 var refresh_handler = setInterval(refresh_function, 1000);
-
 function refresh_function() {
     refresh_counter++;
     var lang = ChartManager.getInstance().getLanguage();
     if (refresh_counter > 3600) {
-        var num = new Number(refresh_counter / 3600);
-        if (lang == "en-us") {
-            $("#chart_updated_time_text").html(num.toFixed(0) + "h");
+        var num = new Number(refresh_counter/3600);
+        if (lang == "en-us")  {
+            $("#chart_updated_time_text").html(num.toFixed(0)+"h");
         } else {
-            $("#chart_updated_time_text").html(num.toFixed(0) + "小时");
+            $("#chart_updated_time_text").html(num.toFixed(0)+"小时");
         }
     } else if (refresh_counter > 60 && refresh_counter <= 3600) {
-        var num = new Number(refresh_counter / 60);
-        if (lang == "en-us") {
-            $("#chart_updated_time_text").html(num.toFixed(0) + "m");
+        var num = new Number(refresh_counter/60);
+        if (lang == "en-us")  {
+            $("#chart_updated_time_text").html(num.toFixed(0)+"m");
         } else {
-            $("#chart_updated_time_text").html(num.toFixed(0) + "分钟");
+            $("#chart_updated_time_text").html(num.toFixed(0)+"分钟");
         }
     } else if (refresh_counter <= 60) {
-        if (lang == "en-us") {
-            $("#chart_updated_time_text").html(refresh_counter + "s");
+        if (lang == "en-us")  {
+            $("#chart_updated_time_text").html(refresh_counter+"s");
         } else {
-            $("#chart_updated_time_text").html(refresh_counter + "秒");
+            $("#chart_updated_time_text").html(refresh_counter+"秒");
         }
     }
 }
-
 function clear_refresh_counter() {
     window.clearInterval(refresh_handler);
     refresh_counter = 0;
     var lang = ChartManager.getInstance().getLanguage();
-    if (lang == "en-us") {
-        $("#chart_updated_time_text").html(refresh_counter + "s");
+    if (lang == "en-us")  {
+        $("#chart_updated_time_text").html(refresh_counter+"s");
     } else {
-        $("#chart_updated_time_text").html(refresh_counter + "秒");
+        $("#chart_updated_time_text").html(refresh_counter+"秒");
     }
     refresh_handler = setInterval(refresh_function, 1000);
 }
-
-var RequestData = function (showLoading) {
+var RequestData = function(showLoading) {
     AbortRequest();
     window.clearTimeout(GLOBAL_VAR.TimeOutId);
-    if (showLoading == true) {
+    if(showLoading == true) {
         $("#chart_loading").addClass("activated");
     }
     $(document).ready(
         GLOBAL_VAR.G_HTTP_REQUEST = $.ajax({
-            type: "get",
-            url: GLOBAL_VAR.url,
-            dataType: 'text',
-            data: GLOBAL_VAR.requestParam,
-            timeout: 5000,
-            created: Date.now(),
-            beforeSend: function () {
+            type        : "get",
+            url         : GLOBAL_VAR.url,
+            dataType    : 'text',
+            data        : GLOBAL_VAR.requestParam,
+            timeout     : 5000,
+            created     : Date.now(),
+            beforeSend  : function() {
                 this.time = GLOBAL_VAR.time_type;
                 this.market = GLOBAL_VAR.mark_from;
             },
-            success: function (json) {
+            success     : function(json) {
                 if (GLOBAL_VAR.G_HTTP_REQUEST) {
                     if (this.time != GLOBAL_VAR.time_type || this.market != GLOBAL_VAR.mark_from) {
                         GLOBAL_VAR.TimeOutId = setTimeout(RequestData, 2000);
@@ -8849,24 +8794,22 @@ var RequestData = function (showLoading) {
                     ChartManager.getInstance().redraw('All', true);
                 }
             },
-            error: function (xhr, textStatus, errorThrown) {
-                GLOBAL_VAR.TimeOutId = setTimeout(function () {
+            error : function(xhr, textStatus, errorThrown ) {
+                GLOBAL_VAR.TimeOutId = setTimeout(function(){
                     RequestData(true);
                 }, 10000);
             },
-            complete: function () {
+            complete : function() {
                 GLOBAL_VAR.G_HTTP_REQUEST = null;
             }
         })
     );
 };
-
 function AbortRequest() {
     if (GLOBAL_VAR.G_HTTP_REQUEST && GLOBAL_VAR.G_HTTP_REQUEST.readyState != 4) {
         GLOBAL_VAR.G_HTTP_REQUEST.abort();
     }
 }
-
 function TwoSecondThread() {
     var f = GLOBAL_VAR.chartMgr.getDataSource("frame0.k0").getLastDate();
     if (f == -1) {
@@ -8876,7 +8819,6 @@ function TwoSecondThread() {
     }
     RequestData();
 }
-
 function readCookie() {
     ChartSettings.get();
     ChartSettings.save();
@@ -8884,21 +8826,21 @@ function readCookie() {
     ChartManager.getInstance().setChartStyle('frame0.k0', tmp.charts.chartStyle);
     var period = tmp.charts.period;
     switch_period(period);
-    $('#chart_period_' + period + '_v a').addClass('selected');
-    $('#chart_period_' + period + '_h a').addClass('selected');
+    $('#chart_period_'+period+'_v a').addClass('selected');
+    $('#chart_period_'+period+'_h a').addClass('selected');
     if (tmp.charts.indicsStatus == 'close') {
         switch_indic('off');
     } else if (tmp.charts.indicsStatus == 'open') {
         switch_indic('on');
     }
     var main_indic = $('#chart_select_main_indicator');
-    main_indic.find('a').each(function () {
+    main_indic.find('a').each(function() {
         if ($(this).attr('name') == tmp.charts.mIndic) {
             $(this).addClass('selected');
         }
     });
     var chart_style = $('#chart_select_chart_style');
-    chart_style.find('a').each(function () {
+    chart_style.find('a').each(function(){
         if ($(this)[0].innerHTML == tmp.charts.chartStyle) {
             $(this).addClass('selected');
         }
@@ -8912,18 +8854,17 @@ function readCookie() {
         switch_theme('light');
     }
 }
-
-var main = function () {
-    window.onPushingStarted = function (callback) {
+var main = function() {
+    window.onPushingStarted = function(callback) {
         Pushing.Start(callback);
     };
-    window.onPushingResponse = function (marketFrom, type, coinVol, data) {
+    window.onPushingResponse = function(marketFrom, type, coinVol, data) {
         Pushing.Response(marketFrom, type, coinVol, data);
     };
-    window.onPushingStop = function () {
+    window.onPushingStop = function() {
         Pushing.Stop();
     };
-    window._KlineIndex = function (content) {
+    window._KlineIndex = function(content) {
         Template.displayVolume = false;
         refreshTemplate();
         readCookie();
@@ -8934,41 +8875,41 @@ var main = function () {
         else
             return;
     };
-    window._display_future_list = function () {
+    window._display_future_list = function() {
         $("#chart_dropdown_symbols")[0].style.display = "block";
     };
-    window._set_current_language = function (content) {
+    window._set_current_language = function(content) {
         chart_switch_language(content);
     };
-    window._set_current_depth = function (content) {
+    window._set_current_depth = function(content) {
         ChartManager.getInstance().getChart().updateDepth(content);
     };
-    window._set_current_coin = function (content) {
+    window._set_current_coin = function(content) {
         ChartManager.getInstance().getChart().setCurrentCoin(content);
     };
-    window._set_current_url = function (content) {
+    window._set_current_url = function(content) {
         // GLOBAL_VAR.url = "https://www.okcoin.cn/api/klineData.do";
         GLOBAL_VAR.url = content;
     };
-    window._set_future_list = function (content) {
+    window._set_future_list = function(content) {
         ChartManager.getInstance().getChart().setFutureList(content);
     };
-    window._set_current_future = function (contractID) {
+    window._set_current_future = function(contractID) {
         ChartManager.getInstance().getChart().setCurrentFuture(contractID);
     };
-    window._set_init_current_future = function (contractID) {
+    window._set_init_current_future = function(contractID) {
         ChartManager.getInstance().getChart().setCurrentFutureNoRaise(contractID);
     };
-    window._set_current_contract_unit = function (str) {
+    window._set_current_contract_unit = function(str) {
         ChartManager.getInstance().getChart().setCurrentContractUnit(str);
     };
-    window._set_money_type = function (str) {
+    window._set_money_type = function(str) {
         ChartManager.getInstance().getChart().setCurrentMoneyType(str);
     };
-    window._set_usd_cny_rate = function (rate) {
+    window._set_usd_cny_rate = function(rate) {
         ChartManager.getInstance().getChart()._usd_cny_rate = rate;
     };
-    window._setCaptureMouseWheelDirectly = function (b) {
+    window._setCaptureMouseWheelDirectly = function(b) {
         ChartManager.getInstance().setCaptureMouseWheelDirectly(b);
     };
     window._current_future_change = new MEvent();
@@ -8983,23 +8924,22 @@ var main = function () {
     KLineMouseEvent();
     ChartManager.getInstance().bindCanvas("main", document.getElementById("chart_mainCanvas"));
     ChartManager.getInstance().bindCanvas("overlay", document.getElementById("chart_overlayCanvas"));
-    GLOBAL_VAR.requestParam = "marketFrom=13" + "&type=2" + "&limit=1000";
+    GLOBAL_VAR.requestParam = "marketFrom=13"+"&type=2"+"&limit=1000";
     GLOBAL_VAR.mark_from = '13';
     GLOBAL_VAR.time_type = '2';
     GLOBAL_VAR.limit = '1000';
     refreshTemplate();
     on_size();
     readCookie();
-    $('#chart_container').css({visibility: "visible"});
+    $('#chart_container').css({visibility:"visible"});
 }();
-
-function setHttpRequestParam(mark_from, time_type, limit, since) {
+function setHttpRequestParam(mark_from, time_type, limit, since){
     var str = "marketFrom=" + mark_from + "&type=" + time_type;
     if (limit != null)
         str += "&limit=" + limit;
     else
         str += "&since=" + since;
-    switch (ChartManager.getInstance().getChart()._contract_unit) {
+    switch (ChartManager.getInstance().getChart().  _contract_unit) {
         case 0:
             str += "&coinVol=1";
             break;
@@ -9009,28 +8949,26 @@ function setHttpRequestParam(mark_from, time_type, limit, since) {
     }
     return str;
 }
-
 function refreshTemplate() {
     GLOBAL_VAR.chartMgr = DefaultTemplate.loadTemplate(
-        "frame0.k0", "OKCoin" + GLOBAL_VAR.mark_from + GLOBAL_VAR.time_type,
+        "frame0.k0", "OKCoin"+GLOBAL_VAR.mark_from+GLOBAL_VAR.time_type,
         "frame0.order", "0.order",
         "frame0.trade", "0.trade");
     ChartManager.getInstance().redraw('All', true);
 }
-
-function getRectCrossPt(rect, startPt, endPt) {
+function getRectCrossPt (rect, startPt, endPt){
     var crossPt;
     var firstPt = {x: -1, y: -1};
     var secondPt = {x: -1, y: -1};
     var xdiff = endPt.x - startPt.x;
     var ydiff = endPt.y - startPt.y;
-    if (Math.abs(xdiff) < 2) {
-        firstPt = {x: startPt.x, y: rect.top};
-        secondPt = {x: endPt.x, y: rect.bottom};
+    if (Math.abs(xdiff) < 2){
+        firstPt = {x : startPt.x, y : rect.top};
+        secondPt = {x : endPt.x, y : rect.bottom};
         crossPt = [firstPt, secondPt];
         return crossPt;
     }
-    var k = ydiff / xdiff;
+    var k = ydiff/xdiff;
     secondPt.x = rect.right;
     secondPt.y = startPt.y + (rect.right - startPt.x) * k;
     firstPt.x = rect.left;
@@ -9038,24 +8976,22 @@ function getRectCrossPt(rect, startPt, endPt) {
     crossPt = [firstPt, secondPt];
     return crossPt;
 }
-
 function chart_switch_language(lang) {
     var tmp = lang.replace(/-/, '_');
-    $('#chart_language_switch_tmp').find('span').each(function () {
+    $('#chart_language_switch_tmp').find('span').each(function(){
         var name = $(this).attr('name');
         var attr = $(this).attr(tmp);
         name = '.' + name;
         var obj = $(name)[0];
         if (!obj)
             return;
-        $(name).each(function () {
+        $(name).each(function() {
             $(this)[0].innerHTML = attr;
         });
     });
     ChartManager.getInstance().setLanguage(lang);
     ChartManager.getInstance().getChart().setTitle();
 }
-
 function on_size() {
     var width = window.innerWidth;
     var height = window.innerHeight;
@@ -9091,23 +9027,23 @@ function on_size() {
     canvasGroupRect.w = tabBarRect.w;
     canvasGroupRect.h = tabBarRect.y - toolPanelRect.y;
     toolBar.css({
-        left: toolBarRect.x + 'px',
-        top: toolBarRect.y + 'px',
-        width: toolBarRect.w + 'px',
+        left:   toolBarRect.x + 'px',
+        top:    toolBarRect.y + 'px',
+        width:  toolBarRect.w + 'px',
         height: toolBarRect.h + 'px'
     });
     if (toolPanelShown) {
         toolPanel.css({
-            left: toolPanelRect.x + 'px',
-            top: toolPanelRect.y + 'px',
-            width: toolPanelRect.w + 'px',
+            left:   toolPanelRect.x + 'px',
+            top:    toolPanelRect.y + 'px',
+            width:  toolPanelRect.w + 'px',
             height: toolPanelRect.h + 'px'
         });
     }
     canvasGroup.css({
-        left: canvasGroupRect.x + 'px',
-        top: canvasGroupRect.y + 'px',
-        width: canvasGroupRect.w + 'px',
+        left:   canvasGroupRect.x + 'px',
+        top:    canvasGroupRect.y + 'px',
+        width:  canvasGroupRect.w + 'px',
         height: canvasGroupRect.h + 'px'
     });
     var mainCanvas = $('#chart_mainCanvas')[0];
@@ -9118,9 +9054,9 @@ function on_size() {
     overlayCanvas.height = canvasGroupRect.h;
     if (tabBarShown) {
         tabBar.css({
-            left: tabBarRect.x + 'px',
-            top: tabBarRect.y + 'px',
-            width: tabBarRect.w + 'px',
+            left:   tabBarRect.x + 'px',
+            top:    tabBarRect.y + 'px',
+            width:  tabBarRect.w + 'px',
             height: tabBarRect.h + 'px'
         });
     }
@@ -9186,23 +9122,21 @@ function on_size() {
     }
     ChartManager.getInstance().redraw('All', true);
 }
-
 function mouseWheel(e, delta) {
     ChartManager.getInstance().scale(delta > 0 ? 1 : -1);
     ChartManager.getInstance().redraw("All", true);
     return false;
 }
-
 function switch_theme(name) {
     $('#chart_toolbar_theme a').removeClass('selected');
     $('#chart_select_theme a').removeClass('selected');
     if (name == 'dark') {
-        $('#chart_toolbar_theme').find('a').each(function () {
+        $('#chart_toolbar_theme').find('a').each(function(){
             if ($(this).attr('name') == 'dark') {
                 $(this).addClass('selected');
             }
         });
-        $('#chart_select_theme a').each(function () {
+        $('#chart_select_theme a').each(function(){
             if ($(this).attr('name') == 'dark') {
                 $(this).addClass('selected');
             }
@@ -9217,12 +9151,12 @@ function switch_theme(name) {
         $('#chart_canvasGroup').removeClass("chart_canvasGroup_whiteLogo");
         $('#chart_canvasGroup').addClass("chart_canvasGroup_blackLogo");
     } else if (name == 'light') {
-        $('#chart_toolbar_theme').find('a').each(function () {
+        $('#chart_toolbar_theme').find('a').each(function() {
             if ($(this).attr('name') == 'light') {
                 $(this).addClass('selected');
             }
         });
-        $('#chart_select_theme a').each(function () {
+        $('#chart_select_theme a').each(function(){
             if ($(this).attr('name') == 'light') {
                 $(this).addClass('selected');
             }
@@ -9246,14 +9180,13 @@ function switch_theme(name) {
     window._current_theme_change.raise(name);
     ChartManager.getInstance().redraw();
 }
-
 function switch_tools(name) {
     $(".chart_dropdown_data").removeClass("chart_dropdown-hover");
     $("#chart_toolpanel .chart_toolpanel_button").removeClass("selected");
     $('#chart_enable_tools a').removeClass('selected');
     if (name == 'on') {
         $('#chart_show_tools').addClass('selected');
-        $('#chart_enable_tools a').each(function () {
+        $('#chart_enable_tools a').each(function(){
             if ($(this).attr('name') == 'on') {
                 $(this).addClass('selected');
             }
@@ -9266,7 +9199,7 @@ function switch_tools(name) {
         }
     } else if (name == 'off') {
         $('#chart_show_tools').removeClass('selected');
-        $('#chart_enable_tools a').each(function () {
+        $('#chart_enable_tools a').each(function(){
             if ($(this).attr('name') == 'off') {
                 $(this).addClass('selected');
             }
@@ -9277,11 +9210,10 @@ function switch_tools(name) {
     }
     on_size();
 }
-
 function switch_indic(name) {
     $('#chart_enable_indicator a').removeClass('selected');
     if (name == 'on') {
-        $('#chart_enable_indicator a').each(function () {
+        $('#chart_enable_indicator a').each(function(){
             if ($(this).attr('name') == 'on') {
                 $(this).addClass('selected');
             }
@@ -9295,13 +9227,13 @@ function switch_indic(name) {
             ChartManager.getInstance().getChart().setIndicator(2, value);
         else
             ChartManager.getInstance().getChart().setIndicator(2, value);
-        $("#chart_tabbar").find('a').each(function () {
+        $("#chart_tabbar").find('a').each(function(){
             if ($(this).attr('name') == value)
                 $(this).addClass('selected');
         });
         $('#chart_tabbar')[0].style.display = 'block';
     } else if (name == 'off') {
-        $('#chart_enable_indicator a').each(function () {
+        $('#chart_enable_indicator a').each(function(){
             if ($(this).attr('name') == 'off') {
                 $(this).addClass('selected');
             }
@@ -9316,16 +9248,15 @@ function switch_indic(name) {
     }
     on_size();
 }
-
 function switch_period(name) {
     $("#chart_container .chart_toolbar_tabgroup a").removeClass("selected");
     $("#chart_toolbar_periods_vert ul a").removeClass("selected");
-    $("#chart_container .chart_toolbar_tabgroup a").each(function () {
+    $("#chart_container .chart_toolbar_tabgroup a").each(function(){
         if ($(this).parent().attr('name') == name) {
             $(this).addClass('selected');
         }
     });
-    $("#chart_toolbar_periods_vert ul a").each(function () {
+    $("#chart_toolbar_periods_vert ul a").each(function(){
         if ($(this).parent().attr('name') == name) {
             $(this).addClass('selected');
         }
@@ -9334,7 +9265,7 @@ function switch_period(name) {
     calcPeriodWeight(name);
     if (name == 'line') {
         ChartManager.getInstance().getChart().strIsLine = true;
-        ChartManager.getInstance().setChartStyle('frame0.k0', 'Line');
+        ChartManager.getInstance().setChartStyle('frame0.k0','Line');
         ChartManager.getInstance().getChart().setCurrentPeriod('01m');
         var settings = ChartSettings.get();
         settings.charts.period = name;
@@ -9348,20 +9279,17 @@ function switch_period(name) {
     var settings = ChartSettings.get();
     settings.charts.period = name;
     ChartSettings.save();
-    ChartManager.getInstance().redraw("All", true);
+    ChartManager.getInstance().redraw("All",true);
 }
-
 function IsSupportedBrowers() {
-    function isCanvasSupported() {
+    function isCanvasSupported(){
         var elem = document.createElement('canvas');
         return !!(elem.getContext && elem.getContext('2d'));
     }
-
     if (!isCanvasSupported())
         return false;
     return true;
 }
-
 function calcPeriodWeight(period) {
     var index = period;
     if (period != 'line')
@@ -9374,7 +9302,7 @@ function calcPeriodWeight(period) {
     }
     period_weight[index] = 8;
     ChartSettings.save();
-    $('#chart_toolbar_periods_horz').find('li').each(function () {
+    $('#chart_toolbar_periods_horz').find('li').each(function() {
         var a = $(this).attr('name');
         var i = a;
         if (a != 'line')

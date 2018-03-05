@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <title>{% trans 'bitbiex—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
     <link rel="shortcut icon" href="/static/images/favicon.ico"/>
@@ -65,18 +65,17 @@
     }
 
     var FormBox = React.createClass({
-        displayName: "FormBox",
+	displayName: "FormBox",
 
-        componentDidMount: function componentDidMount() {
-        },
-        submitHandler: function submitHandler(e) {
+	componentDidMount: function componentDidMount() {},
+	submitHandler: function submitHandler(e) {
             e.preventDefault();
         },
-        sendMsgHandler: function sendMsgHandler(e) {
+	sendMsgHandler: function sendMsgHandler(e) {
             e.preventDefault();
-            SendMsgX(e.target);
+		SendMsgX(e.target);
         },
-        render: function render() {
+	render: function render() {
             var css = GetItem("is_set_password") ? "form-group" : "form-group hidden";
             var email = GetItem("email");
             var mobi = GetItem("phone_number_cn");
@@ -84,18 +83,15 @@
             return (<CFormBox title="修改登录密码" submitHandler={this.submitHandler}>
                 <CFormGroup className={css}>
                     <CLabel>{% trans '原密码' %}：</CLabel>
-                    <CTextInput type="password" name="old_password" id="old_password" colIn="1"
-                                title="{% trans '请输入原密码' %}"/>
+                    <CTextInput type="password" name="old_password" id="old_password" colIn="1" title="{% trans '请输入原密码' %}"/>
                 </CFormGroup>
                 <CFormGroup>
                     <CLabel>{% trans '新密码' %}：</CLabel>
-                    <CTextInput type="password" name="new_password" id="new_password" colIn="1"
-                                title="{% trans '请输入新密码' %}"/>
+                    <CTextInput type="password" name="new_password" id="new_password" colIn="1" title="{% trans '请输入新密码' %}"/>
                 </CFormGroup>
                 <CFormGroup>
                     <CLabel>{% trans '重复密码' %}：</CLabel>
-                    <CTextInput type="password" name="new_password2" id="new_password2" colIn="1"
-                                title="{% trans '请重新输入新密码' %}"/>
+                    <CTextInput type="password" name="new_password2" id="new_password2" colIn="1" title="{% trans '请重新输入新密码' %}"/>
                 </CFormGroup>
                 <CFormGroup>
                     <CButton colIn="col-sm-offset-3 col-sm-9">{% trans '确定' %}</CButton>
@@ -107,9 +103,9 @@
     var isLogin = IsLogin();
 
     ReactDOM.render(
-        <App isLogin={isLogin} ContentBox={
-            <PageView/>
-        }/>
+            <App isLogin={isLogin} ContentBox={
+                <PageView/>
+            }/>
         , document.getElementById("App")
     );
 </script>

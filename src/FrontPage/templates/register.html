@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <title>{% trans 'bitbiex—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
     <link rel="shortcut icon" href="/static/images/favicon.ico"/>
@@ -79,8 +79,8 @@
 
             return (<div className="box">
                 <h3 className="title clearfix"><span className="tl pull-left">{% trans '邮箱注册' %}</span><a
-                    href="login.html"
-                    className="pull-right txt-primary txt-md">{% trans '返回登录' %}</a>
+                        href="login.html"
+                        className="pull-right txt-primary txt-md">{% trans '返回登录' %}</a>
                 </h3>
                 <div className="form-box">
                     <form className="form-horizontal" name="frmAction" id="frmAction" method="post"
@@ -104,10 +104,10 @@
                                     <input type="checkbox" id="agree" name="agree" value="1"/>
                                     {% trans '已阅读并同意' %}</label>
                                 <a className="txt-primary" href="rules.html" target="_blank">{% trans '服务条款' %}</a> <a
-                                className="txt-primary" target="_blank">{% trans '免责声明' %}</a> <a
-                                className="txt-primary"
-                                href="privace.html"
-                                target="_blank">{% trans '隐私保护' %}</a>
+                                    className="txt-primary" target="_blank">{% trans '免责声明' %}</a> <a
+                                    className="txt-primary"
+                                    href="privace.html"
+                                    target="_blank">{% trans '隐私保护' %}</a>
                             </CCol>
                         </CFormGroup>
                         <CFormGroup>
@@ -134,9 +134,9 @@
     var isLogin = IsLogin();
 
     ReactDOM.render(
-        <App isLogin={isLogin} ContentBox={
-            <PageView/>
-        }/>
+            <App isLogin={isLogin} ContentBox={
+                <PageView/>
+            }/>
         , document.getElementById("App")
     );
 </script>

@@ -40,9 +40,9 @@ var smItems = [
         name: gettext('工单详情')
     },
     {
-        id: "sm-passwd",
-        url: "user-passwd.html",
-        icon: "icon-user icon-large",
+        id:"sm-passwd",
+        url:"user-passwd.html",
+        icon:"icon-user icon-large",
         name: gettext('登录密码')
     },
     /*{
@@ -61,90 +61,95 @@ var smItems = [
 ];
 
 var CUserNavBar = React.createClass({
-    getInitialState: function () {
-        return {
-            count: 0
-        };
-    },
-    componentDidMount: function () {
-        $.getJSON("/api/notice/get_message_count", function (res) {
-            if (res.result && res.data && res.data.count) {
-                this.setState({
-                    count: res.data.count
-                });
-            }
-        }.bind(this));
-    },
-    render: function () {
-        return (
-            <div className="item-box">
-                <CUserInfo/>
-                <CUserNav activeItem={this.props.activeItem} menuItems={smItems} msgCount={this.state.count}/>
-            </div>
-        );
-    }
+	getInitialState: function() {
+			return {
+				count:0
+			};
+	},
+  componentDidMount: function() {
+	  $.getJSON("/api/notice/get_message_count",function(res){
+			if(res.result && res.data && res.data.count)
+			{
+				this.setState({
+					count:res.data.count
+				});
+			}
+		}.bind(this));
+	},
+	render:function() {
+		return (
+			<div className="item-box">
+				<CUserInfo />
+				<CUserNav activeItem={this.props.activeItem} menuItems={smItems} msgCount={this.state.count} />
+			</div>
+		);
+	}
 });
 
 var CMobiUserNavBar = React.createClass({
-    getInitialState: function () {
-        return {
-            count: 0
-        };
-    },
-    componentDidMount: function () {
-        $.getJSON("/api/notice/get_message_count", function (res) {
-            if (res.result && res.data && res.data.count) {
-                this.setState({
-                    count: res.data.count
-                });
-            }
-        });
-    },
-    render: function () {
-        return (
-            <div className="item-box">
-                <div className="box">
-                    <CUserInfo/>
-                    <CUserNav activeItem={this.props.activeItem} menuItems={smItems} msgCount={this.state.count}/>
-                </div>
-            </div>
-        );
-    }
+	getInitialState: function() {
+			return {
+				count:0
+			};
+	},
+  componentDidMount: function() {
+	  $.getJSON("/api/notice/get_message_count",function(res){
+			if(res.result && res.data && res.data.count)
+			{
+				this.setState({
+					count:res.data.count
+				});
+			}
+		});
+	},
+	render:function() {
+		return (
+			<div className="item-box">
+				<div className="box">
+					<CUserInfo />
+					<CUserNav activeItem={this.props.activeItem} menuItems={smItems} msgCount={this.state.count} />
+				</div>
+			</div>
+		);
+	}
 });
 
-function CUserInfo(props) {
+function CUserInfo(props)
+{
     var avatar = GetItem("avatar_url") || "/static/images/avatar.jpg";
     var nicname = GetItem("nicname") || gettext('未设置');
-    var uid = GetItem("uid") || 0;
-    return (<div className="userinfo clearfix"><img src={avatar} className="thu"/>
-        <div className="info"><span>{nicname}</span><br/>
-            UID <span>{uid}</span></div>
-    </div>);
+	var uid = GetItem("uid") || 0;
+	return (<div className="userinfo clearfix"> <img src={avatar} className="thu" />
+            <div className="info"><span>{nicname}</span><br />
+              UID <span>{uid}</span></div>
+          </div>);
 }
 
-function CUserNav(props) {
-    var rows = [];
-
-    props.menuItems.forEach(function (item) {
-        var act = (props.activeItem == item.id);
-        rows.push(<CNavItem key={item.id} active={act} url={item.url} msgCount={props.msgCount} icon={item.icon}
-                            name={item.name} verKey={item.verKey}/>);
-    })
-
-    return (<ul>{rows}</ul>);
+function CUserNav(props)
+{
+	var rows=[];
+	
+	props.menuItems.forEach(function(item){
+				var act = (props.activeItem == item.id);
+				rows.push(<CNavItem key={item.id} active={act} url={item.url} msgCount={props.msgCount} icon={item.icon} name={item.name} verKey={item.verKey}/>);
+			})
+	
+	return (<ul>{rows}</ul>);
 }
 
-function CNavItem(props) {
-    var txt = props.children || props.name;
-    var css = props.active ? "active" : "";
-    if (props.verKey) {
-        css += GetItem(props.verKey) == "true" ? " verified" : " unverified";
-    }
-
-    var bdg = "";
+function CNavItem(props)
+{
+	var txt = props.children || props.name;
+	var css = props.active ? "active" : "";
+	if(props.verKey)
+	{
+		css += GetItem(props.verKey) == "true" ? " verified" : " unverified";
+	}
+	
+	var bdg="";
     if (txt == gettext('站内信')) {
-        bdg = <span id='msgCount' className='badge'>{props.msgCount}</span>;
-    }
-
-    return (<li className={css}><a href={props.url}><i className={props.icon}></i> {txt}{bdg}</a></li>);
+		bdg = <span id='msgCount' className='badge'>{props.msgCount}</span>;
+	}
+	
+	return (<li className={css}><a href={props.url}><i className={props.icon}></i> {txt}{bdg}</a></li>);
 }

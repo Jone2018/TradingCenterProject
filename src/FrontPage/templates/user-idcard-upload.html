@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <title>{% trans 'bitbiex—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
     <link rel="shortcut icon" href="/static/images/favicon.ico"/>
@@ -86,7 +86,7 @@
     }
 
     var CPhotoBox = React.createClass({
-        getInitialState: function () {
+    getInitialState: function () {
             return {
                 fldID: '',
                 uploading: false,
@@ -98,12 +98,12 @@
                 policy: "",
                 OSSAccessKeyId: "",
                 signature: ""
-            }
+        }
         },
-        componentDidMount: function () {
+    componentDidMount: function () {
             this.formReset(false);
         },
-        formReset: function (iClick) {
+    formReset: function (iClick) {
             $("#frmUpload")[0].reset();
             $.getJSON('/api/account/get_token', function (res) {
                 this.setState({
@@ -115,11 +115,11 @@
                 });
             }.bind(this));
         },
-        submitHandler: function (e) {
+    submitHandler: function (e) {
             e.preventDefault();
             AjaxSubmitX("#frmAction");
         },
-        changeVal: function (e) {
+    changeVal: function (e) {
             var ths = $(e.target);
             var val = ths.val();
             var nm = ths.attr("name");
@@ -139,11 +139,11 @@
                 });
             }
         },
-        skipHandler: function (e) {
+    skipHandler: function (e) {
             e.preventDefault();
             ShowConfirm("{% trans '提示' %}", "{% trans '您确定要跳过认证吗？跳过后信息将不保存' %}")
         },
-        clickHandler: function (e) {
+    clickHandler: function (e) {
             if (!this.state.uploading) {
                 var ths = $(e.target);
                 this.setState({
@@ -154,7 +154,7 @@
                 this.formReset(true);
             }
         },
-        changeFileHandler: function (e) {
+    changeFileHandler: function (e) {
             var nm = $("#file").val();
             var ext = GetExt(nm);
             if (IsImage(ext)) {
@@ -162,7 +162,7 @@
                 var key = this.state.key + id + ext;
                 var frm = $("#frmUpload");
                 frm.find("input[name='key']").val(key);
-                frm.find("input[name='success_action_redirect']").val("https://www.chaobi.la/oss-success.html?id=" + id + "&s=" + key);
+            frm.find("input[name='success_action_redirect']").val("https://www.bitbiex.com/oss-success.html?id=" + id + "&s=" + key);
                 frm.submit();
 
                 this.CreatePreview();
@@ -177,7 +177,7 @@
                 ShowMsgError("{% trans '请选择有效的图片文件' %}");
             }
         },
-        CreatePreview: function () {
+    CreatePreview: function () {
             if (window.FileReader) {
                 var lnk = $("a[data-rel='" + this.state.fldID + "']");
                 if (lnk.length > 0) {
@@ -192,16 +192,16 @@
                         img.attr("src", e.target.result);
                     }
                 }
-            }
+        }
 
         },
-        uploadComplete: function (res) {
+    uploadComplete: function (res) {
             var type = this.state.fldID;
             if (res.result) {
                 var src = res.src;
-                var front = (type == "pic_front" ? src : this.state.front);
-                var back = (type == "pic_back" ? src : this.state.back);
-                var handon = (type == "pic_handon" ? src : this.state.handon);
+            var front = (type == "pic_front" ? src : this.state.front);
+            var back = (type == "pic_back" ? src : this.state.back);
+            var handon = (type == "pic_handon" ? src : this.state.handon);
                 this.setState({
                     front: front,
                     back: back,
@@ -222,14 +222,14 @@
             }
             this.formReset();
         },
-        render: function () {
+    render: function () {
             var realname = GetItem("temp_realname");
             var id_card_no = GetItem("temp_id_card_no");
             var id_type = GetItem("temp_id_type");
 
             return (<div className="item-box">
                 <h4 className="tb-title tb-title-border clearfix"><span
-                    className="tl pull-left">{% trans '照片认证' %}</span>
+                        className="tl pull-left">{% trans '照片认证' %}</span>
                     <a href="#" className="txt-primary pull-right" onClick={this.skipHandler}>{% trans '跳过' %}</a>
                 </h4>
                 <div className="form-idcard">
@@ -251,18 +251,17 @@
                             <div className="row">
                                 <div className="col-lg-12">
                                     <div className="box">
-                                        <p>{% trans '照片要求' %}：<br/>
-                                            {% trans '1.请上传 李楠 (证件号：3****************2)对应的证件照片' %}<br/>
-                                            {% trans '示例图如下' %}：<br/>
-                                            {% trans '身份证正面照' %}<br/>
-                                            <img width="50%" height="auto" src="/static/images/example_front.png"/><br/>
-                                            {% trans '身份证背面照' %}<br/>
-                                            <img width="50%" height="auto" src="/static/images/example_back.png"/><br/>
-                                            {% trans '身份证手持照' %}<br/>
-                                            <img width="70%" height="auto"
-                                                 src="/static/images/example_handon.png"/><br/>
-                                            {% trans '2.文件大小不能大于6MB。文件格式必须为jpg、png或者gif。' %}<br/>
-                                            {% trans '3.手持身份证照片要求: 手持身份证照片，身份证信息清晰且无遮挡。' %} </p>
+                                    <p>{% trans '照片要求' %}：<br/>
+                                        {% trans '1.请上传 李楠 (证件号：3****************2)对应的证件照片' %}<br/>
+                                        {% trans '示例图如下' %}：<br/>
+                                        {% trans '身份证正面照' %}<br/>
+                                        <img width="50%" height="auto" src="/static/images/example_front.png"/><br/>
+                                        {% trans '身份证背面照' %}<br/>
+                                        <img width="50%" height="auto" src="/static/images/example_back.png"/><br/>
+                                        {% trans '身份证手持照' %}<br/>
+                                        <img width="70%" height="auto" src="/static/images/example_handon.png"/><br/>
+                                        {% trans '2.文件大小不能大于6MB。文件格式必须为jpg、png或者gif。' %}<br/>
+                                        {% trans '3.手持身份证照片要求: 手持身份证照片，身份证信息清晰且无遮挡。' %} </p>
                                     </div>
                                 </div>
                             </div>
@@ -304,9 +303,9 @@
     var isLogin = IsLogin();
 
     ReactDOM.render(
-        <App isLogin={isLogin} ContentBox={
-            <PageView/>
-        }/>
+            <App isLogin={isLogin} ContentBox={
+                <PageView/>
+            }/>
         , document.getElementById("App")
     );
 </script>

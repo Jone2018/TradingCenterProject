@@ -1,0 +1,343 @@
+<!doctype html>
+{% load i18n %}
+<html>
+    <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
+    <link rel="shortcut icon" href="/static/images/favicon.ico"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/otc-orders.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap/layer/theme/default/layer.css">
+    <script src="/static/js/jquery-1.11.1.min.js"></script>
+    <script src="/static/js/jquery.scrollTo.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/static/bootstrap/layer/layer.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="{% url 'javascript-catalog' %}"></script>
+    <script src="/static/js/config.js"></script>
+    <script src="/static/js/common.js"></script>
+    <link rel="stylesheet" type="text/css" href="/static/js/swiper/css/swiper.min.css">
+    <script src="/static/js/swiper/js/swiper.min.js"></script>
+    <script src="/static/js/jquery.slimscroll.min.js"></script>
+    <script src="/static/js/otc.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.4.2/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+           
+        });
+		
+		
+		function sendMsg(id)
+		{
+			var msg = $("#msg" + id + " .msg-list");
+			var cont = $("#msg" + id).find("input[name='content']");
+			if(cont.val().replace(/\s+/,"").length > 0)
+				{
+					var mi = GetMsgItem(cont.val());
+					cont.val("");
+					$(mi).appendTo(msg);
+					
+					$("#simScroll").slimScroll({ scrollBy: '60px' });
+				}
+		}
+		
+		function PageInit()
+		{
+			$(".mm-otc > a").addClass("active");
+			
+			$(".ov-tabs .item a").click(function(){
+				var rel = $(this).data("id");
+				var itm = $(this).parent();
+				
+				$(".tab-item").hide();
+				$(rel).slideDown("fast");
+				
+				$(".ov-tabs .active").removeClass("active");
+				itm.addClass("active");
+				
+				return false;
+			});
+			
+			$("#simScroll").slimScroll({
+				height:"300px",
+				alwaysVisible:false,
+				start:"bottom"
+			})
+		}
+		
+		function GetMsgItem(m)
+		{
+			var h = '<li class="item item-usr">';
+				 h+='<div class="clearfix">';
+				h+='<a href="#" class="thu"><img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/lihualiang.png" alt="" /></a>';
+				h+='<div class="info">';
+				h+='<div class="box">';
+				h+=m;
+				h+='</div>';
+				h+='</div>';
+				h+='</div>';
+				h+='</li>';
+			
+			return h;
+		}
+    </script>
+    <!--[if gte IE 6]>
+	<link rel="stylesheet" type="text/css" href="/static/css/otc-ie.css" />
+	<![endif]-->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+	<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+    </head>
+    <body>
+<div id="App"></div>
+<div id="ordersTemp" style="display: none;">
+	<div class="item-box">
+      <div class="steps">
+    <ul class="clearfix">
+          <li class="item active">
+        <div class="icons"><i class="icon icon-shopping-cart"></i></div>
+        <div class="tl">已拍下</div>
+      </li>
+          <li class="item item-spr active">
+        <div class="icons"><i class="icon icon-angle-double-right"></i></div>
+      </li>
+          <li class="item">
+        <div class="icons"><i class="icon icon-credit-card"></i></div>
+        <div class="tl">待付款</div>
+      </li>
+          <li class="item item-spr">
+        <div class="icons"><i class="icon icon-angle-double-right"></i></div>
+      </li>
+          <li class="item">
+        <div class="icons"><i class="icon icon-gift"></i></div>
+        <div class="tl">待收货</div>
+      </li>
+          <li class="item item-spr">
+        <div class="icons"><i class="icon icon-angle-double-right"></i></div>
+      </li>
+          <li class="item">
+        <div class="icons"><i class="icon icon-comments"></i></div>
+        <div class="tl">待评价</div>
+      </li>
+        </ul>
+  </div>
+      <div class="order-info">
+		  <div class="binfo"> <span class="tl">已拍下</span>  <span class="spr">&nbsp;|&nbsp;</span> <span class="inf">订单将在托管中保存30分钟，逾期款付款将自动取消</span> </div>
+		  <div class="oinfo"><div class="clearfix"> <span class="tl">订单信息</span> <span class="amount">交易金额：<em>5000 CNY</em></span> <span class="price">交易价格：<em>67850.5 CNY</em></span> <span class="qty">交易数量：<em>0.07369142 BTC</em></span></div> </div>
+    <div class="tinfo">
+          <div class="row">
+        <div class="col-lg-9 col-md-8 col-sm-6 col-xs-12">
+			<div class="dtabs">
+              <div class="ov-tabs">
+            <ul class="clearfix">
+                  <li class="item active"><a href="#" data-id="#tab1">聊天</a></li>
+                  <li class="item"><a href="#" data-id="#tab2">卖家信息</a></li>
+                </ul>
+          </div>
+              <div class="ov-tabs-items">
+			<div class="otc-msg tab-item" id="tab1">
+            <div class="messages" id="msg1">
+				<div id="simScroll">
+                  <ul class="msg-list">
+                <li class="item item-usr">
+                      <div class="clearfix"> <a href="#" class="thu"><img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/lihualiang.png" alt="" /></a>
+                    <div class="info">
+                          <div class="box"> 你好，在吗? </div>
+                        </div>
+                  </div>
+                    </li>
+                <li class="item item-otc">
+                      <div class="clearfix"> <a href="#" class="thu"><img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/lihualiang.png" alt="" /></a>
+                    <div class="info">
+                          <div class="box"> 在的 </div>
+                        </div>
+                  </div>
+                    </li>
+                <li class="item item-usr">
+                      <div class="clearfix"> <a href="#" class="thu"><img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/lihualiang.png" alt="" /></a>
+                    <div class="info">
+                          <div class="box"> 你好，在吗? </div>
+                        </div>
+                  </div>
+                    </li>
+                <li class="item item-otc">
+                      <div class="clearfix"> <a href="#" class="thu"><img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/lihualiang.png" alt="" /></a>
+                    <div class="info">
+                          <div class="box"> 在的 </div>
+                        </div>
+                  </div>
+                    </li>
+                <li class="item item-usr">
+                      <div class="clearfix"> <a href="#" class="thu"><img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/lihualiang.png" alt="" /></a>
+                    <div class="info">
+                          <div class="box"> 你好，在吗? </div>
+                        </div>
+                  </div>
+                    </li>
+                <li class="item item-otc">
+                      <div class="clearfix"> <a href="#" class="thu"><img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/lihualiang.png" alt="" /></a>
+                    <div class="info">
+                          <div class="box"> 在的 </div>
+                        </div>
+                  </div>
+                    </li>
+              </ul>
+				</div>
+                  <div class="msg-tools">
+                <div class="clearfix"> <a href="#" class="icons"><i class="icon icon-paperclip"></i></a>
+                      <div class="tbox">
+                    <div class="iconx"><i class="icon icon-comments"></i></div>
+                    <input type="text" class="msg" name="content" placeholder="说点什么吧" />
+                    <div class="btn-send">
+                          <button type="button" onClick="sendMsg(1)" >发送 <i class="icon icon-angle-right"></i></button>
+                        </div>
+                  </div>
+                    </div>
+              </div>
+                </div>
+				  </div>
+            <div class="otc-trade tab-item" id="tab2" style="display: none;">
+				<div class="clearfix">
+					<div class="thu">
+						<a href="#"><img src="https://suiqiu-temp.oss-cn-shanghai.aliyuncs.com/otc/lihualiang.png" alt="" /></a>
+					</div>
+					<div class="info">
+						<h4 class="nm">二蛋</h4>
+						<div class="trade-info">
+				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tbody>
+    <tr>
+      <td>交易量: <em>300+ BTC</em></td>
+      <td>电子邮箱: <em>未验证</em></td>
+    </tr>
+    <tr>
+      <td>已确认的交易次数: <em>1-30</em></td>
+      <td>电话号码: <em>已验证</em></td>
+    </tr>
+    <tr>
+      <td>好评度: <em>100 %</em></td>
+      <td>实名认证: <em>已验证</em></td>
+    </tr>
+    <tr>
+      <td>第一次购买: <em>2017-12-01 06:37:41</em></td>
+      <td>信任: <em>478</em></td>
+    </tr>
+    <tr>
+      <td>用户创建时间: <em>2017-12-01 03:22:23</em></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+						</div>
+					</div>
+				</div>
+				  </div>
+          </div>
+            </div>
+			  </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+              <div class="dinfo">
+				<h3 class="tl">交易操作</h3>
+				  <div class="hline"></div>
+				<div class="item">
+					<div class="ttl">订单编号：</div>
+					<div class="inf">204669</div>
+				  </div>
+				  
+				  <div class="item">
+					<div class="ttl">付款方式：</div>
+					<div class="inf">支付宝</div>
+				  </div>
+				  
+				  <div class="item">
+					<div class="ttl">广告留言：</div>
+					<div class="inf">新手</div>
+				  </div>
+				  
+				  <div class="item">
+					<div class="ttl">交易提示：</div>
+					<div class="inf">1.对方的BTC已被托管锁定，您需要在规定时间内完成付款并点击“标记付款已完成”按钮，否则交易将自动取消。<br>
+					  2.转帐时请在留言附上订单编号，否则对方可能无法识别您的付款。</div>
+				  </div>
+				  
+				  <div class="item">
+					  <div class="btns">
+						  <a href="#" class="btn btn-primary">标记已付款完成</a>
+						  <a href="#" class="btn btn-default">取消交易</a>
+					  </div>
+				  </div>
+				  <div class="hline"></div>
+				  <div class="item btnx">
+					  <a href="#"><i class="icon icon-info-circle"></i> 举报这则广告</a>
+				  </div>
+			  </div>
+            </div>
+      </div>
+        </div>
+  </div>
+	</div>
+    </div>
+<script type="text/babel" src="/static/jsx/approot.jsx"></script> 
+<script type="text/babel" src="/static/jsx/header.jsx"></script> 
+<script type="text/babel" src="/static/jsx/footer.jsx"></script> 
+<script type="text/babel" src="/static/jsx/usernavbar.jsx"></script> 
+<script type="text/babel" src="/static/jsx/elements.jsx"></script> 
+<script type="text/babel">
+
+    function CCate(props) {
+        var items = [];
+        var num = 0;
+        props.items.forEach(function (item) {
+            num++;
+            items.push(<a href="#" key={num} onClick={props.clickHandler} data-id={item}><i
+                    className="icon-check-circle"></i> {item}</a>);
+        });
+        return (<div className="nav-cate visible-xs-block">{items}</div>);
+    }
+
+    var PageView = React.createClass({
+        getInitialState: function () {
+            return {
+                status: 0,
+                items: []
+            };
+        },
+        componentDidMount: function () {
+            $("#otcOrders").html($("#ordersTemp").html());
+			PageInit();
+        },
+        render: function () {
+            return (<section className="otc-list">
+                <div className="container">
+					<div id="otcOrders" className="otc-view"></div>
+                </div>
+            </section>);
+        }
+    });
+	
+    var isLogin = IsLogin();
+
+    ReactDOM.render(
+            <App isLogin={isLogin} ContentBox={
+                <PageView/>
+            }/>
+        , document.getElementById("App")
+    );
+</script>
+</body>
+</html>

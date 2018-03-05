@@ -1,0 +1,466 @@
+.otc-list {
+	background-color: #f6f6f6;
+}
+.otc-list .item-box {
+	padding: 20px 0;
+}
+.page-bar {
+	text-align: center;
+}
+.otc-search
+{
+	padding: 30px 0 10px 0;
+}
+.otc-search .box
+{
+	width: 80%;
+	margin: 0 auto;
+}
+.otc-search .item
+{
+	float: left;
+}
+
+.otc-search .item-tp,
+.otc-search .item-btn
+{
+	width: 15%;
+}
+
+.otc-search .item-tp,
+.otc-search .item-ads,
+.otc-search .item-user
+{
+	border-width: 1px 0 1px 1px;
+	border-style: solid;
+	border-color: #CCC;
+}
+
+.otc-search .sitem
+{
+	position: relative;
+}
+
+.otc-search .sitem .icons
+{
+	position: absolute;
+	right: 10px;
+	top: 0;
+	line-height: 45px;
+	text-align: right;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.otc-search .item-ads .sitem
+{
+	width: 33.333%;
+	float: left;
+}
+
+.otc-search  select
+{
+	width: 100%;
+	margin: 0 auto;
+	padding: 0;
+	height: 45px;
+	border: 0;
+	text-indent: 8px;
+	
+	appearance:none;
+	-moz-appearance:none;
+	-webkit-appearance:none;
+
+}
+
+.otc-search .item-user input
+{
+	appearance:none;
+	-moz-appearance:none;
+	-webkit-appearance:none;
+	border: none;
+	margin: 0;
+	padding: 0;
+	height: 45px;
+	line-height: 45px;
+	text-indent: 10px;
+	display: block;
+	width: 100%;
+}
+
+.otc-search .item-tp  select
+{
+	background-color: #f0f0f0;
+	color:#006FC7;
+}
+
+.otc-search select:hover,
+.otc-search select:focus,
+.otc-search select:active
+{
+	outline: none;
+}
+
+.otc-search .item-ads,
+.otc-search .item-user
+{
+	width: 70%;
+}
+
+.otc-search .item-user
+{
+	display: none;
+}
+
+.otc-search .item-btn button
+{
+	border-radius: 0;
+	display: block !important;
+	width: 100%;
+	padding-top: 12px;
+	padding-bottom: 13px;
+}
+
+.tb-otc {
+	border-top: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+}
+.tb-otc th, .tb-otc td {
+	border-bottom: 1px solid #ddd;
+	vertical-align: middle;
+}
+.icon_alipay {
+	background: url(../images/icon_alipay.png) center top no-repeat;
+	background-size: contain;
+	display: inline-block;
+	width: 26px;
+	height: 26px;
+}
+.otc-query {
+	padding: 20px 0 0 0;
+}
+.otc-tabs {
+	background: url(../images/line.png) left bottom repeat-x;
+}
+.otc-tabs .item {
+	float: left;
+}
+.otc-tabs .sitem {
+	float: right;
+	text-align: right;
+}
+.otc-tabs .sitem  a
+{
+	display: inline-block;
+	color: #999;
+	padding: 8px 0;
+	line-height: 20px;
+}
+.otc-tabs .sitem  a:hover
+{
+	color: #333;
+}
+.otc-tabs .item a {
+	display: block;
+	text-align: center;
+	font-size: 16px;
+	line-height: 20px;
+	padding: 8px 20px;
+	color: #727272;
+}
+.otc-tabs .item:hover a, .otc-tabs .item a:hover, .otc-tabs .active a {
+	border-bottom: 2px solid #2785fa;
+	color: #2785fa;
+}
+.tb-otc {
+	font-size: 12px;
+}
+.tb-otc .thead td {
+	padding: 15px 5px;
+	text-align: center;
+	font-size: 14px;
+	line-height: 175%;
+	font-weight: bold;
+}
+.tb-otc .titem td {
+	text-align: center;
+}
+.tb-otc .thead .name {
+	width: 20%;
+}
+.tb-otc .thead .credit {
+	width: 20%;
+}
+.tb-otc .thead .payment {
+	width: 15%;
+}
+.tb-otc .thead .bound {
+	width: 20%;
+}
+.tb-otc .thead .price {
+	width: 15%;
+}
+.tb-otc .thead .btns {
+	width: 15%;
+}
+.tb-otc .titem .name {
+	text-align: left;
+}
+.tb-otc .name .thu {
+	float: left;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+}
+.tb-otc .name .info {
+	float: left;
+	padding-left: 10px;
+	padding-top: 5px;
+}
+.tb-otc .name .nm {
+	line-height: 150%;
+	font-size: 14px;
+	text-align: left;
+	padding-left: 5px;
+}
+.tb-otc .name .vd {
+	text-align: left;
+}
+.tb-otc .name .vd em {
+	display: inline-block;
+	font-style: normal;
+	border: 1px solid #c30;
+	color: #c30;
+	font-size: 12px;
+	padding: 2px;
+	line-height: 14px;
+	transform: scale(.75);
+	-webkit-transform: scale(.75);
+	-moz-transform: scale(.75);
+	-ms-transform: scale(.75);
+}
+.tb-otc .titem .credit {
+}
+.tb-otc .titem .credit i, .tb-otc .titem .credit em {
+	font-style: normal;
+}
+.tb-otc .titem .credit i, .tb-otc .titem .credit em {
+	display: block;
+	text-align: center;
+}
+.tb-otc .titem .credit .icons {
+}
+.tb-otc .titem .credit em {
+	color: #999;
+}
+tb-otc .titem .credit span:first-child {
+	margin-left: 5%;
+}
+.tb-otc .titem .credit span {
+	padding: 0 5px;
+	width: 30%;
+}
+.tb-otc .titem .payment {
+}
+.tb-otc .payment i {
+	font-size: 26px;
+}
+.tb-otc .payment .icon_alipay, .tb-otc .payment .wx, .tb-otc .payment .card {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+.tb-otc .payment .wx {
+	color: #17bd4a;
+}
+.tb-otc .payment .card {
+	color: #eb9917;
+}
+.tb-otc .titem .bound {
+}
+.tb-otc .titem .price {
+	color: #17bd4a;
+}
+.tb-otc .titem .btns {
+}
+.tb-otc .titem .btns a {
+	display: inline-block;
+	padding: 5px 15px;
+	color: #FFF;
+	background-color: #3eb4ea;
+	border-radius: 4px;
+}
+.tb-otc .titem .btns a:hover {
+	background-color: #2796ca;
+}
+
+@media screen and (max-width:767px) {
+	.otc-tabs
+	{
+		background-image: none;
+	}
+	.otc-tabs .item,
+	.otc-tabs .sitem
+	{
+		display: inline-block;
+		float: none;
+		margin: 5px;
+	}
+	.otc-tabs .item a
+	{
+		font-size: 14px;
+		padding: 8px;
+		background-color: #666;
+		color: #FFF;
+		text-align: center;
+		border-radius: 6px;
+	}
+	
+	.otc-tabs .active a,
+	.otc-tabs .item a:hover,
+	.otc-tabs .item a:focus
+	{
+		background-color: #2785fa;
+		color: #FFF;
+		border-bottom: none;
+	}
+.tb-otc .titem .credit span.fl {
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	line-height: 150%;
+	float: none;
+	display: block;
+}
+.tb-otc .titem .credit i, .tb-otc .titem .credit em {
+	display: inline;
+	text-align: left;
+}
+.tb-list td,  .tb-list th {
+	padding: 5px 2px;
+}
+	
+	.tb-otc .thead td
+	{
+		font-size: 12px;
+	}
+	
+	.tb-otc .thead .payment span
+	{
+		display: block;
+		text-align: center;
+	}
+	
+.tb-otc .name .thu {
+	float: none;
+	border-radius: 50%;
+	width: 50px;
+	height: 50px;
+	display: block;
+	margin: 0 auto;
+}
+.tb-otc .name .info {
+	float: none;
+	padding-left: 0;
+	padding-top: 5px;
+	text-align: center;
+}
+.tb-otc .name .nm {
+	font-size: 12px;
+	text-align: center;
+	padding-left: 0;
+}
+.tb-otc .name .vd {
+	text-align: center;
+}
+.tb-otc .titem .btns a {
+	padding: 5px;
+}
+.tb-otc .titem .btns a span {
+	display: none;
+}
+.tb-otc .payment .icon_alipay, .tb-otc .payment .wx, .tb-otc .payment .card {
+	margin: 5px auto;
+	display: block;
+	float: none;
+}
+.tb-otc .payment .icon_alipay {
+	width: 16px;
+	height: 16px;
+}
+.tb-otc .payment .wx, .tb-otc .payment .card {
+	font-size: 14px;
+}
+	
+	.tb-otc .bound span,
+	.tb-otc .price span
+	{
+		display: block;
+		text-align: center;
+	}
+	
+	.otc-search
+	{
+		padding: 10px 0 10px 0;
+	}
+	
+	.otc-search .box
+	{
+		width: 100%;
+	}
+	
+	.otc-search .item-tp,
+	.otc-search .item-ads,
+	.otc-search .item-user,
+	.otc-search .item-btn,
+	.otc-search .item-ads .sitem
+	{
+		float: none;
+		width: 100%;
+		display: block;
+	}
+	
+	.otc-search .item-tp,
+	.otc-search .item-ads,
+	.otc-search .item-user
+	{
+		border: none;
+	}
+	
+	.otc-search  select,
+	.otc-search .item-ads select
+	{
+		border: 1px solid #CCC;
+		border-radius: 4px;
+		margin-bottom: 5px;
+		display: block;
+		float: none;
+		width: 100%;
+	}
+	
+	.otc-search .item-user input
+	{
+		border: 1px solid #CCC;
+		border-radius: 4px;
+		margin-bottom: 5px;
+		width: 100%;
+	}
+	
+	
+	
+	.otc-search .item-btn button
+	{
+		margin-top: 5px;
+		border-radius: 4px;
+	}
+	
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+/* IE10+ CSS styles go here */
+	.otc-search .sitem .icons
+	{
+		display: none !important;
+	}
+
+}

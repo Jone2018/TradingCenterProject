@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <title>{% trans 'bitbiex—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
     <link rel="shortcut icon" href="/static/images/favicon.ico"/>
@@ -81,15 +81,15 @@
     }
 
     var CQuestionView = React.createClass({
-        displayName: "CQuestionView",
+	displayName: "CQuestionView",
 
-        getInitialState: function getInitialState() {
+	getInitialState: function getInitialState() {
             return {
                 status: 0,
                 items: []
             };
         },
-        componentDidMount: function componentDidMount() {
+	componentDidMount: function componentDidMount() {
             $.getJSON(this.props.source, {
                 question_id: this.props.id
             }, function (res) {
@@ -106,7 +106,7 @@
                 }
             }.bind(this));
         },
-        render: function render() {
+	render: function render() {
             var rows = [];
             var replys = [];
             if (this.state.status == 0) {
@@ -178,9 +178,9 @@
     var isLogin = IsLogin();
 
     ReactDOM.render(
-        <App isLogin={isLogin} ContentBox={
-            <PageView/>
-        }/>
+            <App isLogin={isLogin} ContentBox={
+                <PageView/>
+            }/>
         , document.getElementById("App")
     );
 </script>

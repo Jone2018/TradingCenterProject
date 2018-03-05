@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <title>{% trans 'bitbiex—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
     <link rel="shortcut icon" href="/static/images/favicon.ico"/>
@@ -70,18 +70,17 @@
     }
 
     var FormBox = React.createClass({
-        displayName: "FormBox",
+	displayName: "FormBox",
 
-        componentDidMount: function componentDidMount() {
-        },
-        submitHandler: function submitHandler(e) {
+	componentDidMount: function componentDidMount() {},
+	submitHandler: function submitHandler(e) {
             e.preventDefault();
         },
-        sendMsgHandler: function sendMsgHandler(e) {
+	sendMsgHandler: function sendMsgHandler(e) {
             e.preventDefault();
-            SendEmailMsgX(e.target, '#email');
+		SendEmailMsgX(e.target, '#email');
         },
-        render: function render() {
+	render: function render() {
             var email = GetFormatItem("email");
             return (<CFormBox title="{% trans '请选择工单分类' %}" subTitle="{% trans '（正确选择分类，有助于快速解决您的问题）' %}"
                               submitHandler={this.submitHandler}>
@@ -112,9 +111,9 @@
     var isLogin = IsLogin();
 
     ReactDOM.render(
-        <App isLogin={isLogin} ContentBox={
-            <PageView/>
-        }/>
+            <App isLogin={isLogin} ContentBox={
+                <PageView/>
+            }/>
         , document.getElementById("App")
     );
 </script>

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>{% trans '随求—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
+    <title>{% trans 'bitbiex—专业的区块链资产交易平台，为您的财务增值保驾护航' %}</title>
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap-theme.css">
     <link rel="shortcut icon" href="/static/images/favicon.ico"/>
@@ -58,7 +58,7 @@
         props.items.forEach(function (item) {
             num++;
             items.push(<a href="#" key={num} onClick={props.clickHandler} data-id={item}><i
-                className="icon-check-circle"></i> {item}</a>);
+                    className="icon-check-circle"></i> {item}</a>);
         });
         return (<div className="nav-cate visible-xs-block">{items}</div>);
     }
@@ -179,8 +179,8 @@
                                 <div className="cont">
                                     <p>{% trans '用户必须自行准备如下设备和承担如下开支：' %}</p>
                                     <p>{% trans '（1）上网设备，包括并不限于电脑或者其他上网终端、调制解调器及其他上网装置。' %}</p>
-                                    <p>{% trans '（2）上网开支，包括并不限于网络接入费、上网设备租用费、手机流量费等。用户在接受随求各项服务的同时，同意接受随求提供的各类信息服务。' %}</p>
-                                    <p>{% trans '（3）用户在此授权随求可以向其电子邮件、手机、通信地址等发送商业信息。用户有权选择不接受随求提供的各类信息服务，并进入随求相关页面或联系客服进行更改。 ' %}</p>
+                                    <p>{% trans '（2）上网开支，包括并不限于网络接入费、上网设备租用费、手机流量费等。用户在接受bitbiex各项服务的同时，同意接受bitbiex提供的各类信息服务。' %}</p>
+                                    <p>{% trans '（3）用户在此授权bitbiex可以向其电子邮件、手机、通信地址等发送商业信息。用户有权选择不接受bitbiex提供的各类信息服务，并进入bitbiex相关页面或联系客服进行更改。 ' %}</p>
                                 </div>
                             </div>
                         </div>
@@ -193,7 +193,8 @@
         }
     });
 
-    function CWXLink(props) {
+    function CWXLink(props)
+    {
         return <div>
             <a href="#" onClick={props.clickHandler}>
                 <i className="icon icon-qrcode icon-large"></i> {props.text}
@@ -235,12 +236,13 @@
                 }
             }.bind(this));
         },
-        clickHandler: function (qrc, e) {
+        clickHandler:function(qrc,e)
+        {
             e.preventDefault();
             layer.open({
                 title: "{% trans '微信二维码' %}",
-                content: "<div class='txt-center'><img src='" + qrc + "' width='200' height='255' /></div>",
-                btn: []
+                content:"<div class='txt-center'><img src='" + qrc + "' width='200' height='255' /></div>",
+                btn:[]
             });
         },
         render: function () {
@@ -282,9 +284,7 @@
                             <td className="type">{aPay} {wPay} {cPay}</td>
                             <td className="addr"><i className="icon-map-marker"></i>{item.address}</td>
                             <td className="qr">
-                                <CWXLink qr={item.wechat_qrc}
-                                         clickHandler={this.clickHandler.bind(this, item.wechat_qrc)}
-                                         text="{% trans '微信二维码' %}"/>
+                                <CWXLink qr={item.wechat_qrc} clickHandler={this.clickHandler.bind(this,item.wechat_qrc)} text="{% trans '微信二维码' %}" />
                             </td>
                         </tr>);
                     }.bind(this));
@@ -318,9 +318,9 @@
     var isLogin = IsLogin();
 
     ReactDOM.render(
-        <App isLogin={isLogin} ContentBox={
-            <PageView/>
-        }/>
+            <App isLogin={isLogin} ContentBox={
+                <PageView/>
+            }/>
         , document.getElementById("App")
     );
 </script>
