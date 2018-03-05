@@ -5,7 +5,7 @@ pipeline:
     repo: suiqiu/tradingcenter
     dockerfile: Dockerfile
     secrets: [ docker_username, docker_password ]
-    tag: [ latest ]
+    tag: [ latest, {{ build.branch }} ]
     when:
       branch: [2.1, {{ build.branch }}]
       event: push
@@ -13,7 +13,8 @@ pipeline:
   deploy:
     image: quay.io/honestbee/drone-kubernetes
     kubernetes_server: https://13.231.151.210:6443
-    kubernetes_token: ZXlKaGJHY2lPaUpTVXpJMU5pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnBjM01pT2lKcmRXSmxjbTVsZEdWekwzTmxjblpwWTJWaFkyTnZkVzUwSWl3aWEzVmlaWEp1WlhSbGN5NXBieTl6WlhKMmFXTmxZV05qYjNWdWRDOXVZVzFsYzNCaFkyVWlPaUpwYm1keVpYTnpMVzVuYVc1NElpd2lhM1ZpWlhKdVpYUmxjeTVwYnk5elpYSjJhV05sWVdOamIzVnVkQzl6WldOeVpYUXVibUZ0WlNJNkltNW5hVzU0TFdsdVozSmxjM010YzJWeWRtbGpaV0ZqWTI5MWJuUXRkRzlyWlc0dFozSTFPVzRpTENKcmRXSmxjbTVsZEdWekxtbHZMM05sY25acFkyVmhZMk52ZFc1MEwzTmxjblpwWTJVdFlXTmpiM1Z1ZEM1dVlXMWxJam9pYm1kcGJuZ3RhVzVuY21WemN5MXpaWEoyYVdObFlXTmpiM1Z1ZENJc0ltdDFZbVZ5Ym1WMFpYTXVhVzh2YzJWeWRtbGpaV0ZqWTI5MWJuUXZjMlZ5ZG1salpTMWhZMk52ZFc1MExuVnBaQ0k2SWpneFpqWTVNbU0wTFRJd01XTXRNVEZsT0MxaE1UUmhMVEEyT0RGaFptUmtaV1EwWVNJc0luTjFZaUk2SW5ONWMzUmxiVHB6WlhKMmFXTmxZV05qYjNWdWREcHBibWR5WlhOekxXNW5hVzU0T201bmFXNTRMV2x1WjNKbGMzTXRjMlZ5ZG1salpXRmpZMjkxYm5RaWZRLm9JMEJCVDEyM2g5amEwNTR4QjRRSGJXMFIyQTBienJ1RUkyTEVOREhCcVNPTk5YYmxyMzhWQkowOXM0eU4yRlZUZWNtUkJ4MFJNaXVXSV9STXNQSlZHWnFia21vTWpCODJqRWF1bVE2ZGU5aGE3YTdWM19pbkhWQVI0NzhBMWdiNDNhR0dRWjd3cHNsV2tfZ3dMOHBHcmhTQlpzT19RSWo2amcteHlaTlZXMkZGYXNqLXQ0MDVQS3IyMVJfdHlMXy1EY2szVjNtSFlnUGZ3bkZxMks2YnBJS2tvemxLeFBwUWE3VUZzbWpXQlBrV3l5Z3YxVVhxTU1Ld3d1bUNIUllhRkU4bTY1Mm5jSFZQdm1WcFdyOGlZaTBPQlVCZmVURW0tR0ZHTk1teWVHR1BrdlR0NXlkQ3M3VHRTOHFHNGNDU2d2VUxpZDhZWmhjcW1laUFqbUo2QQ==
+    kubernetes_cert: ${KUBERNETES_CERT}
+    kubernetes_token: ${KUBERNETES_TOKEN}
     namespace: ingress-nginx
     deployment: tradingcenter
     repo: suiqiu/tradingcenter
