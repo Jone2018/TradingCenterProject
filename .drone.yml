@@ -5,9 +5,11 @@ pipeline:
     repo: suiqiu/tradingcenter
     dockerfile: Dockerfile
     secrets: [ docker_username, docker_password ]
-    tag: [ latest, {{ build.branch }} ]
+    tags:
+      - lastet
+      - {{build.branch}}
     when:
-      branch: [2.1, {{ build.branch }}]
+      branch: [ master ]
       event: push
 
   deploy:
